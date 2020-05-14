@@ -124,6 +124,8 @@ public class VtnGrupo extends javax.swing.JFrame {
 
     private void jBAgregarGActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBAgregarGActionPerformed
 
+        //PRUEBA DE COMMIT
+        
         String s = "";
         s = JOptionPane.showInputDialog("Escriba el nombre de la categoria a añadir"); //ETIQUETA PARA LA CATEGORIA NUEVA
 
