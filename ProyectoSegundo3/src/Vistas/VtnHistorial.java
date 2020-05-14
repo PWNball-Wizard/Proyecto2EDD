@@ -7,6 +7,7 @@ package Vistas;
 
 import Clases.Multilistas;
 import Clases.Nodo;
+import static Vistas.VtnGrupo.r;
 import cjb.ci.Mensaje;
 import java.awt.Component;
 import java.awt.event.ActionEvent;
@@ -236,8 +237,9 @@ public class VtnHistorial extends javax.swing.JFrame {
             if (s.length() == 0) {
                 Mensaje.error(this, "Rellene el campo");
             } else {
-                if (b = true) {
+//                if (b = true) {
                     Nodo his = new Nodo(null, s);
+                    System.out.println("Esto es lo que hay en la cadena de historial "+ s);
                     String[] etqs = new String[3];
                     etqs[0] = d1;
                     etqs[1] = d2;
@@ -257,7 +259,7 @@ public class VtnHistorial extends javax.swing.JFrame {
                         Nodo aux = r2;
                         while (aux != null) {
                             JButton boton = new JButton(aux.getEtq());
-
+                            System.out.println("El boton se llama " +boton.getText());
                             Component componentes[] = JPHistorial.getComponents();
 
                             for (int i = 0; i < componentes.length; i++) {
@@ -286,10 +288,11 @@ public class VtnHistorial extends javax.swing.JFrame {
                     JPHistorial.revalidate();
                     JPHistorial.repaint();
 
-                } else {
-                    Mensaje.error(this, "Formato de fecha no valido");
-                }
+//                } else {
+//                    Mensaje.error(this, "Formato de fecha no valido");
+//                }
             }
+            System.out.println(Multilistas.desp(VtnGrupo.r, 0));
         }
     }//GEN-LAST:event_jBEliminarHActionPerformed
 
