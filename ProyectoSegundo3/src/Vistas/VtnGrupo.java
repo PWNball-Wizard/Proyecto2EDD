@@ -171,7 +171,9 @@ public class VtnGrupo extends javax.swing.JFrame {
     }//GEN-LAST:event_jBAgregarGActionPerformed
 
     private void jBEliminarGActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBEliminarGActionPerformed
+        
         String s = "";
+        
         s = JOptionPane.showInputDialog("Escriba el nombre de la categoria a eliminar"); //ETIQUETA PARA LA CATEGORIA NUEVA
 
         if (s.length() == 0) {
