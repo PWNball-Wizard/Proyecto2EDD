@@ -8,6 +8,7 @@ package Vistas;
 import Clases.Multilistas;
 import Clases.Nodo;
 import cjb.ci.Mensaje;
+import java.awt.Component;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.JButton;
@@ -211,7 +212,55 @@ public class VtnContacto extends javax.swing.JFrame {
     }//GEN-LAST:event_jBMoverCActionPerformed
 
     private void jBEliminarCActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBEliminarCActionPerformed
-        // TODO add your handling code here:
+
+        String s = "";
+
+        s = JOptionPane.showInputDialog("Escriba el nombre del contacto que desea eliminar");
+        if (s.length() == 0) {
+            Mensaje.error(this, "Debe rellenar el campo");
+        }
+        if (s.length() != 0) {
+            Nodo con = new Nodo(null, s);
+            String[] etqs = new String[2];
+            etqs[0] = d;
+            etqs[1] = s;
+            VtnGrupo.r = Multilistas.elimina(VtnGrupo.r, 0, etqs);
+
+            r1 = Multilistas.busca(VtnGrupo.r, d);
+            r1 = r1.getAbj();
+//            JPContactos.removeAll();
+            if (r1 != null) {
+                Nodo aux = r1;
+                while (aux != null) {
+                    JButton boton = new JButton(aux.getEtq());
+                    System.out.println("Etiqueta en aux "+aux.getEtq());
+                    Component componentes[] = JPContactos.getComponents();
+
+                    for (int i = 0; i < componentes.length; i++) {
+                        System.out.println(((JButton) componentes[i]).getText());
+                        if (etqs[1].equals(((JButton) componentes[i]).getText().trim())) {
+                            JPContactos.remove(i);
+                        }
+                    }
+                    boton.addActionListener(new ActionListener() {
+                        @Override
+                        public void actionPerformed(ActionEvent e) {
+                            VtnHistorial h = new VtnHistorial();
+                            h.d1 = d;
+                            h.d2 = boton.getText();
+                            h.setVisible(true);
+                        }
+                    }
+                    );
+                    aux = aux.getSig();
+                }
+            }
+
+            JPContactos.revalidate();
+            JPContactos.repaint();
+
+        }
+        System.out.println(Multilistas.desp(VtnGrupo.r, 0));
     }//GEN-LAST:event_jBEliminarCActionPerformed
 
     private void jBRegresarCActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBRegresarCActionPerformed

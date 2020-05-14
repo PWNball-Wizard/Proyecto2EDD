@@ -8,6 +8,7 @@ package Vistas;
 import Clases.Multilistas;
 import Clases.Nodo;
 import cjb.ci.Mensaje;
+import java.awt.Component;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.JButton;
@@ -62,6 +63,11 @@ public class VtnHistorial extends javax.swing.JFrame {
         });
 
         jBEliminarH.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/elimina50.jpg"))); // NOI18N
+        jBEliminarH.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBEliminarHActionPerformed(evt);
+            }
+        });
 
         jLAgregarH.setText("Agregar");
 
@@ -146,8 +152,10 @@ public class VtnHistorial extends javax.swing.JFrame {
 
         String partes[] = s.split("/");
 
-        if (Integer.parseInt(partes[0]) > 31 || Integer.parseInt(partes[0]) < 1
-                || Integer.parseInt(partes[1]) > 12 || Integer.parseInt(partes[1]) < 1
+        if (Integer.parseInt(partes[0]) > 31
+                || Integer.parseInt(partes[0]) < 1
+                || Integer.parseInt(partes[1]) > 12
+                || Integer.parseInt(partes[1]) < 1
                 || Integer.parseInt(partes[2]) < 0) {
             Mensaje.error(this, "La fecha que ingresaste es incorrecta");
         } else {
@@ -170,7 +178,7 @@ public class VtnHistorial extends javax.swing.JFrame {
                     r2 = Multilistas.busca(r2, d2);
 
                     JPHistorial.removeAll();
-                    
+
                     r2 = r2.getAbj();
                     if (r2 != null) {
                         Nodo aux = r2;
@@ -200,12 +208,90 @@ public class VtnHistorial extends javax.swing.JFrame {
                 }
             }
         }
+        System.out.println(Multilistas.desp(VtnGrupo.r, 0));
     }//GEN-LAST:event_jBAgregarHActionPerformed
 
     private void jBRegresarHActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBRegresarHActionPerformed
         new VtnContacto().setVisible(true);
         //dispose();
     }//GEN-LAST:event_jBRegresarHActionPerformed
+
+    private void jBEliminarHActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBEliminarHActionPerformed
+        boolean b = false;//BANDERA PARA VERIFICAR SI ESTA BIEN ESCRITA LA FECHA
+
+        String s = "";
+        s = JOptionPane.showInputDialog("Escriba la fecha a eliminar");
+
+        String partes[] = s.split("/");
+
+        if (Integer.parseInt(partes[0]) > 31
+                || Integer.parseInt(partes[0]) < 1
+                || Integer.parseInt(partes[1]) > 12
+                || Integer.parseInt(partes[1]) < 1
+                || Integer.parseInt(partes[2]) < 0) {
+            Mensaje.error(this, "La fecha que ingresaste es incorrecta");
+        } else {
+
+            //AGREGAR AQUI METODO PARA VALIDAR LA FECHA
+            if (s.length() == 0) {
+                Mensaje.error(this, "Rellene el campo");
+            } else {
+                if (b = true) {
+                    Nodo his = new Nodo(null, s);
+                    String[] etqs = new String[3];
+                    etqs[0] = d1;
+                    etqs[1] = d2;
+                    etqs[2] = s;
+//                    VtnGrupo.r = Multilistas.inserta(VtnGrupo.r, his, 0, etqs);
+
+                    VtnGrupo.r = Multilistas.elimina(VtnGrupo.r, 0, etqs);
+
+                    r2 = Multilistas.busca(VtnGrupo.r, d1);
+
+                    r2 = r2.getAbj();
+                    r2 = Multilistas.busca(r2, d2);
+
+//                    JPHistorial.removeAll();
+                    r2 = r2.getAbj();
+                    if (r2 != null) {
+                        Nodo aux = r2;
+                        while (aux != null) {
+                            JButton boton = new JButton(aux.getEtq());
+
+                            Component componentes[] = JPHistorial.getComponents();
+
+                            for (int i = 0; i < componentes.length; i++) {
+                                System.out.println(((JButton) componentes[i]).getText());
+                                if (etqs[2].equals(((JButton) componentes[i]).getText().trim())) {
+                                    JPHistorial.remove(i);
+                                }
+                            }
+
+//                            JPHistorial.add(boton);
+                            boton.addActionListener(new ActionListener() {
+                                @Override
+                                public void actionPerformed(ActionEvent e) {
+                                    VtnW nivel3 = new VtnW();
+                                    nivel3.d1 = d1;
+                                    nivel3.d2 = d2;
+                                    nivel3.d3 = boton.getText();
+                                    nivel3.setVisible(true);
+                                }
+                            }
+                            );
+                            aux = aux.getSig();
+                        }
+                    }
+
+                    JPHistorial.revalidate();
+                    JPHistorial.repaint();
+
+                } else {
+                    Mensaje.error(this, "Formato de fecha no valido");
+                }
+            }
+        }
+    }//GEN-LAST:event_jBEliminarHActionPerformed
 
     /*public void Actualizar()
     {
