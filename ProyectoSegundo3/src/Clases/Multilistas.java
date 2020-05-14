@@ -121,7 +121,7 @@ public class Multilistas
                 ss = "\t";
             }
 
-            s += ss + " nivel = " + String.valueOf(nivel) + "\n";
+            s += ss + " nivel " + String.valueOf(nivel) + "\n";
 
             s += ss + r.getEtq() + "\n";
 

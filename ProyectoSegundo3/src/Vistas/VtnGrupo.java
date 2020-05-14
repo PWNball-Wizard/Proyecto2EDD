@@ -171,9 +171,9 @@ public class VtnGrupo extends javax.swing.JFrame {
     }//GEN-LAST:event_jBAgregarGActionPerformed
 
     private void jBEliminarGActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBEliminarGActionPerformed
-        
+
         String s = "";
-        
+
         s = JOptionPane.showInputDialog("Escriba el nombre de la categoria a eliminar"); //ETIQUETA PARA LA CATEGORIA NUEVA
 
         if (s.length() == 0) {
@@ -185,11 +185,20 @@ public class VtnGrupo extends javax.swing.JFrame {
 
             etqs[0] = s;
 
-            r = Multilistas.elimina(r, 0, etqs);
+            boolean c = false;
+
+            if (cjb.ci.Mensaje.pregunta(this, "Eliminar grupo\nSe eliminaran los contactos "
+                    + "y conversaciones asociados a este grupo\n¿Continuar?") == 0) {
+                c = true;
+            }
+
+            if (c) {
+                r = Multilistas.elimina(r, 0, etqs);
+            }
 
             if (r != null) {
                 Nodo aux = r;
-                
+
                 while (aux != null) {
 
                     JButton boton = new JButton(aux.getEtq());
@@ -219,10 +228,12 @@ public class VtnGrupo extends javax.swing.JFrame {
 
             }
 
-            JPGrupos.revalidate();
-            JPGrupos.repaint();
+            if (c) {
+                JPGrupos.revalidate();
+                JPGrupos.repaint();
+            }
         }
-        
+
         System.out.println(Multilistas.desp(r, 0));
     }//GEN-LAST:event_jBEliminarGActionPerformed
 
