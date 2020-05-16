@@ -244,7 +244,6 @@ public class VtnGrupo extends javax.swing.JFrame {
 
     private void jBBuscaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBBuscaActionPerformed
         
-        
             
         
     }//GEN-LAST:event_jBBuscaActionPerformed
