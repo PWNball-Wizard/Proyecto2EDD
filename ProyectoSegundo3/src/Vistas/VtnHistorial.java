@@ -238,55 +238,65 @@ public class VtnHistorial extends javax.swing.JFrame {
                 Mensaje.error(this, "Rellene el campo");
             } else {
 //                if (b = true) {
-                    Nodo his = new Nodo(null, s);
-                    System.out.println("Esto es lo que hay en la cadena de historial "+ s);
-                    String[] etqs = new String[3];
-                    etqs[0] = d1;
-                    etqs[1] = d2;
-                    etqs[2] = s;
+                Nodo his = new Nodo(null, s);
+                System.out.println("Esto es lo que hay en la cadena de historial " + s);
+                String[] etqs = new String[3];
+                etqs[0] = d1;
+                etqs[1] = d2;
+                etqs[2] = s;
 //                    VtnGrupo.r = Multilistas.inserta(VtnGrupo.r, his, 0, etqs);
+                boolean c = false;
 
+                if (cjb.ci.Mensaje.pregunta(this, "Eliminar grupo\nSe eliminaran los contactos "
+                        + "y conversaciones asociados a este grupo\n¿Continuar?") == 0) {
+                    c = true;
+                }
+
+                if (c) {
                     VtnGrupo.r = Multilistas.elimina(VtnGrupo.r, 0, etqs);
+                }
 
-                    r2 = Multilistas.busca(VtnGrupo.r, d1);
+                r2 = Multilistas.busca(VtnGrupo.r, d1);
 
-                    r2 = r2.getAbj();
-                    r2 = Multilistas.busca(r2, d2);
+                r2 = r2.getAbj();
+                r2 = Multilistas.busca(r2, d2);
 
 //                    JPHistorial.removeAll();
-                    r2 = r2.getAbj();
-                    if (r2 != null) {
-                        Nodo aux = r2;
-                        while (aux != null) {
-                            JButton boton = new JButton(aux.getEtq());
-                            System.out.println("El boton se llama " +boton.getText());
-                            Component componentes[] = JPHistorial.getComponents();
+                r2 = r2.getAbj();
+                if (r2 != null) {
+                    Nodo aux = r2;
+                    while (aux != null) {
+                        JButton boton = new JButton(aux.getEtq());
+                        System.out.println("El boton se llama " + boton.getText());
+                        Component componentes[] = JPHistorial.getComponents();
 
-                            for (int i = 0; i < componentes.length; i++) {
-                                System.out.println(((JButton) componentes[i]).getText());
-                                if (etqs[2].equals(((JButton) componentes[i]).getText().trim())) {
-                                    JPHistorial.remove(i);
-                                }
+                        for (int i = 0; i < componentes.length; i++) {
+                            System.out.println(((JButton) componentes[i]).getText());
+                            if (etqs[2].equals(((JButton) componentes[i]).getText().trim())) {
+                                JPHistorial.remove(i);
                             }
+                        }
 
 //                            JPHistorial.add(boton);
-                            boton.addActionListener(new ActionListener() {
-                                @Override
-                                public void actionPerformed(ActionEvent e) {
-                                    VtnW nivel3 = new VtnW();
-                                    nivel3.d1 = d1;
-                                    nivel3.d2 = d2;
-                                    nivel3.d3 = boton.getText();
-                                    nivel3.setVisible(true);
-                                }
+                        boton.addActionListener(new ActionListener() {
+                            @Override
+                            public void actionPerformed(ActionEvent e) {
+                                VtnW nivel3 = new VtnW();
+                                nivel3.d1 = d1;
+                                nivel3.d2 = d2;
+                                nivel3.d3 = boton.getText();
+                                nivel3.setVisible(true);
                             }
-                            );
-                            aux = aux.getSig();
                         }
+                        );
+                        aux = aux.getSig();
                     }
+                }
 
+                if (c) {
                     JPHistorial.revalidate();
                     JPHistorial.repaint();
+                }
 
 //                } else {
 //                    Mensaje.error(this, "Formato de fecha no valido");
