@@ -1,9 +1,10 @@
 package Clases;
 
+import java.io.Serializable;
 import javax.swing.JOptionPane;
 
 
-public class Multilistas
+public class Multilistas implements Serializable
 {
 
     private static Nodo mov = null;//guarda un dato eliminado para hacer el movimiento 

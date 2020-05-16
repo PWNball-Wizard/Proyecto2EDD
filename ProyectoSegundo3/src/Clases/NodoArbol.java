@@ -5,11 +5,13 @@
  */
 package Clases;
 
+import java.io.Serializable;
+
 /**
  *
  * @author Mauro
  */
-public class NodoArbol
+public class NodoArbol implements Serializable
 {
     private String etq;
     private Object obj;

@@ -5,11 +5,13 @@
  */
 package Clases;
 
+import java.io.Serializable;
+
 /**
  *
  * @author Mauro
  */
-public class ArbolBinario
+public class ArbolBinario implements Serializable
 {
     private NodoArbol r=null;
     

@@ -68,6 +68,11 @@ public class VtnW extends javax.swing.JFrame {
         jButton1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowClosing(java.awt.event.WindowEvent evt) {
+                formWindowClosing(evt);
+            }
+        });
 
         jBEnviar1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/enviarw.png"))); // NOI18N
         jBEnviar1.addActionListener(new java.awt.event.ActionListener() {
@@ -389,6 +394,10 @@ public class VtnW extends javax.swing.JFrame {
         new VtnHistorial().setVisible(true);
         dispose();
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
+        // TODO add your handling code here:
+    }//GEN-LAST:event_formWindowClosing
 
     public void buscar(PilasD p)
     {
