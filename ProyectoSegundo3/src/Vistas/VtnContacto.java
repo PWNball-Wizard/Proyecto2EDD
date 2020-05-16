@@ -208,20 +208,17 @@ public class VtnContacto extends javax.swing.JFrame {
     }//GEN-LAST:event_jBAgregarCActionPerformed
 
     private void jBMoverCActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBMoverCActionPerformed
-        
-        String nom=null; //nom=NOMBRE A BUSCAR
-        
-        nom= JOptionPane.showInputDialog("Escriba el contacto que desea buscar");
-        
-        if (nom.length()==0) 
-        {
+
+        String nom = null; //nom=NOMBRE A BUSCAR
+
+        nom = JOptionPane.showInputDialog("Escriba el contacto que desea buscar");
+
+        if (nom.length() == 0) {
             JOptionPane.showMessageDialog(rootPane, "Error, debe escribir un nombre");
+        } else {
+
         }
-        else
-        {
-            
-        }
-        
+
     }//GEN-LAST:event_jBMoverCActionPerformed
 
     private void jBEliminarCActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBEliminarCActionPerformed
@@ -237,7 +234,17 @@ public class VtnContacto extends javax.swing.JFrame {
             String[] etqs = new String[2];
             etqs[0] = d;
             etqs[1] = s;
-            VtnGrupo.r = Multilistas.elimina(VtnGrupo.r, 0, etqs);
+
+            boolean c = false;
+
+            if (cjb.ci.Mensaje.pregunta(this, "Eliminar grupo\nSe eliminaran los contactos "
+                    + "y conversaciones asociados a este grupo\n¿Continuar?") == 0) {
+                c = true;
+            }
+
+            if (c) {
+                VtnGrupo.r = Multilistas.elimina(VtnGrupo.r, 0, etqs);
+            }
 
             r1 = Multilistas.busca(VtnGrupo.r, d);
             r1 = r1.getAbj();
@@ -246,7 +253,7 @@ public class VtnContacto extends javax.swing.JFrame {
                 Nodo aux = r1;
                 while (aux != null) {
                     JButton boton = new JButton(aux.getEtq());
-                    System.out.println("Etiqueta en aux "+aux.getEtq());
+                    System.out.println("Etiqueta en aux " + aux.getEtq());
                     Component componentes[] = JPContactos.getComponents();
 
                     for (int i = 0; i < componentes.length; i++) {
@@ -269,8 +276,10 @@ public class VtnContacto extends javax.swing.JFrame {
                 }
             }
 
-            JPContactos.revalidate();
-            JPContactos.repaint();
+            if (c) {
+                JPContactos.revalidate();
+                JPContactos.repaint();
+            }
 
         }
         System.out.println(Multilistas.desp(VtnGrupo.r, 0));
