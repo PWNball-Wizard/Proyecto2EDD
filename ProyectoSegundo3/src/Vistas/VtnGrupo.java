@@ -7,6 +7,7 @@ package Vistas;
 
 import Clases.Multilistas;
 import Clases.Nodo;
+import Clases.NodoArbol;
 import cjb.ci.Mensaje;
 import java.awt.Component;
 import java.awt.event.ActionEvent;
@@ -45,6 +46,8 @@ public class VtnGrupo extends javax.swing.JFrame {
         jLAgregarG = new javax.swing.JLabel();
         jLEliminarG = new javax.swing.JLabel();
         JPGrupos = new javax.swing.JPanel();
+        jBBusca = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -72,6 +75,15 @@ public class VtnGrupo extends javax.swing.JFrame {
         JPGrupos.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         JPGrupos.setLayout(new java.awt.GridLayout(0, 1, 0, 1));
 
+        jBBusca.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/buscar50.png"))); // NOI18N
+        jBBusca.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBBuscaActionPerformed(evt);
+            }
+        });
+
+        jLabel1.setText("Busqueda");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -80,43 +92,45 @@ public class VtnGrupo extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(150, 150, 150)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(jBEliminarG, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jLEliminarG))
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addGap(28, 28, 28)
-                                        .addComponent(jLAgregarG))
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addGap(18, 18, 18)
-                                        .addComponent(jBAgregarG, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLGrupos)
-                                .addGap(93, 93, 93))))
+                        .addComponent(jLGrupos))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(42, 42, 42)
-                        .addComponent(JPGrupos, javax.swing.GroupLayout.PREFERRED_SIZE, 273, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(29, Short.MAX_VALUE))
+                        .addComponent(JPGrupos, javax.swing.GroupLayout.PREFERRED_SIZE, 273, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLEliminarG)
+                                .addGap(31, 31, 31)
+                                .addComponent(jLabel1))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jBEliminarG, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(26, 26, 26)
+                                .addComponent(jBBusca, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jBAgregarG, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLAgregarG, javax.swing.GroupLayout.Alignment.TRAILING))))
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGap(30, 30, 30)
                 .addComponent(jLGrupos)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 32, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 11, Short.MAX_VALUE)
                 .addComponent(JPGrupos, javax.swing.GroupLayout.PREFERRED_SIZE, 288, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(29, 29, 29)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jBEliminarG)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLEliminarG)
-                            .addComponent(jLAgregarG)))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jBEliminarG)
+                    .addComponent(jBBusca)
                     .addComponent(jBAgregarG))
-                .addContainerGap())
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLEliminarG)
+                    .addComponent(jLAgregarG)
+                    .addComponent(jLabel1))
+                .addGap(34, 34, 34))
         );
 
         pack();
@@ -228,6 +242,47 @@ public class VtnGrupo extends javax.swing.JFrame {
         System.out.println(Multilistas.desp(r, 0));
     }//GEN-LAST:event_jBEliminarGActionPerformed
 
+    private void jBBuscaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBBuscaActionPerformed
+        
+        //PROBAR CUANDO FUNCIONE LA PARTE DE ARBOLES BINARIOS
+        //nb=NOMBRE A BUSCAR
+        
+        String nb=null;
+        
+        nb=JOptionPane.showInputDialog("Escriba el nombre de la persona que desea buscar");
+        
+        if (r==null) 
+        {
+            JOptionPane.showMessageDialog(rootPane,"La agenda se encuentra vacia");
+            
+        }else
+        {
+            if (nb==null) 
+            {
+                JOptionPane.showMessageDialog(rootPane, "Debe escribir un nombre");
+            }
+            else
+            {
+                //NodoArbol=r;
+                Nodo aux=r;
+                while()
+                {
+                    if (aux.dato!=nb) 
+                    {
+                        
+                    }
+                    else
+                    {
+                        
+                    }
+                }
+                
+            }
+        }
+            
+        
+    }//GEN-LAST:event_jBBuscaActionPerformed
+        
     /**
      * @param args the command line arguments
      */
@@ -267,9 +322,11 @@ public class VtnGrupo extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel JPGrupos;
     private javax.swing.JButton jBAgregarG;
+    private javax.swing.JButton jBBusca;
     private javax.swing.JButton jBEliminarG;
     private javax.swing.JLabel jLAgregarG;
     private javax.swing.JLabel jLEliminarG;
     private javax.swing.JLabel jLGrupos;
+    private javax.swing.JLabel jLabel1;
     // End of variables declaration//GEN-END:variables
 }
