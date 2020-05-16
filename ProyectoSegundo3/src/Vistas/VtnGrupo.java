@@ -265,7 +265,7 @@ public class VtnGrupo extends javax.swing.JFrame {
             {
                 //NodoArbol=r;
                 Nodo aux=r;
-                while()
+                /*while()
                 {
                     if (aux.dato!=nb) 
                     {
@@ -275,7 +275,7 @@ public class VtnGrupo extends javax.swing.JFrame {
                     {
                         
                     }
-                }
+                }*/
                 
             }
         }
