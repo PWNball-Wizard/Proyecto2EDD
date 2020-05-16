@@ -120,6 +120,8 @@ public class VtnContacto extends javax.swing.JFrame {
 
     private void jBAgregarCActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBAgregarCActionPerformed
 
+        System.out.println(d);
+
         String s = "";
         s = JOptionPane.showInputDialog("Escriba el nombre del contacto que desea agregar");
         if (s.length() == 0) {
@@ -128,12 +130,12 @@ public class VtnContacto extends javax.swing.JFrame {
         if (s.length() != 0) {
             Nodo con = new Nodo(null, s);
             String[] etqs = new String[2];
-            etqs[0] = d;
+            etqs[0] = d;//toma el texto del boton que se eligio anteriorente
             etqs[1] = s;
-            VtnGrupo.r = Multilistas.inserta(VtnGrupo.r, con, 0, etqs);
+            VtnGrupo.r = Multilistas.inserta(VtnGrupo.r, con, 0, etqs); //elimina
 
-            r1 = Multilistas.busca(VtnGrupo.r, d);
-            r1 = r1.getAbj();
+            r1 = Multilistas.busca(VtnGrupo.r, d); //buscar en donde vas a insertar
+            r1 = r1.getAbj();//si
             JPContactos.removeAll();
             if (r1 != null) {
                 Nodo aux = r1;
@@ -162,13 +164,29 @@ public class VtnContacto extends javax.swing.JFrame {
 
     private void jBMoverCActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBMoverCActionPerformed
 
-        String nom = null; //nom=NOMBRE A BUSCAR
+        String nom = ""; //nom=NOMBRE A BUSCAR
+        String gpo = "";
 
         nom = JOptionPane.showInputDialog("Escriba el contacto que desea buscar");
-
         if (nom.length() == 0) {
-            JOptionPane.showMessageDialog(rootPane, "Error, debe escribir un nombre");
-        } else {
+            Mensaje.error(this, "Los campos no deben estar vacios");
+        }
+        gpo = JOptionPane.showInputDialog("Escriba el grupo al que desea mover este contacto");
+        if (gpo.length() == 0) {
+            Mensaje.error(this, "Los campos no deben estar vacios");
+        }
+        if (nom.length() != 0 && gpo.length() != 0) {
+            String[] etqsE = new String[2];
+            etqsE[0] = d;
+            etqsE[1] = nom;
+
+            String[] etqsI = new String[2];
+            etqsI[0] = gpo;
+            etqsI[1] = nom;
+
+            VtnGrupo.r = Multilistas.mover(VtnGrupo.r, 0, etqsE, etqsI);
+
+            System.out.println(Multilistas.desp(VtnGrupo.r, 0));
 
         }
 
