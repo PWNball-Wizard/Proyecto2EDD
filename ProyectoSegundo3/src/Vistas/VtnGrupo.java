@@ -244,41 +244,7 @@ public class VtnGrupo extends javax.swing.JFrame {
 
     private void jBBuscaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBBuscaActionPerformed
         
-        //PROBAR CUANDO FUNCIONE LA PARTE DE ARBOLES BINARIOS
-        //nb=NOMBRE A BUSCAR
         
-        String nb=null;
-        
-        nb=JOptionPane.showInputDialog("Escriba el nombre de la persona que desea buscar");
-        
-        if (r==null) 
-        {
-            JOptionPane.showMessageDialog(rootPane,"La agenda se encuentra vacia");
-            
-        }else
-        {
-            if (nb==null) 
-            {
-                JOptionPane.showMessageDialog(rootPane, "Debe escribir un nombre");
-            }
-            else
-            {
-                //NodoArbol=r;
-                Nodo aux=r;
-                /*while()
-                {
-                    if (aux.dato!=nb) 
-                    {
-                        
-                    }
-                    else
-                    {
-                        
-                    }
-                }*/
-                
-            }
-        }
             
         
     }//GEN-LAST:event_jBBuscaActionPerformed
