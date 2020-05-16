@@ -30,7 +30,7 @@ public class VtnContacto extends javax.swing.JFrame {
     public VtnContacto() {
         initComponents();
         this.setLocationRelativeTo(null); //CENTRA LA PANTALLA
-        
+
         jLContactos.setForeground(Color.WHITE); //PONE EL COLOR DE LA ETIQUETA EN BLANCO
         JPContactos.setBackground(Color.WHITE);//PONE BLANCO EL COLOR DEL PANEL
     }
@@ -186,9 +186,43 @@ public class VtnContacto extends javax.swing.JFrame {
 
             VtnGrupo.r = Multilistas.mover(VtnGrupo.r, 0, etqsE, etqsI);
 
-            System.out.println(Multilistas.desp(VtnGrupo.r, 0));
+            r1 = Multilistas.busca(VtnGrupo.r, d);
+            r1 = r1.getAbj();
+
+            if (r1 != null) {
+                Nodo aux = r1;
+                while (aux != null) {
+                    JButton boton = new JButton(aux.getEtq());
+                    System.out.println("Etiqueta en aux " + aux.getEtq());
+                    Component componentes[] = JPContactos.getComponents();
+
+                    System.out.println("Etiqueta en etqE pos Contactos " + etqsE[1]);
+
+                    for (int i = 0; i < componentes.length; i++) {
+                        System.out.println(((JButton) componentes[i]).getText());
+                        if (etqsE[1].equals(((JButton) componentes[i]).getText().trim())) {
+                            JPContactos.remove(i);
+                        }
+                    }
+                    boton.addActionListener(new ActionListener() {
+                        @Override
+                        public void actionPerformed(ActionEvent e) {
+                            VtnHistorial h = new VtnHistorial();
+                            h.d1 = d;
+                            h.d2 = boton.getText();
+                            h.setVisible(true);
+                        }
+                    }
+                    );
+                    aux = aux.getSig();
+                }
+            }
+
+            JPContactos.revalidate();
+            JPContactos.repaint();
 
         }
+        System.out.println(Multilistas.desp(VtnGrupo.r, 0));
 
     }//GEN-LAST:event_jBMoverCActionPerformed
 
