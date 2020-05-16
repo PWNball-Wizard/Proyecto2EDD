@@ -9,6 +9,7 @@ import Clases.Multilistas;
 import Clases.Nodo;
 import Clases.NodoArbol;
 import cjb.ci.Mensaje;
+import java.awt.Color;
 import java.awt.Component;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -29,6 +30,9 @@ public class VtnGrupo extends javax.swing.JFrame {
     public VtnGrupo() {
         initComponents();
         this.setLocationRelativeTo(null); // CENTRA LA PANTALLA
+        
+        jLGrupos.setForeground(Color.WHITE); //PONE EL COLOR DE LA ETIQUETA EN BLANCO
+        JPGrupos.setBackground(Color.WHITE);//PONE BLANCO EL COLOR DEL PANEL
     }
 
     /**
@@ -40,19 +44,21 @@ public class VtnGrupo extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLGrupos = new javax.swing.JLabel();
         jBAgregarG = new javax.swing.JButton();
         jBEliminarG = new javax.swing.JButton();
+        jLGrupos = new javax.swing.JLabel();
         jLAgregarG = new javax.swing.JLabel();
-        jLEliminarG = new javax.swing.JLabel();
         JPGrupos = new javax.swing.JPanel();
-        jBBusca = new javax.swing.JButton();
+        jLEliminarG = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
+        jBBusca = new javax.swing.JButton();
+        jBCerrar = new javax.swing.JButton();
+        jLFondoG = new javax.swing.JLabel();
+        jLFondoG1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-
-        jLGrupos.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
-        jLGrupos.setText("Grupos");
+        setUndecorated(true);
+        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jBAgregarG.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/agregarg50.jpg"))); // NOI18N
         jBAgregarG.addActionListener(new java.awt.event.ActionListener() {
@@ -60,6 +66,7 @@ public class VtnGrupo extends javax.swing.JFrame {
                 jBAgregarGActionPerformed(evt);
             }
         });
+        getContentPane().add(jBAgregarG, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 470, 58, -1));
 
         jBEliminarG.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/elimina50.jpg"))); // NOI18N
         jBEliminarG.addActionListener(new java.awt.event.ActionListener() {
@@ -67,13 +74,24 @@ public class VtnGrupo extends javax.swing.JFrame {
                 jBEliminarGActionPerformed(evt);
             }
         });
+        getContentPane().add(jBEliminarG, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 470, 56, -1));
+
+        jLGrupos.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
+        jLGrupos.setText("Grupos");
+        getContentPane().add(jLGrupos, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 20, -1, -1));
 
         jLAgregarG.setText("Agregar");
-
-        jLEliminarG.setText("Eliminar");
+        getContentPane().add(jLAgregarG, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 530, -1, -1));
 
         JPGrupos.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         JPGrupos.setLayout(new java.awt.GridLayout(0, 1, 0, 1));
+        getContentPane().add(JPGrupos, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 90, 273, 360));
+
+        jLEliminarG.setText("Eliminar");
+        getContentPane().add(jLEliminarG, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 530, -1, -1));
+
+        jLabel1.setText("Busqueda");
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 530, -1, -1));
 
         jBBusca.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/buscar50.png"))); // NOI18N
         jBBusca.addActionListener(new java.awt.event.ActionListener() {
@@ -81,57 +99,21 @@ public class VtnGrupo extends javax.swing.JFrame {
                 jBBuscaActionPerformed(evt);
             }
         });
+        getContentPane().add(jBBusca, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 470, 50, -1));
 
-        jLabel1.setText("Busqueda");
+        jBCerrar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/cerrar30.jpg"))); // NOI18N
+        jBCerrar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBCerrarActionPerformed(evt);
+            }
+        });
+        getContentPane().add(jBCerrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 20, 30, 30));
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(150, 150, 150)
-                        .addComponent(jLGrupos))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(42, 42, 42)
-                        .addComponent(JPGrupos, javax.swing.GroupLayout.PREFERRED_SIZE, 273, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLEliminarG)
-                                .addGap(31, 31, 31)
-                                .addComponent(jLabel1))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jBEliminarG, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(26, 26, 26)
-                                .addComponent(jBBusca, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jBAgregarG, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLAgregarG, javax.swing.GroupLayout.Alignment.TRAILING))))
-                .addContainerGap())
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(30, 30, 30)
-                .addComponent(jLGrupos)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 11, Short.MAX_VALUE)
-                .addComponent(JPGrupos, javax.swing.GroupLayout.PREFERRED_SIZE, 288, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(29, 29, 29)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jBEliminarG)
-                    .addComponent(jBBusca)
-                    .addComponent(jBAgregarG))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLEliminarG)
-                    .addComponent(jLAgregarG)
-                    .addComponent(jLabel1))
-                .addGap(34, 34, 34))
-        );
+        jLFondoG.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/fondowhats.png"))); // NOI18N
+        getContentPane().add(jLFondoG, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 70, -1, -1));
+
+        jLFondoG1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/fondoverde.jpg"))); // NOI18N
+        getContentPane().add(jLFondoG1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -288,6 +270,12 @@ public class VtnGrupo extends javax.swing.JFrame {
 
     }//GEN-LAST:event_jBBuscaActionPerformed
 
+    private void jBCerrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBCerrarActionPerformed
+        
+        //PONER AQUI EL CODIGO PARA GUARDAR ARCHIVOS
+        System.exit(0);
+    }//GEN-LAST:event_jBCerrarActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -328,9 +316,12 @@ public class VtnGrupo extends javax.swing.JFrame {
     private javax.swing.JPanel JPGrupos;
     private javax.swing.JButton jBAgregarG;
     private javax.swing.JButton jBBusca;
+    private javax.swing.JButton jBCerrar;
     private javax.swing.JButton jBEliminarG;
     private javax.swing.JLabel jLAgregarG;
     private javax.swing.JLabel jLEliminarG;
+    private javax.swing.JLabel jLFondoG;
+    private javax.swing.JLabel jLFondoG1;
     private javax.swing.JLabel jLGrupos;
     private javax.swing.JLabel jLabel1;
     // End of variables declaration//GEN-END:variables

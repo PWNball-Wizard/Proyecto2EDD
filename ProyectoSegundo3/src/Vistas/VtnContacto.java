@@ -8,6 +8,7 @@ package Vistas;
 import Clases.Multilistas;
 import Clases.Nodo;
 import cjb.ci.Mensaje;
+import java.awt.Color;
 import java.awt.Component;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -29,6 +30,9 @@ public class VtnContacto extends javax.swing.JFrame {
     public VtnContacto() {
         initComponents();
         this.setLocationRelativeTo(null); //CENTRA LA PANTALLA
+        
+        jLContactos.setForeground(Color.WHITE); //PONE EL COLOR DE LA ETIQUETA EN BLANCO
+        JPContactos.setBackground(Color.WHITE);//PONE BLANCO EL COLOR DEL PANEL
     }
 
     /**
@@ -45,16 +49,20 @@ public class VtnContacto extends javax.swing.JFrame {
         jBEliminarC = new javax.swing.JButton();
         jBRegresarC = new javax.swing.JButton();
         jBMoverC = new javax.swing.JButton();
-        jLRegresarC = new javax.swing.JLabel();
         jLEliminarC = new javax.swing.JLabel();
         jLMoverC = new javax.swing.JLabel();
         jLAgregarC = new javax.swing.JLabel();
         JPContactos = new javax.swing.JPanel();
+        jLFondoC = new javax.swing.JLabel();
+        jLFondoC1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setUndecorated(true);
+        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLContactos.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
         jLContactos.setText("Contactos");
+        getContentPane().add(jLContactos, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 20, -1, -1));
 
         jBAgregarC.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/agregar50.jpg"))); // NOI18N
         jBAgregarC.addActionListener(new java.awt.event.ActionListener() {
@@ -62,6 +70,7 @@ public class VtnContacto extends javax.swing.JFrame {
                 jBAgregarCActionPerformed(evt);
             }
         });
+        getContentPane().add(jBAgregarC, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 470, 57, -1));
 
         jBEliminarC.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/elimina50.jpg"))); // NOI18N
         jBEliminarC.addActionListener(new java.awt.event.ActionListener() {
@@ -69,6 +78,7 @@ public class VtnContacto extends javax.swing.JFrame {
                 jBEliminarCActionPerformed(evt);
             }
         });
+        getContentPane().add(jBEliminarC, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 470, 56, -1));
 
         jBRegresarC.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/regresa.jpg"))); // NOI18N
         jBRegresarC.addActionListener(new java.awt.event.ActionListener() {
@@ -76,6 +86,7 @@ public class VtnContacto extends javax.swing.JFrame {
                 jBRegresarCActionPerformed(evt);
             }
         });
+        getContentPane().add(jBRegresarC, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 480, 60, -1));
 
         jBMoverC.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/moverc.jpg"))); // NOI18N
         jBMoverC.addActionListener(new java.awt.event.ActionListener() {
@@ -83,84 +94,26 @@ public class VtnContacto extends javax.swing.JFrame {
                 jBMoverCActionPerformed(evt);
             }
         });
-
-        jLRegresarC.setText("Regresar");
+        getContentPane().add(jBMoverC, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 470, 55, -1));
 
         jLEliminarC.setText("Eliminar");
+        getContentPane().add(jLEliminarC, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 530, -1, -1));
 
         jLMoverC.setText("Mover");
+        getContentPane().add(jLMoverC, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 530, -1, -1));
 
         jLAgregarC.setText("Agregar");
+        getContentPane().add(jLAgregarC, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 530, -1, -1));
 
         JPContactos.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         JPContactos.setLayout(new java.awt.GridLayout(0, 1, 0, 1));
+        getContentPane().add(JPContactos, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 90, 280, 360));
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(128, 128, 128)
-                        .addComponent(jLContactos))
-                    .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jBRegresarC, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLRegresarC))
-                        .addGap(124, 124, 124)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jBEliminarC, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLEliminarC))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jBMoverC, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(10, 10, 10)
-                                .addComponent(jLMoverC)))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(10, 10, 10)
-                                .addComponent(jLAgregarC))
-                            .addComponent(jBAgregarC, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                    .addContainerGap(56, Short.MAX_VALUE)
-                    .addComponent(JPContactos, javax.swing.GroupLayout.PREFERRED_SIZE, 273, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(56, Short.MAX_VALUE)))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(25, 25, 25)
-                .addComponent(jLContactos)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 343, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(jBRegresarC)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLRegresarC)
-                        .addGap(24, 24, 24))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jBAgregarC)
-                            .addComponent(jBMoverC)
-                            .addComponent(jBEliminarC))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLEliminarC)
-                            .addComponent(jLMoverC)
-                            .addComponent(jLAgregarC))
-                        .addContainerGap())))
-            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                    .addContainerGap(75, Short.MAX_VALUE)
-                    .addComponent(JPContactos, javax.swing.GroupLayout.PREFERRED_SIZE, 304, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(122, Short.MAX_VALUE)))
-        );
+        jLFondoC.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/fondowhats.png"))); // NOI18N
+        getContentPane().add(jLFondoC, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 70, -1, -1));
+
+        jLFondoC1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/fondoverde.jpg"))); // NOI18N
+        getContentPane().add(jLFondoC1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -335,7 +288,8 @@ public class VtnContacto extends javax.swing.JFrame {
     private javax.swing.JLabel jLAgregarC;
     private javax.swing.JLabel jLContactos;
     private javax.swing.JLabel jLEliminarC;
+    private javax.swing.JLabel jLFondoC;
+    private javax.swing.JLabel jLFondoC1;
     private javax.swing.JLabel jLMoverC;
-    private javax.swing.JLabel jLRegresarC;
     // End of variables declaration//GEN-END:variables
 }

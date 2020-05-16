@@ -7,7 +7,6 @@ package Vistas;
 
 import Clases.Multilistas;
 import Clases.Nodo;
-import static Vistas.VtnGrupo.r;
 import cjb.ci.Mensaje;
 import java.awt.Component;
 import java.awt.event.ActionEvent;
@@ -48,13 +47,17 @@ public class VtnHistorial extends javax.swing.JFrame {
         jLAgregarH = new javax.swing.JLabel();
         jLEliminarH = new javax.swing.JLabel();
         jBRegresarH = new javax.swing.JButton();
-        jLRegresarH = new javax.swing.JLabel();
         JPHistorial = new javax.swing.JPanel();
+        jLFondoH = new javax.swing.JLabel();
+        jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setUndecorated(true);
+        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLHistorial.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
         jLHistorial.setText("Historial de Chats");
+        getContentPane().add(jLHistorial, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 20, -1, -1));
 
         jBAgregarH.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/agregarg50.jpg"))); // NOI18N
         jBAgregarH.addActionListener(new java.awt.event.ActionListener() {
@@ -62,6 +65,7 @@ public class VtnHistorial extends javax.swing.JFrame {
                 jBAgregarHActionPerformed(evt);
             }
         });
+        getContentPane().add(jBAgregarH, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 470, 54, -1));
 
         jBEliminarH.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/elimina50.jpg"))); // NOI18N
         jBEliminarH.addActionListener(new java.awt.event.ActionListener() {
@@ -69,10 +73,13 @@ public class VtnHistorial extends javax.swing.JFrame {
                 jBEliminarHActionPerformed(evt);
             }
         });
+        getContentPane().add(jBEliminarH, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 470, 54, -1));
 
         jLAgregarH.setText("Agregar");
+        getContentPane().add(jLAgregarH, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 530, -1, -1));
 
         jLEliminarH.setText("Eliminar");
+        getContentPane().add(jLEliminarH, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 530, -1, -1));
 
         jBRegresarH.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/regresa.jpg"))); // NOI18N
         jBRegresarH.addActionListener(new java.awt.event.ActionListener() {
@@ -80,66 +87,17 @@ public class VtnHistorial extends javax.swing.JFrame {
                 jBRegresarHActionPerformed(evt);
             }
         });
-
-        jLRegresarH.setText("Regresar");
+        getContentPane().add(jBRegresarH, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 470, 58, -1));
 
         JPHistorial.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         JPHistorial.setLayout(new java.awt.GridLayout(0, 1, 0, 1));
+        getContentPane().add(JPHistorial, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 80, 273, 370));
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(91, Short.MAX_VALUE)
-                .addComponent(jLHistorial)
-                .addGap(84, 84, 84))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(20, 20, 20)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jBRegresarH, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLRegresarH))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jBEliminarH, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLEliminarH))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(10, 10, 10)
-                        .addComponent(jLAgregarH))
-                    .addComponent(jBAgregarH, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(17, 17, 17))
-            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                    .addContainerGap(56, Short.MAX_VALUE)
-                    .addComponent(JPHistorial, javax.swing.GroupLayout.PREFERRED_SIZE, 273, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(56, Short.MAX_VALUE)))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(34, 34, 34)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLHistorial)
-                        .addGap(341, 341, 341)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jBEliminarH)
-                            .addComponent(jBAgregarH)))
-                    .addComponent(jBRegresarH))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLAgregarH)
-                    .addComponent(jLEliminarH)
-                    .addComponent(jLRegresarH))
-                .addContainerGap(14, Short.MAX_VALUE))
-            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                    .addContainerGap(81, Short.MAX_VALUE)
-                    .addComponent(JPHistorial, javax.swing.GroupLayout.PREFERRED_SIZE, 310, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(109, Short.MAX_VALUE)))
-        );
+        jLFondoH.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/fondowhats.png"))); // NOI18N
+        getContentPane().add(jLFondoH, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 70, -1, -1));
+
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/fondoverde.jpg"))); // NOI18N
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -382,7 +340,8 @@ public class VtnHistorial extends javax.swing.JFrame {
     private javax.swing.JButton jBRegresarH;
     private javax.swing.JLabel jLAgregarH;
     private javax.swing.JLabel jLEliminarH;
+    private javax.swing.JLabel jLFondoH;
     private javax.swing.JLabel jLHistorial;
-    private javax.swing.JLabel jLRegresarH;
+    private javax.swing.JLabel jLabel1;
     // End of variables declaration//GEN-END:variables
 }
