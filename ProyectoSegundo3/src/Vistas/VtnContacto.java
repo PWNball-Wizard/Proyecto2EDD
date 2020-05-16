@@ -208,7 +208,20 @@ public class VtnContacto extends javax.swing.JFrame {
     }//GEN-LAST:event_jBAgregarCActionPerformed
 
     private void jBMoverCActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBMoverCActionPerformed
-        // TODO add your handling code here:
+        
+        String nom=null; //nom=NOMBRE A BUSCAR
+        
+        nom= JOptionPane.showInputDialog("Escriba el contacto que desea buscar");
+        
+        if (nom.length()==0) 
+        {
+            JOptionPane.showMessageDialog(rootPane, "Error, debe escribir un nombre");
+        }
+        else
+        {
+            
+        }
+        
     }//GEN-LAST:event_jBMoverCActionPerformed
 
     private void jBEliminarCActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBEliminarCActionPerformed
