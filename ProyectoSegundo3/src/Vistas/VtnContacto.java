@@ -56,8 +56,13 @@ public class VtnContacto extends javax.swing.JFrame {
         jLFondoC = new javax.swing.JLabel();
         jLFondoC1 = new javax.swing.JLabel();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowOpened(java.awt.event.WindowEvent evt) {
+                formWindowOpened(evt);
+            }
+        });
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLContactos.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
@@ -295,6 +300,34 @@ public class VtnContacto extends javax.swing.JFrame {
         dispose();
         //this.setVisible(false);
     }//GEN-LAST:event_jBRegresarCActionPerformed
+
+    private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
+        r1 = Multilistas.busca(VtnGrupo.r, d);
+        r1 = r1.getAbj();
+        JPContactos.removeAll();
+        if (r1 != null) {
+            Nodo aux = r1;
+            while (aux != null) {
+                JButton boton = new JButton(aux.getEtq());
+                JPContactos.add(boton);
+                boton.addActionListener(new ActionListener() {
+                    @Override
+                    public void actionPerformed(ActionEvent e) {
+                        VtnHistorial h = new VtnHistorial();
+                        h.d1 = d;
+                        h.d2 = boton.getText();
+                        h.setVisible(true);
+                        dispose();
+                    }
+                }
+                );
+                aux = aux.getSig();
+            }
+        }
+
+        JPContactos.revalidate();
+        JPContactos.repaint();
+    }//GEN-LAST:event_formWindowOpened
 
     /**
      * @param args the command line arguments
