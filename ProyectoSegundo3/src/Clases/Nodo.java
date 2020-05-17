@@ -10,6 +10,7 @@ public class Nodo implements Serializable
     private Nodo sig = null;
     private Nodo abj=null;
     private Nodo ant = null;
+    private int tipo;
     
     public Nodo(Object obj)
     {
@@ -21,6 +22,12 @@ public class Nodo implements Serializable
         this.obj = obj;
         this.etq = etq;
     }
+
+    public Nodo(int tipo, Object obj) {
+        this.obj = obj;
+        this.tipo = tipo;
+    }
+    
 
     /**
      * @return the obj
@@ -101,5 +108,21 @@ public class Nodo implements Serializable
     {
         this.abj = abj;
     }
+
+    /**
+     * @return the tipo
+     */
+    public int getTipo() {
+        return tipo;
+    }
+
+    /**
+     * @param tipo the tipo to set
+     */
+    public void setTipo(int tipo) {
+        this.tipo = tipo;
+    }
+    
+    
 
 }

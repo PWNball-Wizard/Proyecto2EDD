@@ -5,21 +5,20 @@
  */
 package Vistas;
 
+import Clases.Archivos;
 import Clases.Multilistas;
 import Clases.Nodo;
+import Clases.NodoArbol;
 import cjb.ci.Mensaje;
 import java.awt.Color;
 import java.awt.Component;
-import java.awt.Dimension;
-import java.awt.Font;
-import java.awt.GridLayout;
-import java.awt.Rectangle;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import javax.swing.BoxLayout;
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JButton;
 import javax.swing.JOptionPane;
-import org.netbeans.lib.awtextra.AbsoluteLayout;
 
 /**
  *
@@ -34,17 +33,10 @@ public class VtnGrupo extends javax.swing.JFrame {
      */
     public VtnGrupo() {
         initComponents();
-        
-        //PONER AQUI EL METODO PARA CARGAR ARCHIVOS
-        
         this.setLocationRelativeTo(null); // CENTRA LA PANTALLA
-        
-        jLGrupos.setForeground(Color.WHITE); //PONE EL COLOR DE LA ETIQUETA DE GRUPOS EN BLANCO
+
+        jLGrupos.setForeground(Color.WHITE); //PONE EL COLOR DE LA ETIQUETA EN BLANCO
         JPGrupos.setBackground(Color.WHITE);//PONE BLANCO EL COLOR DEL PANEL
-        
-        //JPGrupos.setLayout(new GridLayout(0, 1, 10, 10));
-        JPGrupos.setLayout(new BoxLayout(JPGrupos, BoxLayout.PAGE_AXIS));//CAMBIA EL ESTILO DE EL PANEL, PERMITE QUE LOS BOTONES NO OCUPEN TODA LA PANTALLA
-        
     }
 
     /**
@@ -70,6 +62,11 @@ public class VtnGrupo extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowOpened(java.awt.event.WindowEvent evt) {
+                formWindowOpened(evt);
+            }
+        });
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jBAgregarG.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/agregarg50.jpg"))); // NOI18N
@@ -154,19 +151,7 @@ public class VtnGrupo extends javax.swing.JFrame {
 
                 while (aux != null) {
                     JButton boton = new JButton(aux.getEtq());
-                    //boton.setBounds(100, 100, 100, 100); //SIRVE PARA CAMBIAR LA POSICION DONDE EMPIEZA EL BOTON Y EL TAMAÑO
-                    boton.setLocation(50, 10);
-                    boton.setBackground(Color.WHITE);//PONE EL FONDO DEL BOTON EN BLANCO
-                    boton.setForeground(Color.BLACK);//PONE LAS LETRAS COLOR NEGRO
-                    boton.setFont(new Font("arial",1,14));//CAMBIA LA FUENTE Y EL TAMAÑO
-                    
-                    //ESTABLECE UN TAMAÑO POR DEFECTO PARA LOS BOTONES
-                    //boton.setMinimumSize(new Dimension(200,100));
-                    boton.setMaximumSize(new Dimension(273,50));
-                    //boton.setPreferredSize(new Dimension(200,100));
-                   
                     JPGrupos.add(boton);
-                    
 
                     boton.addActionListener(new ActionListener()//pone una accion al boton
                     {
@@ -295,11 +280,53 @@ public class VtnGrupo extends javax.swing.JFrame {
     }//GEN-LAST:event_jBBuscaActionPerformed
 
     private void jBCerrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBCerrarActionPerformed
-        
+
         //PONER AQUI EL CODIGO PARA GUARDAR ARCHIVOS
         System.exit(0);
     }//GEN-LAST:event_jBCerrarActionPerformed
-    
+
+    private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
+
+        try {
+            Archivos.carga(this);
+        } catch (IOException ex) {
+            Logger.getLogger(VtnGrupo.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(VtnGrupo.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        if (r == null) {
+            Mensaje.error(this, "No hay datos en la lista");
+        } else {
+            Nodo aux = r;
+
+            JPGrupos.removeAll();
+
+            while (aux != null) {
+                JButton boton = new JButton(aux.getEtq());
+                JPGrupos.add(boton);
+
+                boton.addActionListener(new ActionListener()//pone una accion al boton
+                {
+                    @Override
+                    public void actionPerformed(ActionEvent e)//accion del boton
+                    {
+                        VtnContacto c = new VtnContacto();
+                        c.d = boton.getText();
+                        c.setVisible(true);
+
+                    }
+                });
+                aux = aux.getSig();
+            }
+        }
+
+        JPGrupos.revalidate();
+        JPGrupos.repaint();
+
+        System.out.println(Multilistas.desp(r, 0));
+    }//GEN-LAST:event_formWindowOpened
+
     /**
      * @param args the command line arguments
      */

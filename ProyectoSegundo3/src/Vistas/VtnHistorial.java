@@ -61,8 +61,13 @@ public class VtnHistorial extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jLFondoH = new javax.swing.JLabel();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowOpened(java.awt.event.WindowEvent evt) {
+                formWindowOpened(evt);
+            }
+        });
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLHistorial.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
@@ -168,7 +173,7 @@ public class VtnHistorial extends javax.swing.JFrame {
                             boton.addActionListener(new ActionListener() {
                                 @Override
                                 public void actionPerformed(ActionEvent e) {
-                                    VtnW nivel3 = new VtnW();
+                                    vtnChat nivel3 = new vtnChat();
                                     nivel3.d1 = d1;
                                     nivel3.d2 = d2;
                                     nivel3.d3 = boton.getText();
@@ -192,8 +197,12 @@ public class VtnHistorial extends javax.swing.JFrame {
     }//GEN-LAST:event_jBAgregarHActionPerformed
 
     private void jBRegresarHActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBRegresarHActionPerformed
-        new VtnContacto().setVisible(true);
-        //dispose();
+
+        VtnContacto c = new VtnContacto();
+       c.setVisible(true);
+        c.d = d1;
+        c.r1 = Multilistas.busca(VtnGrupo.r, d1);
+        dispose();
     }//GEN-LAST:event_jBRegresarHActionPerformed
 
     private void jBEliminarHActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBEliminarHActionPerformed
@@ -260,7 +269,7 @@ public class VtnHistorial extends javax.swing.JFrame {
                         boton.addActionListener(new ActionListener() {
                             @Override
                             public void actionPerformed(ActionEvent e) {
-                                VtnW nivel3 = new VtnW();
+                                vtnChat nivel3 = new vtnChat();
                                 nivel3.d1 = d1;
                                 nivel3.d2 = d2;
                                 nivel3.d3 = boton.getText();
@@ -284,6 +293,39 @@ public class VtnHistorial extends javax.swing.JFrame {
             System.out.println(Multilistas.desp(VtnGrupo.r, 0));
         }
     }//GEN-LAST:event_jBEliminarHActionPerformed
+
+    private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
+        r2 = Multilistas.busca(VtnGrupo.r, d1);
+
+        r2 = r2.getAbj();
+        r2 = Multilistas.busca(r2, d2);
+
+        JPHistorial.removeAll();
+
+        r2 = r2.getAbj();
+        if (r2 != null) {
+            Nodo aux = r2;
+            while (aux != null) {
+                JButton boton = new JButton(aux.getEtq());
+                JPHistorial.add(boton);
+                boton.addActionListener(new ActionListener() {
+                    @Override
+                    public void actionPerformed(ActionEvent e) {
+                        vtnChat nivel3 = new vtnChat();
+                        nivel3.d1 = d1;
+                        nivel3.d2 = d2;
+                        nivel3.d3 = boton.getText();
+                        nivel3.setVisible(true);
+                    }
+                }
+                );
+                aux = aux.getSig();
+            }
+        }
+
+        JPHistorial.revalidate();
+        JPHistorial.repaint();
+    }//GEN-LAST:event_formWindowOpened
 
     /*public void Actualizar()
     {

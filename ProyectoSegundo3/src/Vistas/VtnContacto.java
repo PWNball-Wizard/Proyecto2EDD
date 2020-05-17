@@ -33,7 +33,7 @@ public class VtnContacto extends javax.swing.JFrame {
     public VtnContacto() {
         initComponents();
         this.setLocationRelativeTo(null); //CENTRA LA PANTALLA
-        
+
         jLContactos.setForeground(Color.WHITE); //PONE EL COLOR DE LA ETIQUETA EN BLANCO
         JPContactos.setBackground(Color.WHITE);//PONE BLANCO EL COLOR DEL PANEL
         
@@ -62,8 +62,13 @@ public class VtnContacto extends javax.swing.JFrame {
         jLFondoC = new javax.swing.JLabel();
         jLFondoC1 = new javax.swing.JLabel();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowOpened(java.awt.event.WindowEvent evt) {
+                formWindowOpened(evt);
+            }
+        });
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLContactos.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
@@ -203,9 +208,43 @@ public class VtnContacto extends javax.swing.JFrame {
 
             VtnGrupo.r = Multilistas.mover(VtnGrupo.r, 0, etqsE, etqsI);
 
-            System.out.println(Multilistas.desp(VtnGrupo.r, 0));
+            r1 = Multilistas.busca(VtnGrupo.r, d);
+            r1 = r1.getAbj();
+
+            if (r1 != null) {
+                Nodo aux = r1;
+                while (aux != null) {
+                    JButton boton = new JButton(aux.getEtq());
+                    System.out.println("Etiqueta en aux " + aux.getEtq());
+                    Component componentes[] = JPContactos.getComponents();
+
+                    System.out.println("Etiqueta en etqE pos Contactos " + etqsE[1]);
+
+                    for (int i = 0; i < componentes.length; i++) {
+                        System.out.println(((JButton) componentes[i]).getText());
+                        if (etqsE[1].equals(((JButton) componentes[i]).getText().trim())) {
+                            JPContactos.remove(i);
+                        }
+                    }
+                    boton.addActionListener(new ActionListener() {
+                        @Override
+                        public void actionPerformed(ActionEvent e) {
+                            VtnHistorial h = new VtnHistorial();
+                            h.d1 = d;
+                            h.d2 = boton.getText();
+                            h.setVisible(true);
+                        }
+                    }
+                    );
+                    aux = aux.getSig();
+                }
+            }
+
+            JPContactos.revalidate();
+            JPContactos.repaint();
 
         }
+        System.out.println(Multilistas.desp(VtnGrupo.r, 0));
 
     }//GEN-LAST:event_jBMoverCActionPerformed
 
@@ -279,6 +318,34 @@ public class VtnContacto extends javax.swing.JFrame {
         dispose();
         //this.setVisible(false);
     }//GEN-LAST:event_jBRegresarCActionPerformed
+
+    private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
+        r1 = Multilistas.busca(VtnGrupo.r, d);
+        r1 = r1.getAbj();
+        JPContactos.removeAll();
+        if (r1 != null) {
+            Nodo aux = r1;
+            while (aux != null) {
+                JButton boton = new JButton(aux.getEtq());
+                JPContactos.add(boton);
+                boton.addActionListener(new ActionListener() {
+                    @Override
+                    public void actionPerformed(ActionEvent e) {
+                        VtnHistorial h = new VtnHistorial();
+                        h.d1 = d;
+                        h.d2 = boton.getText();
+                        h.setVisible(true);
+                        dispose();
+                    }
+                }
+                );
+                aux = aux.getSig();
+            }
+        }
+
+        JPContactos.revalidate();
+        JPContactos.repaint();
+    }//GEN-LAST:event_formWindowOpened
 
     /**
      * @param args the command line arguments
