@@ -5,6 +5,7 @@
  */
 package Vistas;
 
+import Clases.Archivos;
 import Clases.Multilistas;
 import Clases.Nodo;
 import Clases.NodoArbol;
@@ -13,6 +14,9 @@ import java.awt.Color;
 import java.awt.Component;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JButton;
 import javax.swing.JOptionPane;
 
@@ -58,6 +62,11 @@ public class VtnGrupo extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowOpened(java.awt.event.WindowEvent evt) {
+                formWindowOpened(evt);
+            }
+        });
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jBAgregarG.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/agregarg50.jpg"))); // NOI18N
@@ -275,6 +284,19 @@ public class VtnGrupo extends javax.swing.JFrame {
         //PONER AQUI EL CODIGO PARA GUARDAR ARCHIVOS
         System.exit(0);
     }//GEN-LAST:event_jBCerrarActionPerformed
+
+    private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
+     
+        try {
+            Archivos.carga(this);
+        } catch (IOException ex) {
+            Logger.getLogger(VtnGrupo.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(VtnGrupo.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        System.out.println(Multilistas.desp(r, 0));
+    }//GEN-LAST:event_formWindowOpened
 
     /**
      * @param args the command line arguments

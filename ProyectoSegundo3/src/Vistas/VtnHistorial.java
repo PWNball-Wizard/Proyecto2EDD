@@ -147,7 +147,7 @@ public class VtnHistorial extends javax.swing.JFrame {
                             boton.addActionListener(new ActionListener() {
                                 @Override
                                 public void actionPerformed(ActionEvent e) {
-                                    VtnW nivel3 = new VtnW();
+                                    vtnChat nivel3 = new vtnChat();
                                     nivel3.d1 = d1;
                                     nivel3.d2 = d2;
                                     nivel3.d3 = boton.getText();
@@ -239,7 +239,7 @@ public class VtnHistorial extends javax.swing.JFrame {
                         boton.addActionListener(new ActionListener() {
                             @Override
                             public void actionPerformed(ActionEvent e) {
-                                VtnW nivel3 = new VtnW();
+                                vtnChat nivel3 = new vtnChat();
                                 nivel3.d1 = d1;
                                 nivel3.d2 = d2;
                                 nivel3.d3 = boton.getText();

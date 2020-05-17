@@ -6,55 +6,44 @@ import java.io.Serializable;
 public class Propiedades implements Serializable
 {
 
-    public PilasD p1 = new PilasD();
-    private PilasD p2 = new PilasD();
-    public ColasD c = new ColasD();
+    public ColaDinamica c = new ColaDinamica();
+    private Nodo r = null;
+    
     
     //ACUMULADOR PARA CADA QUE ENTRA UN NUEVO MENSAJE
-    private int num = 0;
+    
 
     public Propiedades()
     {
     }
 
-    public Propiedades(PilasD p1, PilasD p2, ColasD c, int num)
+    public Propiedades(ColaDinamica c, Nodo r)
     {
-        this.p1 = p1;
-        this.p2 = p2;
         this.c = c;
-        this.num = num;
+        this.r = r;
     }
 
-    public PilasD getP1() {
-        return p1;
-    }
-
-    public void setP1(PilasD p1) {
-        this.p1 = p1;
-    }
-
-    public PilasD getP2() {
-        return p2;
-    }
-
-    public void setP2(PilasD p2) {
-        this.p2 = p2;
-    }
-
-    public ColasD getC() {
+    public ColaDinamica getC() {
         return c;
     }
 
-    public void setC(ColasD c) {
+    public void setC(ColaDinamica c) {
         this.c = c;
     }
 
-    public int getNum() {
-        return num;
+    /**
+     * @return the r
+     */
+    public Nodo getR() {
+        return r;
     }
 
-    public void setNum(int num) {
-        this.num = num;
+    /**
+     * @param r the r to set
+     */
+    public void setR(Nodo r) {
+        this.r = r;
     }
+    
 
 }
