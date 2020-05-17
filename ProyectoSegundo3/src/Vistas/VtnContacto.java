@@ -10,8 +10,11 @@ import Clases.Nodo;
 import cjb.ci.Mensaje;
 import java.awt.Color;
 import java.awt.Component;
+import java.awt.Dimension;
+import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import javax.swing.JOptionPane;
 
@@ -21,8 +24,8 @@ import javax.swing.JOptionPane;
  */
 public class VtnContacto extends javax.swing.JFrame {
 
-    public String d;
-    public Nodo r1;
+    public String d; // DATO A BUSCAR
+    public Nodo r1; //RAIZ DE LA MULTILISTA
 
     /**
      * Creates new form VtnContacto
@@ -33,6 +36,9 @@ public class VtnContacto extends javax.swing.JFrame {
         
         jLContactos.setForeground(Color.WHITE); //PONE EL COLOR DE LA ETIQUETA EN BLANCO
         JPContactos.setBackground(Color.WHITE);//PONE BLANCO EL COLOR DEL PANEL
+        
+        JPContactos.setLayout(new BoxLayout(JPContactos, BoxLayout.PAGE_AXIS));//CAMBIA EL ESTILO DE EL PANEL, PERMITE QUE LOS BOTONES NO OCUPEN TODA LA PANTALLA
+        
     }
 
     /**
@@ -141,6 +147,17 @@ public class VtnContacto extends javax.swing.JFrame {
                 Nodo aux = r1;
                 while (aux != null) {
                     JButton boton = new JButton(aux.getEtq());
+                    
+                    boton.setLocation(50, 10);
+                    boton.setBackground(Color.WHITE);//PONE EL FONDO DEL BOTON EN BLANCO
+                    boton.setForeground(Color.BLACK);//PONE LAS LETRAS COLOR NEGRO
+                    boton.setFont(new Font("arial",1,14));//CAMBIA LA FUENTE Y EL TAMAÑO
+                    
+                    //ESTABLECE UN TAMAÑO POR DEFECTO PARA LOS BOTONES
+                    //boton.setMinimumSize(new Dimension(200,100));
+                    boton.setMaximumSize(new Dimension(280,50));
+                    //boton.setPreferredSize(new Dimension(200,100));
+                    
                     JPContactos.add(boton);
                     boton.addActionListener(new ActionListener() {
                         @Override
@@ -213,7 +230,8 @@ public class VtnContacto extends javax.swing.JFrame {
                 c = true;
             }
 
-            if (c) {
+            if (c) 
+            {
                 VtnGrupo.r = Multilistas.elimina(VtnGrupo.r, 0, etqs);
             }
 

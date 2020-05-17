@@ -8,9 +8,13 @@ package Vistas;
 import Clases.Multilistas;
 import Clases.Nodo;
 import cjb.ci.Mensaje;
+import java.awt.Color;
 import java.awt.Component;
+import java.awt.Dimension;
+import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import javax.swing.JOptionPane;
 
@@ -30,6 +34,12 @@ public class VtnHistorial extends javax.swing.JFrame {
     public VtnHistorial() {
         initComponents();
         this.setLocationRelativeTo(null);//CENTRA LA PANTALLA
+        
+        jLAgregarH.setForeground(Color.WHITE); //PONE EL COLOR DE LA ETIQUETA DE GRUPOS EN BLANCO
+        JPHistorial.setBackground(Color.WHITE);//PONE BLANCO EL COLOR DEL PANEL
+        
+        //JPGrupos.setLayout(new GridLayout(0, 1, 10, 10));
+        JPHistorial.setLayout(new BoxLayout(JPHistorial, BoxLayout.PAGE_AXIS));//CAMBIA EL ESTILO DE EL PANEL, PERMITE QUE LOS BOTONES NO OCUPEN TODA LA PANTALLA
     }
 
     /**
@@ -44,12 +54,12 @@ public class VtnHistorial extends javax.swing.JFrame {
         jLHistorial = new javax.swing.JLabel();
         jBAgregarH = new javax.swing.JButton();
         jBEliminarH = new javax.swing.JButton();
-        jLAgregarH = new javax.swing.JLabel();
         jLEliminarH = new javax.swing.JLabel();
         jBRegresarH = new javax.swing.JButton();
         JPHistorial = new javax.swing.JPanel();
-        jLFondoH = new javax.swing.JLabel();
+        jLAgregarH = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
+        jLFondoH = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setUndecorated(true);
@@ -75,9 +85,6 @@ public class VtnHistorial extends javax.swing.JFrame {
         });
         getContentPane().add(jBEliminarH, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 470, 54, -1));
 
-        jLAgregarH.setText("Agregar");
-        getContentPane().add(jLAgregarH, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 530, -1, -1));
-
         jLEliminarH.setText("Eliminar");
         getContentPane().add(jLEliminarH, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 530, -1, -1));
 
@@ -93,11 +100,14 @@ public class VtnHistorial extends javax.swing.JFrame {
         JPHistorial.setLayout(new java.awt.GridLayout(0, 1, 0, 1));
         getContentPane().add(JPHistorial, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 80, 273, 370));
 
-        jLFondoH.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/fondowhats.png"))); // NOI18N
-        getContentPane().add(jLFondoH, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 70, -1, -1));
+        jLAgregarH.setText("Agregar");
+        getContentPane().add(jLAgregarH, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 530, -1, -1));
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/fondoverde.jpg"))); // NOI18N
         getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
+
+        jLFondoH.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/fondowhats.png"))); // NOI18N
+        getContentPane().add(jLFondoH, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 70, -1, -1));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -143,6 +153,17 @@ public class VtnHistorial extends javax.swing.JFrame {
                         Nodo aux = r2;
                         while (aux != null) {
                             JButton boton = new JButton(aux.getEtq());
+                            
+                            boton.setLocation(50, 10);
+                            boton.setBackground(Color.WHITE);//PONE EL FONDO DEL BOTON EN BLANCO
+                            boton.setForeground(Color.BLACK);//PONE LAS LETRAS COLOR NEGRO
+                            boton.setFont(new Font("arial",1,14));//CAMBIA LA FUENTE Y EL TAMAÑO
+
+                            //ESTABLECE UN TAMAÑO POR DEFECTO PARA LOS BOTONES
+                            //boton.setMinimumSize(new Dimension(200,100));
+                            boton.setMaximumSize(new Dimension(273,50));
+                            //boton.setPreferredSize(new Dimension(200,100));
+                            
                             JPHistorial.add(boton);
                             boton.addActionListener(new ActionListener() {
                                 @Override
