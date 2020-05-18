@@ -39,6 +39,7 @@ public class vtnBusca extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         tfBusca = new javax.swing.JTextField();
         btnBuscaChat = new javax.swing.JButton();
+        jLFondo = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         addWindowListener(new java.awt.event.WindowAdapter() {
@@ -46,18 +47,21 @@ public class vtnBusca extends javax.swing.JFrame {
                 formWindowOpened(evt);
             }
         });
+        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jpFondo2.setBackground(new java.awt.Color(255, 204, 255));
+        jpFondo2.setBackground(new java.awt.Color(255, 255, 255));
+        jpFondo2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        taBusca.setBackground(new java.awt.Color(204, 255, 204));
         taBusca.setColumns(20);
         taBusca.setRows(5);
         jScrollPane1.setViewportView(taBusca);
 
+        jpFondo2.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(12, 95, 401, 190));
+
         jLabel1.setFont(new java.awt.Font("Microsoft JhengHei UI", 3, 12)); // NOI18N
         jLabel1.setText("Ingresa la frase o palabra a buscar");
+        jpFondo2.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(12, 13, 212, 27));
 
-        tfBusca.setBackground(new java.awt.Color(204, 204, 255));
         tfBusca.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         tfBusca.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -72,6 +76,7 @@ public class vtnBusca extends javax.swing.JFrame {
                 tfBuscaKeyTyped(evt);
             }
         });
+        jpFondo2.add(tfBusca, new org.netbeans.lib.awtextra.AbsoluteConstraints(12, 53, 183, -1));
 
         btnBuscaChat.setIcon(new javax.swing.ImageIcon(getClass().getResource("/multimedia/aceptar-esquema-de-boton-circular.png"))); // NOI18N
         btnBuscaChat.setBorderPainted(false);
@@ -86,53 +91,13 @@ public class vtnBusca extends javax.swing.JFrame {
                 btnBuscaChatKeyPressed(evt);
             }
         });
+        jpFondo2.add(btnBuscaChat, new org.netbeans.lib.awtextra.AbsoluteConstraints(207, 53, -1, -1));
 
-        javax.swing.GroupLayout jpFondo2Layout = new javax.swing.GroupLayout(jpFondo2);
-        jpFondo2.setLayout(jpFondo2Layout);
-        jpFondo2Layout.setHorizontalGroup(
-            jpFondo2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jpFondo2Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 401, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(30, Short.MAX_VALUE))
-            .addGroup(jpFondo2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(jpFondo2Layout.createSequentialGroup()
-                    .addContainerGap()
-                    .addGroup(jpFondo2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(jpFondo2Layout.createSequentialGroup()
-                            .addComponent(tfBusca, javax.swing.GroupLayout.PREFERRED_SIZE, 183, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                            .addComponent(btnBuscaChat))
-                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 212, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addContainerGap(176, Short.MAX_VALUE)))
-        );
-        jpFondo2Layout.setVerticalGroup(
-            jpFondo2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jpFondo2Layout.createSequentialGroup()
-                .addContainerGap(95, Short.MAX_VALUE)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(23, 23, 23))
-            .addGroup(jpFondo2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(jpFondo2Layout.createSequentialGroup()
-                    .addContainerGap()
-                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                    .addGroup(jpFondo2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(btnBuscaChat)
-                        .addComponent(tfBusca, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addContainerGap(217, Short.MAX_VALUE)))
-        );
+        jLFondo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/fondoBusca.jpg"))); // NOI18N
+        jLFondo.setText("jLabel2");
+        jpFondo2.add(jLFondo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 470, -1));
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jpFondo2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jpFondo2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-        );
+        getContentPane().add(jpFondo2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 470, -1));
 
         pack();
         setLocationRelativeTo(null);
@@ -233,6 +198,7 @@ public class vtnBusca extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnBuscaChat;
+    private javax.swing.JLabel jLFondo;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JPanel jpFondo2;

@@ -32,7 +32,7 @@
     <Component class="javax.swing.JLabel" name="jLContactos">
       <Properties>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-          <Font name="Tahoma" size="24" style="1"/>
+          <Font name="Tahoma" size="24" style="0"/>
         </Property>
         <Property name="text" type="java.lang.String" value="Contactos"/>
       </Properties>
@@ -45,7 +45,7 @@
     <Component class="javax.swing.JButton" name="jBAgregarC">
       <Properties>
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-          <Image iconType="3" name="/imagenes/agregar50.jpg"/>
+          <Image iconType="3" name="/imagenes/agregarCNuevo.png"/>
         </Property>
       </Properties>
       <Events>
@@ -60,7 +60,7 @@
     <Component class="javax.swing.JButton" name="jBEliminarC">
       <Properties>
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-          <Image iconType="3" name="/imagenes/elimina50.jpg"/>
+          <Image iconType="3" name="/imagenes/borrarNuevo.png"/>
         </Property>
       </Properties>
       <Events>
@@ -75,7 +75,7 @@
     <Component class="javax.swing.JButton" name="jBRegresarC">
       <Properties>
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-          <Image iconType="3" name="/imagenes/regresa.jpg"/>
+          <Image iconType="3" name="/imagenes/atrasNuevo.png"/>
         </Property>
       </Properties>
       <Events>
@@ -83,14 +83,14 @@
       </Events>
       <Constraints>
         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-          <AbsoluteConstraints x="10" y="480" width="60" height="-1"/>
+          <AbsoluteConstraints x="10" y="10" width="50" height="50"/>
         </Constraint>
       </Constraints>
     </Component>
     <Component class="javax.swing.JButton" name="jBMoverC">
       <Properties>
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-          <Image iconType="3" name="/imagenes/moverc.jpg"/>
+          <Image iconType="3" name="/imagenes/moverNuevo1.png"/>
         </Property>
       </Properties>
       <Events>
@@ -167,7 +167,7 @@
     <Component class="javax.swing.JLabel" name="jLFondoC1">
       <Properties>
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-          <Image iconType="3" name="/imagenes/fondoverde.jpg"/>
+          <Image iconType="3" name="/imagenes/fondowa.jpg"/>
         </Property>
       </Properties>
       <Constraints>

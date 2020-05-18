@@ -26,10 +26,32 @@ public class VtnContacto extends javax.swing.JFrame {
 
     public String d; // DATO A BUSCAR
     public Nodo r1; //RAIZ DE LA MULTILISTA
-
+    
+    public void transparenciaBotones()
+    {
+        jBRegresarC.setOpaque(false);
+        jBRegresarC.setContentAreaFilled(false);
+        jBRegresarC.setBorderPainted(false);
+        
+        jBAgregarC.setOpaque(false);
+        jBAgregarC.setContentAreaFilled(false);
+        jBAgregarC.setBorderPainted(false);
+        
+        jBEliminarC.setOpaque(false);
+        jBEliminarC.setContentAreaFilled(false);
+        jBEliminarC.setBorderPainted(false);
+        
+        jBMoverC.setOpaque(false);
+        jBMoverC.setContentAreaFilled(false);
+        jBMoverC.setBorderPainted(false);
+    }
+    
+    
     /**
      * Creates new form VtnContacto
      */
+    
+    
     public VtnContacto() {
         initComponents();
         this.setLocationRelativeTo(null); //CENTRA LA PANTALLA
@@ -38,6 +60,8 @@ public class VtnContacto extends javax.swing.JFrame {
         JPContactos.setBackground(Color.WHITE);//PONE BLANCO EL COLOR DEL PANEL
         
         JPContactos.setLayout(new BoxLayout(JPContactos, BoxLayout.PAGE_AXIS));//CAMBIA EL ESTILO DE EL PANEL, PERMITE QUE LOS BOTONES NO OCUPEN TODA LA PANTALLA
+        
+        transparenciaBotones();
         
     }
 
@@ -71,11 +95,11 @@ public class VtnContacto extends javax.swing.JFrame {
         });
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLContactos.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
+        jLContactos.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         jLContactos.setText("Contactos");
         getContentPane().add(jLContactos, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 20, -1, -1));
 
-        jBAgregarC.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/agregar50.jpg"))); // NOI18N
+        jBAgregarC.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/agregarCNuevo.png"))); // NOI18N
         jBAgregarC.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jBAgregarCActionPerformed(evt);
@@ -83,7 +107,7 @@ public class VtnContacto extends javax.swing.JFrame {
         });
         getContentPane().add(jBAgregarC, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 470, 57, -1));
 
-        jBEliminarC.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/elimina50.jpg"))); // NOI18N
+        jBEliminarC.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/borrarNuevo.png"))); // NOI18N
         jBEliminarC.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jBEliminarCActionPerformed(evt);
@@ -91,15 +115,15 @@ public class VtnContacto extends javax.swing.JFrame {
         });
         getContentPane().add(jBEliminarC, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 470, 56, -1));
 
-        jBRegresarC.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/regresa.jpg"))); // NOI18N
+        jBRegresarC.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/atrasNuevo.png"))); // NOI18N
         jBRegresarC.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jBRegresarCActionPerformed(evt);
             }
         });
-        getContentPane().add(jBRegresarC, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 480, 60, -1));
+        getContentPane().add(jBRegresarC, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 50, 50));
 
-        jBMoverC.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/moverc.jpg"))); // NOI18N
+        jBMoverC.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/moverNuevo1.png"))); // NOI18N
         jBMoverC.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jBMoverCActionPerformed(evt);
@@ -123,7 +147,7 @@ public class VtnContacto extends javax.swing.JFrame {
         jLFondoC.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/fondowhats.png"))); // NOI18N
         getContentPane().add(jLFondoC, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 70, -1, -1));
 
-        jLFondoC1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/fondoverde.jpg"))); // NOI18N
+        jLFondoC1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/fondowa.jpg"))); // NOI18N
         getContentPane().add(jLFondoC1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
 
         pack();
@@ -135,6 +159,10 @@ public class VtnContacto extends javax.swing.JFrame {
 
         String s = "";
         s = JOptionPane.showInputDialog("Escriba el nombre del contacto que desea agregar");
+        
+        String nombre;
+        nombre=s;
+        
         if (s.length() == 0) {
             Mensaje.error(this, "Debe rellenar el campo");
         }
@@ -153,7 +181,7 @@ public class VtnContacto extends javax.swing.JFrame {
                 while (aux != null) {
                     JButton boton = new JButton(aux.getEtq());
                     
-                    boton.setLocation(50, 10);
+                    //boton.setLocation(50, 10);
                     boton.setBackground(Color.WHITE);//PONE EL FONDO DEL BOTON EN BLANCO
                     boton.setForeground(Color.BLACK);//PONE LAS LETRAS COLOR NEGRO
                     boton.setFont(new Font("arial",1,14));//CAMBIA LA FUENTE Y EL TAMAÑO
@@ -327,6 +355,17 @@ public class VtnContacto extends javax.swing.JFrame {
             Nodo aux = r1;
             while (aux != null) {
                 JButton boton = new JButton(aux.getEtq());
+                
+                boton.setBackground(Color.WHITE);//PONE EL FONDO DEL BOTON EN BLANCO
+                boton.setForeground(Color.BLACK);//PONE LAS LETRAS COLOR NEGRO
+                boton.setFont(new Font("arial",1,14));//CAMBIA LA FUENTE Y EL TAMAÑO
+                    
+                //ESTABLECE UN TAMAÑO POR DEFECTO PARA LOS BOTONES
+                boton.setMinimumSize(new Dimension(280,50));
+                boton.setMaximumSize(new Dimension(280,50));
+                boton.setPreferredSize(new Dimension(280,50));
+                
+                
                 JPContactos.add(boton);
                 boton.addActionListener(new ActionListener() {
                     @Override
