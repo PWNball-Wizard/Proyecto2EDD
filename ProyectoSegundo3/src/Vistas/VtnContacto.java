@@ -36,6 +36,28 @@ public class VtnContacto extends javax.swing.JFrame {
     /**
      * Creates new form VtnContacto
      */
+    
+    
+public void transparenciaBotones()
+    {
+        jBRegresarC.setOpaque(false);
+        jBRegresarC.setContentAreaFilled(false);
+        jBRegresarC.setBorderPainted(false);
+        
+        jBAgregarC.setOpaque(false);
+        jBAgregarC.setContentAreaFilled(false);
+        jBAgregarC.setBorderPainted(false);
+        
+        jBEliminarC.setOpaque(false);
+        jBEliminarC.setContentAreaFilled(false);
+        jBEliminarC.setBorderPainted(false);
+        
+        jBMoverC.setOpaque(false);
+        jBMoverC.setContentAreaFilled(false);
+        jBMoverC.setBorderPainted(false);
+    }
+    
+    
     public VtnContacto() {
         initComponents();
         this.setLocationRelativeTo(null); //CENTRA LA PANTALLA
@@ -45,6 +67,8 @@ public class VtnContacto extends javax.swing.JFrame {
 
         JPContactos.setLayout(new BoxLayout(JPContactos, BoxLayout.PAGE_AXIS));//CAMBIA EL ESTILO DE EL PANEL, PERMITE QUE LOS BOTONES NO OCUPEN TODA LA PANTALLA
 
+        transparenciaBotones();
+        
     }
 
     /**
@@ -169,15 +193,15 @@ public class VtnContacto extends javax.swing.JFrame {
                 while (aux != null) {
                     JButton boton = new JButton(aux.getEtq());
 
-                    boton.setLocation(50, 10);
+                    //boton.setLocation(50, 10);
                     boton.setBackground(Color.WHITE);//PONE EL FONDO DEL BOTON EN BLANCO
                     boton.setForeground(Color.BLACK);//PONE LAS LETRAS COLOR NEGRO
                     boton.setFont(new Font("arial", 1, 14));//CAMBIA LA FUENTE Y EL TAMAÑO
 
                     //ESTABLECE UN TAMAÑO POR DEFECTO PARA LOS BOTONES
-                    //boton.setMinimumSize(new Dimension(200,100));
+                    boton.setMinimumSize(new Dimension(280,50));
                     boton.setMaximumSize(new Dimension(280, 50));
-                    //boton.setPreferredSize(new Dimension(200,100));
+                    boton.setPreferredSize(new Dimension(280,50));
 
                     JPContactos.add(boton);
                     boton.addActionListener(new ActionListener() {
@@ -358,6 +382,16 @@ public class VtnContacto extends javax.swing.JFrame {
             Nodo aux = r1;
             while (aux != null) {
                 JButton boton = new JButton(aux.getEtq());
+                
+                boton.setBackground(Color.WHITE);//PONE EL FONDO DEL BOTON EN BLANCO
+                    boton.setForeground(Color.BLACK);//PONE LAS LETRAS COLOR NEGRO
+                    boton.setFont(new Font("arial", 1, 14));//CAMBIA LA FUENTE Y EL TAMAÑO
+
+                    //ESTABLECE UN TAMAÑO POR DEFECTO PARA LOS BOTONES
+                    boton.setMinimumSize(new Dimension(280,50));
+                    boton.setMaximumSize(new Dimension(280, 50));
+                    boton.setPreferredSize(new Dimension(280,50));
+                
                 JPContactos.add(boton);
                 boton.addActionListener(new ActionListener() {
                     @Override

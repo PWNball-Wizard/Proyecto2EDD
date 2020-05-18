@@ -37,6 +37,22 @@ public class VtnHistorial extends javax.swing.JFrame {
     /**
      * Creates new form MnuHistorial
      */
+    
+    public void transparenciaBotones()
+    {
+        jBAgregarH.setOpaque(false);
+        jBAgregarH.setContentAreaFilled(false);
+        jBAgregarH.setBorderPainted(false);
+        
+        jBEliminarH.setOpaque(false);
+        jBEliminarH.setContentAreaFilled(false);
+        jBEliminarH.setBorderPainted(false);
+        
+        jBRegresarH.setOpaque(false);
+        jBRegresarH.setContentAreaFilled(false);
+        jBRegresarH.setBorderPainted(false);
+    }
+    
     public VtnHistorial() {
         initComponents();
         this.setLocationRelativeTo(null);//CENTRA LA PANTALLA
@@ -46,6 +62,8 @@ public class VtnHistorial extends javax.swing.JFrame {
 
         //JPGrupos.setLayout(new GridLayout(0, 1, 10, 10));
         JPHistorial.setLayout(new BoxLayout(JPHistorial, BoxLayout.PAGE_AXIS));//CAMBIA EL ESTILO DE EL PANEL, PERMITE QUE LOS BOTONES NO OCUPEN TODA LA PANTALLA
+        
+        transparenciaBotones();
     }
 
     /**
@@ -174,7 +192,7 @@ public class VtnHistorial extends javax.swing.JFrame {
                         while (aux != null) {
                             JButton boton = new JButton(aux.getEtq());
 
-                            boton.setLocation(50, 10);
+                            //boton.setLocation(50, 10);
                             boton.setBackground(Color.WHITE);//PONE EL FONDO DEL BOTON EN BLANCO
                             boton.setForeground(Color.BLACK);//PONE LAS LETRAS COLOR NEGRO
                             boton.setFont(new Font("arial", 1, 14));//CAMBIA LA FUENTE Y EL TAMAÑO
@@ -330,6 +348,16 @@ public class VtnHistorial extends javax.swing.JFrame {
             Nodo aux = r2;
             while (aux != null) {
                 JButton boton = new JButton(aux.getEtq());
+                
+                boton.setBackground(Color.WHITE);//PONE EL FONDO DEL BOTON EN BLANCO
+                boton.setForeground(Color.BLACK);//PONE LAS LETRAS COLOR NEGRO
+                boton.setFont(new Font("arial", 1, 14));//CAMBIA LA FUENTE Y EL TAMAÑO
+
+                //ESTABLECE UN TAMAÑO POR DEFECTO PARA LOS BOTONES
+                boton.setMinimumSize(new Dimension(200,50));
+                boton.setMaximumSize(new Dimension(273, 50));
+                boton.setPreferredSize(new Dimension(273,50));
+                
                 JPHistorial.add(boton);
                 boton.addActionListener(new ActionListener() {
                     @Override
