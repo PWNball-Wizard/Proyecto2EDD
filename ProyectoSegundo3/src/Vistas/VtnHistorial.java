@@ -5,8 +5,11 @@
  */
 package Vistas;
 
+import Clases.Archivos;
 import Clases.Multilistas;
 import Clases.Nodo;
+import Clases.Propiedades;
+import static Vistas.vtnChat.cd;
 import cjb.ci.Mensaje;
 import java.awt.Color;
 import java.awt.Component;
@@ -14,6 +17,9 @@ import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.FileNotFoundException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import javax.swing.JOptionPane;
@@ -28,38 +34,18 @@ public class VtnHistorial extends javax.swing.JFrame {
     public String d2;
     public Nodo r2;
 
-    public void transparenciaBotones()
-    {
-        jBAgregarH.setOpaque(false);
-        jBAgregarH.setContentAreaFilled(false);
-        jBAgregarH.setBorderPainted(false);
-        
-        jBEliminarH.setOpaque(false);
-        jBEliminarH.setContentAreaFilled(false);
-        jBEliminarH.setBorderPainted(false);
-        
-        jBRegresarH.setOpaque(false);
-        jBRegresarH.setContentAreaFilled(false);
-        jBRegresarH.setBorderPainted(false);
-    }
-    
-    
     /**
      * Creates new form MnuHistorial
      */
     public VtnHistorial() {
         initComponents();
         this.setLocationRelativeTo(null);//CENTRA LA PANTALLA
-        
-        jLHistorial.setForeground(Color.WHITE); //PONE EL COLOR DE LA ETIQUETA DE GRUPOS EN BLANCO
+
+        jLAgregarH.setForeground(Color.WHITE); //PONE EL COLOR DE LA ETIQUETA DE GRUPOS EN BLANCO
         JPHistorial.setBackground(Color.WHITE);//PONE BLANCO EL COLOR DEL PANEL
-        
+
         //JPGrupos.setLayout(new GridLayout(0, 1, 10, 10));
         JPHistorial.setLayout(new BoxLayout(JPHistorial, BoxLayout.PAGE_AXIS));//CAMBIA EL ESTILO DE EL PANEL, PERMITE QUE LOS BOTONES NO OCUPEN TODA LA PANTALLA
-        
-        transparenciaBotones();
-        
-        
     }
 
     /**
@@ -90,12 +76,11 @@ public class VtnHistorial extends javax.swing.JFrame {
         });
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLHistorial.setBackground(new java.awt.Color(255, 255, 255));
-        jLHistorial.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        jLHistorial.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
         jLHistorial.setText("Historial de Chats");
         getContentPane().add(jLHistorial, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 20, -1, -1));
 
-        jBAgregarH.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/agregarF2Nuevo.png"))); // NOI18N
+        jBAgregarH.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/agregarg50.jpg"))); // NOI18N
         jBAgregarH.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jBAgregarHActionPerformed(evt);
@@ -103,7 +88,7 @@ public class VtnHistorial extends javax.swing.JFrame {
         });
         getContentPane().add(jBAgregarH, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 470, 54, -1));
 
-        jBEliminarH.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/borrarNuevo.png"))); // NOI18N
+        jBEliminarH.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/elimina50.jpg"))); // NOI18N
         jBEliminarH.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jBEliminarHActionPerformed(evt);
@@ -114,13 +99,13 @@ public class VtnHistorial extends javax.swing.JFrame {
         jLEliminarH.setText("Eliminar");
         getContentPane().add(jLEliminarH, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 530, -1, -1));
 
-        jBRegresarH.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/atrasNuevo.png"))); // NOI18N
+        jBRegresarH.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/regresa.jpg"))); // NOI18N
         jBRegresarH.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jBRegresarHActionPerformed(evt);
             }
         });
-        getContentPane().add(jBRegresarH, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 20, 40, 30));
+        getContentPane().add(jBRegresarH, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 470, 58, -1));
 
         JPHistorial.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         JPHistorial.setLayout(new java.awt.GridLayout(0, 1, 0, 1));
@@ -129,7 +114,7 @@ public class VtnHistorial extends javax.swing.JFrame {
         jLAgregarH.setText("Agregar");
         getContentPane().add(jLAgregarH, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 530, -1, -1));
 
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/fondowa.jpg"))); // NOI18N
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/fondoverde.jpg"))); // NOI18N
         getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
 
         jLFondoH.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/fondowhats.png"))); // NOI18N
@@ -165,7 +150,16 @@ public class VtnHistorial extends javax.swing.JFrame {
                     etqs[0] = d1;
                     etqs[1] = d2;
                     etqs[2] = s;
+
                     VtnGrupo.r = Multilistas.inserta(VtnGrupo.r, his, 0, etqs);
+
+                    Propiedades p = new Propiedades(cd, VtnGrupo.r);
+
+                    try {
+                        Archivos.guardar(p, this);
+                    } catch (FileNotFoundException ex) {
+                        Logger.getLogger(vtnChat.class.getName()).log(Level.SEVERE, null, ex);
+                    }
 
                     r2 = Multilistas.busca(VtnGrupo.r, d1);
 
@@ -179,17 +173,17 @@ public class VtnHistorial extends javax.swing.JFrame {
                         Nodo aux = r2;
                         while (aux != null) {
                             JButton boton = new JButton(aux.getEtq());
-                            
-                            //boton.setLocation(50, 10);
+
+                            boton.setLocation(50, 10);
                             boton.setBackground(Color.WHITE);//PONE EL FONDO DEL BOTON EN BLANCO
                             boton.setForeground(Color.BLACK);//PONE LAS LETRAS COLOR NEGRO
-                            boton.setFont(new Font("arial",1,14));//CAMBIA LA FUENTE Y EL TAMAÑO
+                            boton.setFont(new Font("arial", 1, 14));//CAMBIA LA FUENTE Y EL TAMAÑO
 
                             //ESTABLECE UN TAMAÑO POR DEFECTO PARA LOS BOTONES
-                            boton.setMinimumSize(new Dimension(273,100));
-                            boton.setMaximumSize(new Dimension(273,50));
-                            boton.setPreferredSize(new Dimension(273,100));
-                            
+                            //boton.setMinimumSize(new Dimension(200,100));
+                            boton.setMaximumSize(new Dimension(273, 50));
+                            //boton.setPreferredSize(new Dimension(200,100));
+
                             JPHistorial.add(boton);
                             boton.addActionListener(new ActionListener() {
                                 @Override
@@ -263,6 +257,14 @@ public class VtnHistorial extends javax.swing.JFrame {
 
                 if (c) {
                     VtnGrupo.r = Multilistas.elimina(VtnGrupo.r, 0, etqs);
+
+                    Propiedades p = new Propiedades(cd, VtnGrupo.r);
+
+                    try {
+                        Archivos.guardar(p, this);
+                    } catch (FileNotFoundException ex) {
+                        Logger.getLogger(vtnChat.class.getName()).log(Level.SEVERE, null, ex);
+                    }
                 }
 
                 r2 = Multilistas.busca(VtnGrupo.r, d1);
@@ -328,16 +330,6 @@ public class VtnHistorial extends javax.swing.JFrame {
             Nodo aux = r2;
             while (aux != null) {
                 JButton boton = new JButton(aux.getEtq());
-                
-                boton.setBackground(Color.WHITE);//PONE EL FONDO DEL BOTON EN BLANCO
-                boton.setForeground(Color.BLACK);//PONE LAS LETRAS COLOR NEGRO
-                boton.setFont(new Font("arial",1,14));//CAMBIA LA FUENTE Y EL TAMAÑO
-
-                //ESTABLECE UN TAMAÑO POR DEFECTO PARA LOS BOTONES
-                boton.setMinimumSize(new Dimension(273,100));
-                boton.setMaximumSize(new Dimension(273,50));
-                boton.setPreferredSize(new Dimension(273,100));
-                
                 JPHistorial.add(boton);
                 boton.addActionListener(new ActionListener() {
                     @Override

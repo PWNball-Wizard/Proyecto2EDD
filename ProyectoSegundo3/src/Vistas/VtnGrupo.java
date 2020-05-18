@@ -6,19 +6,21 @@
 package Vistas;
 
 import Clases.Archivos;
+import Clases.ColaDinamica;
 import Clases.Multilistas;
 import Clases.Nodo;
+import Clases.NodoArbol;
+import Clases.Propiedades;
+import static Vistas.vtnChat.cd;
 import cjb.ci.Mensaje;
 import java.awt.Color;
 import java.awt.Component;
-import java.awt.Dimension;
-import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import javax.swing.JOptionPane;
 
@@ -33,38 +35,12 @@ public class VtnGrupo extends javax.swing.JFrame {
     /**
      * Creates new form VtnGrupos
      */
-    
-    public void transparenciaBotones()
-    {
-        jBEliminarG.setOpaque(false);
-        jBEliminarG.setContentAreaFilled(false);
-        jBEliminarG.setBorderPainted(false);
-        
-        jBBusca.setOpaque(false);
-        jBBusca.setContentAreaFilled(false);
-        jBBusca.setBorderPainted(false);
-        
-        jBAgregarG.setOpaque(false);
-        jBAgregarG.setContentAreaFilled(false);
-        jBAgregarG.setBorderPainted(false);
-        
-        jBCerrar.setOpaque(false);
-        jBCerrar.setContentAreaFilled(false);
-        jBCerrar.setBorderPainted(false);
-    }
-    
     public VtnGrupo() {
         initComponents();
         this.setLocationRelativeTo(null); // CENTRA LA PANTALLA
 
         jLGrupos.setForeground(Color.WHITE); //PONE EL COLOR DE LA ETIQUETA EN BLANCO
         JPGrupos.setBackground(Color.WHITE);//PONE BLANCO EL COLOR DEL PANEL
-        
-        //JPGrupos.setLayout(new GridLayout(0, 1, 10, 10));
-        JPGrupos.setLayout(new BoxLayout(JPGrupos, BoxLayout.PAGE_AXIS));//CAMBIA EL ESTILO DE EL PANEL, PERMITE QUE LOS BOTONES NO OCUPEN TODA LA PANTALLA
-        
-        transparenciaBotones();
-        
     }
 
     /**
@@ -97,59 +73,59 @@ public class VtnGrupo extends javax.swing.JFrame {
         });
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jBAgregarG.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/mas50.png"))); // NOI18N
+        jBAgregarG.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/agregarg50.jpg"))); // NOI18N
         jBAgregarG.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jBAgregarGActionPerformed(evt);
             }
         });
-        getContentPane().add(jBAgregarG, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 470, 60, 50));
+        getContentPane().add(jBAgregarG, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 470, 58, -1));
 
-        jBEliminarG.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/borrarNuevo.png"))); // NOI18N
+        jBEliminarG.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/elimina50.jpg"))); // NOI18N
         jBEliminarG.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jBEliminarGActionPerformed(evt);
             }
         });
-        getContentPane().add(jBEliminarG, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 470, 60, 50));
+        getContentPane().add(jBEliminarG, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 470, 56, -1));
 
-        jLGrupos.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        jLGrupos.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
         jLGrupos.setText("Grupos");
         getContentPane().add(jLGrupos, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 20, -1, -1));
 
         jLAgregarG.setText("Agregar");
-        getContentPane().add(jLAgregarG, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 516, 60, 30));
+        getContentPane().add(jLAgregarG, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 530, -1, -1));
 
         JPGrupos.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         JPGrupos.setLayout(new java.awt.GridLayout(0, 1, 0, 1));
         getContentPane().add(JPGrupos, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 90, 273, 360));
 
         jLEliminarG.setText("Eliminar");
-        getContentPane().add(jLEliminarG, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 520, -1, 20));
+        getContentPane().add(jLEliminarG, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 530, -1, -1));
 
         jLabel1.setText("Busqueda");
-        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(185, 516, 60, 30));
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 530, -1, -1));
 
-        jBBusca.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/nuevoBuscar.png"))); // NOI18N
+        jBBusca.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/buscar50.png"))); // NOI18N
         jBBusca.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jBBuscaActionPerformed(evt);
             }
         });
-        getContentPane().add(jBBusca, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 470, 60, -1));
+        getContentPane().add(jBBusca, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 470, 50, -1));
 
-        jBCerrar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/cerrar3.png"))); // NOI18N
+        jBCerrar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/cerrar30.jpg"))); // NOI18N
         jBCerrar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jBCerrarActionPerformed(evt);
             }
         });
-        getContentPane().add(jBCerrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 20, 30, 30));
+        getContentPane().add(jBCerrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 20, 30, 30));
 
         jLFondoG.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/fondowhats.png"))); // NOI18N
         getContentPane().add(jLFondoG, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 70, -1, -1));
 
-        jLFondoG1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/fondowa.jpg"))); // NOI18N
+        jLFondoG1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/fondoverde.jpg"))); // NOI18N
         getContentPane().add(jLFondoG1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
 
         pack();
@@ -172,6 +148,14 @@ public class VtnGrupo extends javax.swing.JFrame {
 
             r = Multilistas.inserta(r, nom, 0, etqs);
 
+            Propiedades p = new Propiedades(cd, r);
+
+            try {
+                Archivos.guardar(p, this);
+            } catch (FileNotFoundException ex) {
+                Logger.getLogger(vtnChat.class.getName()).log(Level.SEVERE, null, ex);
+            }
+
             if (r != null) {
                 Nodo aux = r;
 
@@ -179,18 +163,6 @@ public class VtnGrupo extends javax.swing.JFrame {
 
                 while (aux != null) {
                     JButton boton = new JButton(aux.getEtq());
-                    
-                    //boton.setBounds(100, 100, 100, 100); //SIRVE PARA CAMBIAR LA POSICION DONDE EMPIEZA EL BOTON Y EL TAMAÑO
-                    //boton.setLocation(50, 10);
-                    boton.setBackground(Color.WHITE);//PONE EL FONDO DEL BOTON EN BLANCO
-                    boton.setForeground(Color.BLACK);//PONE LAS LETRAS COLOR NEGRO
-                    boton.setFont(new Font("arial",1,14));//CAMBIA LA FUENTE Y EL TAMAÑO
-                    
-                    //ESTABLECE UN TAMAÑO POR DEFECTO PARA LOS BOTONES
-                    boton.setMinimumSize(new Dimension(273,50));
-                    boton.setMaximumSize(new Dimension(273,50));
-                    boton.setPreferredSize(new Dimension(273,50));
-                    
                     JPGrupos.add(boton);
 
                     boton.addActionListener(new ActionListener()//pone una accion al boton
@@ -240,6 +212,14 @@ public class VtnGrupo extends javax.swing.JFrame {
 
             if (c) {
                 r = Multilistas.elimina(r, 0, etqs);
+
+                Propiedades p = new Propiedades(cd, r);
+
+                try {
+                    Archivos.guardar(p, this);
+                } catch (FileNotFoundException ex) {
+                    Logger.getLogger(vtnChat.class.getName()).log(Level.SEVERE, null, ex);
+                }
             }
 
             //
@@ -344,19 +324,6 @@ public class VtnGrupo extends javax.swing.JFrame {
 
             while (aux != null) {
                 JButton boton = new JButton(aux.getEtq());
-                
-                boton.setBackground(Color.WHITE);//PONE EL FONDO DEL BOTON EN BLANCO
-                boton.setForeground(Color.BLACK);//PONE LAS LETRAS COLOR NEGRO
-                boton.setFont(new Font("arial",1,14));//CAMBIA LA FUENTE Y EL TAMAÑO
-                    
-                //ESTABLECE UN TAMAÑO POR DEFECTO PARA LOS BOTONES
-                boton.setMinimumSize(new Dimension(273,50));
-                boton.setMaximumSize(new Dimension(273,50));
-                boton.setPreferredSize(new Dimension(273,50));
-                    
-                //JPGrupos.add(boton);
-                
-                
                 JPGrupos.add(boton);
 
                 boton.addActionListener(new ActionListener()//pone una accion al boton
