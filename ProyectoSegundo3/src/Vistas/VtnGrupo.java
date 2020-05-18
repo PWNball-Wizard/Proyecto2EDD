@@ -6,14 +6,18 @@
 package Vistas;
 
 import Clases.Archivos;
+import Clases.ColaDinamica;
 import Clases.Multilistas;
 import Clases.Nodo;
 import Clases.NodoArbol;
+import Clases.Propiedades;
+import static Vistas.vtnChat.cd;
 import cjb.ci.Mensaje;
 import java.awt.Color;
 import java.awt.Component;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -144,6 +148,14 @@ public class VtnGrupo extends javax.swing.JFrame {
 
             r = Multilistas.inserta(r, nom, 0, etqs);
 
+            Propiedades p = new Propiedades(cd, r);
+
+            try {
+                Archivos.guardar(p, this);
+            } catch (FileNotFoundException ex) {
+                Logger.getLogger(vtnChat.class.getName()).log(Level.SEVERE, null, ex);
+            }
+
             if (r != null) {
                 Nodo aux = r;
 
@@ -200,6 +212,14 @@ public class VtnGrupo extends javax.swing.JFrame {
 
             if (c) {
                 r = Multilistas.elimina(r, 0, etqs);
+
+                Propiedades p = new Propiedades(cd, r);
+
+                try {
+                    Archivos.guardar(p, this);
+                } catch (FileNotFoundException ex) {
+                    Logger.getLogger(vtnChat.class.getName()).log(Level.SEVERE, null, ex);
+                }
             }
 
             //

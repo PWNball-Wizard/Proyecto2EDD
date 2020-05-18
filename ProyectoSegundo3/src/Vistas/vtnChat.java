@@ -446,7 +446,7 @@ public class vtnChat extends javax.swing.JFrame {
     }//GEN-LAST:event_formWindowClosing
 
     private void btnBuscaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscaActionPerformed
-        //jacobino-trasnochado-antihigienico xdxd
+        //propiedad del principe mestizo xdxdxdxdx
         new vtnBusca().setVisible(true);
     }//GEN-LAST:event_btnBuscaActionPerformed
 

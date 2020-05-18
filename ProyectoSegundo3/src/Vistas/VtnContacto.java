@@ -5,8 +5,11 @@
  */
 package Vistas;
 
+import Clases.Archivos;
 import Clases.Multilistas;
 import Clases.Nodo;
+import Clases.Propiedades;
+import static Vistas.vtnChat.cd;
 import cjb.ci.Mensaje;
 import java.awt.Color;
 import java.awt.Component;
@@ -14,6 +17,9 @@ import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.FileNotFoundException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import javax.swing.JOptionPane;
@@ -36,9 +42,9 @@ public class VtnContacto extends javax.swing.JFrame {
 
         jLContactos.setForeground(Color.WHITE); //PONE EL COLOR DE LA ETIQUETA EN BLANCO
         JPContactos.setBackground(Color.WHITE);//PONE BLANCO EL COLOR DEL PANEL
-        
+
         JPContactos.setLayout(new BoxLayout(JPContactos, BoxLayout.PAGE_AXIS));//CAMBIA EL ESTILO DE EL PANEL, PERMITE QUE LOS BOTONES NO OCUPEN TODA LA PANTALLA
-        
+
     }
 
     /**
@@ -143,26 +149,36 @@ public class VtnContacto extends javax.swing.JFrame {
             String[] etqs = new String[2];
             etqs[0] = d;//toma el texto del boton que se eligio anteriorente
             etqs[1] = s;
+
             VtnGrupo.r = Multilistas.inserta(VtnGrupo.r, con, 0, etqs); //elimina
+
+            Propiedades p = new Propiedades(cd, VtnGrupo.r);
+
+            try {
+                Archivos.guardar(p, this);
+            } catch (FileNotFoundException ex) {
+                Logger.getLogger(vtnChat.class.getName()).log(Level.SEVERE, null, ex);
+            }
 
             r1 = Multilistas.busca(VtnGrupo.r, d); //buscar en donde vas a insertar
             r1 = r1.getAbj();//si
             JPContactos.removeAll();
+
             if (r1 != null) {
                 Nodo aux = r1;
                 while (aux != null) {
                     JButton boton = new JButton(aux.getEtq());
-                    
+
                     boton.setLocation(50, 10);
                     boton.setBackground(Color.WHITE);//PONE EL FONDO DEL BOTON EN BLANCO
                     boton.setForeground(Color.BLACK);//PONE LAS LETRAS COLOR NEGRO
-                    boton.setFont(new Font("arial",1,14));//CAMBIA LA FUENTE Y EL TAMAÑO
-                    
+                    boton.setFont(new Font("arial", 1, 14));//CAMBIA LA FUENTE Y EL TAMAÑO
+
                     //ESTABLECE UN TAMAÑO POR DEFECTO PARA LOS BOTONES
                     //boton.setMinimumSize(new Dimension(200,100));
-                    boton.setMaximumSize(new Dimension(280,50));
+                    boton.setMaximumSize(new Dimension(280, 50));
                     //boton.setPreferredSize(new Dimension(200,100));
-                    
+
                     JPContactos.add(boton);
                     boton.addActionListener(new ActionListener() {
                         @Override
@@ -207,6 +223,14 @@ public class VtnContacto extends javax.swing.JFrame {
             etqsI[1] = nom;
 
             VtnGrupo.r = Multilistas.mover(VtnGrupo.r, 0, etqsE, etqsI);
+
+            Propiedades p = new Propiedades(cd, VtnGrupo.r);
+
+            try {
+                Archivos.guardar(p, this);
+            } catch (FileNotFoundException ex) {
+                Logger.getLogger(vtnChat.class.getName()).log(Level.SEVERE, null, ex);
+            }
 
             r1 = Multilistas.busca(VtnGrupo.r, d);
             r1 = r1.getAbj();
@@ -269,9 +293,16 @@ public class VtnContacto extends javax.swing.JFrame {
                 c = true;
             }
 
-            if (c) 
-            {
+            if (c) {
                 VtnGrupo.r = Multilistas.elimina(VtnGrupo.r, 0, etqs);
+
+                Propiedades p = new Propiedades(cd, VtnGrupo.r);
+
+                try {
+                    Archivos.guardar(p, this);
+                } catch (FileNotFoundException ex) {
+                    Logger.getLogger(vtnChat.class.getName()).log(Level.SEVERE, null, ex);
+                }
             }
 
             r1 = Multilistas.busca(VtnGrupo.r, d);
