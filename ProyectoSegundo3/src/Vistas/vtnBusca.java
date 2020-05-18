@@ -39,6 +39,7 @@ public class vtnBusca extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         tfBusca = new javax.swing.JTextField();
         btnBuscaChat = new javax.swing.JButton();
+        jLabel2 = new javax.swing.JLabel();
         jLFondo = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
@@ -56,9 +57,10 @@ public class vtnBusca extends javax.swing.JFrame {
         taBusca.setRows(5);
         jScrollPane1.setViewportView(taBusca);
 
-        jpFondo2.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(12, 95, 401, 190));
+        jpFondo2.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 80, 401, 190));
 
         jLabel1.setFont(new java.awt.Font("Microsoft JhengHei UI", 3, 12)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setText("Ingresa la frase o palabra a buscar");
         jpFondo2.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(12, 13, 212, 27));
 
@@ -76,7 +78,7 @@ public class vtnBusca extends javax.swing.JFrame {
                 tfBuscaKeyTyped(evt);
             }
         });
-        jpFondo2.add(tfBusca, new org.netbeans.lib.awtextra.AbsoluteConstraints(12, 53, 183, -1));
+        jpFondo2.add(tfBusca, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 20, 183, -1));
 
         btnBuscaChat.setIcon(new javax.swing.ImageIcon(getClass().getResource("/multimedia/aceptar-esquema-de-boton-circular.png"))); // NOI18N
         btnBuscaChat.setBorderPainted(false);
@@ -92,6 +94,9 @@ public class vtnBusca extends javax.swing.JFrame {
             }
         });
         jpFondo2.add(btnBuscaChat, new org.netbeans.lib.awtextra.AbsoluteConstraints(207, 53, -1, -1));
+
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/fondoarribabusca.jpg"))); // NOI18N
+        jpFondo2.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
 
         jLFondo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/fondoBusca.jpg"))); // NOI18N
         jLFondo.setText("jLabel2");
@@ -200,6 +205,7 @@ public class vtnBusca extends javax.swing.JFrame {
     private javax.swing.JButton btnBuscaChat;
     private javax.swing.JLabel jLFondo;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JPanel jpFondo2;
     private javax.swing.JTextArea taBusca;

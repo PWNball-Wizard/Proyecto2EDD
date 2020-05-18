@@ -17,6 +17,7 @@ import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import cjb.ci.Validaciones;
+import java.awt.Color;
 
 /**
  *
@@ -34,11 +35,21 @@ public class vtnChat extends javax.swing.JFrame {
     public String d2;
     public String d3;
 
+    public void transparenciaBotones()
+    {
+        jBRegresar.setOpaque(false);
+        jBRegresar.setContentAreaFilled(false);
+        jBRegresar.setBorderPainted(false);
+    }
+    
+    
     /**
      * Creates new form vtnChat
      */
     public vtnChat() {
         initComponents();
+        
+        transparenciaBotones();
     }
 
     /**
@@ -65,6 +76,10 @@ public class vtnChat extends javax.swing.JFrame {
         btnEnviarIzq = new javax.swing.JButton();
         btnOrdenar = new javax.swing.JToggleButton();
         btnBusca = new javax.swing.JToggleButton();
+        jLabel1 = new javax.swing.JLabel();
+        jBRegresar = new javax.swing.JButton();
+        jLFondoArriba = new javax.swing.JLabel();
+        jLFondo = new javax.swing.JLabel();
 
         jTextField1.setText("jTextField1");
 
@@ -85,6 +100,7 @@ public class vtnChat extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(255, 204, 204));
+        setUndecorated(true);
         addWindowListener(new java.awt.event.WindowAdapter() {
             public void windowClosing(java.awt.event.WindowEvent evt) {
                 formWindowClosing(evt);
@@ -94,24 +110,28 @@ public class vtnChat extends javax.swing.JFrame {
             }
         });
 
-        jpFondo.setBackground(new java.awt.Color(255, 0, 102));
+        jpFondo.setBackground(new java.awt.Color(255, 255, 255));
+        jpFondo.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jtaConvDer.setEditable(false);
-        jtaConvDer.setBackground(new java.awt.Color(204, 255, 204));
+        jtaConvDer.setBackground(new java.awt.Color(238, 236, 236));
         jtaConvDer.setColumns(20);
         jtaConvDer.setRows(5);
         jtaConvDer.setAutoscrolls(false);
         jtaConvDer.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
         jScrollPane2.setViewportView(jtaConvDer);
 
+        jpFondo.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 90, 210, 450));
+
         jtaConvIzq.setEditable(false);
-        jtaConvIzq.setBackground(new java.awt.Color(204, 255, 204));
+        jtaConvIzq.setBackground(new java.awt.Color(238, 236, 236));
         jtaConvIzq.setColumns(20);
         jtaConvIzq.setRows(5);
         jtaConvIzq.setAutoscrolls(false);
         jScrollPane3.setViewportView(jtaConvIzq);
 
-        tfMsjDer.setBackground(new java.awt.Color(204, 204, 255));
+        jpFondo.add(jScrollPane3, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 90, 210, 450));
+
         tfMsjDer.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         tfMsjDer.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -126,8 +146,9 @@ public class vtnChat extends javax.swing.JFrame {
                 tfMsjDerKeyTyped(evt);
             }
         });
+        jpFondo.add(tfMsjDer, new org.netbeans.lib.awtextra.AbsoluteConstraints(650, 210, 150, 27));
 
-        btnEnviarDer.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/Sin título.png"))); // NOI18N
+        btnEnviarDer.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/enviarNuevo.png"))); // NOI18N
         btnEnviarDer.setBorderPainted(false);
         btnEnviarDer.setContentAreaFilled(false);
         btnEnviarDer.addActionListener(new java.awt.event.ActionListener() {
@@ -140,8 +161,8 @@ public class vtnChat extends javax.swing.JFrame {
                 btnEnviarDerKeyPressed(evt);
             }
         });
+        jpFondo.add(btnEnviarDer, new org.netbeans.lib.awtextra.AbsoluteConstraints(800, 200, 50, 46));
 
-        tfMsjIzq.setBackground(new java.awt.Color(204, 204, 255));
         tfMsjIzq.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         tfMsjIzq.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
@@ -151,8 +172,9 @@ public class vtnChat extends javax.swing.JFrame {
                 tfMsjIzqKeyTyped(evt);
             }
         });
+        jpFondo.add(tfMsjIzq, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 220, 140, 27));
 
-        btnEnviarIzq.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/Sin título.png"))); // NOI18N
+        btnEnviarIzq.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/enviarNuevo.png"))); // NOI18N
         btnEnviarIzq.setBorderPainted(false);
         btnEnviarIzq.setContentAreaFilled(false);
         btnEnviarIzq.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -170,7 +192,9 @@ public class vtnChat extends javax.swing.JFrame {
                 btnEnviarIzqKeyPressed(evt);
             }
         });
+        jpFondo.add(btnEnviarIzq, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 210, 51, 46));
 
+        btnOrdenar.setForeground(new java.awt.Color(255, 255, 255));
         btnOrdenar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/25612.png"))); // NOI18N
         btnOrdenar.setBorderPainted(false);
         btnOrdenar.setContentAreaFilled(false);
@@ -180,7 +204,9 @@ public class vtnChat extends javax.swing.JFrame {
                 btnOrdenarActionPerformed(evt);
             }
         });
+        jpFondo.add(btnOrdenar, new org.netbeans.lib.awtextra.AbsoluteConstraints(720, 20, -1, -1));
 
+        btnBusca.setForeground(new java.awt.Color(255, 255, 255));
         btnBusca.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/64673.png"))); // NOI18N
         btnBusca.setSelected(true);
         btnBusca.setBorder(javax.swing.BorderFactory.createCompoundBorder());
@@ -192,67 +218,27 @@ public class vtnChat extends javax.swing.JFrame {
                 btnBuscaActionPerformed(evt);
             }
         });
+        jpFondo.add(btnBusca, new org.netbeans.lib.awtextra.AbsoluteConstraints(770, 10, 59, 60));
 
-        javax.swing.GroupLayout jpFondoLayout = new javax.swing.GroupLayout(jpFondo);
-        jpFondo.setLayout(jpFondoLayout);
-        jpFondoLayout.setHorizontalGroup(
-            jpFondoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 802, Short.MAX_VALUE)
-            .addGroup(jpFondoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(jpFondoLayout.createSequentialGroup()
-                    .addContainerGap()
-                    .addGroup(jpFondoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(tfMsjIzq, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGroup(jpFondoLayout.createSequentialGroup()
-                            .addGap(39, 39, 39)
-                            .addComponent(btnEnviarIzq)))
-                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 24, Short.MAX_VALUE)
-                    .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(18, 18, 18)
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(jpFondoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jpFondoLayout.createSequentialGroup()
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addComponent(btnOrdenar)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addComponent(btnBusca, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGap(4, 4, 4))
-                        .addGroup(jpFondoLayout.createSequentialGroup()
-                            .addGap(57, 57, 57)
-                            .addComponent(btnEnviarDer))
-                        .addGroup(jpFondoLayout.createSequentialGroup()
-                            .addGap(18, 18, 18)
-                            .addComponent(tfMsjDer, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addContainerGap()))
-        );
-        jpFondoLayout.setVerticalGroup(
-            jpFondoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 456, Short.MAX_VALUE)
-            .addGroup(jpFondoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(jpFondoLayout.createSequentialGroup()
-                    .addContainerGap()
-                    .addGroup(jpFondoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 433, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGroup(jpFondoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jpFondoLayout.createSequentialGroup()
-                                .addGroup(jpFondoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(btnOrdenar)
-                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jpFondoLayout.createSequentialGroup()
-                                        .addGap(8, 8, 8)
-                                        .addComponent(btnBusca, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                .addGap(97, 97, 97)
-                                .addGroup(jpFondoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(jpFondoLayout.createSequentialGroup()
-                                        .addComponent(tfMsjDer, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(18, 18, 18)
-                                        .addComponent(btnEnviarDer, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addGroup(jpFondoLayout.createSequentialGroup()
-                                        .addComponent(tfMsjIzq, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(18, 18, 18)
-                                        .addComponent(btnEnviarIzq, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                            .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 434, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addContainerGap(16, Short.MAX_VALUE)))
-        );
+        jLabel1.setFont(new java.awt.Font("Tahoma", 0, 36)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel1.setText("Chat");
+        jpFondo.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 14, 90, 50));
+
+        jBRegresar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/atrasNuevo.png"))); // NOI18N
+        jBRegresar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBRegresarActionPerformed(evt);
+            }
+        });
+        jpFondo.add(jBRegresar, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 20, 50, 30));
+
+        jLFondoArriba.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/fondoarribawa.jpg"))); // NOI18N
+        jpFondo.add(jLFondoArriba, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
+
+        jLFondo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/fondoHorizontal.jpg"))); // NOI18N
+        jLFondo.setText("jLabel1");
+        jpFondo.add(jLFondo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 70, 850, -1));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -498,6 +484,10 @@ public class vtnChat extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_btnEnviarIzqMouseClicked
 
+    private void jBRegresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBRegresarActionPerformed
+        this.setVisible(false);
+    }//GEN-LAST:event_jBRegresarActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -543,6 +533,10 @@ public class vtnChat extends javax.swing.JFrame {
     private javax.swing.JButton btnEnviarDer;
     private javax.swing.JButton btnEnviarIzq;
     private javax.swing.JToggleButton btnOrdenar;
+    private javax.swing.JButton jBRegresar;
+    private javax.swing.JLabel jLFondo;
+    private javax.swing.JLabel jLFondoArriba;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;

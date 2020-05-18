@@ -57,7 +57,7 @@ public class VtnHistorial extends javax.swing.JFrame {
         initComponents();
         this.setLocationRelativeTo(null);//CENTRA LA PANTALLA
 
-        jLAgregarH.setForeground(Color.WHITE); //PONE EL COLOR DE LA ETIQUETA DE GRUPOS EN BLANCO
+        jLHistorial.setForeground(Color.WHITE); //PONE EL COLOR DE LA ETIQUETA DE GRUPOS EN BLANCO
         JPHistorial.setBackground(Color.WHITE);//PONE BLANCO EL COLOR DEL PANEL
 
         //JPGrupos.setLayout(new GridLayout(0, 1, 10, 10));
@@ -94,11 +94,12 @@ public class VtnHistorial extends javax.swing.JFrame {
         });
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLHistorial.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
+        jLHistorial.setBackground(new java.awt.Color(255, 255, 255));
+        jLHistorial.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         jLHistorial.setText("Historial de Chats");
         getContentPane().add(jLHistorial, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 20, -1, -1));
 
-        jBAgregarH.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/agregarg50.jpg"))); // NOI18N
+        jBAgregarH.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/agregarF2Nuevo.png"))); // NOI18N
         jBAgregarH.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jBAgregarHActionPerformed(evt);
@@ -106,7 +107,7 @@ public class VtnHistorial extends javax.swing.JFrame {
         });
         getContentPane().add(jBAgregarH, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 470, 54, -1));
 
-        jBEliminarH.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/elimina50.jpg"))); // NOI18N
+        jBEliminarH.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/borrarNuevo.png"))); // NOI18N
         jBEliminarH.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jBEliminarHActionPerformed(evt);
@@ -117,22 +118,22 @@ public class VtnHistorial extends javax.swing.JFrame {
         jLEliminarH.setText("Eliminar");
         getContentPane().add(jLEliminarH, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 530, -1, -1));
 
-        jBRegresarH.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/regresa.jpg"))); // NOI18N
+        jBRegresarH.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/atrasNuevo.png"))); // NOI18N
         jBRegresarH.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jBRegresarHActionPerformed(evt);
             }
         });
-        getContentPane().add(jBRegresarH, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 470, 58, -1));
+        getContentPane().add(jBRegresarH, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 20, 40, 30));
 
         JPHistorial.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         JPHistorial.setLayout(new java.awt.GridLayout(0, 1, 0, 1));
-        getContentPane().add(JPHistorial, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 80, 273, 370));
+        getContentPane().add(JPHistorial, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 80, 273, 380));
 
         jLAgregarH.setText("Agregar");
-        getContentPane().add(jLAgregarH, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 530, -1, -1));
+        getContentPane().add(jLAgregarH, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 530, 60, -1));
 
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/fondoverde.jpg"))); // NOI18N
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/fondowa.jpg"))); // NOI18N
         getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
 
         jLFondoH.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/fondowhats.png"))); // NOI18N

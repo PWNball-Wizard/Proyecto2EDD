@@ -102,59 +102,59 @@ public class VtnGrupo extends javax.swing.JFrame {
         });
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jBAgregarG.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/agregarg50.jpg"))); // NOI18N
+        jBAgregarG.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/mas50.png"))); // NOI18N
         jBAgregarG.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jBAgregarGActionPerformed(evt);
             }
         });
-        getContentPane().add(jBAgregarG, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 470, 58, -1));
+        getContentPane().add(jBAgregarG, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 470, 60, 50));
 
-        jBEliminarG.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/elimina50.jpg"))); // NOI18N
+        jBEliminarG.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/borrarNuevo.png"))); // NOI18N
         jBEliminarG.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jBEliminarGActionPerformed(evt);
             }
         });
-        getContentPane().add(jBEliminarG, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 470, 56, -1));
+        getContentPane().add(jBEliminarG, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 470, 60, 50));
 
-        jLGrupos.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
+        jLGrupos.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         jLGrupos.setText("Grupos");
         getContentPane().add(jLGrupos, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 20, -1, -1));
 
         jLAgregarG.setText("Agregar");
-        getContentPane().add(jLAgregarG, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 530, -1, -1));
+        getContentPane().add(jLAgregarG, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 516, 60, 30));
 
         JPGrupos.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         JPGrupos.setLayout(new java.awt.GridLayout(0, 1, 0, 1));
         getContentPane().add(JPGrupos, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 90, 273, 360));
 
         jLEliminarG.setText("Eliminar");
-        getContentPane().add(jLEliminarG, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 530, -1, -1));
+        getContentPane().add(jLEliminarG, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 520, -1, 20));
 
         jLabel1.setText("Busqueda");
-        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 530, -1, -1));
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(185, 516, 60, 30));
 
-        jBBusca.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/buscar50.png"))); // NOI18N
+        jBBusca.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/buscarNuevo.png"))); // NOI18N
         jBBusca.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jBBuscaActionPerformed(evt);
             }
         });
-        getContentPane().add(jBBusca, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 470, 50, -1));
+        getContentPane().add(jBBusca, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 470, 60, -1));
 
-        jBCerrar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/cerrar30.jpg"))); // NOI18N
+        jBCerrar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/cerrar3.png"))); // NOI18N
         jBCerrar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jBCerrarActionPerformed(evt);
             }
         });
-        getContentPane().add(jBCerrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 20, 30, 30));
+        getContentPane().add(jBCerrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 20, 30, 30));
 
         jLFondoG.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/fondowhats.png"))); // NOI18N
         getContentPane().add(jLFondoG, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 70, -1, -1));
 
-        jLFondoG1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/fondoverde.jpg"))); // NOI18N
+        jLFondoG1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/fondowa.jpg"))); // NOI18N
         getContentPane().add(jLFondoG1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
 
         pack();
