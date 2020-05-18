@@ -12,18 +12,19 @@ public class Nodo implements Serializable
     private Nodo ant = null;
     private int tipo;
     
+    
     public Nodo(Object obj)
     {
         this.obj = obj;
     }
 
-    public Nodo(Object obj, String etq)
+    public Nodo(Object obj, String etq) //para la multilista
     {
         this.obj = obj;
         this.etq = etq;
     }
 
-    public Nodo(int tipo, Object obj) {
+    public Nodo(int tipo, Object obj) {//para  la cola
         this.obj = obj;
         this.tipo = tipo;
     }
