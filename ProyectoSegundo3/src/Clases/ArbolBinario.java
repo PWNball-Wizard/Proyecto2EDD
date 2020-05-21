@@ -15,9 +15,24 @@ public class ArbolBinario implements Serializable
 {
     private NodoArbol r=null;
     
+    //GETTERS Y SETTERS
+    /**
+     * @return the r
+     */
+    public NodoArbol getR()
+    {
+        return r;
+    }
+
+    /**
+     * @param r the r to set
+     */
+    public void setR(NodoArbol r)
+    {
+        this.r = r;
+    }
     
-    
-    
+    /*>>>>>>>>>>>>>>>>INSERTA Y ELIMINA<<<<<<<<<<<<<<<<<*/
     public NodoArbol inserta(NodoArbol r, NodoArbol n)
     {
         if(r==null)
@@ -96,6 +111,7 @@ public class ArbolBinario implements Serializable
 
     }
 
+    
     public NodoArbol sucesorE(NodoArbol r) {
 
         if (r.getIzq().getIzq() != null) {
@@ -106,21 +122,7 @@ public class ArbolBinario implements Serializable
 
     }
     
-    /**
-     * @return the r
-     */
-    public NodoArbol getR()
-    {
-        return r;
-    }
-
-    /**
-     * @param r the r to set
-     */
-    public void setR(NodoArbol r)
-    {
-        this.r = r;
-    }
+    /*>>>>>>>>>>>>>>>>>METODOS DE ORDENAMIENTO<<<<<<<<<<<<<<<<<<<<<<*/
     
     public String enOrden(NodoArbol r)
     {
@@ -158,4 +160,180 @@ public class ArbolBinario implements Serializable
         }
         return s;
     }
+    
+     /*>>>>>>>>>>>>>>>>>>>>>>>METODOS DE BALANCEO<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<*/
+    
+    public NodoArbol balancear(NodoArbol r)
+    {
+        if (r != null)
+        {
+            if (altura(r.getIzq(), 0) - altura(r.getDer(), 0) == 2)
+            {
+                /* desequilibrio hacia la izquierda! */
+                if (altura(r.getIzq().getIzq(), 0) >= altura(r.getIzq().getDer(), 0))
+                /* desequilibrio simple hacia la izquierda */
+                {
+                    r = rotar_s(r, true);
+                } else
+                /* desequilibrio doble hacia la izquierda */
+                {
+                    r = rotar_d(r, true);
+                }
+            } else if (altura(r.getDer(), 0) - altura(r.getIzq(), 0) == 2)
+            {
+                /* desequilibrio hacia la derecha! */
+                if (altura(r.getDer().getDer(), 0) >= altura(r.getDer().getIzq(), 0))
+                /* desequilibrio simple hacia la derecha */
+                {
+                    r = rotar_s(r, false);
+                } else
+                /* desequilibrio doble hacia la derecha */
+                {
+                    r = rotar_d(r, false);
+                }
+            }
+        }
+        return r;
+    }
+
+ 
+
+    public NodoArbol rotar_d(NodoArbol r, boolean izq)
+    {
+        if (izq)
+        /* rotación izquierda */
+        {
+            r = rotar_s(r.getIzq(), false);
+            r = rotar_s(r, true);
+        } else
+        /* rotación derecha */
+        {
+            r = rotar_s(r.getDer(), true);
+            r = rotar_s(r, false);
+        }
+
+ 
+
+        return r;
+    }
+
+ 
+
+    public NodoArbol rotar_s(NodoArbol r, boolean izq)
+    {
+        NodoArbol tmp;
+        if (izq)
+        /* rotación izquierda */
+        {
+            tmp = r.getIzq();
+            r.setIzq(tmp.getDer());
+            tmp.setDer(r);
+        } else
+        /* rotación derecha */
+        {
+            tmp = r.getDer();
+            r.setDer(tmp.getIzq());
+            tmp.setIzq(r);
+        }
+        return tmp;
+    }
+
+ 
+
+    public int altura(NodoArbol r, int a)
+    {
+        if (r == null)
+        {
+            return a;
+        } else
+        {
+            return max(altura(r.getIzq(), a + 1), altura(r.getDer(), a + 1));
+        }
+
+ 
+
+    }
+
+    public int max(int a, int b)
+    {
+        return a > b ? a : b;
+    }
+    
+    /*>>>>>>>>>>>>>>>>METODOS DE BUSQUEDA<<<<<<<<<<<<<<<<<<<<<<<<<<<<<*/
+    
+    public NodoArbol busca(NodoArbol r, String etq)
+    //dos parametros: el arbol y la palabra a buscar
+    //regresa el nodo encontrado o en caso de no encontrarlo regresa null
+    {   
+        NodoArbol aux = null;//aux almacena el elemento a buscar
+        
+        if (r==null)//si el arbol esta vacio
+        {
+            System.out.println("El arbol se encuentra vacio");//FUNCIONA 
+            return null;
+        }
+        else
+        {
+            if (r.getEtq().equals(etq))//compara y si lo encuentra en la raiz del arbol da true 
+            {
+                aux= r;
+            }
+            else//el dato no se encuentra en la raiz del arbol
+            {
+                //COMIENZA LA RECURSIVIDAD
+                if (r.getEtq().compareTo(etq) > 0)//si el dato es mayor que la raiz 
+                //compareTo da valor mayor a 0 si la cadena 1 es mayor que la cadena 2
+                {
+                    aux=busca(r.getIzq(), etq);
+                }
+                else//si el dato es menor que la raiz
+                {
+                    aux=busca(r.getDer(), etq);
+                    
+                }   
+            }
+        }
+        System.out.println("EL DATO ENCONTRADO ES: " +aux.getEtq());
+        return aux;//regresa la raiz
+    }
+    
+    public NodoArbol busca2(NodoArbol r, String etq)
+    //dos parametros: el arbol y la palabra a buscar
+    //regresa el nodo encontrado o en caso de no encontrarlo regresa null
+    {   
+        NodoArbol aux = null;
+        
+        if (r==null)//si el arbol esta vacio
+        {
+            System.out.println("El arbol se encuentra vacio");
+            return null;
+        }
+        else
+        {
+            if (r.getEtq().equals(etq))//compara y si lo encuentra en la raiz del arbol da true 
+            {
+                 
+                System.out.println("El elemento se encuentra en la raiz");
+                System.out.println("El dato encontrado en la raiz es: " + r.getEtq() );
+                return r;
+            }
+            else//el dato no se encuentra en la raiz del arbol
+            {
+                //COMIENZA LA RECURSIVIDAD
+                if (r.getEtq().compareTo(etq) > 0)//si el dato es mayor que la raiz 
+                //compareTo da valor mayor a 0 si la cadena 1 es mayor que la cadena 2
+                {
+                    aux=busca(r.getIzq(), etq);
+                }
+                else//si el dato es menor que la raiz
+                {
+                    aux=busca(r.getDer(), etq);  
+                }
+                System.out.println("el dato encontrado con recursion: " +aux.getEtq());
+                return aux;//regresa la raiz
+            }
+        }
+        
+    }
+    
 }
