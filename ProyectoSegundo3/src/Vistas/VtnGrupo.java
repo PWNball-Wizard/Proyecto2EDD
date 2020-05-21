@@ -5,12 +5,14 @@
  */
 package Vistas;
 
+import Clases.ArbolBinario;
 import Clases.Archivos;
 import Clases.ColaDinamica;
 import Clases.Multilistas;
 import Clases.Nodo;
 import Clases.NodoArbol;
 import Clases.Propiedades;
+import Clases.TablasHash;
 import static Vistas.vtnChat.cd;
 import cjb.ci.Mensaje;
 import java.awt.Color;
@@ -35,41 +37,43 @@ public class VtnGrupo extends javax.swing.JFrame {
 
     public static Nodo r = null;//RAIZ
 
+    public static NodoArbol rb = null;
+
+    ArbolBinario ab = new ArbolBinario();
+
     /**
      * Creates new form VtnGrupos
      */
-    
     public void transparenciaBotones() //PONER EN VtnGrupo
     {
         jBEliminarG.setOpaque(false);
         jBEliminarG.setContentAreaFilled(false);
         jBEliminarG.setBorderPainted(false);
-        
+
         jBBusca.setOpaque(false);
         jBBusca.setContentAreaFilled(false);
         jBBusca.setBorderPainted(false);
-        
+
         jBAgregarG.setOpaque(false);
         jBAgregarG.setContentAreaFilled(false);
         jBAgregarG.setBorderPainted(false);
-        
+
         jBCerrar.setOpaque(false);
         jBCerrar.setContentAreaFilled(false);
         jBCerrar.setBorderPainted(false);
     }
-    
-    
+
     public VtnGrupo() {
         initComponents();
         this.setLocationRelativeTo(null); // CENTRA LA PANTALLA
 
         jLGrupos.setForeground(Color.WHITE); //PONE EL COLOR DE LA ETIQUETA EN BLANCO
         JPGrupos.setBackground(Color.WHITE);//PONE BLANCO EL COLOR DEL PANEL
-        
+
         JPGrupos.setLayout(new BoxLayout(JPGrupos, BoxLayout.PAGE_AXIS));//CAMBIA EL ESTILO DE EL PANEL, PERMITE QUE LOS BOTONES NO OCUPEN TODA LA PANTALLA
-        
+
         transparenciaBotones();
-        
+
     }
 
     /**
@@ -169,7 +173,12 @@ public class VtnGrupo extends javax.swing.JFrame {
         if (s.length() == 0) {
             Mensaje.error(this, "Debe ecsribir un nombre");
         } else {
+            char ppC = s.charAt(0);
+            String pps = Character.toString(ppC);
+            
             Nodo nom = new Nodo(null, s);
+            NodoArbol nomNA = new NodoArbol(pps, null);
+            NodoArbol nomNAS = new NodoArbol(s, null);
 
             String[] etqs = new String[1];//arreglo de etiquetas
 
@@ -177,6 +186,25 @@ public class VtnGrupo extends javax.swing.JFrame {
 
             r = Multilistas.inserta(r, nom, 0, etqs);
 
+            int pos = TablasHash.posicion(nomNA);
+
+            if (TablasHash.arr[pos] == null) {
+            System.out.println(pos);
+
+            TablasHash.arr[pos] = ab.inserta(rb, nomNA);
+
+            System.out.println(TablasHash.arr[pos].getEtq());    
+            }else{
+
+                rb = TablasHash.arr[pos];
+                
+                ab.inserta(rb, nomNAS);
+            
+                System.out.println(TablasHash.arr[pos].getEtq());
+                
+                System.out.println(ab.enOrden(rb));
+            }
+            
             Propiedades p = new Propiedades(cd, r);
 
             try {
@@ -192,17 +220,16 @@ public class VtnGrupo extends javax.swing.JFrame {
 
                 while (aux != null) {
                     JButton boton = new JButton(aux.getEtq());
-                    
+
                     boton.setBackground(Color.WHITE);//PONE EL FONDO DEL BOTON EN BLANCO
                     boton.setForeground(Color.BLACK);//PONE LAS LETRAS COLOR NEGRO
                     boton.setFont(new Font("arial", 1, 14));//CAMBIA LA FUENTE Y EL TAMAÑO
 
                     //ESTABLECE UN TAMAÑO POR DEFECTO PARA LOS BOTONES
-                    boton.setMinimumSize(new Dimension(273,50));
+                    boton.setMinimumSize(new Dimension(273, 50));
                     boton.setMaximumSize(new Dimension(280, 50));
-                    boton.setPreferredSize(new Dimension(273,50));
-                    
-                    
+                    boton.setPreferredSize(new Dimension(273, 50));
+
                     JPGrupos.add(boton);
 
                     boton.addActionListener(new ActionListener()//pone una accion al boton
@@ -354,7 +381,7 @@ public class VtnGrupo extends javax.swing.JFrame {
         } catch (ClassNotFoundException ex) {
             Logger.getLogger(VtnGrupo.class.getName()).log(Level.SEVERE, null, ex);
         }
-
+        
         if (r == null) {
             Mensaje.error(this, "No hay datos en la lista");
         } else {
@@ -364,16 +391,16 @@ public class VtnGrupo extends javax.swing.JFrame {
 
             while (aux != null) {
                 JButton boton = new JButton(aux.getEtq());
-                
+
                 boton.setBackground(Color.WHITE);//PONE EL FONDO DEL BOTON EN BLANCO
                 boton.setForeground(Color.BLACK);//PONE LAS LETRAS COLOR NEGRO
                 boton.setFont(new Font("arial", 1, 14));//CAMBIA LA FUENTE Y EL TAMAÑO
-                    
-                    //ESTABLECE UN TAMAÑO POR DEFECTO PARA LOS BOTONES
-                boton.setMinimumSize(new Dimension(273,50));
+
+                //ESTABLECE UN TAMAÑO POR DEFECTO PARA LOS BOTONES
+                boton.setMinimumSize(new Dimension(273, 50));
                 boton.setMaximumSize(new Dimension(280, 50));
-                boton.setPreferredSize(new Dimension(273,50));
-                
+                boton.setPreferredSize(new Dimension(273, 50));
+
                 JPGrupos.add(boton);
 
                 boton.addActionListener(new ActionListener()//pone una accion al boton

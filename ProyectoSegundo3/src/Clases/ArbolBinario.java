@@ -112,7 +112,7 @@ public class ArbolBinario implements Serializable
     }
 
     
-    public NodoArbol sucesorE(NodoArbol r) {
+    public NodoArbol sucesorE(NodoArbol r) {//muestra el sucesor en orden
 
         if (r.getIzq().getIzq() != null) {
             return sucesorE(r.getIzq());
