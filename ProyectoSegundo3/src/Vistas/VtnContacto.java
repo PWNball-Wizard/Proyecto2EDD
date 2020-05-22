@@ -5,10 +5,15 @@
  */
 package Vistas;
 
+import Clases.ArbolBinario;
 import Clases.Archivos;
 import Clases.Multilistas;
 import Clases.Nodo;
+import Clases.NodoArbol;
 import Clases.Propiedades;
+import Clases.TablasHash;
+import static Vistas.VtnGrupo.ab;
+import static Vistas.VtnGrupo.rb;
 import static Vistas.vtnChat.cd;
 import cjb.ci.Mensaje;
 import java.awt.Color;
@@ -36,28 +41,24 @@ public class VtnContacto extends javax.swing.JFrame {
     /**
      * Creates new form VtnContacto
      */
-    
-    
-public void transparenciaBotones()
-    {
+    public void transparenciaBotones() {
         jBRegresarC.setOpaque(false);
         jBRegresarC.setContentAreaFilled(false);
         jBRegresarC.setBorderPainted(false);
-        
+
         jBAgregarC.setOpaque(false);
         jBAgregarC.setContentAreaFilled(false);
         jBAgregarC.setBorderPainted(false);
-        
+
         jBEliminarC.setOpaque(false);
         jBEliminarC.setContentAreaFilled(false);
         jBEliminarC.setBorderPainted(false);
-        
+
         jBMoverC.setOpaque(false);
         jBMoverC.setContentAreaFilled(false);
         jBMoverC.setBorderPainted(false);
     }
-    
-    
+
     public VtnContacto() {
         initComponents();
         this.setLocationRelativeTo(null); //CENTRA LA PANTALLA
@@ -68,7 +69,7 @@ public void transparenciaBotones()
         JPContactos.setLayout(new BoxLayout(JPContactos, BoxLayout.PAGE_AXIS));//CAMBIA EL ESTILO DE EL PANEL, PERMITE QUE LOS BOTONES NO OCUPEN TODA LA PANTALLA
 
         transparenciaBotones();
-        
+
     }
 
     /**
@@ -89,6 +90,8 @@ public void transparenciaBotones()
         jLMoverC = new javax.swing.JLabel();
         jLAgregarC = new javax.swing.JLabel();
         JPContactos = new javax.swing.JPanel();
+        jLabel1 = new javax.swing.JLabel();
+        jBBusca = new javax.swing.JButton();
         jLFondoC = new javax.swing.JLabel();
         jLFondoC1 = new javax.swing.JLabel();
 
@@ -119,7 +122,7 @@ public void transparenciaBotones()
                 jBEliminarCActionPerformed(evt);
             }
         });
-        getContentPane().add(jBEliminarC, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 470, 56, -1));
+        getContentPane().add(jBEliminarC, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 470, 56, -1));
 
         jBRegresarC.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/atrasNuevo.png"))); // NOI18N
         jBRegresarC.addActionListener(new java.awt.event.ActionListener() {
@@ -138,7 +141,7 @@ public void transparenciaBotones()
         getContentPane().add(jBMoverC, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 470, 55, -1));
 
         jLEliminarC.setText("Eliminar");
-        getContentPane().add(jLEliminarC, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 530, -1, -1));
+        getContentPane().add(jLEliminarC, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 530, -1, -1));
 
         jLMoverC.setText("Mover");
         getContentPane().add(jLMoverC, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 530, -1, -1));
@@ -149,6 +152,17 @@ public void transparenciaBotones()
         JPContactos.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         JPContactos.setLayout(new java.awt.GridLayout(0, 1, 0, 1));
         getContentPane().add(JPContactos, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 90, 280, 360));
+
+        jLabel1.setText("Busqueda");
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 520, 60, 30));
+
+        jBBusca.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/buscarNuevo.png"))); // NOI18N
+        jBBusca.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBBuscaActionPerformed(evt);
+            }
+        });
+        getContentPane().add(jBBusca, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 470, 60, -1));
 
         jLFondoC.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/fondowhats.png"))); // NOI18N
         getContentPane().add(jLFondoC, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 70, -1, -1));
@@ -169,14 +183,47 @@ public void transparenciaBotones()
             Mensaje.error(this, "Debe rellenar el campo");
         }
         if (s.length() != 0) {
+            char ppC = s.charAt(0);///////////////////////////////////////////////////////////////////////////////////
+            String pps = Character.toString(ppC);///////////Para insertar en la tabla Hash y en los ab////////////////
+
             Nodo con = new Nodo(null, s);
             String[] etqs = new String[2];
             etqs[0] = d;//toma el texto del boton que se eligio anteriorente
             etqs[1] = s;
 
-            VtnGrupo.r = Multilistas.inserta(VtnGrupo.r, con, 0, etqs); //elimina
+            NodoArbol nomNA = new NodoArbol(pps, null, etqs);
+            NodoArbol nomNAS = new NodoArbol(s, null, etqs);
 
-            Propiedades p = new Propiedades(cd, VtnGrupo.r);
+            VtnGrupo.r = Multilistas.inserta(VtnGrupo.r, con, 0, etqs); //inserta
+
+            int pos = TablasHash.posicion(nomNA);
+
+            if (TablasHash.arr[pos] == null) {
+
+//            rb = null;
+                System.out.println(pos);
+
+                TablasHash.arr[pos] = ab.inserta(rb, nomNA);///falta que inserte el primer dato, no lo inserta porque se borra
+
+//            rb = TablasHash.arr[pos];
+                ab.inserta(TablasHash.arr[pos], nomNAS);
+
+                System.out.println("Muestra en el inserta" + TablasHash.arr[pos].getEtq());
+            } else {
+
+//                rb = TablasHash.arr[pos];
+                ab.inserta(TablasHash.arr[pos], nomNAS);
+
+                System.out.println(TablasHash.arr[pos].getEtq());
+
+                System.out.println(ab.enOrden(rb));
+
+                System.out.println("Muestra en el inserta" + TablasHash.arr[pos].getEtq());
+
+//                System.out.println("Muestra en la raiz en nodo arbol"+ rb.getEtq());
+            }
+
+            Propiedades p = new Propiedades(cd, VtnGrupo.r, TablasHash.arr);
 
             try {
                 Archivos.guardar(p, this);
@@ -199,9 +246,9 @@ public void transparenciaBotones()
                     boton.setFont(new Font("arial", 1, 14));//CAMBIA LA FUENTE Y EL TAMAÑO
 
                     //ESTABLECE UN TAMAÑO POR DEFECTO PARA LOS BOTONES
-                    boton.setMinimumSize(new Dimension(280,50));
+                    boton.setMinimumSize(new Dimension(280, 50));
                     boton.setMaximumSize(new Dimension(280, 50));
-                    boton.setPreferredSize(new Dimension(280,50));
+                    boton.setPreferredSize(new Dimension(280, 50));
 
                     JPContactos.add(boton);
                     boton.addActionListener(new ActionListener() {
@@ -248,14 +295,12 @@ public void transparenciaBotones()
 
             VtnGrupo.r = Multilistas.mover(VtnGrupo.r, 0, etqsE, etqsI);
 
-            Propiedades p = new Propiedades(cd, VtnGrupo.r);
-
-            try {
-                Archivos.guardar(p, this);
-            } catch (FileNotFoundException ex) {
-                Logger.getLogger(vtnChat.class.getName()).log(Level.SEVERE, null, ex);
-            }
-
+//            Propiedades p = new Propiedades(cd, VtnGrupo.r);
+//            try {
+//                Archivos.guardar(p, this);
+//            } catch (FileNotFoundException ex) {
+//                Logger.getLogger(vtnChat.class.getName()).log(Level.SEVERE, null, ex);
+//            }
             r1 = Multilistas.busca(VtnGrupo.r, d);
             r1 = r1.getAbj();
 
@@ -320,13 +365,13 @@ public void transparenciaBotones()
             if (c) {
                 VtnGrupo.r = Multilistas.elimina(VtnGrupo.r, 0, etqs);
 
-                Propiedades p = new Propiedades(cd, VtnGrupo.r);
-
-                try {
-                    Archivos.guardar(p, this);
-                } catch (FileNotFoundException ex) {
-                    Logger.getLogger(vtnChat.class.getName()).log(Level.SEVERE, null, ex);
-                }
+//                Propiedades p = new Propiedades(cd, VtnGrupo.r);
+//
+//                try {
+//                    Archivos.guardar(p, this);
+//                } catch (FileNotFoundException ex) {
+//                    Logger.getLogger(vtnChat.class.getName()).log(Level.SEVERE, null, ex);
+//                }
             }
 
             r1 = Multilistas.busca(VtnGrupo.r, d);
@@ -382,16 +427,16 @@ public void transparenciaBotones()
             Nodo aux = r1;
             while (aux != null) {
                 JButton boton = new JButton(aux.getEtq());
-                
-                boton.setBackground(Color.WHITE);//PONE EL FONDO DEL BOTON EN BLANCO
-                    boton.setForeground(Color.BLACK);//PONE LAS LETRAS COLOR NEGRO
-                    boton.setFont(new Font("arial", 1, 14));//CAMBIA LA FUENTE Y EL TAMAÑO
 
-                    //ESTABLECE UN TAMAÑO POR DEFECTO PARA LOS BOTONES
-                    boton.setMinimumSize(new Dimension(280,50));
-                    boton.setMaximumSize(new Dimension(280, 50));
-                    boton.setPreferredSize(new Dimension(280,50));
-                
+                boton.setBackground(Color.WHITE);//PONE EL FONDO DEL BOTON EN BLANCO
+                boton.setForeground(Color.BLACK);//PONE LAS LETRAS COLOR NEGRO
+                boton.setFont(new Font("arial", 1, 14));//CAMBIA LA FUENTE Y EL TAMAÑO
+
+                //ESTABLECE UN TAMAÑO POR DEFECTO PARA LOS BOTONES
+                boton.setMinimumSize(new Dimension(280, 50));
+                boton.setMaximumSize(new Dimension(280, 50));
+                boton.setPreferredSize(new Dimension(280, 50));
+
                 JPContactos.add(boton);
                 boton.addActionListener(new ActionListener() {
                     @Override
@@ -410,7 +455,97 @@ public void transparenciaBotones()
 
         JPContactos.revalidate();
         JPContactos.repaint();
+//        System.out.println(TablasHash.muestra());
     }//GEN-LAST:event_formWindowOpened
+
+    private void jBBuscaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBBuscaActionPerformed
+
+        String s = "";
+        s = JOptionPane.showInputDialog("Escriba el nombre del contacto que deseas buscar"); //ETIQUETA PARA LA CATEGORIA NUEVA
+
+        if (s.length() == 0) {
+            Mensaje.error(this, "Debe ecsribir un nombre");
+        } else {
+
+            char ppC = s.charAt(0);///////////////////////////////////////////////////////////////////////////////////
+            String pps = Character.toString(ppC);///////////Para insertar en la tabla Hash y en los ab////////////////
+
+            int pos = s.toUpperCase().codePointAt(0) - 65;
+
+            if (TablasHash.arr[pos] != null) {
+
+                ArbolBinario aba = new ArbolBinario();
+
+                NodoArbol aux = aba.busca(TablasHash.arr[pos], s);
+
+                if (aux != null) {
+
+                    String[] pr = aux.getPredecesores();
+
+                    String grupo = pr[0];
+                    String contacto = pr[1];
+///////////////////////////////////////////////////////////////////////////
+                    Nodo r2 = Multilistas.busca(VtnGrupo.r, grupo);
+
+                    r2 = r2.getAbj();
+                    r2 = Multilistas.busca(r2, contacto);
+
+//                    JPHistorial.removeAll();
+//                    r2 = r2.getAbj();
+
+                    if (r2 != null) {
+                        VtnHistorial h = new VtnHistorial();
+                        h.d1 = grupo;
+                        h.d2 = contacto;
+                        h.setVisible(true);
+                        dispose();
+                        /////////////////////////////////////////////////////////////
+
+                    } else {
+
+                        Mensaje.error(this, "No se encontro el dato");
+
+                    }
+
+                } else {
+
+                    Mensaje.error(this, "No hay nada en la posicion " + pos + " del arreglo");
+
+                }
+
+            }
+
+//        //PROBAR CUANDO FUNCIONE LA PARTE DE ARBOLES BINARIOS
+//        //nb=NOMBRE A BUSCAR
+//        String nb = null;
+//
+//        nb = JOptionPane.showInputDialog("Escriba el nombre de la persona que desea buscar");
+//
+//        if (r == null) {
+//            JOptionPane.showMessageDialog(rootPane, "La agenda se encuentra vacia");
+//
+//        } else {
+//            if (nb == null) {
+//                JOptionPane.showMessageDialog(rootPane, "Debe escribir un nombre");
+//            } else {
+//                //NodoArbol=r;
+//                Nodo aux = r;
+//                /*while()
+//                {
+//                    if (aux.dato!=nb)
+//                    {
+//
+//                    }
+//                    else
+//                    {
+//
+//                    }
+//                }*/
+//
+//            }
+//        }
+        }
+    }//GEN-LAST:event_jBBuscaActionPerformed
 
     /**
      * @param args the command line arguments
@@ -450,6 +585,7 @@ public void transparenciaBotones()
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel JPContactos;
     private javax.swing.JButton jBAgregarC;
+    private javax.swing.JButton jBBusca;
     private javax.swing.JButton jBEliminarC;
     private javax.swing.JButton jBMoverC;
     private javax.swing.JButton jBRegresarC;
@@ -459,5 +595,6 @@ public void transparenciaBotones()
     private javax.swing.JLabel jLFondoC;
     private javax.swing.JLabel jLFondoC1;
     private javax.swing.JLabel jLMoverC;
+    private javax.swing.JLabel jLabel1;
     // End of variables declaration//GEN-END:variables
 }

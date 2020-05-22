@@ -423,12 +423,12 @@ public class vtnChat extends javax.swing.JFrame {
     }//GEN-LAST:event_btnEnviarIzqActionPerformed
 
     private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
-        Propiedades p = new Propiedades(cd, VtnGrupo.r);
-        try {
-            Archivos.guardar(p, this);
-        } catch (FileNotFoundException ex) {
-            Logger.getLogger(vtnChat.class.getName()).log(Level.SEVERE, null, ex);
-        }
+//        Propiedades p = new Propiedades(cd, VtnGrupo.r);
+//        try {
+//            Archivos.guardar(p, this);
+//        } catch (FileNotFoundException ex) {
+//            Logger.getLogger(vtnChat.class.getName()).log(Level.SEVERE, null, ex);
+//        }
     }//GEN-LAST:event_formWindowClosing
 
     private void btnBuscaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscaActionPerformed

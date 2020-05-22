@@ -8,7 +8,7 @@ public class Propiedades implements Serializable
 
     public ColaDinamica c = new ColaDinamica();
     private Nodo r = null;
-    
+    private  NodoArbol[] arr = new NodoArbol[27];
     
     //ACUMULADOR PARA CADA QUE ENTRA UN NUEVO MENSAJE
     
@@ -17,10 +17,11 @@ public class Propiedades implements Serializable
     {
     }
 
-    public Propiedades(ColaDinamica c, Nodo r)
+    public Propiedades(ColaDinamica c, Nodo r, NodoArbol arr[])
     {
         this.c = c;
         this.r = r;
+        this.arr = arr;
     }
 
     public ColaDinamica getC() {
@@ -44,6 +45,23 @@ public class Propiedades implements Serializable
     public void setR(Nodo r) {
         this.r = r;
     }
-    
 
+    /**
+     * @return the arr
+     */
+    public NodoArbol[] getArr() {
+        return arr;
+    }
+
+    /**
+     * @param arr the arr to set
+     */
+    public void setArr(NodoArbol[] arr) {
+        this.arr = arr;
+    }
+
+    /**
+     * @return the nar
+     */
+   
 }

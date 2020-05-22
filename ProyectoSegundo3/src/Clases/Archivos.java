@@ -49,6 +49,9 @@ public class Archivos {
             
             VtnGrupo.r = p.getR();
             
+            TablasHash.arr = p.getArr();
+          
+            
 //            Object[] aux = (Object[]) arch.readObject();
 //            //
 //            for (int i = 0; i < aux.length; i++) {

@@ -39,7 +39,7 @@ public class VtnGrupo extends javax.swing.JFrame {
 
     public static NodoArbol rb = null;
 
-    ArbolBinario ab = new ArbolBinario();
+    public static ArbolBinario ab = new ArbolBinario();
 
     /**
      * Creates new form VtnGrupos
@@ -173,39 +173,16 @@ public class VtnGrupo extends javax.swing.JFrame {
         if (s.length() == 0) {
             Mensaje.error(this, "Debe ecsribir un nombre");
         } else {
-            char ppC = s.charAt(0);
-            String pps = Character.toString(ppC);
             
             Nodo nom = new Nodo(null, s);
-            NodoArbol nomNA = new NodoArbol(pps, null);
-            NodoArbol nomNAS = new NodoArbol(s, null);
-
+            
             String[] etqs = new String[1];//arreglo de etiquetas
 
             etqs[0] = s;
 
             r = Multilistas.inserta(r, nom, 0, etqs);
 
-            int pos = TablasHash.posicion(nomNA);
-
-            if (TablasHash.arr[pos] == null) {
-            System.out.println(pos);
-
-            TablasHash.arr[pos] = ab.inserta(rb, nomNA);
-
-            System.out.println(TablasHash.arr[pos].getEtq());    
-            }else{
-
-                rb = TablasHash.arr[pos];
-                
-                ab.inserta(rb, nomNAS);
-            
-                System.out.println(TablasHash.arr[pos].getEtq());
-                
-                System.out.println(ab.enOrden(rb));
-            }
-            
-            Propiedades p = new Propiedades(cd, r);
+            Propiedades p = new Propiedades(cd, r, TablasHash.arr);
 
             try {
                 Archivos.guardar(p, this);
@@ -280,7 +257,7 @@ public class VtnGrupo extends javax.swing.JFrame {
             if (c) {
                 r = Multilistas.elimina(r, 0, etqs);
 
-                Propiedades p = new Propiedades(cd, r);
+                Propiedades p = new Propiedades(cd, r, TablasHash.arr);
 
                 try {
                     Archivos.guardar(p, this);
@@ -382,6 +359,8 @@ public class VtnGrupo extends javax.swing.JFrame {
             Logger.getLogger(VtnGrupo.class.getName()).log(Level.SEVERE, null, ex);
         }
         
+//        System.out.println(ab.enOrden(rb));
+        
         if (r == null) {
             Mensaje.error(this, "No hay datos en la lista");
         } else {
@@ -422,6 +401,13 @@ public class VtnGrupo extends javax.swing.JFrame {
         JPGrupos.repaint();
 
         System.out.println(Multilistas.desp(r, 0));
+//        rb = TablasHash.arr[15];
+//        System.out.println(ab.enOrden(rb));
+        System.out.println(TablasHash.muestra());
+        
+        System.out.println(ab.enOrden(TablasHash.arr[0]));
+        System.out.println(ab.enOrden(TablasHash.arr[1]));
+        System.out.println(ab.enOrden(TablasHash.arr[9]));
     }//GEN-LAST:event_formWindowOpened
 
     /**

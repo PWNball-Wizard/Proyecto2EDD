@@ -277,6 +277,8 @@ public class ArbolBinario implements Serializable
             if (r.getEtq().equals(etq))//compara y si lo encuentra en la raiz del arbol da true 
             {
                 aux= r;
+                
+                System.out.println("EL DATO ENCONTRADO ES: " +aux.getEtq());
             }
             else//el dato no se encuentra en la raiz del arbol
             {
@@ -293,7 +295,6 @@ public class ArbolBinario implements Serializable
                 }   
             }
         }
-        System.out.println("EL DATO ENCONTRADO ES: " +aux.getEtq());
         return aux;//regresa la raiz
     }
     

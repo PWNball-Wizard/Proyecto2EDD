@@ -172,13 +172,13 @@ public class VtnHistorial extends javax.swing.JFrame {
 
                     VtnGrupo.r = Multilistas.inserta(VtnGrupo.r, his, 0, etqs);
 
-                    Propiedades p = new Propiedades(cd, VtnGrupo.r);
-
-                    try {
-                        Archivos.guardar(p, this);
-                    } catch (FileNotFoundException ex) {
-                        Logger.getLogger(vtnChat.class.getName()).log(Level.SEVERE, null, ex);
-                    }
+//                    Propiedades p = new Propiedades(cd, VtnGrupo.r);
+//
+//                    try {
+//                        Archivos.guardar(p, this);
+//                    } catch (FileNotFoundException ex) {
+//                        Logger.getLogger(vtnChat.class.getName()).log(Level.SEVERE, null, ex);
+//                    }
 
                     r2 = Multilistas.busca(VtnGrupo.r, d1);
 
@@ -277,13 +277,13 @@ public class VtnHistorial extends javax.swing.JFrame {
                 if (c) {
                     VtnGrupo.r = Multilistas.elimina(VtnGrupo.r, 0, etqs);
 
-                    Propiedades p = new Propiedades(cd, VtnGrupo.r);
-
-                    try {
-                        Archivos.guardar(p, this);
-                    } catch (FileNotFoundException ex) {
-                        Logger.getLogger(vtnChat.class.getName()).log(Level.SEVERE, null, ex);
-                    }
+//                    Propiedades p = new Propiedades(cd, VtnGrupo.r);
+//
+//                    try {
+//                        Archivos.guardar(p, this);
+//                    } catch (FileNotFoundException ex) {
+//                        Logger.getLogger(vtnChat.class.getName()).log(Level.SEVERE, null, ex);
+//                    }
                 }
 
                 r2 = Multilistas.busca(VtnGrupo.r, d1);

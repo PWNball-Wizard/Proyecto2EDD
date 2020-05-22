@@ -17,6 +17,7 @@ public class NodoArbol implements Serializable
     private Object obj;
     private NodoArbol izq = null;
     private NodoArbol der = null;
+    private String predecesores[] = new String[2];
     
     
     public NodoArbol(String etq, Object obj)
@@ -25,6 +26,13 @@ public class NodoArbol implements Serializable
         this.obj=obj;
     }
 
+    public NodoArbol(String etq, Object obj, String predecesores[])
+    {
+        this.etq=etq;
+        this.obj=obj;
+        this.predecesores = predecesores;
+    }
+    
     /**
      * @return the etq
      */
@@ -87,6 +95,20 @@ public class NodoArbol implements Serializable
     public void setDer(NodoArbol der)
     {
         this.der = der;
+    }
+
+    /**
+     * @return the predecesores
+     */
+    public String[] getPredecesores() {
+        return predecesores;
+    }
+
+    /**
+     * @param predecesores the predecesores to set
+     */
+    public void setPredecesores(String[] predecesores) {
+        this.predecesores = predecesores;
     }
     
     
