@@ -5,11 +5,9 @@
  */
 package Vistas;
 
-import Clases.Archivos;
 import Clases.Multilistas;
 import Clases.Nodo;
-import Clases.Propiedades;
-import static Vistas.vtnChat.cd;
+import static Vistas.VtnGrupo.r;
 import cjb.ci.Mensaje;
 import java.awt.Color;
 import java.awt.Component;
@@ -17,9 +15,6 @@ import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.io.FileNotFoundException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import javax.swing.JOptionPane;
@@ -51,6 +46,12 @@ public class VtnHistorial extends javax.swing.JFrame {
         jBRegresarH.setOpaque(false);
         jBRegresarH.setContentAreaFilled(false);
         jBRegresarH.setBorderPainted(false);
+        
+        jBBuscar.setOpaque(false);
+        jBBuscar.setContentAreaFilled(false);
+        jBBuscar.setBorderPainted(false);
+        
+        
     }
     
     public VtnHistorial() {
@@ -82,9 +83,12 @@ public class VtnHistorial extends javax.swing.JFrame {
         jBRegresarH = new javax.swing.JButton();
         jLAgregarH = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
+        jBBuscar = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         JPHistorial = new javax.swing.JPanel();
+        jLabel3 = new javax.swing.JLabel();
         jLFondoH = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
@@ -114,10 +118,10 @@ public class VtnHistorial extends javax.swing.JFrame {
                 jBEliminarHActionPerformed(evt);
             }
         });
-        getContentPane().add(jBEliminarH, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 470, 54, -1));
+        getContentPane().add(jBEliminarH, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 470, 54, -1));
 
         jLEliminarH.setText("Eliminar");
-        getContentPane().add(jLEliminarH, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 530, 50, -1));
+        getContentPane().add(jLEliminarH, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 530, 50, -1));
 
         jBRegresarH.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/atrasNuevo.png"))); // NOI18N
         jBRegresarH.addActionListener(new java.awt.event.ActionListener() {
@@ -133,6 +137,14 @@ public class VtnHistorial extends javax.swing.JFrame {
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/fondowa.jpg"))); // NOI18N
         getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
 
+        jBBuscar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/buscarNuevo.png"))); // NOI18N
+        jBBuscar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBBuscarActionPerformed(evt);
+            }
+        });
+        getContentPane().add(jBBuscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 470, 60, 60));
+
         jScrollPane1.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
 
         JPHistorial.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
@@ -141,8 +153,14 @@ public class VtnHistorial extends javax.swing.JFrame {
 
         getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 100, 270, 350));
 
+        jLabel3.setText("Buscar");
+        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 530, -1, -1));
+
         jLFondoH.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/fondowhats.png"))); // NOI18N
         getContentPane().add(jLFondoH, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 70, -1, -1));
+
+        jLabel2.setText("jLabel2");
+        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 530, -1, -1));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -384,6 +402,48 @@ public class VtnHistorial extends javax.swing.JFrame {
         JPHistorial.repaint();
     }//GEN-LAST:event_formWindowOpened
 
+    private void jBBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBBuscarActionPerformed
+        /*String fb = null; //fecha a buscar
+
+        fb = JOptionPane.showInputDialog("Escriba la fecha que desea buscar");
+
+        if (r == null) {
+            JOptionPane.showMessageDialog(rootPane, "El apartado de fechas se encuentra vacio");
+
+        } else {
+            if (fb == null) {
+                JOptionPane.showMessageDialog(rootPane, "Debe escribir una fecha");
+            } else 
+            {     
+                Nodo aux = null;
+                while (r != null)
+                {
+                    if (r.getEtq().equals(fb))
+                    {
+                        aux = r;
+                        break;
+                    }
+                }
+                if (aux!=null) 
+                {
+                    JOptionPane.showMessageDialog(rootPane,"La fecha encontrada es:" +aux.getEtq());
+                    
+                    vtnChat chat = new vtnChat();
+                    chat.d1 = d1;
+                    chat.d2 = d2;
+                    chat.d3 = aux.getEtq();
+                    chat.setVisible(true);
+                    
+                    
+ 
+                }else
+                {
+                    Mensaje.error(this,"No se encontro el grupo");
+                }
+            }
+        }*/
+    }//GEN-LAST:event_jBBuscarActionPerformed
+
     /*public void Actualizar()
     {
         r2 = Multilistas.busca(VtnGrupo.r, d1);
@@ -456,6 +516,7 @@ public class VtnHistorial extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel JPHistorial;
     private javax.swing.JButton jBAgregarH;
+    private javax.swing.JButton jBBuscar;
     private javax.swing.JButton jBEliminarH;
     private javax.swing.JButton jBRegresarH;
     private javax.swing.JLabel jLAgregarH;
@@ -463,6 +524,8 @@ public class VtnHistorial extends javax.swing.JFrame {
     private javax.swing.JLabel jLFondoH;
     private javax.swing.JLabel jLHistorial;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JScrollPane jScrollPane1;
     // End of variables declaration//GEN-END:variables
 }

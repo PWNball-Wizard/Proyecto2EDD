@@ -174,9 +174,9 @@ public class VtnGrupo extends javax.swing.JFrame {
         //PRUEBA DE COMMIT
         String s = "";
         s = JOptionPane.showInputDialog("Escriba el nombre de la categoria a añadir"); //ETIQUETA PARA LA CATEGORIA NUEVA
-
+        
         if (s.length() == 0) {
-            Mensaje.error(this, "Debe ecsribir un nombre");
+            Mensaje.error(this, "Debe escribir un nombre");
         } else {
             
             Nodo nom = new Nodo(null, s);
@@ -327,25 +327,36 @@ public class VtnGrupo extends javax.swing.JFrame {
         } else {
             if (nb == null) {
                 JOptionPane.showMessageDialog(rootPane, "Debe escribir un nombre");
-            } else {
-                //NodoArbol=r;
-                Nodo aux = r;
-                /*while()
+            } else 
+            {     
+                
+                Nodo aux = null;
+                while (r != null)
                 {
-                    if (aux.dato!=nb) 
+                    if (r.getEtq().equals(nb))
                     {
-                        
+                        aux = r;
+                        break;
                     }
-                    else
-                    {
-                        
-                    }
-                }*/
-
+                }
+                if (aux!=null) 
+                {
+                    JOptionPane.showMessageDialog(rootPane,"El grupo encontrado es:" +aux.getEtq());
+                    
+                    VtnContacto contacto = new VtnContacto();
+                    contacto.d = aux.getEtq();
+                    contacto.setVisible(true);
+                    //dispose();
+ 
+                }else
+                {
+                    Mensaje.error(this,"No se encontro el grupo");
+                }
             }
         }
-
-
+        
+        //nb=null;
+            
     }//GEN-LAST:event_jBBuscaActionPerformed
 
     private void jBCerrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBCerrarActionPerformed

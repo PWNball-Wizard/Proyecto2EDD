@@ -107,6 +107,7 @@ public class Multilistas implements Serializable
                 r = r.getSig();
             }
         }
+        System.out.println("EL DATO ENCONTRADO ES: "+aux.getEtq());
         return aux;
     }
     

@@ -426,9 +426,9 @@ public class VtnContacto extends javax.swing.JFrame {
     }//GEN-LAST:event_jBEliminarCActionPerformed
 
     private void jBRegresarCActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBRegresarCActionPerformed
-        //new VtnGrupo().setVisible(true);
-        //dispose();
-        this.setVisible(false);
+        new VtnGrupo().setVisible(true);
+        dispose();
+        //this.setVisible(false);
     }//GEN-LAST:event_jBRegresarCActionPerformed
 
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
