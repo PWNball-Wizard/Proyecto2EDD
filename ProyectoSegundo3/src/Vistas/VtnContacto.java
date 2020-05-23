@@ -28,7 +28,6 @@ import java.util.logging.Logger;
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import javax.swing.JOptionPane;
-import javax.swing.JScrollPane;
 
 /**
  *
@@ -63,6 +62,54 @@ public class VtnContacto extends javax.swing.JFrame {
         jBBusca.setContentAreaFilled(false);
         jBBusca.setBorderPainted(false);
         
+    }
+    
+    public boolean valida(String s)
+    {
+        boolean valida=false;
+        for (int i = 0; i < s.length(); i++)
+	{
+            char caracter = s.toUpperCase().charAt(i);
+            int valorASCII = (int)caracter;
+            if (valorASCII > 64 && valorASCII < 91)
+            {
+                valida=true;
+                //return false; //Se ha encontrado un caracter que no es letra 
+            }
+            if (valorASCII>97  && valorASCII<123)
+            {
+                valida=true;
+                //return false; //Se ha encontrado un caracter que no es letra 
+            }
+            if (valorASCII>47 && valorASCII<58) 
+            {
+                valida=true;
+            }
+            
+	}
+        
+        System.out.println("VALOR DE VALIDA:"+valida);
+        
+        boolean validatodo=false;
+        
+        if (s.length()==0) 
+        {
+            Mensaje.error(this,"Campo vacio, debe ingresar un nombre primero");
+            validatodo=false;
+        } else 
+        { 
+            if (valida==false) 
+            {
+                Mensaje.error(this,"Error, caracter invalido detectado");
+                validatodo=false;
+            } else 
+            {
+                validatodo=true;
+            }
+        }
+        
+        System.out.println("VALIDA TODO;"+validatodo);
+        return validatodo;
     }
 
     public VtnContacto() {
@@ -190,10 +237,14 @@ public class VtnContacto extends javax.swing.JFrame {
 
         String s = "";
         s = JOptionPane.showInputDialog("Escriba el nombre del contacto que desea agregar");
-        if (s.length() == 0) {
-            Mensaje.error(this, "Debe rellenar el campo");
+        
+        
+        
+        if (valida(s)==false) 
+        {
+            System.out.println("");
         }
-        if (s.length() != 0) {
+        else {
             char ppC = s.charAt(0);///////////////////////////////////////////////////////////////////////////////////
             String pps = Character.toString(ppC);///////////Para insertar en la tabla Hash y en los ab////////////////
 
@@ -289,68 +340,75 @@ public class VtnContacto extends javax.swing.JFrame {
         String gpo = "";
 
         nom = JOptionPane.showInputDialog("Escriba el contacto que desea buscar");
-        if (nom.length() == 0) {
-            Mensaje.error(this, "Los campos no deben estar vacios");
+        
+        
+        if (valida(nom)==false) 
+        {
+            System.out.println("");
         }
-        gpo = JOptionPane.showInputDialog("Escriba el grupo al que desea mover este contacto");
-        if (gpo.length() == 0) {
-            Mensaje.error(this, "Los campos no deben estar vacios");
-        }
-        if (nom.length() != 0 && gpo.length() != 0) {
-            String[] etqsE = new String[2];
-            etqsE[0] = d;
-            etqsE[1] = nom;
-
-            String[] etqsI = new String[2];
-            etqsI[0] = gpo;
-            etqsI[1] = nom;
-
-            VtnGrupo.r = Multilistas.mover(VtnGrupo.r, 0, etqsE, etqsI);
-
-//            Propiedades p = new Propiedades(cd, VtnGrupo.r);
-//            try {
-//                Archivos.guardar(p, this);
-//            } catch (FileNotFoundException ex) {
-//                Logger.getLogger(vtnChat.class.getName()).log(Level.SEVERE, null, ex);
-//            }
-            r1 = Multilistas.busca(VtnGrupo.r, d);
-            r1 = r1.getAbj();
-
-            if (r1 != null) {
-                Nodo aux = r1;
-                while (aux != null) {
-                    JButton boton = new JButton(aux.getEtq());
-                    System.out.println("Etiqueta en aux " + aux.getEtq());
-                    Component componentes[] = JPContactos.getComponents();
-
-                    System.out.println("Etiqueta en etqE pos Contactos " + etqsE[1]);
-
-                    for (int i = 0; i < componentes.length; i++) {
-                        System.out.println(((JButton) componentes[i]).getText());
-                        if (etqsE[1].equals(((JButton) componentes[i]).getText().trim())) {
-                            JPContactos.remove(i);
-                        }
-                    }
-                    boton.addActionListener(new ActionListener() {
-                        @Override
-                        public void actionPerformed(ActionEvent e) {
-                            VtnHistorial h = new VtnHistorial();
-                            h.d1 = d;
-                            h.d2 = boton.getText();
-                            h.setVisible(true);
-                        }
-                    }
-                    );
-                    aux = aux.getSig();
-                }
+        else
+        {
+            gpo = JOptionPane.showInputDialog("Escriba el grupo al que desea mover este contacto");
+            if (valida(gpo)==false) 
+            {
+                System.out.println("");
             }
+            if (nom.length() != 0 && gpo.length() != 0) {
+                String[] etqsE = new String[2];
+                etqsE[0] = d;
+                etqsE[1] = nom;
 
-            JPContactos.revalidate();
-            JPContactos.repaint();
+                String[] etqsI = new String[2];
+                etqsI[0] = gpo;
+                etqsI[1] = nom;
 
+                VtnGrupo.r = Multilistas.mover(VtnGrupo.r, 0, etqsE, etqsI);
+
+    //            Propiedades p = new Propiedades(cd, VtnGrupo.r);
+    //            try {
+    //                Archivos.guardar(p, this);
+    //            } catch (FileNotFoundException ex) {
+    //                Logger.getLogger(vtnChat.class.getName()).log(Level.SEVERE, null, ex);
+    //            }
+                r1 = Multilistas.busca(VtnGrupo.r, d);
+                r1 = r1.getAbj();
+
+                if (r1 != null) {
+                    Nodo aux = r1;
+                    while (aux != null) {
+                        JButton boton = new JButton(aux.getEtq());
+                        System.out.println("Etiqueta en aux " + aux.getEtq());
+                        Component componentes[] = JPContactos.getComponents();
+
+                        System.out.println("Etiqueta en etqE pos Contactos " + etqsE[1]);
+
+                        for (int i = 0; i < componentes.length; i++) {
+                            System.out.println(((JButton) componentes[i]).getText());
+                            if (etqsE[1].equals(((JButton) componentes[i]).getText().trim())) {
+                                JPContactos.remove(i);
+                            }
+                        }
+                        boton.addActionListener(new ActionListener() {
+                            @Override
+                            public void actionPerformed(ActionEvent e) {
+                                VtnHistorial h = new VtnHistorial();
+                                h.d1 = d;
+                                h.d2 = boton.getText();
+                                h.setVisible(true);
+                            }
+                        }
+                        );
+                        aux = aux.getSig();
+                    }
+                }
+
+                JPContactos.revalidate();
+                JPContactos.repaint();
+
+            }
+            System.out.println(Multilistas.desp(VtnGrupo.r, 0));
         }
-        System.out.println(Multilistas.desp(VtnGrupo.r, 0));
-
+        
     }//GEN-LAST:event_jBMoverCActionPerformed
 
     private void jBEliminarCActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBEliminarCActionPerformed
@@ -358,10 +416,13 @@ public class VtnContacto extends javax.swing.JFrame {
         String s = "";
 
         s = JOptionPane.showInputDialog("Escriba el nombre del contacto que desea eliminar");
-        if (s.length() == 0) {
-            Mensaje.error(this, "Debe rellenar el campo");
+        
+        if (valida(s)==false) 
+        {
+            System.out.println("");
         }
-        if (s.length() != 0) {
+        else
+        {
             Nodo con = new Nodo(null, s);
             String[] etqs = new String[2];
             etqs[0] = d;
@@ -475,9 +536,11 @@ public class VtnContacto extends javax.swing.JFrame {
         String s = "";
         s = JOptionPane.showInputDialog("Escriba el nombre del contacto que deseas buscar"); //ETIQUETA PARA LA CATEGORIA NUEVA
 
-        if (s.length() == 0) {
-            Mensaje.error(this, "Debe ecsribir un nombre");
-        } else {
+        if (valida(s)==false) 
+        {
+            System.out.println("");
+        } else 
+        {
 
             char ppC = s.charAt(0);///////////////////////////////////////////////////////////////////////////////////
             String pps = Character.toString(ppC);///////////Para insertar en la tabla Hash y en los ab////////////////

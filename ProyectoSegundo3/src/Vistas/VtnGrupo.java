@@ -62,6 +62,54 @@ public class VtnGrupo extends javax.swing.JFrame {
         jBCerrar.setContentAreaFilled(false);
         jBCerrar.setBorderPainted(false);
     }
+    
+    public boolean valida(String s)
+    {
+        boolean valida=false;
+        for (int i = 0; i < s.length(); i++)
+	{
+            char caracter = s.toUpperCase().charAt(i);
+            int valorASCII = (int)caracter;
+            if (valorASCII > 64 && valorASCII < 91)
+            {
+                valida=true;
+                //return false; //Se ha encontrado un caracter que no es letra 
+            }
+            if (valorASCII>97  && valorASCII<123)
+            {
+                valida=true;
+                //return false; //Se ha encontrado un caracter que no es letra 
+            }
+            if (valorASCII>47 && valorASCII<58) 
+            {
+                valida=true;
+            }
+            
+	}
+        
+        System.out.println("VALOR DE VALIDA:"+valida);
+        
+        boolean validatodo=false;
+        
+        if (s.length()==0) 
+        {
+            Mensaje.error(this,"Campo vacio, debe ingresar un nombre primero");
+            validatodo=false;
+        } else 
+        { 
+            if (valida==false) 
+            {
+                Mensaje.error(this,"Error, caracter invalido detectado");
+                validatodo=false;
+            } else 
+            {
+                validatodo=true;
+            }
+        }
+        
+        System.out.println("VALIDA TODO;"+validatodo);
+        return validatodo;
+    }
 
     public VtnGrupo() {
         initComponents();
@@ -175,9 +223,14 @@ public class VtnGrupo extends javax.swing.JFrame {
         String s = "";
         s = JOptionPane.showInputDialog("Escriba el nombre de la categoria a añadir"); //ETIQUETA PARA LA CATEGORIA NUEVA
         
-        if (s.length() == 0) {
-            Mensaje.error(this, "Debe escribir un nombre");
-        } else {
+        //FUNCION PARA VALIDAR QUE NO SEAN NUMEROS O CARACTERES
+        //valida(s);
+        
+        if (valida(s)==false) 
+        {
+            System.out.println("");
+        } else 
+        {
             
             Nodo nom = new Nodo(null, s);
             
@@ -243,8 +296,10 @@ public class VtnGrupo extends javax.swing.JFrame {
 
         s = JOptionPane.showInputDialog("Escriba el nombre de la categoria a eliminar"); //ETIQUETA PARA LA CATEGORIA NUEVA
 
-        if (s.length() == 0) {
-            Mensaje.error(this, "Debe escribir un nombre");
+        
+        if (valida(s) == false) 
+        {
+            System.out.println("");
         } else {
             Nodo nom = new Nodo(null, s);
 
@@ -325,8 +380,8 @@ public class VtnGrupo extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(rootPane, "La agenda se encuentra vacia");
 
         } else {
-            if (nb == null) {
-                JOptionPane.showMessageDialog(rootPane, "Debe escribir un nombre");
+            if (valida(nb) == false) {
+                System.out.println("");
             } else 
             {     
                 
