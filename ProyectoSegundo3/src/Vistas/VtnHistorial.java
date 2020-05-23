@@ -80,9 +80,10 @@ public class VtnHistorial extends javax.swing.JFrame {
         jBEliminarH = new javax.swing.JButton();
         jLEliminarH = new javax.swing.JLabel();
         jBRegresarH = new javax.swing.JButton();
-        JPHistorial = new javax.swing.JPanel();
         jLAgregarH = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        JPHistorial = new javax.swing.JPanel();
         jLFondoH = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -105,7 +106,7 @@ public class VtnHistorial extends javax.swing.JFrame {
                 jBAgregarHActionPerformed(evt);
             }
         });
-        getContentPane().add(jBAgregarH, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 470, 54, -1));
+        getContentPane().add(jBAgregarH, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 470, 54, -1));
 
         jBEliminarH.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/borrarNuevo.png"))); // NOI18N
         jBEliminarH.addActionListener(new java.awt.event.ActionListener() {
@@ -113,10 +114,10 @@ public class VtnHistorial extends javax.swing.JFrame {
                 jBEliminarHActionPerformed(evt);
             }
         });
-        getContentPane().add(jBEliminarH, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 470, 54, -1));
+        getContentPane().add(jBEliminarH, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 470, 54, -1));
 
         jLEliminarH.setText("Eliminar");
-        getContentPane().add(jLEliminarH, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 530, -1, -1));
+        getContentPane().add(jLEliminarH, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 530, 50, -1));
 
         jBRegresarH.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/atrasNuevo.png"))); // NOI18N
         jBRegresarH.addActionListener(new java.awt.event.ActionListener() {
@@ -126,15 +127,19 @@ public class VtnHistorial extends javax.swing.JFrame {
         });
         getContentPane().add(jBRegresarH, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 20, 40, 30));
 
-        JPHistorial.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        JPHistorial.setLayout(new java.awt.GridLayout(0, 1, 0, 1));
-        getContentPane().add(JPHistorial, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 80, 273, 380));
-
         jLAgregarH.setText("Agregar");
-        getContentPane().add(jLAgregarH, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 530, 60, -1));
+        getContentPane().add(jLAgregarH, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 530, 50, -1));
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/fondowa.jpg"))); // NOI18N
         getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
+
+        jScrollPane1.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
+
+        JPHistorial.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        JPHistorial.setLayout(new java.awt.GridLayout(0, 1, 0, 1));
+        jScrollPane1.setViewportView(JPHistorial);
+
+        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 100, 270, 350));
 
         jLFondoH.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/fondowhats.png"))); // NOI18N
         getContentPane().add(jLFondoH, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 70, -1, -1));
@@ -199,9 +204,9 @@ public class VtnHistorial extends javax.swing.JFrame {
                             boton.setFont(new Font("arial", 1, 14));//CAMBIA LA FUENTE Y EL TAMAÑO
 
                             //ESTABLECE UN TAMAÑO POR DEFECTO PARA LOS BOTONES
-                            //boton.setMinimumSize(new Dimension(200,100));
-                            boton.setMaximumSize(new Dimension(273, 50));
-                            //boton.setPreferredSize(new Dimension(200,100));
+                            boton.setMinimumSize(new Dimension(JPHistorial.getWidth(),100));
+                            boton.setMaximumSize(new Dimension(JPHistorial.getWidth(), 50));
+                            boton.setPreferredSize(new Dimension(JPHistorial.getWidth(),100));
 
                             JPHistorial.add(boton);
                             boton.addActionListener(new ActionListener() {
@@ -355,9 +360,9 @@ public class VtnHistorial extends javax.swing.JFrame {
                 boton.setFont(new Font("arial", 1, 14));//CAMBIA LA FUENTE Y EL TAMAÑO
 
                 //ESTABLECE UN TAMAÑO POR DEFECTO PARA LOS BOTONES
-                boton.setMinimumSize(new Dimension(200,50));
-                boton.setMaximumSize(new Dimension(273, 50));
-                boton.setPreferredSize(new Dimension(273,50));
+                boton.setMinimumSize(new Dimension(JPHistorial.getWidth(),50));
+                boton.setMaximumSize(new Dimension(JPHistorial.getWidth(), 50));
+                boton.setPreferredSize(new Dimension(JPHistorial.getWidth(),50));
                 
                 JPHistorial.add(boton);
                 boton.addActionListener(new ActionListener() {
@@ -458,5 +463,6 @@ public class VtnHistorial extends javax.swing.JFrame {
     private javax.swing.JLabel jLFondoH;
     private javax.swing.JLabel jLHistorial;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JScrollPane jScrollPane1;
     // End of variables declaration//GEN-END:variables
 }

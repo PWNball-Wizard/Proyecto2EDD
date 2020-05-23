@@ -28,6 +28,7 @@ import java.util.logging.Logger;
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import javax.swing.JOptionPane;
+import javax.swing.JScrollPane;
 
 /**
  *
@@ -57,6 +58,11 @@ public class VtnContacto extends javax.swing.JFrame {
         jBMoverC.setOpaque(false);
         jBMoverC.setContentAreaFilled(false);
         jBMoverC.setBorderPainted(false);
+        
+        jBBusca.setOpaque(false);
+        jBBusca.setContentAreaFilled(false);
+        jBBusca.setBorderPainted(false);
+        
     }
 
     public VtnContacto() {
@@ -89,9 +95,10 @@ public class VtnContacto extends javax.swing.JFrame {
         jLEliminarC = new javax.swing.JLabel();
         jLMoverC = new javax.swing.JLabel();
         jLAgregarC = new javax.swing.JLabel();
-        JPContactos = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jBBusca = new javax.swing.JButton();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        JPContactos = new javax.swing.JPanel();
         jLFondoC = new javax.swing.JLabel();
         jLFondoC1 = new javax.swing.JLabel();
 
@@ -114,7 +121,7 @@ public class VtnContacto extends javax.swing.JFrame {
                 jBAgregarCActionPerformed(evt);
             }
         });
-        getContentPane().add(jBAgregarC, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 470, 57, -1));
+        getContentPane().add(jBAgregarC, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 460, 57, -1));
 
         jBEliminarC.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/borrarNuevo.png"))); // NOI18N
         jBEliminarC.addActionListener(new java.awt.event.ActionListener() {
@@ -122,7 +129,7 @@ public class VtnContacto extends javax.swing.JFrame {
                 jBEliminarCActionPerformed(evt);
             }
         });
-        getContentPane().add(jBEliminarC, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 470, 56, -1));
+        getContentPane().add(jBEliminarC, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 459, 56, 60));
 
         jBRegresarC.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/atrasNuevo.png"))); // NOI18N
         jBRegresarC.addActionListener(new java.awt.event.ActionListener() {
@@ -138,23 +145,19 @@ public class VtnContacto extends javax.swing.JFrame {
                 jBMoverCActionPerformed(evt);
             }
         });
-        getContentPane().add(jBMoverC, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 470, 55, -1));
+        getContentPane().add(jBMoverC, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 460, 55, -1));
 
         jLEliminarC.setText("Eliminar");
-        getContentPane().add(jLEliminarC, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 530, -1, -1));
+        getContentPane().add(jLEliminarC, new org.netbeans.lib.awtextra.AbsoluteConstraints(86, 516, 50, 20));
 
         jLMoverC.setText("Mover");
-        getContentPane().add(jLMoverC, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 530, -1, -1));
+        getContentPane().add(jLMoverC, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 520, -1, -1));
 
         jLAgregarC.setText("Agregar");
-        getContentPane().add(jLAgregarC, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 530, -1, -1));
-
-        JPContactos.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        JPContactos.setLayout(new java.awt.GridLayout(0, 1, 0, 1));
-        getContentPane().add(JPContactos, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 90, 280, 360));
+        getContentPane().add(jLAgregarC, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 520, 50, -1));
 
         jLabel1.setText("Busqueda");
-        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 520, 60, 30));
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 510, 70, 30));
 
         jBBusca.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/buscarNuevo.png"))); // NOI18N
         jBBusca.addActionListener(new java.awt.event.ActionListener() {
@@ -162,7 +165,15 @@ public class VtnContacto extends javax.swing.JFrame {
                 jBBuscaActionPerformed(evt);
             }
         });
-        getContentPane().add(jBBusca, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 470, 60, -1));
+        getContentPane().add(jBBusca, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 460, 60, 60));
+
+        jScrollPane1.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
+
+        JPContactos.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        JPContactos.setLayout(new java.awt.GridLayout(0, 1, 0, 1));
+        jScrollPane1.setViewportView(JPContactos);
+
+        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 90, 280, 360));
 
         jLFondoC.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/fondowhats.png"))); // NOI18N
         getContentPane().add(jLFondoC, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 70, -1, -1));
@@ -246,11 +257,12 @@ public class VtnContacto extends javax.swing.JFrame {
                     boton.setFont(new Font("arial", 1, 14));//CAMBIA LA FUENTE Y EL TAMAÑO
 
                     //ESTABLECE UN TAMAÑO POR DEFECTO PARA LOS BOTONES
-                    boton.setMinimumSize(new Dimension(280, 50));
-                    boton.setMaximumSize(new Dimension(280, 50));
-                    boton.setPreferredSize(new Dimension(280, 50));
+                    boton.setMinimumSize(new Dimension(JPContactos.getWidth(), 50));
+                    boton.setMaximumSize(new Dimension(JPContactos.getWidth(), 50));
+                    boton.setPreferredSize(new Dimension(JPContactos.getWidth(), 50));
 
                     JPContactos.add(boton);
+                    
                     boton.addActionListener(new ActionListener() {
                         @Override
                         public void actionPerformed(ActionEvent e) {
@@ -414,9 +426,9 @@ public class VtnContacto extends javax.swing.JFrame {
     }//GEN-LAST:event_jBEliminarCActionPerformed
 
     private void jBRegresarCActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBRegresarCActionPerformed
-        new VtnGrupo().setVisible(true);
-        dispose();
-        //this.setVisible(false);
+        //new VtnGrupo().setVisible(true);
+        //dispose();
+        this.setVisible(false);
     }//GEN-LAST:event_jBRegresarCActionPerformed
 
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
@@ -433,9 +445,9 @@ public class VtnContacto extends javax.swing.JFrame {
                 boton.setFont(new Font("arial", 1, 14));//CAMBIA LA FUENTE Y EL TAMAÑO
 
                 //ESTABLECE UN TAMAÑO POR DEFECTO PARA LOS BOTONES
-                boton.setMinimumSize(new Dimension(280, 50));
-                boton.setMaximumSize(new Dimension(280, 50));
-                boton.setPreferredSize(new Dimension(280, 50));
+                boton.setMinimumSize(new Dimension(JPContactos.getWidth(), 50));
+                boton.setMaximumSize(new Dimension(JPContactos.getWidth(), 50));
+                boton.setPreferredSize(new Dimension(JPContactos.getWidth(), 50));
 
                 JPContactos.add(boton);
                 boton.addActionListener(new ActionListener() {
@@ -596,5 +608,6 @@ public class VtnContacto extends javax.swing.JFrame {
     private javax.swing.JLabel jLFondoC1;
     private javax.swing.JLabel jLMoverC;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JScrollPane jScrollPane1;
     // End of variables declaration//GEN-END:variables
 }

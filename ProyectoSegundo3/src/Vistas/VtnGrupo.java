@@ -7,7 +7,6 @@ package Vistas;
 
 import Clases.ArbolBinario;
 import Clases.Archivos;
-import Clases.ColaDinamica;
 import Clases.Multilistas;
 import Clases.Nodo;
 import Clases.NodoArbol;
@@ -28,6 +27,7 @@ import java.util.logging.Logger;
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import javax.swing.JOptionPane;
+import javax.swing.JScrollPane;
 
 /**
  *
@@ -71,7 +71,7 @@ public class VtnGrupo extends javax.swing.JFrame {
         JPGrupos.setBackground(Color.WHITE);//PONE BLANCO EL COLOR DEL PANEL
 
         JPGrupos.setLayout(new BoxLayout(JPGrupos, BoxLayout.PAGE_AXIS));//CAMBIA EL ESTILO DE EL PANEL, PERMITE QUE LOS BOTONES NO OCUPEN TODA LA PANTALLA
-
+          
         transparenciaBotones();
 
     }
@@ -89,11 +89,12 @@ public class VtnGrupo extends javax.swing.JFrame {
         jBEliminarG = new javax.swing.JButton();
         jLGrupos = new javax.swing.JLabel();
         jLAgregarG = new javax.swing.JLabel();
-        JPGrupos = new javax.swing.JPanel();
         jLEliminarG = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
         jBBusca = new javax.swing.JButton();
         jBCerrar = new javax.swing.JButton();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        JPGrupos = new javax.swing.JPanel();
         jLFondoG = new javax.swing.JLabel();
         jLFondoG1 = new javax.swing.JLabel();
 
@@ -129,10 +130,6 @@ public class VtnGrupo extends javax.swing.JFrame {
         jLAgregarG.setText("Agregar");
         getContentPane().add(jLAgregarG, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 516, 60, 30));
 
-        JPGrupos.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        JPGrupos.setLayout(new java.awt.GridLayout(0, 1, 0, 1));
-        getContentPane().add(JPGrupos, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 90, 273, 360));
-
         jLEliminarG.setText("Eliminar");
         getContentPane().add(jLEliminarG, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 520, -1, 20));
 
@@ -154,6 +151,14 @@ public class VtnGrupo extends javax.swing.JFrame {
             }
         });
         getContentPane().add(jBCerrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 20, 30, 30));
+
+        jScrollPane1.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
+
+        JPGrupos.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        JPGrupos.setLayout(new java.awt.GridLayout(0, 1, 0, 1));
+        jScrollPane1.setViewportView(JPGrupos);
+
+        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 90, 280, 360));
 
         jLFondoG.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/fondowhats.png"))); // NOI18N
         getContentPane().add(jLFondoG, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 70, -1, -1));
@@ -203,10 +208,10 @@ public class VtnGrupo extends javax.swing.JFrame {
                     boton.setFont(new Font("arial", 1, 14));//CAMBIA LA FUENTE Y EL TAMAÑO
 
                     //ESTABLECE UN TAMAÑO POR DEFECTO PARA LOS BOTONES
-                    boton.setMinimumSize(new Dimension(273, 50));
-                    boton.setMaximumSize(new Dimension(280, 50));
-                    boton.setPreferredSize(new Dimension(273, 50));
-
+                    boton.setMinimumSize(new Dimension(JPGrupos.getWidth(), 50));
+                    boton.setMaximumSize(new Dimension(281, 50));
+                    boton.setPreferredSize(new Dimension(281, 50));
+                    
                     JPGrupos.add(boton);
 
                     boton.addActionListener(new ActionListener()//pone una accion al boton
@@ -376,9 +381,9 @@ public class VtnGrupo extends javax.swing.JFrame {
                 boton.setFont(new Font("arial", 1, 14));//CAMBIA LA FUENTE Y EL TAMAÑO
 
                 //ESTABLECE UN TAMAÑO POR DEFECTO PARA LOS BOTONES
-                boton.setMinimumSize(new Dimension(273, 50));
-                boton.setMaximumSize(new Dimension(280, 50));
-                boton.setPreferredSize(new Dimension(273, 50));
+                boton.setMinimumSize(new Dimension(JPGrupos.getWidth(), 50));
+                boton.setMaximumSize(new Dimension(JPGrupos.getWidth(), 50));
+                boton.setPreferredSize(new Dimension(JPGrupos.getWidth(), 50));
 
                 JPGrupos.add(boton);
 
@@ -458,5 +463,6 @@ public class VtnGrupo extends javax.swing.JFrame {
     private javax.swing.JLabel jLFondoG1;
     private javax.swing.JLabel jLGrupos;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JScrollPane jScrollPane1;
     // End of variables declaration//GEN-END:variables
 }
