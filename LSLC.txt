@@ -1,0 +1,184 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package pilascolasdinamicas;
+
+import machote1.Machote1;
+
+/**
+ *
+ * @author W1zzArd
+ */
+public class LSLC implements Machote1
+{
+
+    private Nodo raiz = null;
+
+    @Override
+    public boolean vacia()
+    {
+        return raiz == null;
+    }
+
+    @Override
+    public boolean llena()
+    {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void inserta(Object obj)
+    {
+        if (obj != null)
+        {
+            if (raiz == null)
+            {
+                raiz = (Nodo) obj;
+                raiz.setSiguiente(raiz);
+            } else
+            {
+                Nodo n = (Nodo) obj;
+                if (n.getEtiqueta().compareTo(raiz.getSiguiente().getEtiqueta()) < 0
+                        || n.getEtiqueta().compareTo(raiz.getEtiqueta()) >= 0)
+                {
+                    n.setSiguiente(raiz.getSiguiente());
+                    raiz.setSiguiente(n);
+                    if (n.getEtiqueta().compareTo(raiz.getEtiqueta()) >= 0)
+                    {
+                        raiz = n;
+                    }
+                } else
+                {
+                    boolean b = true;
+                    Nodo aux = raiz.getSiguiente();
+                    while (b)
+                    {
+                        if (n.getEtiqueta().compareTo(aux.getSiguiente().getEtiqueta()) <= 0)
+                        {
+                            n.setSiguiente(aux.getSiguiente());
+                            aux.setSiguiente(n);
+                            b = false;
+                        } else
+                        {
+                            aux = aux.getSiguiente();
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    @Override
+    public Object inserta(Object obj, Object r)
+    {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public Object elimina()
+    {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public Object elimina(Object obj)
+    {
+        if (raiz == null)
+        {
+            System.out.println("Lista vacia !!!No hay datos!!!");
+            return null;
+        } else
+        {
+            Nodo aux = null;
+            String s = (String) obj;
+            if (s.compareTo(raiz.getSiguiente().getEtiqueta()) >=0
+                    && s.compareTo(raiz.getEtiqueta()) <=0)
+            {
+                if (raiz.getSiguiente().getEtiqueta().equals(s))
+                {
+                    aux = raiz.getSiguiente();
+                    if (raiz == aux)
+                    {
+                        raiz = null;
+                    } else
+                    {
+                        raiz.setSiguiente(aux.getSiguiente());
+                    }
+                } else
+                {
+                    Nodo aux2 = raiz.getSiguiente();
+                    boolean b = true;
+                    while (aux2 != raiz && b)
+                    {
+                        if (s.compareTo(aux2.getSiguiente().getEtiqueta()) == 0)
+                        {
+                            aux = aux2.getSiguiente();
+                            aux2.setSiguiente(aux.getSiguiente());
+                            if (aux == raiz)
+                            {
+                                raiz = aux2;
+                            }
+                            b = false;
+                        } else
+                        {
+                            aux2 = aux2.getSiguiente();
+                        }
+                    }
+                }
+            }
+            if (aux != null)
+            {
+                aux.setSiguiente(null);
+            }
+            return aux;
+        }
+    }
+
+    @Override
+    public Object elimina(Object obj, Object r)
+    {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public Object elimina(Object obj, Object r, Object b)
+    {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    /**
+     * @return the raiz
+     */
+    public Nodo getRaiz()
+    {
+        return raiz;
+    }
+
+    /**
+     * @param raiz the raiz to set
+     */
+    public void setRaiz(Nodo raiz)
+    {
+        this.raiz = raiz;
+    }
+
+    public String desp()
+    {
+        String s = "";
+        if (raiz != null)
+        {
+            Nodo aux = raiz.getSiguiente();
+            do
+            {
+                s += aux.getEtiqueta() + "\n";
+                aux.getSiguiente();
+            } while (aux != raiz.getSiguiente());
+        } else
+        {
+            s = "No hay datos";
+        }
+        return s;
+    }
+}
