@@ -51,6 +51,9 @@ public class VtnHistorial extends javax.swing.JFrame {
         jBBuscar.setContentAreaFilled(false);
         jBBuscar.setBorderPainted(false);
         
+        jBAsistente.setOpaque(false);
+        jBAsistente.setContentAreaFilled(false);
+        jBAsistente.setBorderPainted(false);
         
     }
     
@@ -87,6 +90,7 @@ public class VtnHistorial extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         JPHistorial = new javax.swing.JPanel();
         jLabel3 = new javax.swing.JLabel();
+        jBAsistente = new javax.swing.JButton();
         jLFondoH = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
 
@@ -155,6 +159,14 @@ public class VtnHistorial extends javax.swing.JFrame {
 
         jLabel3.setText("Buscar");
         getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 530, -1, -1));
+
+        jBAsistente.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/nuevoPregunta25.png"))); // NOI18N
+        jBAsistente.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBAsistenteActionPerformed(evt);
+            }
+        });
+        getContentPane().add(jBAsistente, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 530, 30, -1));
 
         jLFondoH.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/fondowhats.png"))); // NOI18N
         getContentPane().add(jLFondoH, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 70, -1, -1));
@@ -397,6 +409,10 @@ public class VtnHistorial extends javax.swing.JFrame {
                 aux = aux.getSig();
             }
         }
+        else
+        {
+            Mensaje.error(this,"Aun no hay datos para mostrar");
+        }
 
         JPHistorial.revalidate();
         JPHistorial.repaint();
@@ -444,39 +460,16 @@ public class VtnHistorial extends javax.swing.JFrame {
         }*/
     }//GEN-LAST:event_jBBuscarActionPerformed
 
-    /*public void Actualizar()
-    {
-        r2 = Multilistas.busca(VtnGrupo.r, d1);
+    private void jBAsistenteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBAsistenteActionPerformed
+        JOptionPane.showMessageDialog(rootPane, "                                                                       ¡Bienvenido a la ventana de historial!\n"
+                                             + "En esta ventana podras realizar distintas acciones como agregar o eliminar las fechas en las que hayas tenido conversaciones\n"+ 
+                                                "Asi como buscar y acceder entre las distintas fechas que tengas y observar su contenido");
         
-        r2 = r2.getAbj();
-        r2 = Multilistas.busca(r2, d2);
+        JOptionPane.showMessageDialog(rootPane, "¡Recuerda que al ingresar una fecha debe ser bajo el formato dd/mm/aaaa!");
         
-        r2 = r2.getAbj();
-        if (r2 != null)
-        {
-            Nodo aux = r2;
-            while (aux != null)
-            {
-                JButton boton = new JButton(aux.getEtq());
-                JPHistorial.add(boton);
-                boton.addActionListener(new ActionListener()
-                {
-                    @Override
-                    public void actionPerformed(ActionEvent e)
-                    {
-                        VtnW nivel3 = new VtnW();
-                        nivel3.d1 = d1;
-                        nivel3.d2 = d2;
-                        nivel3.d3 = boton.getText();
-                        nivel3.setVisible(true);
-                    }
-                }
-                );
-                aux = aux.getSig();
-            }
-        }
-        JPHistorial.updateUI();
-    }*/
+    }//GEN-LAST:event_jBAsistenteActionPerformed
+
+    
     /**
      * @param args the command line arguments
      */
@@ -516,6 +509,7 @@ public class VtnHistorial extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel JPHistorial;
     private javax.swing.JButton jBAgregarH;
+    private javax.swing.JButton jBAsistente;
     private javax.swing.JButton jBBuscar;
     private javax.swing.JButton jBEliminarH;
     private javax.swing.JButton jBRegresarH;

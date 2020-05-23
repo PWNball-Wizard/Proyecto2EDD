@@ -61,6 +61,12 @@ public class VtnGrupo extends javax.swing.JFrame {
         jBCerrar.setOpaque(false);
         jBCerrar.setContentAreaFilled(false);
         jBCerrar.setBorderPainted(false);
+        
+        jBAsistente.setOpaque(false);
+        jBAsistente.setContentAreaFilled(false);
+        jBAsistente.setBorderPainted(false);
+        
+        
     }
     
     public boolean valida(String s)
@@ -141,6 +147,7 @@ public class VtnGrupo extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jBBusca = new javax.swing.JButton();
         jBCerrar = new javax.swing.JButton();
+        jBAsistente = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         JPGrupos = new javax.swing.JPanel();
         jLFondoG = new javax.swing.JLabel();
@@ -199,6 +206,14 @@ public class VtnGrupo extends javax.swing.JFrame {
             }
         });
         getContentPane().add(jBCerrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 20, 30, 30));
+
+        jBAsistente.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/nuevoPregunta25.png"))); // NOI18N
+        jBAsistente.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBAsistenteActionPerformed(evt);
+            }
+        });
+        getContentPane().add(jBAsistente, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 530, 30, 30));
 
         jScrollPane1.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
 
@@ -433,7 +448,7 @@ public class VtnGrupo extends javax.swing.JFrame {
 //        System.out.println(ab.enOrden(rb));
         
         if (r == null) {
-            Mensaje.error(this, "No hay datos en la lista");
+            Mensaje.error(this, "Aun no hay datos para mostrar");
         } else {
             Nodo aux = r;
 
@@ -481,6 +496,13 @@ public class VtnGrupo extends javax.swing.JFrame {
         System.out.println(ab.enOrden(TablasHash.arr[9]));
     }//GEN-LAST:event_formWindowOpened
 
+    private void jBAsistenteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBAsistenteActionPerformed
+       JOptionPane.showMessageDialog(rootPane, "                                   ¡Bienvenido a la ventana de grupos!\n"
+                                             +"En cada grupo podras almacenar distintos contactos dependiendo de como quieras organizarlos\n"
+                                             + "En esta ventana podras realizar distintas acciones como agregar o eliminar un grupo\n"+ 
+                                                "Asi como buscar entre los distintos grupos que tengas y observar los contactos que contiene");
+    }//GEN-LAST:event_jBAsistenteActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -520,6 +542,7 @@ public class VtnGrupo extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel JPGrupos;
     private javax.swing.JButton jBAgregarG;
+    private javax.swing.JButton jBAsistente;
     private javax.swing.JButton jBBusca;
     private javax.swing.JButton jBCerrar;
     private javax.swing.JButton jBEliminarG;

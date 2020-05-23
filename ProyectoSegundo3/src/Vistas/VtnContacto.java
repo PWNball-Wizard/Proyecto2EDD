@@ -62,6 +62,11 @@ public class VtnContacto extends javax.swing.JFrame {
         jBBusca.setContentAreaFilled(false);
         jBBusca.setBorderPainted(false);
         
+        jBAsistente.setOpaque(false);
+        jBAsistente.setContentAreaFilled(false);
+        jBAsistente.setBorderPainted(false);
+        
+        
     }
     
     public boolean valida(String s)
@@ -144,6 +149,7 @@ public class VtnContacto extends javax.swing.JFrame {
         jLAgregarC = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
         jBBusca = new javax.swing.JButton();
+        jBAsistente = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         JPContactos = new javax.swing.JPanel();
         jLFondoC = new javax.swing.JLabel();
@@ -213,6 +219,14 @@ public class VtnContacto extends javax.swing.JFrame {
             }
         });
         getContentPane().add(jBBusca, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 460, 60, 60));
+
+        jBAsistente.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/nuevoPregunta25.png"))); // NOI18N
+        jBAsistente.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBAsistenteActionPerformed(evt);
+            }
+        });
+        getContentPane().add(jBAsistente, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 530, 30, -1));
 
         jScrollPane1.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
 
@@ -525,6 +539,10 @@ public class VtnContacto extends javax.swing.JFrame {
                 aux = aux.getSig();
             }
         }
+        else
+        {
+            Mensaje.error(this,"Aun no hay datos para mostrar");
+        }
 
         JPContactos.revalidate();
         JPContactos.repaint();
@@ -622,6 +640,13 @@ public class VtnContacto extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_jBBuscaActionPerformed
 
+    private void jBAsistenteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBAsistenteActionPerformed
+        JOptionPane.showMessageDialog(rootPane, "                                                     ¡Bienvenido a la ventana de contactos!\n"
+                                            + "En esta ventana observaras los contactos que esten almacenados dentro del grupo que hayas ingresado\n" 
+                                            + "En esta ventana podras realizar distintas acciones como agregar o eliminar un contacto\n"
+                                            +"Asi como buscar entre los distintos contactos que tengas y observar tu historial de chats");
+    }//GEN-LAST:event_jBAsistenteActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -660,6 +685,7 @@ public class VtnContacto extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel JPContactos;
     private javax.swing.JButton jBAgregarC;
+    private javax.swing.JButton jBAsistente;
     private javax.swing.JButton jBBusca;
     private javax.swing.JButton jBEliminarC;
     private javax.swing.JButton jBMoverC;
