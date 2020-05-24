@@ -11,17 +11,20 @@ public class Multilistas implements Serializable
     //para eliminar una lista se necesita elimnar y crear otra lista
     
 //*****************************************************
-    public static Nodo inserta(Nodo r, Nodo n, int nivel, String etqs[]) 
+    public static Nodo inserta(Nodo r, Nodo n, int nivel, String etqs[]/*,Nodo ra*/) 
     //r=nodo raiz general o del nivel ya que es un metodo recursivo
     //n=nodo a ingresar
     //n=nivel,se recibe en 0 y cuando hace la recursion aumenta en uno para saber que ya esta en otro niel
     //etqs=arreglo de etiquetas que nos dira en que nivel va
+    //ra=RAIZ ANTERIOR es el aux cuando sea el primer nivel es null y cuando sea niveles de abajo, si se quiere hacer LDL para conectar todos los nodos a la raiz de arriba
     {
         if (nivel == etqs.length - 1)
         //VALIDA QUE ESTE EN EL NIVEL
         //nivel 0 = etqs[1] 
         {
             LSL ls = new LSL();//crea una nueva lista para insertar los datos
+            //LSLC ls = new LSLC(); //HACE QUE LA LISTA SEA circular
+            //LDL ldl = new LDL();
             ls.setR(r);//la lista recibe como parametro a la raiz de la multilista
             ls.inserta(n);//inserta el dato en la lista //EL METODO INSERTA ES DE LA LSL
             r = ls.getR();//reconecta la r que mando a insertar pero ahora con la lista
@@ -31,10 +34,13 @@ public class Multilistas implements Serializable
             Nodo aux = busca(r, etqs[nivel]);//SI NO ESTA EN EL PRIMER NIVEL RECORRE EL ARBOL EN BUSCA DE LA ETIQUETA
             //a partir de aux va hacia abajo
             
+            //aux.getAbj().setArb(aux);//CONECTA CON LA RAIZ DE ARRIBA
+            
             if (aux != null)//quiere decir que si encontro el Nodo
             {
                 //PROCESO DE RECURSIVIDAD PARA BUSCAR EN LOS NIVELES INFERIORES
-                aux.setAbj(inserta(aux.getAbj(), n, nivel + 1, etqs));//Si encuentra el dato lo inserta
+                aux.setAbj(inserta(aux.getAbj(), n, nivel + 1, etqs/*,aux*/));//Si encuentra el dato lo inserta
+                //el aux sera la raiz anterior en caso de que sea LDL
             } else
             {
                 System.out.println("No se encontro " + etqs[nivel] + " En el nivel " + nivel);

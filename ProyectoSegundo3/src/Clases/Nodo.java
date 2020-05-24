@@ -12,6 +12,9 @@ public class Nodo implements Serializable
     private Nodo abj=null;
     private Nodo ant = null;
     private int tipo;
+    private Nodo arb=null;//APUNTADOR HACIA ARRIBA
+    
+    
     
     
     public Nodo(Object obj)
@@ -123,6 +126,14 @@ public class Nodo implements Serializable
      */
     public void setTipo(int tipo) {
         this.tipo = tipo;
+    }
+
+    public Nodo getArb() {
+        return arb;
+    }
+
+    public void setArb(Nodo arb) {
+        this.arb = arb;
     }
     
     

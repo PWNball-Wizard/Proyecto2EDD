@@ -11,12 +11,12 @@ package Clases;
  */
 public class LSLC 
 {
-     private Nodo raiz = null; //raiz
+     private Nodo r = null; //raiz
 
     //@Override
     public boolean vacia()
     {
-        return raiz == null;
+        return r == null;
     }
 
     //@Override
@@ -30,26 +30,26 @@ public class LSLC
     {
         if (obj != null)
         {
-            if (raiz == null)
+            if (r == null)
             {
-                raiz = (Nodo) obj;
-                raiz.setSig(raiz);
+                r = (Nodo) obj;
+                r.setSig(r);
             } else
             {
                 Nodo n = (Nodo) obj;
-                if (n.getEtq().compareTo(raiz.getSig().getEtq()) < 0
-                        || n.getEtq().compareTo(raiz.getEtq()) >= 0)
+                if (n.getEtq().compareTo(r.getSig().getEtq()) < 0
+                        || n.getEtq().compareTo(r.getEtq()) >= 0)
                 {
-                    n.setSig(raiz.getSig());
-                    raiz.setSig(n);
-                    if (n.getEtq().compareTo(raiz.getEtq()) >= 0)
+                    n.setSig(r.getSig());
+                    r.setSig(n);
+                    if (n.getEtq().compareTo(r.getEtq()) >= 0)
                     {
-                        raiz = n;
+                        r = n;
                     }
                 } else
                 {
                     boolean b = true;
-                    Nodo aux = raiz.getSig();
+                    Nodo aux = r.getSig();
                     while (b)
                     {
                         if (n.getEtq().compareTo(aux.getSig().getEtq()) <= 0)
@@ -83,7 +83,7 @@ public class LSLC
     //@Override
     public Object elimina(Object obj)
     {
-        if (raiz == null)
+        if (r == null)
         {
             System.out.println("Lista vacia !!!No hay datos!!!");
             return null;
@@ -91,32 +91,32 @@ public class LSLC
         {
             Nodo aux = null;
             String s = (String) obj;
-            if (s.compareTo(raiz.getSig().getEtq()) >=0
-                    && s.compareTo(raiz.getEtq()) <=0)
+            if (s.compareTo(r.getSig().getEtq()) >=0
+                    && s.compareTo(r.getEtq()) <=0)
             {
-                if (raiz.getSig().getEtq().equals(s))
+                if (r.getSig().getEtq().equals(s))
                 {
-                    aux = raiz.getSig();
-                    if (raiz == aux)
+                    aux = r.getSig();
+                    if (r == aux)
                     {
-                        raiz = null;
+                        r = null;
                     } else
                     {
-                        raiz.setSig(aux.getSig());
+                        r.setSig(aux.getSig());
                     }
                 } else
                 {
-                    Nodo aux2 = raiz.getSig();
+                    Nodo aux2 = r.getSig();
                     boolean b = true;
-                    while (aux2 != raiz && b)
+                    while (aux2 != r && b)
                     {
                         if (s.compareTo(aux2.getSig().getEtq()) == 0)
                         {
                             aux = aux2.getSig();
                             aux2.setSig(aux.getSig());
-                            if (aux == raiz)
+                            if (aux == r)
                             {
-                                raiz = aux2;
+                                r = aux2;
                             }
                             b = false;
                         } else
@@ -147,32 +147,32 @@ public class LSLC
     }
 
     /**
-     * @return the raiz
+     * @return the r
      */
-    public Nodo getRaiz()
+    public Nodo getR()
     {
-        return raiz;
+        return r;
     }
 
     /**
-     * @param raiz the raiz to set
+     * @param r the r to set
      */
-    public void setRaiz(Nodo raiz)
+    public void setR(Nodo r)
     {
-        this.raiz = raiz;
+        this.r = r;
     }
 
     public String desp()
     {
         String s = "";
-        if (raiz != null)
+        if (r != null)
         {
-            Nodo aux = raiz.getSig();
+            Nodo aux = r.getSig();
             do
             {
                 s += aux.getEtq() + "\n";
                 aux.getSig();
-            } while (aux != raiz.getSig());
+            } while (aux != r.getSig());
         } else
         {
             s = "No hay datos";
