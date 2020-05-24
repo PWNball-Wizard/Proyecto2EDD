@@ -264,7 +264,7 @@ public class vtnChat extends javax.swing.JFrame {
         aux.Inserta(n);
 
         an = aux.Elimina();
-        pdd.Inserta(an);//inserta en la pila derecha
+        pdd.Inserta(an);//inserta en la pila derecha***********************************
 
         cd.Inserta(an);
 

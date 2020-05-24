@@ -30,7 +30,7 @@ public class ArbolBinario implements Serializable {
         this.r = r;
     }
 
-    /*>>>>>>>>>>>>>>>>INSERTA Y ELIMINA<<<<<<<<<<<<<<<<<*/
+    /*>>>>>>>>>>>>>>>>INSERTA Y ELIMINA<<<<<<<<<<<<<<<<<*///****************************
     public NodoArbol inserta(NodoArbol r, NodoArbol n) {
         if (r == null) {
             return n;

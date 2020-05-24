@@ -14,6 +14,7 @@ import java.io.Serializable;
 public class PilaDinamica implements Serializable{
     //atras
 
+    //////////////////////////////////////////////////
     public static final long serialVersionUID = 1L;
     
     private Nodo tope = null;

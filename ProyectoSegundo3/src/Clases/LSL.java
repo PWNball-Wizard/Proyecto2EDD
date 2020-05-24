@@ -17,6 +17,7 @@ public class LSL implements Serializable
     private Nodo r=null; //RAIZ DE LA LISTA 
     //EN EL LIBRO VIENE COMO CABEZA DE LA LISTA Y SE INICIALIZA EN null YA QUE NO APUNTA A NINGUN LADO 
 
+    ////////////////////////////////////////////////////////////////
     /**
      * @return the r
      */

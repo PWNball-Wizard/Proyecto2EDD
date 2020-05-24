@@ -43,7 +43,7 @@ public class VtnGrupo extends javax.swing.JFrame {
 
     /**
      * Creates new form VtnGrupos
-     */
+     *///***************************
     public void transparenciaBotones() //PONER EN VtnGrupo
     {
         jBEliminarG.setOpaque(false);

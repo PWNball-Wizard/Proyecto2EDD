@@ -9,7 +9,7 @@ public class Multilistas implements Serializable
 
     private static Nodo mov = null;//guarda un dato eliminado para hacer el movimiento 
     //para eliminar una lista se necesita elimnar y crear otra lista
-
+//*****************************************************
     public static Nodo inserta(Nodo r, Nodo n, int nivel, String etqs[]) //nodo raiz,nodo a ingresar,nivel,etiqueta
     {
         if (nivel == etqs.length - 1)//VALIDA QUE ESTEMOS EN EL NIVEL CORRECTO
