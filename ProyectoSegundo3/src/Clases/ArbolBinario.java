@@ -40,7 +40,6 @@ public class ArbolBinario implements Serializable {
             } else {
                 r.setDer(inserta(r.getDer(), n));
             }
-            r=balancear(r);//BALANCEA EL ARBOL DESPUES DE INSERTAR////////////////////
             return r;
         }
     }
@@ -69,7 +68,6 @@ public class ArbolBinario implements Serializable {
                         } else {
                             arr[1] = r.getIzq();
                         }
-                        arr[1]=balancear(arr[1]);//BALANCEA EL ARBOL CUANDO TIENE UN HIJO////////////////////
 
                     } else {
                         //tiene dos hijos
@@ -88,28 +86,21 @@ public class ArbolBinario implements Serializable {
                             se.setIzq(r.getIzq());
                             arr[1] = se;
                         }
-                        arr[1]=balancear(arr[1]);//BALANCEA DESPUES DE ELIMINAR CON DOS HIJOS///////////////
                         r.setDer(null);
                         r.setIzq(null);
                     }
                 }
-            } else 
-            {
-                if (r.getEtq().compareTo(etq) > 0)//compara la etiqueta que recibe con la de la raiz para saber hacia que lado comenzara a buscar
-                {
-                    //COMIENZA LA RECURSION
+            } else {
+                if (r.getEtq().compareTo(etq) > 0) {
                     System.out.println("Etiquet en raiz " + r.getEtq() + "etiqueta original" + etq);
                     elimina(r.getIzq(), etq, arr);
-                    r.setIzq(arr[1]);//se reconecta con lo que tenga arr, ya que esa es la nueva raiz
-                    
-                } else
-                {
+                    r.setIzq(arr[1]);
+                } else {
                     System.out.println("Etiquet en raiz " + r.getEtq() + "etiqueta original" + etq);
                     elimina(r.getDer(), etq, arr);
-                    r.setDer(arr[1]);//se reconecta con lo que tenga arr, ya que esa es la nueva raiz
+                    r.setDer(arr[1]);
                 }
-                arr[1] = r;//la posicion 1 va a ser sustituida por la nueva raiz
-                
+                arr[1] = r;
             }
         }
 
@@ -120,8 +111,7 @@ public class ArbolBinario implements Serializable {
          String p[] = r.getPredecesores();
          
          
-        if (r == null) 
-        {
+        if (r == null) {
             arr[0] = null;
             arr[1] = r;
         } else {
@@ -166,8 +156,7 @@ public class ArbolBinario implements Serializable {
                     }
                 }
             } else {
-                if (r.getEtq().compareTo(etq) > 0) 
-                {
+                if (r.getEtq().compareTo(etq) > 0) {
                     System.out.println("Etiquet en raiz " + r.getEtq() + "etiqueta original" + etq);
                     elimina(r.getIzq(), etq, arr);
                     r.setIzq(arr[1]);
@@ -177,7 +166,6 @@ public class ArbolBinario implements Serializable {
                     r.setDer(arr[1]);
                 }
                 arr[1] = r;
-                
             }
         }
 
