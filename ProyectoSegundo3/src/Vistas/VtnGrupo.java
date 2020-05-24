@@ -61,7 +61,61 @@ public class VtnGrupo extends javax.swing.JFrame {
         jBCerrar.setOpaque(false);
         jBCerrar.setContentAreaFilled(false);
         jBCerrar.setBorderPainted(false);
+        
+        jBAsistente.setOpaque(false);
+        jBAsistente.setContentAreaFilled(false);
+        jBAsistente.setBorderPainted(false);
+        
     }
+    
+    public boolean valida(String s)
+    {
+        boolean valida=false;
+        for (int i = 0; i < s.length(); i++)
+	{
+            char caracter = s.toUpperCase().charAt(i);
+            int valorASCII = (int)caracter;
+            if (valorASCII > 64 && valorASCII < 91)
+            {
+                valida=true;
+                //return false; //Se ha encontrado un caracter que no es letra 
+            }
+            if (valorASCII>97  && valorASCII<123)
+            {
+                valida=true;
+                //return false; //Se ha encontrado un caracter que no es letra 
+            }
+            if (valorASCII>47 && valorASCII<58) 
+            {
+                valida=true;
+            }
+            
+	}
+        
+        System.out.println("VALOR DE VALIDA:"+valida);
+        
+        boolean validatodo=false;
+        
+        if (s.length()==0) 
+        {
+            Mensaje.error(this,"Campo vacio, debe ingresar un nombre primero");
+            validatodo=false;
+        } else 
+        { 
+            if (valida==false) 
+            {
+                Mensaje.error(this,"Error, caracter invalido detectado");
+                validatodo=false;
+            } else 
+            {
+                validatodo=true;
+            }
+        }
+        
+        System.out.println("VALIDA TODO;"+validatodo);
+        return validatodo;
+    }
+    
 
     public VtnGrupo() {
         initComponents();
@@ -89,11 +143,13 @@ public class VtnGrupo extends javax.swing.JFrame {
         jBEliminarG = new javax.swing.JButton();
         jLGrupos = new javax.swing.JLabel();
         jLAgregarG = new javax.swing.JLabel();
-        JPGrupos = new javax.swing.JPanel();
         jLEliminarG = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
         jBBusca = new javax.swing.JButton();
         jBCerrar = new javax.swing.JButton();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        JPGrupos = new javax.swing.JPanel();
+        jBAsistente = new javax.swing.JButton();
         jLFondoG = new javax.swing.JLabel();
         jLFondoG1 = new javax.swing.JLabel();
 
@@ -112,7 +168,7 @@ public class VtnGrupo extends javax.swing.JFrame {
                 jBAgregarGActionPerformed(evt);
             }
         });
-        getContentPane().add(jBAgregarG, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 470, 60, 50));
+        getContentPane().add(jBAgregarG, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 470, 60, 50));
 
         jBEliminarG.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/borrarNuevo.png"))); // NOI18N
         jBEliminarG.addActionListener(new java.awt.event.ActionListener() {
@@ -120,24 +176,20 @@ public class VtnGrupo extends javax.swing.JFrame {
                 jBEliminarGActionPerformed(evt);
             }
         });
-        getContentPane().add(jBEliminarG, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 470, 60, 50));
+        getContentPane().add(jBEliminarG, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 470, 60, 50));
 
         jLGrupos.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         jLGrupos.setText("Grupos");
         getContentPane().add(jLGrupos, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 20, -1, -1));
 
         jLAgregarG.setText("Agregar");
-        getContentPane().add(jLAgregarG, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 516, 60, 30));
-
-        JPGrupos.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        JPGrupos.setLayout(new java.awt.GridLayout(0, 1, 0, 1));
-        getContentPane().add(JPGrupos, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 90, 273, 360));
+        getContentPane().add(jLAgregarG, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 516, 50, 30));
 
         jLEliminarG.setText("Eliminar");
-        getContentPane().add(jLEliminarG, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 520, -1, 20));
+        getContentPane().add(jLEliminarG, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 520, 60, 20));
 
         jLabel1.setText("Busqueda");
-        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(185, 516, 60, 30));
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(205, 516, 70, 30));
 
         jBBusca.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/buscarNuevo.png"))); // NOI18N
         jBBusca.addActionListener(new java.awt.event.ActionListener() {
@@ -145,7 +197,7 @@ public class VtnGrupo extends javax.swing.JFrame {
                 jBBuscaActionPerformed(evt);
             }
         });
-        getContentPane().add(jBBusca, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 470, 60, -1));
+        getContentPane().add(jBBusca, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 470, 60, -1));
 
         jBCerrar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/cerrar3.png"))); // NOI18N
         jBCerrar.addActionListener(new java.awt.event.ActionListener() {
@@ -154,6 +206,22 @@ public class VtnGrupo extends javax.swing.JFrame {
             }
         });
         getContentPane().add(jBCerrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 20, 30, 30));
+
+        jScrollPane1.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
+
+        JPGrupos.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        JPGrupos.setLayout(new java.awt.GridLayout(0, 1, 0, 1));
+        jScrollPane1.setViewportView(JPGrupos);
+
+        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 90, 290, 360));
+
+        jBAsistente.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/nuevoPregunta25.png"))); // NOI18N
+        jBAsistente.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBAsistenteActionPerformed(evt);
+            }
+        });
+        getContentPane().add(jBAsistente, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 530, 30, -1));
 
         jLFondoG.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/fondowhats.png"))); // NOI18N
         getContentPane().add(jLFondoG, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 70, -1, -1));
@@ -179,8 +247,10 @@ public class VtnGrupo extends javax.swing.JFrame {
 
             Nodo nom = new Nodo(null, s);
 
-            String[] etqs = new String[1];//arreglo de etiquetas
-
+            String[] etqs = new String[1];
+            //arreglo de etiquetas
+            //esta en 1 lo cual significa que esta en el nivel 0
+            
             etqs[0] = s;
 
             r = Multilistas.inserta(r, nom, 0, etqs);
@@ -206,9 +276,9 @@ public class VtnGrupo extends javax.swing.JFrame {
                     boton.setFont(new Font("arial", 1, 14));//CAMBIA LA FUENTE Y EL TAMAÑO
 
                     //ESTABLECE UN TAMAÑO POR DEFECTO PARA LOS BOTONES
-                    boton.setMinimumSize(new Dimension(273, 50));
-                    boton.setMaximumSize(new Dimension(280, 50));
-                    boton.setPreferredSize(new Dimension(273, 50));
+                    boton.setMinimumSize(new Dimension(JPGrupos.getWidth(), 50));
+                    boton.setMaximumSize(new Dimension(JPGrupos.getWidth(), 50));
+                    boton.setPreferredSize(new Dimension(JPGrupos.getWidth(), 50));
 
                     JPGrupos.add(boton);
 
@@ -263,27 +333,28 @@ public class VtnGrupo extends javax.swing.JFrame {
 
             if (c) {//hacer una mezca de las dos, es decir buscar primero en la multilista, en el grupo que se quiere eliminar, y eliminar uno por uno
                 //a los miembros de esa multilista.
-
+                
                 Nodo rb = Multilistas.busca(r, s);
-
+                
                 rb = rb.getAbj();
-
+                
                 if (rb != null) {
-                    System.out.println("/////////////////////////////\n/////////////////////////" + rb.getEtq());
+                    System.out.println("/////////////////////////////\n/////////////////////////" +rb.getEtq());
                     Nodo aux = rb;
-
+                    
                     while (aux != null) {
-                        NodoArbol[] arrB = new NodoArbol[2];
-                        int pos = aux.getEtq().toUpperCase().codePointAt(0) - 65;
-
+                        NodoArbol [] arrB = new NodoArbol[2];
+                        int pos = aux.getEtq().toUpperCase().codePointAt(0) -65;
+                        
                         abE.elimina(TablasHash.arr[pos], aux.getEtq(), arrB);
-
+                        
                         aux = aux.getSig();
 //                        System.out.println("*******************************\n*************************" +aux.getEtq());
                     }
                 }
-
+               
 //                int pos = s.toUpperCase().codePointAt(0) - 65;
+                
                 r = Multilistas.elimina(r, 0, etqs);
 
                 Propiedades p = new Propiedades(cd, r, TablasHash.arr);
@@ -345,31 +416,44 @@ public class VtnGrupo extends javax.swing.JFrame {
 
         nb = JOptionPane.showInputDialog("Escriba el nombre de la persona que desea buscar");
 
-        if (r == null) {
+        if (r == null) 
+        {
             JOptionPane.showMessageDialog(rootPane, "La agenda se encuentra vacia");
 
-        } else {
-            if (nb == null) {
-                
-            } else {
-                //NodoArbol=r;
-                Nodo aux = r;
-                /*while()
+        } else 
+        {
+            if (nb == null) 
+            {
+                System.out.println("");
+            } else 
+            {
+                Nodo aux = null;
+                while (r != null)
                 {
-                    if (aux.dato!=nb) 
+                    if (r.getEtq().equals(nb))
                     {
-                        
-                    }
-                    else
+                        aux = r;
+                        break;
+                    } else
                     {
-                        
+                        r = r.getSig();
                     }
-                }*/
-
+                }
+                if (aux!=null) 
+                {
+                    JOptionPane.showMessageDialog(rootPane,"El grupo encontrado es:" +aux.getEtq());
+                    
+                    VtnContacto contacto = new VtnContacto();
+                    contacto.d = aux.getEtq();
+                    contacto.setVisible(true);
+                    //dispose();
+ 
+                }else
+                {
+                    Mensaje.error(this,"No se encontro el grupo");
+                }
             }
         }
-
-
     }//GEN-LAST:event_jBBuscaActionPerformed
 
     private void jBCerrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBCerrarActionPerformed
@@ -404,9 +488,9 @@ public class VtnGrupo extends javax.swing.JFrame {
                 boton.setFont(new Font("arial", 1, 14));//CAMBIA LA FUENTE Y EL TAMAÑO
 
                 //ESTABLECE UN TAMAÑO POR DEFECTO PARA LOS BOTONES
-                boton.setMinimumSize(new Dimension(273, 50));
-                boton.setMaximumSize(new Dimension(280, 50));
-                boton.setPreferredSize(new Dimension(273, 50));
+                boton.setMinimumSize(new Dimension(JPGrupos.getWidth(), 50));
+                boton.setMaximumSize(new Dimension(JPGrupos.getWidth(), 50));
+                boton.setPreferredSize(new Dimension(JPGrupos.getWidth(), 50));
 
                 JPGrupos.add(boton);
 
@@ -445,6 +529,13 @@ public class VtnGrupo extends javax.swing.JFrame {
 
         }
     }//GEN-LAST:event_formWindowOpened
+
+    private void jBAsistenteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBAsistenteActionPerformed
+        JOptionPane.showMessageDialog(rootPane, "                                                 ¡Bienvenido a la ventana de grupos!\n"
+                                             +"En cada grupo podras almacenar distintos contactos dependiendo de como quieras organizarlos\n"
+                                             + "En esta ventana podras realizar distintas acciones como agregar o eliminar un grupo\n"+ 
+                                                "Asi como buscar entre los distintos grupos que tengas y observar los contactos que contiene");
+    }//GEN-LAST:event_jBAsistenteActionPerformed
 
     /**
      * @param args the command line arguments
@@ -485,6 +576,7 @@ public class VtnGrupo extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel JPGrupos;
     private javax.swing.JButton jBAgregarG;
+    private javax.swing.JButton jBAsistente;
     private javax.swing.JButton jBBusca;
     private javax.swing.JButton jBCerrar;
     private javax.swing.JButton jBEliminarG;
@@ -494,5 +586,6 @@ public class VtnGrupo extends javax.swing.JFrame {
     private javax.swing.JLabel jLFondoG1;
     private javax.swing.JLabel jLGrupos;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JScrollPane jScrollPane1;
     // End of variables declaration//GEN-END:variables
 }

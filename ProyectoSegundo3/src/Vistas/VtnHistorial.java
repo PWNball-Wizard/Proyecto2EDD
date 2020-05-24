@@ -50,6 +50,11 @@ public class VtnHistorial extends javax.swing.JFrame {
         jBRegresarH.setOpaque(false);
         jBRegresarH.setContentAreaFilled(false);
         jBRegresarH.setBorderPainted(false);
+
+        jBAsistente.setOpaque(false);
+        jBAsistente.setContentAreaFilled(false);
+        jBAsistente.setBorderPainted(false);
+
     }
 
     public VtnHistorial() {
@@ -79,8 +84,10 @@ public class VtnHistorial extends javax.swing.JFrame {
         jBEliminarH = new javax.swing.JButton();
         jLEliminarH = new javax.swing.JLabel();
         jBRegresarH = new javax.swing.JButton();
-        JPHistorial = new javax.swing.JPanel();
         jLAgregarH = new javax.swing.JLabel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        JPHistorial = new javax.swing.JPanel();
+        jBAsistente = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         jLFondoH = new javax.swing.JLabel();
 
@@ -125,12 +132,24 @@ public class VtnHistorial extends javax.swing.JFrame {
         });
         getContentPane().add(jBRegresarH, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 20, 40, 30));
 
-        JPHistorial.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        JPHistorial.setLayout(new java.awt.GridLayout(0, 1, 0, 1));
-        getContentPane().add(JPHistorial, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 80, 273, 380));
-
         jLAgregarH.setText("Agregar");
         getContentPane().add(jLAgregarH, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 530, 60, -1));
+
+        jScrollPane1.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
+
+        JPHistorial.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        JPHistorial.setLayout(new java.awt.GridLayout(0, 1, 0, 1));
+        jScrollPane1.setViewportView(JPHistorial);
+
+        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 90, 280, 360));
+
+        jBAsistente.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/nuevoPregunta25.png"))); // NOI18N
+        jBAsistente.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBAsistenteActionPerformed(evt);
+            }
+        });
+        getContentPane().add(jBAsistente, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 530, 30, 30));
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/fondowa.jpg"))); // NOI18N
         getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
@@ -208,9 +227,9 @@ public class VtnHistorial extends javax.swing.JFrame {
                         boton.setFont(new Font("arial", 1, 14));//CAMBIA LA FUENTE Y EL TAMAÑO
 
                         //ESTABLECE UN TAMAÑO POR DEFECTO PARA LOS BOTONES
-                        //boton.setMinimumSize(new Dimension(200,100));
-                        boton.setMaximumSize(new Dimension(273, 50));
-                        //boton.setPreferredSize(new Dimension(200,100));
+                        boton.setMinimumSize(new Dimension(JPHistorial.getWidth(), 100));
+                        boton.setMaximumSize(new Dimension(JPHistorial.getWidth(), 50));
+                        boton.setPreferredSize(new Dimension(JPHistorial.getWidth(), 100));
 
                         JPHistorial.add(boton);
                         boton.addActionListener(new ActionListener() {
@@ -234,6 +253,8 @@ public class VtnHistorial extends javax.swing.JFrame {
             } else {
                 Mensaje.error(this, "Formato de fecha no valido");
             }
+        } else {
+            Mensaje.error(this, "No puede haber campos vacios");
         }
 
         System.out.println(Multilistas.desp(VtnGrupo.r, 0));
@@ -279,6 +300,7 @@ public class VtnHistorial extends javax.swing.JFrame {
 
         } else if (s.length() != 0 && b2 != false) {
 
+            //AGREGAR AQUI METODO PARA VALIDAR LA FECHA
 //                if (b = true) {
             Nodo his = new Nodo(null, s);
             System.out.println("Esto es lo que hay en la cadena de historial " + s);
@@ -301,10 +323,8 @@ public class VtnHistorial extends javax.swing.JFrame {
 
                 try {
                     Archivos.guardar(p, this);
-
                 } catch (FileNotFoundException ex) {
-                    Logger.getLogger(vtnChat.class
-                            .getName()).log(Level.SEVERE, null, ex);
+                    Logger.getLogger(vtnChat.class.getName()).log(Level.SEVERE, null, ex);
                 }
             }
 
@@ -353,10 +373,10 @@ public class VtnHistorial extends javax.swing.JFrame {
 //                } else {
 //                    Mensaje.error(this, "Formato de fecha no valido");
 //                }
+        }else{
+        Mensaje.error(this, "No puede haber campos vacios");
         }
-
         System.out.println(Multilistas.desp(VtnGrupo.r, 0));
-
     }//GEN-LAST:event_jBEliminarHActionPerformed
 
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
@@ -378,9 +398,9 @@ public class VtnHistorial extends javax.swing.JFrame {
                 boton.setFont(new Font("arial", 1, 14));//CAMBIA LA FUENTE Y EL TAMAÑO
 
                 //ESTABLECE UN TAMAÑO POR DEFECTO PARA LOS BOTONES
-                boton.setMinimumSize(new Dimension(200, 50));
-                boton.setMaximumSize(new Dimension(273, 50));
-                boton.setPreferredSize(new Dimension(273, 50));
+                boton.setMinimumSize(new Dimension(JPHistorial.getWidth(), 50));
+                boton.setMaximumSize(new Dimension(JPHistorial.getWidth(), 50));
+                boton.setPreferredSize(new Dimension(JPHistorial.getWidth(), 50));
 
                 JPHistorial.add(boton);
                 boton.addActionListener(new ActionListener() {
@@ -402,39 +422,14 @@ public class VtnHistorial extends javax.swing.JFrame {
         JPHistorial.repaint();
     }//GEN-LAST:event_formWindowOpened
 
-    /*public void Actualizar()
-    {
-        r2 = Multilistas.busca(VtnGrupo.r, d1);
-        
-        r2 = r2.getAbj();
-        r2 = Multilistas.busca(r2, d2);
-        
-        r2 = r2.getAbj();
-        if (r2 != null)
-        {
-            Nodo aux = r2;
-            while (aux != null)
-            {
-                JButton boton = new JButton(aux.getEtq());
-                JPHistorial.add(boton);
-                boton.addActionListener(new ActionListener()
-                {
-                    @Override
-                    public void actionPerformed(ActionEvent e)
-                    {
-                        VtnW nivel3 = new VtnW();
-                        nivel3.d1 = d1;
-                        nivel3.d2 = d2;
-                        nivel3.d3 = boton.getText();
-                        nivel3.setVisible(true);
-                    }
-                }
-                );
-                aux = aux.getSig();
-            }
-        }
-        JPHistorial.updateUI();
-    }*/
+    private void jBAsistenteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBAsistenteActionPerformed
+        JOptionPane.showMessageDialog(rootPane, "                                                                       ¡Bienvenido a la ventana de historial!\n"
+                + "En esta ventana podras realizar distintas acciones como agregar o eliminar las fechas en las que hayas tenido conversaciones\n"
+                + "Asi como buscar y acceder entre las distintas fechas que tengas y observar su contenido");
+
+        JOptionPane.showMessageDialog(rootPane, "¡Recuerda que al ingresar una fecha debe ser bajo el formato dd/mm/aaaa!");
+    }//GEN-LAST:event_jBAsistenteActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -449,24 +444,16 @@ public class VtnHistorial extends javax.swing.JFrame {
                 if ("Nimbus".equals(info.getName())) {
                     javax.swing.UIManager.setLookAndFeel(info.getClassName());
                     break;
-
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(VtnHistorial.class
-                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
-
+            java.util.logging.Logger.getLogger(VtnHistorial.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(VtnHistorial.class
-                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
-
+            java.util.logging.Logger.getLogger(VtnHistorial.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(VtnHistorial.class
-                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
-
+            java.util.logging.Logger.getLogger(VtnHistorial.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(VtnHistorial.class
-                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(VtnHistorial.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
         //</editor-fold>
@@ -482,6 +469,7 @@ public class VtnHistorial extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel JPHistorial;
     private javax.swing.JButton jBAgregarH;
+    private javax.swing.JButton jBAsistente;
     private javax.swing.JButton jBEliminarH;
     private javax.swing.JButton jBRegresarH;
     private javax.swing.JLabel jLAgregarH;
@@ -489,5 +477,6 @@ public class VtnHistorial extends javax.swing.JFrame {
     private javax.swing.JLabel jLFondoH;
     private javax.swing.JLabel jLHistorial;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JScrollPane jScrollPane1;
     // End of variables declaration//GEN-END:variables
 }
