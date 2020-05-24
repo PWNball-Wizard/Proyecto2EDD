@@ -245,8 +245,10 @@ public class VtnGrupo extends javax.swing.JFrame {
 
             Nodo nom = new Nodo(null, s);
 
-            String[] etqs = new String[1];//arreglo de etiquetas
-
+            String[] etqs = new String[1];
+            //arreglo de etiquetas
+            //esta en 1 lo cual significa que esta en el nivel 0
+            
             etqs[0] = s;
 
             r = Multilistas.inserta(r, nom, 0, etqs);

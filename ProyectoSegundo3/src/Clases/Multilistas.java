@@ -9,28 +9,37 @@ public class Multilistas implements Serializable
 
     private static Nodo mov = null;//guarda un dato eliminado para hacer el movimiento 
     //para eliminar una lista se necesita elimnar y crear otra lista
+    
 //*****************************************************
-    public static Nodo inserta(Nodo r, Nodo n, int nivel, String etqs[]) //nodo raiz,nodo a ingresar,nivel,etiqueta
+    public static Nodo inserta(Nodo r, Nodo n, int nivel, String etqs[]) 
+    //r=nodo raiz general o del nivel ya que es un metodo recursivo
+    //n=nodo a ingresar
+    //n=nivel,se recibe en 0 y cuando hace la recursion aumenta en uno para saber que ya esta en otro niel
+    //etqs=arreglo de etiquetas que nos dira en que nivel va
     {
-        if (nivel == etqs.length - 1)//VALIDA QUE ESTEMOS EN EL NIVEL CORRECTO
+        if (nivel == etqs.length - 1)
+        //VALIDA QUE ESTE EN EL NIVEL
+        //nivel 0 = etqs[1] 
         {
-            LSL ls = new LSL();//crea una nueva lista
-            ls.setR(r);//define la raiz en base a la que recibira como parametro
-            ls.inserta(n);//inserta el dato en la lista
-            r = ls.getR();//reconecta
-            return r;
+            LSL ls = new LSL();//crea una nueva lista para insertar los datos
+            ls.setR(r);//la lista recibe como parametro a la raiz de la multilista
+            ls.inserta(n);//inserta el dato en la lista //EL METODO INSERTA ES DE LA LSL
+            r = ls.getR();//reconecta la r que mando a insertar pero ahora con la lista
+            return r;//REGRESA LA R MODIFICADA
         } else
         {
-            Nodo aux = busca(r, etqs[nivel]);//RECORRE EL ARBOL EN BUSCA DE LA ETIQUETA
+            Nodo aux = busca(r, etqs[nivel]);//SI NO ESTA EN EL PRIMER NIVEL RECORRE EL ARBOL EN BUSCA DE LA ETIQUETA
+            //a partir de aux va hacia abajo
             
-            if (aux != null)
+            if (aux != null)//quiere decir que si encontro el Nodo
             {
+                //PROCESO DE RECURSIVIDAD PARA BUSCAR EN LOS NIVELES INFERIORES
                 aux.setAbj(inserta(aux.getAbj(), n, nivel + 1, etqs));//Si encuentra el dato lo inserta
             } else
             {
                 System.out.println("No se encontro " + etqs[nivel] + " En el nivel " + nivel);
             }
-            return r;
+            return r;//REGRESA UN NODO
         }
     }
     
@@ -77,37 +86,25 @@ public class Multilistas implements Serializable
         return r;
     }
 
-    /*public static Nodo busca(Nodo r, String etq)//METODO PARA BUSCAR DENTRO DEL ARBOL UN NODO
-    {
-        Nodo aux = null;
-        while (r != null)//Mientras no llegue al final
-        {
-            if (r.getEtq().equals(etq))//compara que sean las mismas
-            {
-                return r;
-            } else
-            {
-                r = r.getSig();//si no son iguales avanza una posicion
-            }
-        }
-        return aux;
-    }*/
-
     public static Nodo busca(Nodo r, String etq)
+    //METODO RECURSIVO QUE BUSCA EN LA LISTA
+    //r=raiz donde va a buscar
+    //recibe la etiqueta que va a buscar dentro del arreglo
     {
-        Nodo aux = null;
-        while (r != null)
+        Nodo aux = null;//Nodo aux que va a regresar lo que encontro
+        while (r != null)//quiere decir que no ha llegado al final
+         //si fuera una LSLC seria mientras r sea diferente de el nodo que tiene al principio
         {
-            if (r.getEtq().equals(etq))
+            if (r.getEtq().equals(etq))//si es igual
             {
-                aux = r;
+                aux = r;//retorna la posicion que encontre 
                 break;
             } else
             {
                 r = r.getSig();
             }
         }
-        return aux;
+        return aux;//retorna lo que encontro
     }
     
     public static String desp(Nodo r, int nivel) {
