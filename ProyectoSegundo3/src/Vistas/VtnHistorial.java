@@ -144,7 +144,7 @@ public class VtnHistorial extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jBAgregarHActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBAgregarHActionPerformed
-
+///////////////////////////////////////////////////////////////
         boolean b = false;//BANDERA PARA VERIFICAR SI ESTA BIEN ESCRITA LA FECHA
 
         String s = "";

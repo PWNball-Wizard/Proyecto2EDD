@@ -11,6 +11,7 @@ public class Propiedades implements Serializable
     private  NodoArbol[] arr = new NodoArbol[27];
     
     //ACUMULADOR PARA CADA QUE ENTRA UN NUEVO MENSAJE
+    ///////////////////////////////////////////////////////
     
 
     public Propiedades()

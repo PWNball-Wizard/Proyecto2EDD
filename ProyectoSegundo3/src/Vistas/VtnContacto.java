@@ -28,6 +28,8 @@ import java.util.logging.Logger;
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+import javax.swing.JScrollPane;
 
 /**
  *
@@ -67,9 +69,7 @@ public class VtnContacto extends javax.swing.JFrame {
         JPContactos.setBackground(Color.WHITE);//PONE BLANCO EL COLOR DEL PANEL
 
         JPContactos.setLayout(new BoxLayout(JPContactos, BoxLayout.PAGE_AXIS));//CAMBIA EL ESTILO DE EL PANEL, PERMITE QUE LOS BOTONES NO OCUPEN TODA LA PANTALLA
-
-        transparenciaBotones();
-
+       
     }
 
     /**
@@ -81,6 +81,8 @@ public class VtnContacto extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jScrollBar1 = new javax.swing.JScrollBar();
+        jScrollPane1 = new javax.swing.JScrollPane();
         jLContactos = new javax.swing.JLabel();
         jBAgregarC = new javax.swing.JButton();
         jBEliminarC = new javax.swing.JButton();
@@ -89,8 +91,8 @@ public class VtnContacto extends javax.swing.JFrame {
         jLEliminarC = new javax.swing.JLabel();
         jLMoverC = new javax.swing.JLabel();
         jLAgregarC = new javax.swing.JLabel();
-        JPContactos = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
+        JPContactos = new javax.swing.JPanel();
         jBBusca = new javax.swing.JButton();
         jLFondoC = new javax.swing.JLabel();
         jLFondoC1 = new javax.swing.JLabel();
@@ -149,12 +151,12 @@ public class VtnContacto extends javax.swing.JFrame {
         jLAgregarC.setText("Agregar");
         getContentPane().add(jLAgregarC, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 530, -1, -1));
 
+        jLabel1.setText("Busqueda");
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 520, 60, 30));
+
         JPContactos.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         JPContactos.setLayout(new java.awt.GridLayout(0, 1, 0, 1));
         getContentPane().add(JPContactos, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 90, 280, 360));
-
-        jLabel1.setText("Busqueda");
-        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 520, 60, 30));
 
         jBBusca.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/buscarNuevo.png"))); // NOI18N
         jBBusca.addActionListener(new java.awt.event.ActionListener() {
@@ -292,7 +294,7 @@ public class VtnContacto extends javax.swing.JFrame {
             String[] etqsI = new String[2];
             etqsI[0] = gpo;
             etqsI[1] = nom;
-
+//*******************************************
             VtnGrupo.r = Multilistas.mover(VtnGrupo.r, 0, etqsE, etqsI);
 
             int pos = nom.toUpperCase().codePointAt(0) - 65;
@@ -608,5 +610,7 @@ public class VtnContacto extends javax.swing.JFrame {
     private javax.swing.JLabel jLFondoC1;
     private javax.swing.JLabel jLMoverC;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JScrollBar jScrollBar1;
+    private javax.swing.JScrollPane jScrollPane1;
     // End of variables declaration//GEN-END:variables
 }

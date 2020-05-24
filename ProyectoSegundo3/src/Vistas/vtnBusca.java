@@ -146,7 +146,7 @@ public class vtnBusca extends javax.swing.JFrame {
         if (tfBusca.getText().length() == 9) {
             evt.consume();
         }
-
+///////////////////////////////////////////////////////////////////////////////
     }//GEN-LAST:event_tfBuscaKeyTyped
 
     private void tfBuscaKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tfBuscaKeyPressed

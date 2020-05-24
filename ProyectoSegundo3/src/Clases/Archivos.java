@@ -23,6 +23,8 @@ public class Archivos {
 
     public static void guardar(Propiedades obj, JFrame jf) throws FileNotFoundException {
 
+        ////////////////////////////////////////////////
+        
         try {
             FileOutputStream fos = new FileOutputStream("datos.dat");
             ObjectOutputStream arch = new ObjectOutputStream(fos);
