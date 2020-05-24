@@ -38,27 +38,20 @@ public class VtnHistorial extends javax.swing.JFrame {
     /**
      * Creates new form MnuHistorial
      */
-    
-    public void transparenciaBotones()
-    {
+    public void transparenciaBotones() {
         jBAgregarH.setOpaque(false);
         jBAgregarH.setContentAreaFilled(false);
         jBAgregarH.setBorderPainted(false);
-        
+
         jBEliminarH.setOpaque(false);
         jBEliminarH.setContentAreaFilled(false);
         jBEliminarH.setBorderPainted(false);
-        
+
         jBRegresarH.setOpaque(false);
         jBRegresarH.setContentAreaFilled(false);
         jBRegresarH.setBorderPainted(false);
-        
-        jBAsistente.setOpaque(false);
-        jBAsistente.setContentAreaFilled(false);
-        jBAsistente.setBorderPainted(false);
-        
     }
-    
+
     public VtnHistorial() {
         initComponents();
         this.setLocationRelativeTo(null);//CENTRA LA PANTALLA
@@ -68,7 +61,7 @@ public class VtnHistorial extends javax.swing.JFrame {
 
         //JPGrupos.setLayout(new GridLayout(0, 1, 10, 10));
         JPHistorial.setLayout(new BoxLayout(JPHistorial, BoxLayout.PAGE_AXIS));//CAMBIA EL ESTILO DE EL PANEL, PERMITE QUE LOS BOTONES NO OCUPEN TODA LA PANTALLA
-        
+
         transparenciaBotones();
     }
 
@@ -86,10 +79,8 @@ public class VtnHistorial extends javax.swing.JFrame {
         jBEliminarH = new javax.swing.JButton();
         jLEliminarH = new javax.swing.JLabel();
         jBRegresarH = new javax.swing.JButton();
-        jLAgregarH = new javax.swing.JLabel();
-        jScrollPane1 = new javax.swing.JScrollPane();
         JPHistorial = new javax.swing.JPanel();
-        jBAsistente = new javax.swing.JButton();
+        jLAgregarH = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
         jLFondoH = new javax.swing.JLabel();
 
@@ -134,24 +125,12 @@ public class VtnHistorial extends javax.swing.JFrame {
         });
         getContentPane().add(jBRegresarH, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 20, 40, 30));
 
-        jLAgregarH.setText("Agregar");
-        getContentPane().add(jLAgregarH, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 530, 60, -1));
-
-        jScrollPane1.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
-
         JPHistorial.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         JPHistorial.setLayout(new java.awt.GridLayout(0, 1, 0, 1));
-        jScrollPane1.setViewportView(JPHistorial);
+        getContentPane().add(JPHistorial, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 80, 273, 380));
 
-        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 90, 280, 360));
-
-        jBAsistente.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/nuevoPregunta25.png"))); // NOI18N
-        jBAsistente.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jBAsistenteActionPerformed(evt);
-            }
-        });
-        getContentPane().add(jBAsistente, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 530, 30, 30));
+        jLAgregarH.setText("Agregar");
+        getContentPane().add(jLAgregarH, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 530, 60, -1));
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/fondowa.jpg"))); // NOI18N
         getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
@@ -164,146 +143,50 @@ public class VtnHistorial extends javax.swing.JFrame {
 
     private void jBAgregarHActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBAgregarHActionPerformed
 ///////////////////////////////////////////////////////////////
-        boolean b = false;//BANDERA PARA VERIFICAR SI ESTA BIEN ESCRITA LA FECHA
+        boolean b1 = true;//BANDERA PARA VERIFICAR SI ESTA BIEN ESCRITA LA FECHA
+        boolean b2 = true;//BANDERA PARA VERIFICAR SI ESTA BIEN ESCRITA LA FECHA
 
         String s = "";
         s = JOptionPane.showInputDialog("Escriba el dia a agregar");
 
-        String partes[] = s.split("/");
+        if (s == null) {
 
-        if (Integer.parseInt(partes[0]) > 31
-                || Integer.parseInt(partes[0]) < 1
-                || Integer.parseInt(partes[1]) > 12
-                || Integer.parseInt(partes[1]) < 1
-                || Integer.parseInt(partes[2]) < 0) {
-            Mensaje.error(this, "La fecha que ingresaste es incorrecta");
-        } else {
+            b1 = false;
 
-            //AGREGAR AQUI METODO PARA VALIDAR LA FECHA
-            if (s.length() == 0) {
-                Mensaje.error(this, "Rellene el campo");
-            } else {
-                if (b = true) {
-                    Nodo his = new Nodo(null, s);
-                    String[] etqs = new String[3];
-                    etqs[0] = d1;
-                    etqs[1] = d2;
-                    etqs[2] = s;
+        } else if (s.length() != 0) {
 
-                    VtnGrupo.r = Multilistas.inserta(VtnGrupo.r, his, 0, etqs);
+            String partes[] = s.split("/");
 
-                    Propiedades p = new Propiedades(cd, VtnGrupo.r, TablasHash.arr);
-
-                    try {
-                        Archivos.guardar(p, this);
-                    } catch (FileNotFoundException ex) {
-                        Logger.getLogger(vtnChat.class.getName()).log(Level.SEVERE, null, ex);
-                    }
-
-                    r2 = Multilistas.busca(VtnGrupo.r, d1);
-
-                    r2 = r2.getAbj();
-                    r2 = Multilistas.busca(r2, d2);
-
-                    JPHistorial.removeAll();
-
-                    r2 = r2.getAbj();
-                    if (r2 != null) {
-                        Nodo aux = r2;
-                        while (aux != null) {
-                            JButton boton = new JButton(aux.getEtq());
-
-                            //boton.setLocation(50, 10);
-                            boton.setBackground(Color.WHITE);//PONE EL FONDO DEL BOTON EN BLANCO
-                            boton.setForeground(Color.BLACK);//PONE LAS LETRAS COLOR NEGRO
-                            boton.setFont(new Font("arial", 1, 14));//CAMBIA LA FUENTE Y EL TAMAÑO
-
-                            //ESTABLECE UN TAMAÑO POR DEFECTO PARA LOS BOTONES
-                            boton.setMinimumSize(new Dimension(JPHistorial.getWidth(),100));
-                            boton.setMaximumSize(new Dimension(JPHistorial.getWidth(), 50));
-                            boton.setPreferredSize(new Dimension(JPHistorial.getWidth(),100));
-
-                            JPHistorial.add(boton);
-                            boton.addActionListener(new ActionListener() {
-                                @Override
-                                public void actionPerformed(ActionEvent e) {
-                                    vtnChat nivel3 = new vtnChat();
-                                    nivel3.d1 = d1;
-                                    nivel3.d2 = d2;
-                                    nivel3.d3 = boton.getText();
-                                    nivel3.setVisible(true);
-                                }
-                            }
-                            );
-                            aux = aux.getSig();
-                        }
-                    }
-
-                    JPHistorial.revalidate();
-                    JPHistorial.repaint();
-
-                } else {
-                    Mensaje.error(this, "Formato de fecha no valido");
-                }
+            if (Integer.parseInt(partes[0]) > 31
+                    || Integer.parseInt(partes[0]) < 1
+                    || Integer.parseInt(partes[1]) > 12
+                    || Integer.parseInt(partes[1]) < 1
+                    || Integer.parseInt(partes[2]) < 0) {
+                Mensaje.error(this, "La fecha que ingresaste es incorrecta");
+                b2 = false;
             }
         }
-        System.out.println(Multilistas.desp(VtnGrupo.r, 0));
-    }//GEN-LAST:event_jBAgregarHActionPerformed
 
-    private void jBRegresarHActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBRegresarHActionPerformed
+        //AGREGAR AQUI METODO PARA VALIDAR LA FECHA
+        if (b1 == false) {
 
-        VtnContacto c = new VtnContacto();
-        c.setVisible(true);
-        c.d = d1;
-        c.r1 = Multilistas.busca(VtnGrupo.r, d1);
-        dispose();
-    }//GEN-LAST:event_jBRegresarHActionPerformed
+        } else if (s.length() != 0 && b2 != false) {
 
-    private void jBEliminarHActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBEliminarHActionPerformed
-        boolean b = false;//BANDERA PARA VERIFICAR SI ESTA BIEN ESCRITA LA FECHA
-
-        String s = "";
-        s = JOptionPane.showInputDialog("Escriba la fecha a eliminar");
-
-        String partes[] = s.split("/");
-
-        if (Integer.parseInt(partes[0]) > 31
-                || Integer.parseInt(partes[0]) < 1
-                || Integer.parseInt(partes[1]) > 12
-                || Integer.parseInt(partes[1]) < 1
-                || Integer.parseInt(partes[2]) < 0) {
-            Mensaje.error(this, "La fecha que ingresaste es incorrecta");
-        } else {
-
-            //AGREGAR AQUI METODO PARA VALIDAR LA FECHA
-            if (s.length() == 0) {
-                Mensaje.error(this, "Rellene el campo");
-            } else {
-//                if (b = true) {
+            if (b2 = true) {
                 Nodo his = new Nodo(null, s);
-                System.out.println("Esto es lo que hay en la cadena de historial " + s);
                 String[] etqs = new String[3];
                 etqs[0] = d1;
                 etqs[1] = d2;
                 etqs[2] = s;
-//                    VtnGrupo.r = Multilistas.inserta(VtnGrupo.r, his, 0, etqs);
-                boolean c = false;
 
-                if (cjb.ci.Mensaje.pregunta(this, "Eliminar grupo\nSe eliminaran los contactos "
-                        + "y conversaciones asociados a este grupo\n¿Continuar?") == 0) {
-                    c = true;
-                }
+                VtnGrupo.r = Multilistas.inserta(VtnGrupo.r, his, 0, etqs);
 
-                if (c) {
-                    VtnGrupo.r = Multilistas.elimina(VtnGrupo.r, 0, etqs);
+                Propiedades p = new Propiedades(cd, VtnGrupo.r, TablasHash.arr);
 
-                    Propiedades p = new Propiedades(cd, VtnGrupo.r, TablasHash.arr);
-
-                    try {
-                        Archivos.guardar(p, this);
-                    } catch (FileNotFoundException ex) {
-                        Logger.getLogger(vtnChat.class.getName()).log(Level.SEVERE, null, ex);
-                    }
+                try {
+                    Archivos.guardar(p, this);
+                } catch (FileNotFoundException ex) {
+                    Logger.getLogger(vtnChat.class.getName()).log(Level.SEVERE, null, ex);
                 }
 
                 r2 = Multilistas.busca(VtnGrupo.r, d1);
@@ -311,23 +194,25 @@ public class VtnHistorial extends javax.swing.JFrame {
                 r2 = r2.getAbj();
                 r2 = Multilistas.busca(r2, d2);
 
-//                    JPHistorial.removeAll();
+                JPHistorial.removeAll();
+
                 r2 = r2.getAbj();
                 if (r2 != null) {
                     Nodo aux = r2;
                     while (aux != null) {
                         JButton boton = new JButton(aux.getEtq());
-                        System.out.println("El boton se llama " + boton.getText());
-                        Component componentes[] = JPHistorial.getComponents();
 
-                        for (int i = 0; i < componentes.length; i++) {
-                            System.out.println(((JButton) componentes[i]).getText());
-                            if (etqs[2].equals(((JButton) componentes[i]).getText().trim())) {
-                                JPHistorial.remove(i);
-                            }
-                        }
+                        //boton.setLocation(50, 10);
+                        boton.setBackground(Color.WHITE);//PONE EL FONDO DEL BOTON EN BLANCO
+                        boton.setForeground(Color.BLACK);//PONE LAS LETRAS COLOR NEGRO
+                        boton.setFont(new Font("arial", 1, 14));//CAMBIA LA FUENTE Y EL TAMAÑO
 
-//                            JPHistorial.add(boton);
+                        //ESTABLECE UN TAMAÑO POR DEFECTO PARA LOS BOTONES
+                        //boton.setMinimumSize(new Dimension(200,100));
+                        boton.setMaximumSize(new Dimension(273, 50));
+                        //boton.setPreferredSize(new Dimension(200,100));
+
+                        JPHistorial.add(boton);
                         boton.addActionListener(new ActionListener() {
                             @Override
                             public void actionPerformed(ActionEvent e) {
@@ -343,17 +228,135 @@ public class VtnHistorial extends javax.swing.JFrame {
                     }
                 }
 
-                if (c) {
-                    JPHistorial.revalidate();
-                    JPHistorial.repaint();
+                JPHistorial.revalidate();
+                JPHistorial.repaint();
+
+            } else {
+                Mensaje.error(this, "Formato de fecha no valido");
+            }
+        }
+
+        System.out.println(Multilistas.desp(VtnGrupo.r, 0));
+    }//GEN-LAST:event_jBAgregarHActionPerformed
+
+    private void jBRegresarHActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBRegresarHActionPerformed
+
+        VtnContacto c = new VtnContacto();
+        c.setVisible(true);
+        c.d = d1;
+        c.r1 = Multilistas.busca(VtnGrupo.r, d1);
+        dispose();
+    }//GEN-LAST:event_jBRegresarHActionPerformed
+
+    private void jBEliminarHActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBEliminarHActionPerformed
+        boolean b1 = true;//BANDERA PARA VERIFICAR SI ESTA BIEN ESCRITA LA FECHA
+        boolean b2 = true;//BANDERA PARA VERIFICAR SI ESTA BIEN ESCRITA LA FECHA
+
+        String s = "";
+        s = JOptionPane.showInputDialog("Escriba la fecha a eliminar");
+
+        if (s == null) {
+
+            b1 = false;
+
+        } else if (s.length() != 0) {
+
+            String partes[] = s.split("/");
+
+            if (Integer.parseInt(partes[0]) > 31
+                    || Integer.parseInt(partes[0]) < 1
+                    || Integer.parseInt(partes[1]) > 12
+                    || Integer.parseInt(partes[1]) < 1
+                    || Integer.parseInt(partes[2]) < 0) {
+                Mensaje.error(this, "La fecha que ingresaste es incorrecta");
+                b2 = false;
+            }
+
+        }
+
+        //AGREGAR AQUI METODO PARA VALIDAR LA FECHA
+        if (b1 == false) {
+
+        } else if (s.length() != 0 && b2 != false) {
+
+//                if (b = true) {
+            Nodo his = new Nodo(null, s);
+            System.out.println("Esto es lo que hay en la cadena de historial " + s);
+            String[] etqs = new String[3];
+            etqs[0] = d1;
+            etqs[1] = d2;
+            etqs[2] = s;
+//                    VtnGrupo.r = Multilistas.inserta(VtnGrupo.r, his, 0, etqs);
+            boolean c = false;
+
+            if (cjb.ci.Mensaje.pregunta(this, "Eliminar grupo\nSe eliminaran los contactos "
+                    + "y conversaciones asociados a este grupo\n¿Continuar?") == 0) {
+                c = true;
+            }
+
+            if (c) {
+                VtnGrupo.r = Multilistas.elimina(VtnGrupo.r, 0, etqs);
+
+                Propiedades p = new Propiedades(cd, VtnGrupo.r, TablasHash.arr);
+
+                try {
+                    Archivos.guardar(p, this);
+
+                } catch (FileNotFoundException ex) {
+                    Logger.getLogger(vtnChat.class
+                            .getName()).log(Level.SEVERE, null, ex);
                 }
+            }
+
+            r2 = Multilistas.busca(VtnGrupo.r, d1);
+
+            r2 = r2.getAbj();
+            r2 = Multilistas.busca(r2, d2);
+
+//                    JPHistorial.removeAll();
+            r2 = r2.getAbj();
+            if (r2 != null) {
+                Nodo aux = r2;
+                while (aux != null) {
+                    JButton boton = new JButton(aux.getEtq());
+                    System.out.println("El boton se llama " + boton.getText());
+                    Component componentes[] = JPHistorial.getComponents();
+
+                    for (int i = 0; i < componentes.length; i++) {
+                        System.out.println(((JButton) componentes[i]).getText());
+                        if (etqs[2].equals(((JButton) componentes[i]).getText().trim())) {
+                            JPHistorial.remove(i);
+                        }
+                    }
+
+//                            JPHistorial.add(boton);
+                    boton.addActionListener(new ActionListener() {
+                        @Override
+                        public void actionPerformed(ActionEvent e) {
+                            vtnChat nivel3 = new vtnChat();
+                            nivel3.d1 = d1;
+                            nivel3.d2 = d2;
+                            nivel3.d3 = boton.getText();
+                            nivel3.setVisible(true);
+                        }
+                    }
+                    );
+                    aux = aux.getSig();
+                }
+            }
+
+            if (c) {
+                JPHistorial.revalidate();
+                JPHistorial.repaint();
+            }
 
 //                } else {
 //                    Mensaje.error(this, "Formato de fecha no valido");
 //                }
-            }
-            System.out.println(Multilistas.desp(VtnGrupo.r, 0));
         }
+
+        System.out.println(Multilistas.desp(VtnGrupo.r, 0));
+
     }//GEN-LAST:event_jBEliminarHActionPerformed
 
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
@@ -369,16 +372,16 @@ public class VtnHistorial extends javax.swing.JFrame {
             Nodo aux = r2;
             while (aux != null) {
                 JButton boton = new JButton(aux.getEtq());
-                
+
                 boton.setBackground(Color.WHITE);//PONE EL FONDO DEL BOTON EN BLANCO
                 boton.setForeground(Color.BLACK);//PONE LAS LETRAS COLOR NEGRO
                 boton.setFont(new Font("arial", 1, 14));//CAMBIA LA FUENTE Y EL TAMAÑO
 
                 //ESTABLECE UN TAMAÑO POR DEFECTO PARA LOS BOTONES
-                boton.setMinimumSize(new Dimension(JPHistorial.getWidth(),50));
-                boton.setMaximumSize(new Dimension(JPHistorial.getWidth(), 50));
-                boton.setPreferredSize(new Dimension(JPHistorial.getWidth(),50));
-                
+                boton.setMinimumSize(new Dimension(200, 50));
+                boton.setMaximumSize(new Dimension(273, 50));
+                boton.setPreferredSize(new Dimension(273, 50));
+
                 JPHistorial.add(boton);
                 boton.addActionListener(new ActionListener() {
                     @Override
@@ -399,15 +402,39 @@ public class VtnHistorial extends javax.swing.JFrame {
         JPHistorial.repaint();
     }//GEN-LAST:event_formWindowOpened
 
-    private void jBAsistenteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBAsistenteActionPerformed
-        JOptionPane.showMessageDialog(rootPane, "                                                                       ¡Bienvenido a la ventana de historial!\n"
-                                             + "En esta ventana podras realizar distintas acciones como agregar o eliminar las fechas en las que hayas tenido conversaciones\n"+ 
-                                                "Asi como buscar y acceder entre las distintas fechas que tengas y observar su contenido");
+    /*public void Actualizar()
+    {
+        r2 = Multilistas.busca(VtnGrupo.r, d1);
         
-        JOptionPane.showMessageDialog(rootPane, "¡Recuerda que al ingresar una fecha debe ser bajo el formato dd/mm/aaaa!");
-    }//GEN-LAST:event_jBAsistenteActionPerformed
-
-    
+        r2 = r2.getAbj();
+        r2 = Multilistas.busca(r2, d2);
+        
+        r2 = r2.getAbj();
+        if (r2 != null)
+        {
+            Nodo aux = r2;
+            while (aux != null)
+            {
+                JButton boton = new JButton(aux.getEtq());
+                JPHistorial.add(boton);
+                boton.addActionListener(new ActionListener()
+                {
+                    @Override
+                    public void actionPerformed(ActionEvent e)
+                    {
+                        VtnW nivel3 = new VtnW();
+                        nivel3.d1 = d1;
+                        nivel3.d2 = d2;
+                        nivel3.d3 = boton.getText();
+                        nivel3.setVisible(true);
+                    }
+                }
+                );
+                aux = aux.getSig();
+            }
+        }
+        JPHistorial.updateUI();
+    }*/
     /**
      * @param args the command line arguments
      */
@@ -422,16 +449,24 @@ public class VtnHistorial extends javax.swing.JFrame {
                 if ("Nimbus".equals(info.getName())) {
                     javax.swing.UIManager.setLookAndFeel(info.getClassName());
                     break;
+
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(VtnHistorial.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(VtnHistorial.class
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
+
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(VtnHistorial.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(VtnHistorial.class
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
+
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(VtnHistorial.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(VtnHistorial.class
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
+
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(VtnHistorial.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(VtnHistorial.class
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
         //</editor-fold>
@@ -447,7 +482,6 @@ public class VtnHistorial extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel JPHistorial;
     private javax.swing.JButton jBAgregarH;
-    private javax.swing.JButton jBAsistente;
     private javax.swing.JButton jBEliminarH;
     private javax.swing.JButton jBRegresarH;
     private javax.swing.JLabel jLAgregarH;
@@ -455,6 +489,5 @@ public class VtnHistorial extends javax.swing.JFrame {
     private javax.swing.JLabel jLFondoH;
     private javax.swing.JLabel jLHistorial;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JScrollPane jScrollPane1;
     // End of variables declaration//GEN-END:variables
 }
