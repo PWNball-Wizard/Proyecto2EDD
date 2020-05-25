@@ -40,7 +40,7 @@ public class ArbolBinario implements Serializable {
             } else {
                 r.setDer(inserta(r.getDer(), n));
             }
-            r=balancear(r);//BALANCEA EL ARBOL DESPUES DE INSERTAR////////////////////
+            //r=balancear(r);//BALANCEA EL ARBOL DESPUES DE INSERTAR////////////////////
             return r;
         }
     }
@@ -69,7 +69,7 @@ public class ArbolBinario implements Serializable {
                         } else {
                             arr[1] = r.getIzq();
                         }
-                        arr[1]=balancear(arr[1]);//BALANCEA EL ARBOL CUANDO TIENE UN HIJO////////////////////
+                        //arr[1]=balancear(arr[1]);//BALANCEA EL ARBOL CUANDO TIENE UN HIJO////////////////////
 
                     } else {
                         //tiene dos hijos
@@ -88,7 +88,7 @@ public class ArbolBinario implements Serializable {
                             se.setIzq(r.getIzq());
                             arr[1] = se;
                         }
-                        arr[1]=balancear(arr[1]);//BALANCEA DESPUES DE ELIMINAR CON DOS HIJOS///////////////
+                        //arr[1]=balancear(arr[1]);//BALANCEA DESPUES DE ELIMINAR CON DOS HIJOS///////////////
                         r.setDer(null);
                         r.setIzq(null);
                     }
