@@ -14,7 +14,6 @@ import Clases.Propiedades;
 import Clases.TablasHash;
 import static Vistas.VtnGrupo.ab;
 import static Vistas.VtnGrupo.rb;
-import static Vistas.vtnChat.cd;
 import cjb.ci.Mensaje;
 import java.awt.Color;
 import java.awt.Component;
@@ -238,6 +237,8 @@ public class VtnContacto extends javax.swing.JFrame {
     private void jBAgregarCActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBAgregarCActionPerformed
 
         System.out.println(d);
+        
+        ArbolBinario abB = new ArbolBinario();
 
         String s = "";
         s = JOptionPane.showInputDialog("Escriba el nombre del contacto que desea agregar");
@@ -277,7 +278,7 @@ public class VtnContacto extends javax.swing.JFrame {
 
 //                rb = TablasHash.arr[pos];
                 ab.inserta(TablasHash.arr[pos], nomNAS);
-
+                             
                 System.out.println(TablasHash.arr[pos].getEtq());
 
                 System.out.println(ab.enOrden(rb));
@@ -286,8 +287,10 @@ public class VtnContacto extends javax.swing.JFrame {
 
 //                System.out.println("Muestra en la raiz en nodo arbol"+ rb.getEtq());
             }
-
-            Propiedades p = new Propiedades(cd, VtnGrupo.r, TablasHash.arr);
+            
+//            abB.balancear(TablasHash.arr[pos]);/////////////////PRUEBA DE BALANCEO DE ARBOL
+            
+            Propiedades p = new Propiedades(VtnGrupo.r, TablasHash.arr);
 
             try {
                 Archivos.guardar(p, this);
@@ -390,8 +393,10 @@ public class VtnContacto extends javax.swing.JFrame {
                     System.out.println(muestra[1]);
 
                     aux.setPredecesores(etqsI);
+                    
+//                    ab.balancear(TablasHash.arr[pos]);/////////////////PRUEBA DE BALANCEO DE ARBOL
 
-                    Propiedades p = new Propiedades(cd, VtnGrupo.r, TablasHash.arr);
+                    Propiedades p = new Propiedades(VtnGrupo.r, TablasHash.arr);
                     try {
                         Archivos.guardar(p, this);
                     } catch (FileNotFoundException ex) {
@@ -477,8 +482,10 @@ public class VtnContacto extends javax.swing.JFrame {
 
                     ab.elimina(TablasHash.arr[pos], s, arrB);
 
-                    Propiedades p = new Propiedades(cd, VtnGrupo.r, TablasHash.arr);
-
+//                    ab.balancear(TablasHash.arr[pos]);/////////////////PRUEBA DE BALANCEO DE ARBOL
+                    
+                    Propiedades p = new Propiedades(VtnGrupo.r, TablasHash.arr);
+                    
                     try {
                         Archivos.guardar(p, this);
                     } catch (FileNotFoundException ex) {

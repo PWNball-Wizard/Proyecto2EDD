@@ -13,7 +13,6 @@ import Clases.Nodo;
 import Clases.NodoArbol;
 import Clases.Propiedades;
 import Clases.TablasHash;
-import static Vistas.vtnChat.cd;
 import cjb.ci.Mensaje;
 import java.awt.Color;
 import java.awt.Component;
@@ -241,7 +240,7 @@ public class VtnGrupo extends javax.swing.JFrame {
 
         if (s == null) {
             //Evita el NPE al salir del showInputDialog o presionar cancelar
-        }else if (s.length() == 0) {
+        }else if (s.length() == 0|| valida(s) != true) {
             Mensaje.error(this, "Debe ecsribir un nombre");
         } else {
 
@@ -255,7 +254,7 @@ public class VtnGrupo extends javax.swing.JFrame {
 
             r = Multilistas.inserta(r, nom, 0, etqs);
 
-            Propiedades p = new Propiedades(cd, r, TablasHash.arr);
+            Propiedades p = new Propiedades(r, TablasHash.arr);
 
             try {
                 Archivos.guardar(p, this);
@@ -357,7 +356,7 @@ public class VtnGrupo extends javax.swing.JFrame {
                 
                 r = Multilistas.elimina(r, 0, etqs);
 
-                Propiedades p = new Propiedades(cd, r, TablasHash.arr);
+                Propiedades p = new Propiedades(r, TablasHash.arr);
 
                 try {
                     Archivos.guardar(p, this);
@@ -516,9 +515,13 @@ public class VtnGrupo extends javax.swing.JFrame {
 //        rb = TablasHash.arr[15];
 //        System.out.println(ab.enOrden(rb));
         System.out.println(TablasHash.muestra());
+        
+        ab.balancear(TablasHash.arr[0]);
 
-        System.out.println(ab.enOrden(TablasHash.arr[0]));
+        System.out.println(ab.enOrden(TablasHash.arr[3]));
+        System.out.println(ab.preOrden(TablasHash.arr[3]));
         System.out.println(ab.enOrden(TablasHash.arr[1]));
+        System.out.println(ab.preOrden(TablasHash.arr[1]));
         System.out.println(ab.enOrden(TablasHash.arr[9]));
 
         if (TablasHash.arr[0] != null) {

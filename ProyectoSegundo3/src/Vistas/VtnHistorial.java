@@ -10,7 +10,6 @@ import Clases.Multilistas;
 import Clases.Nodo;
 import Clases.Propiedades;
 import Clases.TablasHash;
-import static Vistas.vtnChat.cd;
 import cjb.ci.Mensaje;
 import java.awt.Color;
 import java.awt.Component;
@@ -162,6 +161,7 @@ public class VtnHistorial extends javax.swing.JFrame {
 
     private void jBAgregarHActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBAgregarHActionPerformed
 ///////////////////////////////////////////////////////////////
+        vtnChat c = new vtnChat();
         boolean b1 = true;//BANDERA PARA VERIFICAR SI ESTA BIEN ESCRITA LA FECHA
         boolean b2 = true;//BANDERA PARA VERIFICAR SI ESTA BIEN ESCRITA LA FECHA
 
@@ -192,7 +192,7 @@ public class VtnHistorial extends javax.swing.JFrame {
         } else if (s.length() != 0 && b2 != false) {
 
             if (b2 = true) {
-                Nodo his = new Nodo(null, s);
+                Nodo his = new Nodo(c.cd, s);
                 String[] etqs = new String[3];
                 etqs[0] = d1;
                 etqs[1] = d2;
@@ -200,7 +200,7 @@ public class VtnHistorial extends javax.swing.JFrame {
 
                 VtnGrupo.r = Multilistas.inserta(VtnGrupo.r, his, 0, etqs);
 
-                Propiedades p = new Propiedades(cd, VtnGrupo.r, TablasHash.arr);
+                Propiedades p = new Propiedades(VtnGrupo.r, TablasHash.arr);
 
                 try {
                     Archivos.guardar(p, this);
@@ -319,7 +319,7 @@ public class VtnHistorial extends javax.swing.JFrame {
             if (c) {
                 VtnGrupo.r = Multilistas.elimina(VtnGrupo.r, 0, etqs);
 
-                Propiedades p = new Propiedades(cd, VtnGrupo.r, TablasHash.arr);
+                Propiedades p = new Propiedades(VtnGrupo.r, TablasHash.arr);
 
                 try {
                     Archivos.guardar(p, this);
@@ -373,8 +373,8 @@ public class VtnHistorial extends javax.swing.JFrame {
 //                } else {
 //                    Mensaje.error(this, "Formato de fecha no valido");
 //                }
-        }else{
-        Mensaje.error(this, "No puede haber campos vacios");
+        } else {
+            Mensaje.error(this, "No puede haber campos vacios");
         }
         System.out.println(Multilistas.desp(VtnGrupo.r, 0));
     }//GEN-LAST:event_jBEliminarHActionPerformed

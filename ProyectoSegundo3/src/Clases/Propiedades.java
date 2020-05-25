@@ -6,7 +6,7 @@ import java.io.Serializable;
 public class Propiedades implements Serializable
 {
 
-    public ColaDinamica c = new ColaDinamica();
+//    public ColaDinamica c = new ColaDinamica();
     private Nodo r = null;
     private  NodoArbol[] arr = new NodoArbol[27];
     
@@ -17,21 +17,20 @@ public class Propiedades implements Serializable
     public Propiedades()
     {
     }
-
-    public Propiedades(ColaDinamica c, Nodo r, NodoArbol arr[])
+//                      ColaDinamica c, 
+    public Propiedades(Nodo r, NodoArbol arr[])
     {
-        this.c = c;
         this.r = r;
         this.arr = arr;
     }
 
-    public ColaDinamica getC() {
-        return c;
-    }
-
-    public void setC(ColaDinamica c) {
-        this.c = c;
-    }
+//    public ColaDinamica getC() {
+//        return c;
+//    }
+//
+//    public void setC(ColaDinamica c) {
+//        this.c = c;
+//    }
 
     /**
      * @return the r

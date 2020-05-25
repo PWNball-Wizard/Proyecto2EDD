@@ -47,7 +47,7 @@ public class Archivos {
             
             Propiedades p = (Propiedades) arch.readObject();
             
-            vtnChat.cd = p.c;
+//            vtnChat.cd = p.c;
             
             VtnGrupo.r = p.getR();
             

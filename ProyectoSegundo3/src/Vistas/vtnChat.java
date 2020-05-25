@@ -7,9 +7,11 @@ package Vistas;
 
 import Clases.Archivos;
 import Clases.ColaDinamica;
+import Clases.Multilistas;
 import Clases.Nodo;
 import Clases.PilaDinamica;
 import Clases.Propiedades;
+import Clases.TablasHash;
 import cjb.ci.CtrlInterfaz;
 import cjb.ci.Mensaje;
 import java.io.FileNotFoundException;
@@ -27,28 +29,27 @@ public class vtnChat extends javax.swing.JFrame {
 
     PilaDinamica pdd = new PilaDinamica();
     PilaDinamica pdi = new PilaDinamica();
-    public static ColaDinamica cd = new ColaDinamica();
-    
+    public ColaDinamica cd = new ColaDinamica();
+//    ColaDinamica auxCd;
+
     String s = "";
     public Nodo raiz;
     public String d1;
     public String d2;
     public String d3;
 
-    public void transparenciaBotones()
-    {
+    public void transparenciaBotones() {
         jBRegresar.setOpaque(false);
         jBRegresar.setContentAreaFilled(false);
         jBRegresar.setBorderPainted(false);
     }
-    
-    
+
     /**
      * Creates new form vtnChat
      */
     public vtnChat() {
         initComponents();
-        
+
         transparenciaBotones();
     }
 
@@ -286,11 +287,6 @@ public class vtnChat extends javax.swing.JFrame {
     }//GEN-LAST:event_btnEnviarDerActionPerformed
 
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
-        ColaDinamica cdt = new ColaDinamica();
-        String si = "";
-        String sd = "";
-        Nodo aux = null;
-
         try {
             Archivos.carga(this);
         } catch (IOException ex) {
@@ -299,7 +295,30 @@ public class vtnChat extends javax.swing.JFrame {
             Logger.getLogger(vtnChat.class.getName()).log(Level.SEVERE, null, ex);
         }
 
-        while (cd.getFrente()!= null) {
+        String s = "";
+        raiz = Multilistas.busca(VtnGrupo.r, d1);
+        System.out.println(raiz.getEtq());
+        raiz = raiz.getAbj();
+        raiz = Multilistas.busca(raiz, d2);
+        System.out.println(raiz.getEtq());
+//        s = raiz.getEtq();
+        raiz = raiz.getAbj();
+        raiz = Multilistas.busca(raiz, d3);
+        System.out.println(raiz.getEtq());
+        if (raiz.getObj() != null) {
+            cd = (ColaDinamica) raiz.getObj();
+//            TNombre.setText(s);
+//            texto();
+        } //else
+//        {
+//            cd = new ColaDinamica();
+//        }
+        ColaDinamica cdt = new ColaDinamica();
+        String si = "";
+        String sd = "";
+        Nodo aux = null;
+
+        while (cd.getFrente() != null) {
             aux = cd.Elimina();
             if (aux.getTipo() == 1) {
                 si += aux.getObj().toString() + "\n";
@@ -339,7 +358,7 @@ public class vtnChat extends javax.swing.JFrame {
         String sd = "";
         Nodo auxC = null;
 
-        while (cd.getFrente()!= null) {
+        while (cd.getFrente() != null) {
             aux = (Nodo) cd.Elimina();
 
             while (pila1.getTope() != null) {
@@ -370,7 +389,7 @@ public class vtnChat extends javax.swing.JFrame {
             cd.Inserta(pila1.Elimina());
         }
 
-        while (cd.getFrente()!= null) {
+        while (cd.getFrente() != null) {
             auxC = cd.Elimina();
             if (auxC.getTipo() == 1) {
                 si += auxC.getObj().toString() + "\n";
@@ -423,12 +442,13 @@ public class vtnChat extends javax.swing.JFrame {
     }//GEN-LAST:event_btnEnviarIzqActionPerformed
 
     private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
-//        Propiedades p = new Propiedades(cd, VtnGrupo.r);
-//        try {
-//            Archivos.guardar(p, this);
-//        } catch (FileNotFoundException ex) {
-//            Logger.getLogger(vtnChat.class.getName()).log(Level.SEVERE, null, ex);
-//        }
+
+        Propiedades p = new Propiedades(VtnGrupo.r, TablasHash.arr);
+        try {
+            Archivos.guardar(p, this);
+        } catch (FileNotFoundException ex) {
+            Logger.getLogger(vtnChat.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_formWindowClosing
 
     private void btnBuscaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscaActionPerformed
@@ -485,6 +505,13 @@ public class vtnChat extends javax.swing.JFrame {
     }//GEN-LAST:event_btnEnviarIzqMouseClicked
 
     private void jBRegresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBRegresarActionPerformed
+        raiz.setObj(cd);
+        Propiedades p = new Propiedades(VtnGrupo.r, TablasHash.arr);
+        try {
+            Archivos.guardar(p, this);
+        } catch (FileNotFoundException ex) {
+            Logger.getLogger(vtnChat.class.getName()).log(Level.SEVERE, null, ex);
+        }
         this.setVisible(false);
     }//GEN-LAST:event_jBRegresarActionPerformed
 

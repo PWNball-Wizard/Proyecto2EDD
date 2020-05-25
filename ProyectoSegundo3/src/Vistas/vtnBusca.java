@@ -117,28 +117,28 @@ public class vtnBusca extends javax.swing.JFrame {
     }//GEN-LAST:event_btnBuscaChatKeyPressed
 
     private void btnBuscaChatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscaChatActionPerformed
-        // TODO add your handling code here:
-        int bandera = 0;
-        ColaDinamica cdt = new ColaDinamica();
-        Nodo aux = null;
-        String sb = "";
-
-        while (vtnChat.cd.getFrente()!= null) {
-            aux = vtnChat.cd.Elimina();
-            if (aux.getObj().toString().toLowerCase().contains(tfBusca.getText().toLowerCase())) {
-                sb += aux.getObj().toString() + "\n";
-                bandera = 1;
-            } else 
-            {
-                //
-                if (vtnChat.cd.getFrente()== null && bandera == 0) {
-                    Mensaje.error(this, "Dato no encontrado");
-                }
-            }            
-            cdt.Inserta(aux);
-        }
-        vtnChat.cd = cdt;
-        taBusca.setText(sb);        
+//        // TODO add your handling code here:
+//        int bandera = 0;
+//        ColaDinamica cdt = new ColaDinamica();
+//        Nodo aux = null;
+//        String sb = "";
+//
+//        while (vtnChat.cd.getFrente()!= null) {
+//            aux = vtnChat.cd.Elimina();
+//            if (aux.getObj().toString().toLowerCase().contains(tfBusca.getText().toLowerCase())) {
+//                sb += aux.getObj().toString() + "\n";
+//                bandera = 1;
+//            } else 
+//            {
+//                //
+//                if (vtnChat.cd.getFrente()== null && bandera == 0) {
+//                    Mensaje.error(this, "Dato no encontrado");
+//                }
+//            }            
+//            cdt.Inserta(aux);
+//        }
+//        vtnChat.cd = cdt;
+//        taBusca.setText(sb);        
     }//GEN-LAST:event_btnBuscaChatActionPerformed
 
     private void tfBuscaKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tfBuscaKeyTyped
@@ -155,10 +155,10 @@ public class vtnBusca extends javax.swing.JFrame {
     }//GEN-LAST:event_tfBuscaKeyPressed
 
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
-        if (vtnChat.cd.getFrente()== null) {
-            tfBusca.setEditable(false);
-            
-        }
+//        if (vtnChat.cd.getFrente()== null) {
+//            tfBusca.setEditable(false);
+//            
+//        }
     }//GEN-LAST:event_formWindowOpened
 
     private void tfBuscaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tfBuscaActionPerformed
