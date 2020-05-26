@@ -145,7 +145,7 @@ public class VtnGrupo extends javax.swing.JFrame {
         JPGrupos.setLayout(new BoxLayout(JPGrupos, BoxLayout.PAGE_AXIS));//CAMBIA EL ESTILO DE EL PANEL, PERMITE QUE LOS BOTONES NO OCUPEN TODA LA PANTALLA
 
         transparenciaBotones();
-
+        
     }
 
     /**
@@ -341,6 +341,11 @@ public class VtnGrupo extends javax.swing.JFrame {
 
     private void jBEliminarGActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBEliminarGActionPerformed
 
+        
+        //JPGrupos.removeAll();
+        
+        if (r!=null) 
+        {
         ArbolBinario abE = new ArbolBinario();
 
         String s = "";
@@ -361,98 +366,111 @@ public class VtnGrupo extends javax.swing.JFrame {
                 {
                     Nodo nom = new Nodo(null, s);
 
-            String[] etqs = new String[1];//arreglo de etiquetas
+                    String[] etqs = new String[1];//arreglo de etiquetas
 
-            etqs[0] = s;
+                    etqs[0] = s;
 
-            boolean c = false;
+                    boolean c = false;
 
-            if (cjb.ci.Mensaje.pregunta(this, "Eliminar grupo\nSe eliminaran los contactos "
-                    + "y conversaciones asociados a este grupo\n¿Continuar?") == 0) {
-                c = true;
-            }
-
-            if (c) {//hacer una mezca de las dos, es decir buscar primero en la multilista, en el grupo que se quiere eliminar, y eliminar uno por uno
-                //a los miembros de esa multilista.
-                
-                Nodo rb = Multilistas.busca(r, s);
-                
-                rb = rb.getAbj();
-                
-                if (rb != null) {
-                    System.out.println("/////////////////////////////\n/////////////////////////" +rb.getEtq());
-                    Nodo aux = rb;
-                    
-                    while (aux != null) {
-                        NodoArbol [] arrB = new NodoArbol[2];
-                        int pos = aux.getEtq().toUpperCase().codePointAt(0) -65;
-                        
-                        abE.elimina(TablasHash.arr[pos], aux.getEtq(), arrB);
-                        
-                        aux = aux.getSig();
-//                        System.out.println("*******************************\n*************************" +aux.getEtq());
+                    if (cjb.ci.Mensaje.pregunta(this, "Eliminar grupo\nSe eliminaran los contactos "
+                            + "y conversaciones asociados a este grupo\n¿Continuar?") == 0) {
+                        c = true;
                     }
-                }
-               
-//                int pos = s.toUpperCase().codePointAt(0) - 65;
-                
-                r = Multilistas.elimina(r, 0, etqs);
 
-                Propiedades p = new Propiedades(r, TablasHash.arr);
+                    if (c) {//hacer una mezca de las dos, es decir buscar primero en la multilista, en el grupo que se quiere eliminar, y eliminar uno por uno
+                        //a los miembros de esa multilista.
 
-                try {
-                    Archivos.guardar(p, this);
-                } catch (FileNotFoundException ex) {
-                    Logger.getLogger(vtnChat.class.getName()).log(Level.SEVERE, null, ex);
-                }
-            }
+                        Nodo rb = Multilistas.busca(r, s);
 
-            //
-            if (r != null) {
-                Nodo aux = r;
+                        rb = rb.getAbj();
 
-                while (aux != null) {
+                        if (rb != null) {
+                            System.out.println("/////////////////////////////\n/////////////////////////" +rb.getEtq());
+                            Nodo aux = rb;
 
-                    JButton boton = new JButton(aux.getEtq());
+                            while (aux != null) {
+                                NodoArbol [] arrB = new NodoArbol[2];
+                                int pos = aux.getEtq().toUpperCase().codePointAt(0) -65;
 
-                    Component componentes[] = JPGrupos.getComponents();
+                                abE.elimina(TablasHash.arr[pos], aux.getEtq(), arrB);
 
-                    for (int i = 0; i < componentes.length; i++) {
-                        System.out.println(((JButton) componentes[i]).getText());
-                        if (etqs[0].equals(((JButton) componentes[i]).getText().trim())) {
-                            JPGrupos.remove(i);
+                                aux = aux.getSig();
+        //                        System.out.println("*******************************\n*************************" +aux.getEtq());
+                            }
+                        }
+
+        //                int pos = s.toUpperCase().codePointAt(0) - 65;
+
+                        r = Multilistas.elimina(r, 0, etqs);
+                        
+                        Propiedades p = new Propiedades(r, TablasHash.arr);
+
+                        try {
+                            Archivos.guardar(p, this);
+                        } catch (FileNotFoundException ex) {
+                            Logger.getLogger(vtnChat.class.getName()).log(Level.SEVERE, null, ex);
                         }
                     }
 
-                    boton.addActionListener(new ActionListener()//pone una accion al boton
-                    {
-                        @Override
-                        public void actionPerformed(ActionEvent e)//accion del boton
-                        {
-                            VtnContacto c = new VtnContacto();
-                            c.d = boton.getText();
-                            c.setVisible(false);
+                    //
+                    if (r != null) {
+                        Nodo aux = r;
 
+                        while (aux != null) {
+
+                            JButton boton = new JButton(aux.getEtq());
+
+                            Component componentes[] = JPGrupos.getComponents();
+
+                            for (int i = 0; i < componentes.length; i++) {
+                                System.out.println(((JButton) componentes[i]).getText());
+                                if (etqs[0].equals(((JButton) componentes[i]).getText().trim())) {
+                                    JPGrupos.remove(i);
+                                }
+                            }
+
+                            boton.addActionListener(new ActionListener()//pone una accion al boton
+                            {
+                                @Override
+                                public void actionPerformed(ActionEvent e)//accion del boton
+                                {
+                                    VtnContacto c = new VtnContacto();
+                                    c.d = boton.getText();
+                                    c.setVisible(false);
+
+                                }
+                            });
+                            aux = aux.getSig();
                         }
-                    });
-                    aux = aux.getSig();
-                }
+                    }
 
-            }
-
-            if (c) {
-                JPGrupos.revalidate();
-                JPGrupos.repaint();
-            }
+            //if (c) {
+                //JPGrupos.revalidate();
+                //JPGrupos.repaint();
+            //}
                 }/////////////////////////////////////
             
             
         }
         
-        JPGrupos.revalidate();
-                JPGrupos.repaint();
+        //JPGrupos.revalidate();
+        //JPGrupos.repaint();
 
+        //JPGrupos.updateUI();
+        
         System.out.println(Multilistas.desp(r, 0));
+        
+        }
+        else
+        {
+            Mensaje.error(this, "La lista se encuentra vacia, no puede eliminar elementos");
+        }
+        
+        //JPGrupos.removeAll();
+        JPGrupos.revalidate();
+        JPGrupos.repaint();
+
+        //JPGrupos.updateUI();
     }//GEN-LAST:event_jBEliminarGActionPerformed
 
     private void jBBuscaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBBuscaActionPerformed
@@ -461,15 +479,15 @@ public class VtnGrupo extends javax.swing.JFrame {
         //nb=NOMBRE A BUSCAR
         
         
-        
+        //VALIDAR CUANDO LA LISTA ESTA VACIA
         
         /*if (r == null) 
         {
             JOptionPane.showMessageDialog(rootPane, "La agenda se encuentra vacia");
 
         }*/ 
-            //if (r!=null) 
-            //{
+            if (r!=null) 
+            {
             String nb = null;
 
             nb = JOptionPane.showInputDialog("Escriba el nombre del grupo que desea buscar");
@@ -515,11 +533,11 @@ public class VtnGrupo extends javax.swing.JFrame {
                 
                 
             }
-            //}
-            //else
-            //{
-            //    Mensaje.error(this,"La agenda se encuentra vacia");
-            //}
+            }
+            else
+            {
+                Mensaje.error(this,"La agenda se encuentra vacia");
+            }
             
     }//GEN-LAST:event_jBBuscaActionPerformed
 
@@ -540,7 +558,11 @@ public class VtnGrupo extends javax.swing.JFrame {
         }
 
 //        System.out.println(ab.enOrden(rb));
-        if (r == null) {
+        if (r == null) 
+        {
+            /*JPGrupos.removeAll();
+            JPGrupos.revalidate();
+            JPGrupos.repaint();*/
             Mensaje.error(this, "No hay datos en la lista");
         } else {
             Nodo aux = r;
@@ -574,6 +596,8 @@ public class VtnGrupo extends javax.swing.JFrame {
                 });
                 aux = aux.getSig();
             }
+            JPGrupos.revalidate();
+        JPGrupos.repaint();
         }
 
         JPGrupos.revalidate();
@@ -600,6 +624,7 @@ public class VtnGrupo extends javax.swing.JFrame {
 
         }
         
+        JPGrupos.removeAll();
         JPGrupos.revalidate();
         JPGrupos.repaint();
     }//GEN-LAST:event_formWindowOpened

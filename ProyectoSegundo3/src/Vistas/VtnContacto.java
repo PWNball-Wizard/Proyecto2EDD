@@ -501,6 +501,8 @@ public class VtnContacto extends javax.swing.JFrame {
 
     private void jBEliminarCActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBEliminarCActionPerformed
 
+        //JPContactos.removeAll();
+        
         String s = "";
 
         s = JOptionPane.showInputDialog("Escriba el nombre del contacto que desea eliminar");
