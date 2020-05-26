@@ -13,6 +13,7 @@ import Clases.NodoArbol;
 import Clases.Propiedades;
 import Clases.TablasHash;
 import static Vistas.VtnGrupo.ab;
+import static Vistas.VtnGrupo.r;
 import static Vistas.VtnGrupo.rb;
 import cjb.ci.Mensaje;
 import java.awt.Color;
@@ -79,9 +80,6 @@ public class VtnContacto extends javax.swing.JFrame {
             if (valorASCII > 97 && valorASCII < 123) {
                 valida = true;
                 //return false; //Se ha encontrado un caracter que no es letra 
-            }
-            if (valorASCII > 47 && valorASCII < 58) {
-                valida = true;
             }
 
         }
@@ -264,7 +262,7 @@ public class VtnContacto extends javax.swing.JFrame {
 
         if (s == null) {
             //Evita el NPE al salir del showInputDialog o presionar cancelar
-        } else if (valida(s) !=true) {
+        } else if (valida(s) ==false) {
             System.out.println("error");
         } else {
             if (validaC(r1, s)==true) 
@@ -377,100 +375,124 @@ public class VtnContacto extends javax.swing.JFrame {
 
         nom = JOptionPane.showInputDialog("Escriba el contacto que desea mover");
 
-        if (nom == null) {
+        if (nom == null) 
+        {
             b1 = false;
             //Evita el NPE al salir del showInputDialog o presionar cancelar
-        } else if (nom.length() == 0) {
-            Mensaje.error(this, "Los campos no deben estar vacios");
-        }
-
-        gpo = JOptionPane.showInputDialog("Escriba el grupo al que desea mover este contacto");
-        if (gpo == null) {
-            b2 = false;
-            //Evita el NPE al salir del showInputDialog o presionar cancelar
-        } else if (gpo.length() == 0) {
-            Mensaje.error(this, "Los campos no deben estar vacios");
-        }
-        if (b1 == false && b2 == false) {
-
-        } else if (nom.length() != 0 && gpo.length() != 0) {
-            String[] etqsE = new String[2];
-            etqsE[0] = d;
-            etqsE[1] = nom;
-
-            String[] etqsI = new String[2];
-            etqsI[0] = gpo;
-            etqsI[1] = nom;
-
-            VtnGrupo.r = Multilistas.mover(VtnGrupo.r, 0, etqsE, etqsI);
-
-            int pos = nom.toUpperCase().codePointAt(0) - 65;
-
-            if (TablasHash.arr[pos] != null) {
-
-                ArbolBinario aba = new ArbolBinario();
-
-                NodoArbol aux = aba.busca(TablasHash.arr[pos], nom);
-
-                if (aux != null) {
-
-                    String[] muestra = new String[2];
-
-                    muestra = aux.getPredecesores();
-
-                    System.out.println(muestra[0]);
-                    System.out.println(muestra[1]);
-
-                    aux.setPredecesores(etqsI);
-                    
-//                    ab.balancear(TablasHash.arr[pos]);/////////////////PRUEBA DE BALANCEO DE ARBOL
-
-                    Propiedades p = new Propiedades(VtnGrupo.r, TablasHash.arr);
-                    try {
-                        Archivos.guardar(p, this);
-                    } catch (FileNotFoundException ex) {
-                        Logger.getLogger(vtnChat.class.getName()).log(Level.SEVERE, null, ex);
-                    }
-
+        } else 
+        if (valida(nom)!=false) 
+        {
+            gpo = JOptionPane.showInputDialog("Escriba el grupo al que desea mover este contacto");
+            if (gpo != null) 
+            {
+                b2 = false;
+                //Evita el NPE al salir del showInputDialog o presionar cancelar
+                
+                if (validaC(r, gpo)==false)//significa que no encontro nada 
+                {
+                    Mensaje.error(this, "El grupo al cual desea mover el contacto no se encontro");
                 }
+                else
+                {
+                    //////////////////////////////////////
+                if (gpo.length() == 0) 
+                {
+                    Mensaje.error(this, "Los campos no deben estar vacios");
+                }
+                if (b1 == false && b2 == false) {
 
-            }
-            r1 = Multilistas.busca(VtnGrupo.r, d);
-            r1 = r1.getAbj();
+                } else if (nom.length() != 0 && gpo.length() != 0) {
+                    String[] etqsE = new String[2];
+                    etqsE[0] = d;
+                    etqsE[1] = nom;
 
-            if (r1 != null) {
-                Nodo aux = r1;
-                while (aux != null) {
-                    JButton boton = new JButton(aux.getEtq());
-                    System.out.println("Etiqueta en aux " + aux.getEtq());
-                    Component componentes[] = JPContactos.getComponents();
+                    String[] etqsI = new String[2];
+                    etqsI[0] = gpo;
+                    etqsI[1] = nom;
 
-                    System.out.println("Etiqueta en etqE pos Contactos " + etqsE[1]);
+                    VtnGrupo.r = Multilistas.mover(VtnGrupo.r, 0, etqsE, etqsI);
 
-                    for (int i = 0; i < componentes.length; i++) {
-                        System.out.println(((JButton) componentes[i]).getText());
-                        if (etqsE[1].equals(((JButton) componentes[i]).getText().trim())) {
-                            JPContactos.remove(i);
+                    int pos = nom.toUpperCase().codePointAt(0) - 65;
+
+                    if (TablasHash.arr[pos] != null) {
+
+                        ArbolBinario aba = new ArbolBinario();
+
+                        NodoArbol aux = aba.busca(TablasHash.arr[pos], nom);
+
+                        if (aux != null) {
+
+                            String[] muestra = new String[2];
+
+                            muestra = aux.getPredecesores();
+
+                            System.out.println(muestra[0]);
+                            System.out.println(muestra[1]);
+
+                            aux.setPredecesores(etqsI);
+
+        //                    ab.balancear(TablasHash.arr[pos]);/////////////////PRUEBA DE BALANCEO DE ARBOL
+
+                            Propiedades p = new Propiedades(VtnGrupo.r, TablasHash.arr);
+                            try {
+                                Archivos.guardar(p, this);
+                            } catch (FileNotFoundException ex) {
+                                Logger.getLogger(vtnChat.class.getName()).log(Level.SEVERE, null, ex);
+                            }
+
+                        }
+
+                    }
+                    r1 = Multilistas.busca(VtnGrupo.r, d);
+                    r1 = r1.getAbj();
+
+                    if (r1 != null) {
+                        Nodo aux = r1;
+                        while (aux != null) {
+                            JButton boton = new JButton(aux.getEtq());
+                            System.out.println("Etiqueta en aux " + aux.getEtq());
+                            Component componentes[] = JPContactos.getComponents();
+
+                            System.out.println("Etiqueta en etqE pos Contactos " + etqsE[1]);
+
+                            for (int i = 0; i < componentes.length; i++) {
+                                System.out.println(((JButton) componentes[i]).getText());
+                                if (etqsE[1].equals(((JButton) componentes[i]).getText().trim())) {
+                                    JPContactos.remove(i);
+                                }
+                            }
+                            boton.addActionListener(new ActionListener() {
+                                @Override
+                                public void actionPerformed(ActionEvent e) {
+                                    VtnHistorial h = new VtnHistorial();
+                                    h.d1 = d;
+                                    h.d2 = boton.getText();
+                                    h.setVisible(true);
+                                }
+                            }
+                            );
+                            aux = aux.getSig();
                         }
                     }
-                    boton.addActionListener(new ActionListener() {
-                        @Override
-                        public void actionPerformed(ActionEvent e) {
-                            VtnHistorial h = new VtnHistorial();
-                            h.d1 = d;
-                            h.d2 = boton.getText();
-                            h.setVisible(true);
-                        }
-                    }
-                    );
-                    aux = aux.getSig();
+
+                JPContactos.revalidate();//NO MOVER DE AQUI
+                JPContactos.repaint();
+
                 }
-            }
+                }
+                
+                
+            
+                
+                
+            } 
+                
+            
+        }/////////FIN DEL VALIDA
 
-            JPContactos.revalidate();
-            JPContactos.repaint();
-
-        }
+        JPContactos.revalidate();
+        JPContactos.repaint();
+            
         System.out.println(Multilistas.desp(VtnGrupo.r, 0));
         ///////////////
 
@@ -479,14 +501,17 @@ public class VtnContacto extends javax.swing.JFrame {
 
     private void jBEliminarCActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBEliminarCActionPerformed
 
+        //JPContactos.removeAll();
+        
         String s = "";
 
         s = JOptionPane.showInputDialog("Escriba el nombre del contacto que desea eliminar");
 
         if (s == null) {
             //Evita el NPE al salir del showInputDialog o presionar cancelar
-        } else if (s.length() == 0) {
-            Mensaje.error(this, "Debe rellenar el campo");
+        } else if (valida(s)==false) {
+            //Mensaje.error(this, "Debe rellenar el campo");
+            System.out.println("");
         } else {
             Nodo con = new Nodo(null, s);
             String[] etqs = new String[2];
@@ -627,8 +652,9 @@ public class VtnContacto extends javax.swing.JFrame {
 
         if (s == null) {
             //Evita el NPE al salir del showInputDialog o presionar cancelar
-        } else if (s.length() == 0) {
-            Mensaje.error(this, "Debe ecsribir un nombre");
+        } else if (valida(s)==false) {
+            //Mensaje.error(this, "Debe ecsribir un nombre");
+            System.out.println("error");
         } else {
 
             char ppC = s.charAt(0);///////////////////////////////////////////////////////////////////////////////////
