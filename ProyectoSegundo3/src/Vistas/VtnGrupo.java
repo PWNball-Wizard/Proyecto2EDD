@@ -27,6 +27,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
+import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
 /**
@@ -458,6 +459,9 @@ public class VtnGrupo extends javax.swing.JFrame {
 
         //JPGrupos.updateUI();
         
+        //this.setVisible(false);
+        //this.setVisible(true);
+        
         System.out.println(Multilistas.desp(r, 0));
         
         }
@@ -467,8 +471,19 @@ public class VtnGrupo extends javax.swing.JFrame {
         }
         
         //JPGrupos.removeAll();
+        //JPGrupos.revalidate();
+        //JPGrupos.repaint();
+        
+        //new VtnGrupo().setVisible(false);
+        //dispose();
+        
+        //this.setVisible(false);
+        
         JPGrupos.revalidate();
         JPGrupos.repaint();
+        //this.setVisible(true);
+        
+        //JFrame.
 
         //JPGrupos.updateUI();
     }//GEN-LAST:event_jBEliminarGActionPerformed
@@ -624,7 +639,7 @@ public class VtnGrupo extends javax.swing.JFrame {
 
         }
         
-        JPGrupos.removeAll();
+        //JPGrupos.removeAll();
         JPGrupos.revalidate();
         JPGrupos.repaint();
     }//GEN-LAST:event_formWindowOpened
