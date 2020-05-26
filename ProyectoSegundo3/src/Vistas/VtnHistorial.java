@@ -58,6 +58,21 @@ public class VtnHistorial extends javax.swing.JFrame {
 
     }
 
+    public static boolean validaH(Nodo r, String etq)//valida que el nombre de un grupo no se repita 
+    {
+        boolean aux = false;
+        while (r != null) {
+            if (r.getEtq().equals(etq)) {
+                aux = true;
+                break;
+            } else {
+                r = r.getSig();
+            }
+        }
+        System.out.println("EL DATO QUE ENCONTRE FUE:" + aux);
+        return aux;
+    }
+
     public VtnHistorial() {
         initComponents();
         this.setLocationRelativeTo(null);//CENTRA LA PANTALLA
@@ -177,24 +192,25 @@ public class VtnHistorial extends javax.swing.JFrame {
         } else if (s.length() != 0) {
 
             String partes[] = s.split("/");
-            
-            
 
             try {
-                
+
                 LocalDate.of(Integer.parseInt(partes[2]), Integer.parseInt(partes[1]), Integer.parseInt(partes[0]));
-                
+
             } catch (Exception e) {
                 Mensaje.error(this, "La fecha que ingresaste es incorrecta");
                 b2 = false;
             }
-                
-            
+
         }
 
         //AGREGAR AQUI METODO PARA VALIDAR LA FECHA
-        if (b1 == false) {
-
+        if (b1 == false || validaH(r2, s) == true) {
+            if (b1 == false) {
+                
+            }else{
+            Mensaje.error(this, "La fecha que ingresaste esta duplicada, porfavor ingresa una diferente");
+            }
         } else if (s.length() != 0 && b2 != false) {
 
             if (b2 = true) {
@@ -289,13 +305,11 @@ public class VtnHistorial extends javax.swing.JFrame {
         } else if (s.length() != 0) {
 
             String partes[] = s.split("/");
-            
-            
 
             try {
-                
+
                 LocalDate.of(Integer.parseInt(partes[2]), Integer.parseInt(partes[1]), Integer.parseInt(partes[0]));
-                
+
             } catch (Exception e) {
                 Mensaje.error(this, "La fecha que ingresaste es incorrecta");
                 b2 = false;
