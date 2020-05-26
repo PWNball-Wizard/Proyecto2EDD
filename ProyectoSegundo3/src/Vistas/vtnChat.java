@@ -347,7 +347,7 @@ public class vtnChat extends javax.swing.JFrame {
     }//GEN-LAST:event_formWindowOpened
 
     private void btnOrdenarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnOrdenarActionPerformed
-
+        
         PilaDinamica pila1 = new PilaDinamica();//para ordenar la cola
         PilaDinamica pila2 = new PilaDinamica();
         ColaDinamica cdt = new ColaDinamica();//para la cola mostrar en los textfield, y evitar que se pierdan datos en la cola
