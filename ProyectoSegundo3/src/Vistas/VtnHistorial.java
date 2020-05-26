@@ -18,6 +18,8 @@ import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.FileNotFoundException;
+import java.time.DateTimeException;
+import java.time.LocalDate;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.BoxLayout;
@@ -175,15 +177,19 @@ public class VtnHistorial extends javax.swing.JFrame {
         } else if (s.length() != 0) {
 
             String partes[] = s.split("/");
+            
+            
 
-            if (Integer.parseInt(partes[0]) > 31
-                    || Integer.parseInt(partes[0]) < 1
-                    || Integer.parseInt(partes[1]) > 12
-                    || Integer.parseInt(partes[1]) < 1
-                    || Integer.parseInt(partes[2]) < 0) {
+            try {
+                
+                LocalDate.of(Integer.parseInt(partes[2]), Integer.parseInt(partes[1]), Integer.parseInt(partes[0]));
+                
+            } catch (Exception e) {
                 Mensaje.error(this, "La fecha que ingresaste es incorrecta");
                 b2 = false;
             }
+                
+            
         }
 
         //AGREGAR AQUI METODO PARA VALIDAR LA FECHA
@@ -283,12 +289,14 @@ public class VtnHistorial extends javax.swing.JFrame {
         } else if (s.length() != 0) {
 
             String partes[] = s.split("/");
+            
+            
 
-            if (Integer.parseInt(partes[0]) > 31
-                    || Integer.parseInt(partes[0]) < 1
-                    || Integer.parseInt(partes[1]) > 12
-                    || Integer.parseInt(partes[1]) < 1
-                    || Integer.parseInt(partes[2]) < 0) {
+            try {
+                
+                LocalDate.of(Integer.parseInt(partes[2]), Integer.parseInt(partes[1]), Integer.parseInt(partes[0]));
+                
+            } catch (Exception e) {
                 Mensaje.error(this, "La fecha que ingresaste es incorrecta");
                 b2 = false;
             }
