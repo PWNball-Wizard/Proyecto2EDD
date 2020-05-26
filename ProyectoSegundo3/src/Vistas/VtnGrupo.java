@@ -115,6 +115,24 @@ public class VtnGrupo extends javax.swing.JFrame {
         return validatodo;
     }
     
+    public static boolean validaG(Nodo r, String etq)//valida que el nombre de un grupo no se repita 
+    {
+        boolean aux = false;
+        while (r != null)
+        {
+            if (r.getEtq().equals(etq))
+            {
+                aux = true;
+                break;
+            } else
+            {
+                r = r.getSig();
+            }
+        }
+        System.out.println("EL DATO QUE ENCONTRE FUE:"+aux);
+        return aux;
+    }
+    
 
     public VtnGrupo() {
         initComponents();
@@ -237,70 +255,85 @@ public class VtnGrupo extends javax.swing.JFrame {
         String s = "";
 
         s = JOptionPane.showInputDialog("Escriba el nombre de la categoria a añadir"); //ETIQUETA PARA LA CATEGORIA NUEVA
-
+        
         if (s == null) {
             //Evita el NPE al salir del showInputDialog o presionar cancelar
-        }else if (s.length() == 0|| valida(s) != true) {
-            Mensaje.error(this, "Debe ecsribir un nombre");
-        } else {
-
-            Nodo nom = new Nodo(null, s);
-
-            String[] etqs = new String[1];
-            //arreglo de etiquetas
-            //esta en 1 lo cual significa que esta en el nivel 0
+        }else if (s.length()==0) {
+            Mensaje.error(this, "Debe escribir un nombre");
+        } 
+        else 
+        {
             
-            etqs[0] = s;
-
-            r = Multilistas.inserta(r, nom, 0, etqs);
-
-            Propiedades p = new Propiedades(r, TablasHash.arr);
-
-            try {
-                Archivos.guardar(p, this);
-            } catch (FileNotFoundException ex) {
-                Logger.getLogger(vtnChat.class.getName()).log(Level.SEVERE, null, ex);
+            if (validaG(r,s)==true) 
+            {
+                Mensaje.error(this,"El grupo que desea ingresar se encuentra repetido, por favor ingrese uno diferente");
             }
+            else
+            {
+                Nodo nom = new Nodo(null, s);
 
-            if (r != null) {
-                Nodo aux = r;
+                String[] etqs = new String[1];
+                //arreglo de etiquetas
+                //esta en 1 lo cual significa que esta en el nivel 0
 
-                JPGrupos.removeAll();
+                etqs[0] = s;
 
-                while (aux != null) {
-                    JButton boton = new JButton(aux.getEtq());
+                r = Multilistas.inserta(r, nom, 0, etqs);
 
-                    boton.setBackground(Color.WHITE);//PONE EL FONDO DEL BOTON EN BLANCO
-                    boton.setForeground(Color.BLACK);//PONE LAS LETRAS COLOR NEGRO
-                    boton.setFont(new Font("arial", 1, 14));//CAMBIA LA FUENTE Y EL TAMAÑO
 
-                    //ESTABLECE UN TAMAÑO POR DEFECTO PARA LOS BOTONES
-                    boton.setMinimumSize(new Dimension(JPGrupos.getWidth(), 50));
-                    boton.setMaximumSize(new Dimension(JPGrupos.getWidth(), 50));
-                    boton.setPreferredSize(new Dimension(JPGrupos.getWidth(), 50));
 
-                    JPGrupos.add(boton);
 
-                    boton.addActionListener(new ActionListener()//pone una accion al boton
-                    {
-                        @Override
-                        public void actionPerformed(ActionEvent e)//accion del boton
-                        {
-                            VtnContacto c = new VtnContacto();
-                            c.d = boton.getText();
-                            c.setVisible(true);
 
-                        }
-                    });
-                    aux = aux.getSig();
+                Propiedades p = new Propiedades(r, TablasHash.arr);
+
+                try {
+                    Archivos.guardar(p, this);
+                } catch (FileNotFoundException ex) {
+                    Logger.getLogger(vtnChat.class.getName()).log(Level.SEVERE, null, ex);
                 }
 
-            }
+                if (r != null) {
+                    Nodo aux = r;
 
-            JPGrupos.revalidate();
-            JPGrupos.repaint();
+                    JPGrupos.removeAll();
+
+                    while (aux != null) {
+                        JButton boton = new JButton(aux.getEtq());
+
+                        boton.setBackground(Color.WHITE);//PONE EL FONDO DEL BOTON EN BLANCO
+                        boton.setForeground(Color.BLACK);//PONE LAS LETRAS COLOR NEGRO
+                        boton.setFont(new Font("arial", 1, 14));//CAMBIA LA FUENTE Y EL TAMAÑO
+
+                        //ESTABLECE UN TAMAÑO POR DEFECTO PARA LOS BOTONES
+                        boton.setMinimumSize(new Dimension(JPGrupos.getWidth(), 50));
+                        boton.setMaximumSize(new Dimension(JPGrupos.getWidth(), 50));
+                        boton.setPreferredSize(new Dimension(JPGrupos.getWidth(), 50));
+
+                        JPGrupos.add(boton);
+
+                        boton.addActionListener(new ActionListener()//pone una accion al boton
+                        {
+                            @Override
+                            public void actionPerformed(ActionEvent e)//accion del boton
+                            {
+                                VtnContacto c = new VtnContacto();
+                                c.d = boton.getText();
+                                c.setVisible(true);
+
+                            }
+                        });
+                        aux = aux.getSig();
+                    }
+
+                }
+
+                
+            }////////////////////////////////////////
         }
 
+        JPGrupos.revalidate();
+        JPGrupos.repaint();
+        
 
     }//GEN-LAST:event_jBAgregarGActionPerformed
 

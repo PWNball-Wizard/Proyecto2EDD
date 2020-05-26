@@ -105,6 +105,25 @@ public class VtnContacto extends javax.swing.JFrame {
         System.out.println("VALIDA TODO;" + validatodo);
         return validatodo;
     }
+    
+    
+    public static boolean validaC(Nodo r, String etq)//valida que el nombre de un grupo no se repita 
+    {
+        boolean aux = false;
+        while (r != null)
+        {
+            if (r.getEtq().equals(etq))
+            {
+                aux = true;
+                break;
+            } else
+            {
+                r = r.getSig();
+            }
+        }
+        System.out.println("EL DATO QUE ENCONTRE FUE:"+aux);
+        return aux;
+    }
 
     public VtnContacto() {
         initComponents();
@@ -245,10 +264,16 @@ public class VtnContacto extends javax.swing.JFrame {
 
         if (s == null) {
             //Evita el NPE al salir del showInputDialog o presionar cancelar
-        } else if (s.length() == 0) {
-            Mensaje.error(this, "Debe rellenar el campo");
+        } else if (valida(s) !=true) {
+            System.out.println("error");
         } else {
-            char ppC = s.charAt(0);///////////////////////////////////////////////////////////////////////////////////
+            if (validaC(r1, s)==true) 
+            {
+                Mensaje.error(this,"El nombre que desea ingresar se encuentra repetido, por favor ingrese uno diferente");
+            }
+            else
+            {
+                char ppC = s.charAt(0);///////////////////////////////////////////////////////////////////////////////////
             String pps = Character.toString(ppC);///////////Para insertar en la tabla Hash y en los ab////////////////
 
             Nodo con = new Nodo(null, s);
@@ -331,6 +356,10 @@ public class VtnContacto extends javax.swing.JFrame {
                     aux = aux.getSig();
                 }
             }
+            }///////////////////////////////
+            
+            
+            
 
             JPContactos.revalidate();
             JPContactos.repaint();
@@ -532,6 +561,10 @@ public class VtnContacto extends javax.swing.JFrame {
             }
 
         }
+        
+        JPContactos.revalidate();//AGREGADO PARA QUE LA PANTALLA SE REFRESQUE AL HACER UNA ELIMINACION
+        JPContactos.repaint();
+        
         System.out.println(Multilistas.desp(VtnGrupo.r, 0));
     }//GEN-LAST:event_jBEliminarCActionPerformed
 
