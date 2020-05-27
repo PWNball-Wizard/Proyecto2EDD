@@ -423,12 +423,15 @@ public class VtnGrupo extends javax.swing.JFrame {
 
                             Component componentes[] = JPGrupos.getComponents();
 
-                            for (int i = 0; i < componentes.length; i++) {
+                            
+                                for (int i = 0; i < componentes.length; i++) {
                                 System.out.println(((JButton) componentes[i]).getText());
                                 if (etqs[0].equals(((JButton) componentes[i]).getText().trim())) {
                                     JPGrupos.remove(i);
                                 }
                             }
+                                    
+                            
 
                             boton.addActionListener(new ActionListener()//pone una accion al boton
                             {
@@ -474,7 +477,8 @@ public class VtnGrupo extends javax.swing.JFrame {
         //JPGrupos.revalidate();
         //JPGrupos.repaint();
         
-        //new VtnGrupo().setVisible(false);
+        new VtnGrupo().setVisible(false);
+        new VtnGrupo().setVisible(true);
         //dispose();
         
         //this.setVisible(false);
@@ -485,7 +489,11 @@ public class VtnGrupo extends javax.swing.JFrame {
         
         //JFrame.
 
-        //JPGrupos.updateUI();
+        //JFrame.updateUI();
+        
+        JPGrupos.paintAll(this.getGraphics());
+        this.paintAll(this.getGraphics());
+        
     }//GEN-LAST:event_jBEliminarGActionPerformed
 
     private void jBBuscaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBBuscaActionPerformed
@@ -564,6 +572,8 @@ public class VtnGrupo extends javax.swing.JFrame {
 
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
 
+        JPGrupos.updateUI();
+        
         try {
             Archivos.carga(this);
         } catch (IOException ex) {
@@ -642,6 +652,9 @@ public class VtnGrupo extends javax.swing.JFrame {
         //JPGrupos.removeAll();
         JPGrupos.revalidate();
         JPGrupos.repaint();
+        
+        JPGrupos.updateUI();
+        
     }//GEN-LAST:event_formWindowOpened
 
     private void jBAsistenteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBAsistenteActionPerformed

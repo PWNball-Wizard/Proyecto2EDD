@@ -196,7 +196,7 @@ public class VtnContacto extends javax.swing.JFrame {
                 jBRegresarCActionPerformed(evt);
             }
         });
-        getContentPane().add(jBRegresarC, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 50, 50));
+        getContentPane().add(jBRegresarC, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 20, 50, 30));
 
         jBMoverC.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/moverNuevo1.png"))); // NOI18N
         jBMoverC.addActionListener(new java.awt.event.ActionListener() {
@@ -240,12 +240,12 @@ public class VtnContacto extends javax.swing.JFrame {
                 jBAsistenteActionPerformed(evt);
             }
         });
-        getContentPane().add(jBAsistente, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 530, 30, 30));
+        getContentPane().add(jBAsistente, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 530, 30, -1));
 
         jLFondoC.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/fondowhats.png"))); // NOI18N
         getContentPane().add(jLFondoC, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 70, -1, -1));
 
-        jLFondoC1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/fondowa.jpg"))); // NOI18N
+        jLFondoC1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/fondowa2.jpg"))); // NOI18N
         getContentPane().add(jLFondoC1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, 70));
 
         pack();
