@@ -445,10 +445,12 @@ public class VtnGrupo extends javax.swing.JFrame {
                         }
                     }
 
-            //if (c) {
+            if (c) {
                 //JPGrupos.revalidate();
                 //JPGrupos.repaint();
-            //}
+                //new VtnGrupo().setVisible(false);
+                //new VtnGrupo().setVisible(true);
+            }
                 }/////////////////////////////////////
             
             
@@ -470,6 +472,10 @@ public class VtnGrupo extends javax.swing.JFrame {
             Mensaje.error(this, "La lista se encuentra vacia, no puede eliminar elementos");
         }
         
+        JPGrupos.removeAll();
+        JPGrupos.updateUI();
+        
+        
         //JPGrupos.removeAll();
         //JPGrupos.revalidate();
         //JPGrupos.repaint();
@@ -479,8 +485,11 @@ public class VtnGrupo extends javax.swing.JFrame {
         
         //this.setVisible(false);
         
-        JPGrupos.revalidate();
-        JPGrupos.repaint();
+        //JPGrupos.revalidate();
+        //JPGrupos.repaint();
+        
+        
+        
         //this.setVisible(true);
         
         //JFrame.

@@ -18,7 +18,6 @@ import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.FileNotFoundException;
-import java.time.DateTimeException;
 import java.time.LocalDate;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -388,8 +387,20 @@ public class VtnHistorial extends javax.swing.JFrame {
             }
 
             if (c) {
-                JPHistorial.revalidate();
-                JPHistorial.repaint();
+                //JPHistorial.revalidate();
+                //JPHistorial.repaint();
+                //new VtnHistorial().setVisible(false);
+                //new VtnHistorial().setVisible(true);
+            
+                /*VtnContacto x = new VtnContacto();
+                x.setVisible(false);
+                x.d = d1;
+                x.r1 = Multilistas.busca(VtnGrupo.r, d1);
+                x.setVisible(true);*/
+                
+                JPHistorial.removeAll();
+                JPHistorial.updateUI();
+            
             }
 
 //                } else {
@@ -398,6 +409,11 @@ public class VtnHistorial extends javax.swing.JFrame {
         } else {
             Mensaje.error(this, "No puede haber campos vacios");
         }
+        
+        JPHistorial.removeAll();
+        JPHistorial.updateUI();
+
+        
         System.out.println(Multilistas.desp(VtnGrupo.r, 0));
     }//GEN-LAST:event_jBEliminarHActionPerformed
 

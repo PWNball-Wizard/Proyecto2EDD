@@ -581,14 +581,24 @@ public class VtnContacto extends javax.swing.JFrame {
             }
 
             if (c) {
-                JPContactos.revalidate();
-                JPContactos.repaint();
+                //JPContactos.revalidate();
+                //JPContactos.repaint();
+                                
+                
+               // new VtnContacto().setVisible(false);
+               //new VtnContacto().setVisible(true);
             }
 
         }
         
-        JPContactos.revalidate();//AGREGADO PARA QUE LA PANTALLA SE REFRESQUE AL HACER UNA ELIMINACION
-        JPContactos.repaint();
+        //JPContactos.revalidate();//AGREGADO PARA QUE LA PANTALLA SE REFRESQUE AL HACER UNA ELIMINACION
+        //JPContactos.repaint();
+        
+        JPContactos.removeAll();
+        JPContactos.updateUI();
+        
+        
+        
         
         System.out.println(Multilistas.desp(VtnGrupo.r, 0));
     }//GEN-LAST:event_jBEliminarCActionPerformed

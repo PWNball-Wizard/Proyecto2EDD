@@ -318,7 +318,9 @@ public class VtnW extends javax.swing.JFrame {
         //EN ESTA PARTE SE DEBE MANDAR EL TEXTO A LA PILA 1
         if (jTChat1.getText().length() == 0) {
             Mensaje.error(this, "Mensaje vacio"); //ENVIA UN MENSAJE DE ERROR EN CASO DE QUE NO HAYA ESCRITO NADA
-        } else {
+        } else 
+        
+        {
             Nodo n = new Nodo(1, jTChat1.getText());
 
             p1.Inserta(n);
@@ -557,31 +559,48 @@ public class VtnW extends javax.swing.JFrame {
 
             //System.out.println("CADENA A BUSCAR: "+buscar);
             //int acum=0;
-            for (i = 0; i < arrr.length; i++) {
-                if (arrr[i].compareTo(buscar) == 0)//NO ENTRA EN El CICLO 
+            
+            if (buscar!=null) 
+            {
+                
+                if (buscar.length()==0) 
                 {
-                    //jTConversacion.setText("DATO ENCONTRADo: "+ auxiliar.elimina().getObj());
-
-                    //Mensaje.exito(this,"DATO ENCONTRADO: "+ si[i]);
-                    bandera = true;
-                    s += arrr[i] + "\n";
-                    //System.out.println("VALOR DE BANDERA DENTRO DEL FOR"+bandera);
-                    //break;
-                    //acum=acum+1;
+                    Mensaje.error(this, "Campo vacio, debe introducir algun elemento a buscar");
                 }
-            }
+                else
+                {
+                    for (i = 0; i < arrr.length; i++) 
+                    {
+                        if (arrr[i].compareTo(buscar) == 0)//NO ENTRA EN El CICLO 
+                        {
+                            //jTConversacion.setText("DATO ENCONTRADo: "+ auxiliar.elimina().getObj());
 
-            //System.out.println("VALOR DE i:"+i);
-            //System.out.println("VALOR DE BANDERA FUERA DEL FOR"+bandera);
-            if (bandera == false) {
-                Mensaje.error(this, "DATO NO ENCONTRADO");
-            } else {
-//.compareToIgnoreCase(
-                Mensaje.exito(this, "DATO ENCONTRADO: ");
-                jTConversacion.setText(s);
-            }
+                            //Mensaje.exito(this,"DATO ENCONTRADO: "+ si[i]);
+                            bandera = true;
+                            s += arrr[i] + "\n";
+                            //System.out.println("VALOR DE BANDERA DENTRO DEL FOR"+bandera);
+                            //break;
+                            //acum=acum+1;
+                        }
+                    }
 
-            buscar = "";
+                    //System.out.println("VALOR DE i:"+i);
+                    //System.out.println("VALOR DE BANDERA FUERA DEL FOR"+bandera);
+                    if (bandera == false) {
+                        Mensaje.error(this, "DATO NO ENCONTRADO");
+                    } else {
+                        //.compareToIgnoreCase(
+                        Mensaje.exito(this, "DATO ENCONTRADO: ");
+                        jTConversacion.setText(s);
+                    }
+
+                    buscar = "";
+                }
+            }/////////////////
+            else
+            {
+                System.out.println("");
+            }
 
             //System.out.println("VALOR LIMPIO:"+buscar);
         }
@@ -595,23 +614,36 @@ public class VtnW extends javax.swing.JFrame {
         String sb = "";
 
         String s = JOptionPane.showInputDialog(null, "Ingrese dato a buscar");
-
-        while (cd.getFrente() != null) {
-            aux = cd.Elimina();
-            if (aux.getObj().toString().toLowerCase().contains(s.toLowerCase())) {
-                sb += aux.getObj().toString() + "\n";
-                bandera = 1;
-            } else {
-                //
-                if (cd.getFrente() == null && bandera == 0) {
-                    Mensaje.error(this, "Dato no encontrado");
-                }
+        
+        if (s!=null) 
+        {
+            if (s.length()==0) 
+            {
+                Mensaje.error(this, "Campo vacio, debe introducir el elemento a buscar");
             }
-            cdt.Inserta(aux);
+            else
+            {
+                while (cd.getFrente() != null) 
+                {
+                aux = cd.Elimina();
+                if (aux.getObj().toString().toLowerCase().contains(s.toLowerCase())) {
+                    sb += aux.getObj().toString() + "\n";
+                    bandera = 1;
+                } else {
+                    //
+                    if (cd.getFrente() == null && bandera == 0) {
+                        Mensaje.error(this, "Dato no encontrado");
+                    }
+                }
+                cdt.Inserta(aux);
+                }
+                c = cdt;
+                raiz.setObj(c);
+                jTConversacion.setText(sb);
+            }
         }
-        c = cdt;
-        raiz.setObj(c);
-        jTConversacion.setText(sb);
+
+        
 
     }
 
@@ -620,26 +652,34 @@ public class VtnW extends javax.swing.JFrame {
         s = "";
 
         ColaDinamica cmuestra = new ColaDinamica(); //DECLARA UNA COLA AUXILIAR LA CUAL CONTENDRA LOS DATOS A MOSTRAR EN EL CHAT
-
-        for (int i = 0; i < raiz.getNum(); i++) //FOR QUE RECORRE TODOS LOS DATOS QUE TIENE LA COLA
+        
+        if (cmuestra.getAtras()==null) 
         {
+            Mensaje.error(this,"No hay datos para mostrar");
+        }
+        else
+        {       
 
-            Nodo aux = new Nodo(c.Elimina().getObj());//CREA UN NODO PARA CADA OBJETO DE LA COLA
-
-            if (aux == null) //SI LA COLA ESTA VACIA DETIENE EL CICLO
+            for (int i = 0; i < raiz.getNum(); i++) //FOR QUE RECORRE TODOS LOS DATOS QUE TIENE LA COLA
             {
-                break;
+
+                Nodo aux = new Nodo(c.Elimina().getObj());//CREA UN NODO PARA CADA OBJETO DE LA COLA
+
+                if (aux == null) //SI LA COLA ESTA VACIA DETIENE EL CICLO
+                {
+                    break;
+                }
+
+                cmuestra.Inserta(aux);//INSERTA CADA DATO EN UN NODO
+                s += " " + String.valueOf(aux.getObj()) + "\n"; //OBTIENE EL VALOR DE INTERNO DE CADA OBJETO DEL NODO
             }
 
-            cmuestra.Inserta(aux);//INSERTA CADA DATO EN UN NODO
-            s += " " + String.valueOf(aux.getObj()) + "\n"; //OBTIENE EL VALOR DE INTERNO DE CADA OBJETO DEL NODO
-        }
+            jTConversacion.setText(s);
 
-        jTConversacion.setText(s);
-
-        for (int i = 0; i < raiz.getNum(); i++) {
-            Nodo aux = new Nodo(cmuestra.Elimina().getObj());
-            c.Inserta(aux);
+            for (int i = 0; i < raiz.getNum(); i++) {
+                Nodo aux = new Nodo(cmuestra.Elimina().getObj());
+                c.Inserta(aux);
+            }
         }
     }
 
@@ -660,37 +700,46 @@ public class VtnW extends javax.swing.JFrame {
                 break;
             }
         }
-
-        arr = new String[n];//DECLARA UN ARREGLO CON EL NUMERO DE DATOS QUE TIENE EL OBJETO
-
-        for (int i = 0; i < n; i++)//FOR QUE INSERTA EN EL ARREGLO LOS DATOS
+        
+        if (a.getAtras()==null) 
         {
-            try {
-                Nodo aux = new Nodo(a.Elimina().getObj());
-                c.Inserta(aux);
-                arr[i] = (String) aux.getObj();
-            } catch (NullPointerException ex) {
-                break;
-            }
+            Mensaje.error(this,"No hay datos para ordenar");
         }
+        else
+        {
+            arr = new String[n];//DECLARA UN ARREGLO CON EL NUMERO DE DATOS QUE TIENE EL OBJETO
 
-        for (int i = 0; i < n - 1; i++) {
-            for (int j = 0; j < n - 1; j++) {
-                if (arr[j].compareTo(arr[j + 1]) > 0) //compareTo METODO QUE COMPARA DOS CADENAS
-                {
-                    String tmp = arr[j + 1];
-                    arr[j + 1] = arr[j];
-                    arr[j] = tmp;
+            for (int i = 0; i < n; i++)//FOR QUE INSERTA EN EL ARREGLO LOS DATOS
+            {
+                try {
+                    Nodo aux = new Nodo(a.Elimina().getObj());
+                    c.Inserta(aux);
+                    arr[i] = (String) aux.getObj();
+                } catch (NullPointerException ex) {
+                    break;
                 }
             }
+
+            for (int i = 0; i < n - 1; i++) {
+                for (int j = 0; j < n - 1; j++) {
+                    if (arr[j].compareTo(arr[j + 1]) > 0) //compareTo METODO QUE COMPARA DOS CADENAS
+                    {
+                        String tmp = arr[j + 1];
+                        arr[j + 1] = arr[j];
+                        arr[j] = tmp;
+                    }
+                }
+            }
+
+            for (int i = 0; i < n; i++) {
+                System.out.println(arr[i]);
+                m += arr[i] + "\n";
+            }
+
+            jTConversacion.setText(m);
         }
 
-        for (int i = 0; i < n; i++) {
-            System.out.println(arr[i]);
-            m += arr[i] + "\n";
-        }
-
-        jTConversacion.setText(m);
+        
     }
 
     public void ordena(PilaDinamica p) //METODO QUE ORDENA LOS DATOS DE UNA PILA
@@ -711,36 +760,45 @@ public class VtnW extends javax.swing.JFrame {
                 break;
             }
         }
-
-        ar = new String[n];//DECLARA UN ARREGLO CON EL NUMERO DE DATOS QUE TIENE EL OBJETO
-
-        for (int i = 0; i < n; i++)//FOR QUE INSERTA EN EL ARREGLO LOS DATOS
+        
+        if (auxiliar.getTope()==null) 
         {
-            try {
-                Nodo aux = new Nodo(auxiliar.Elimina().getObj());
-                p.Inserta(aux);
-                ar[i] = (String) aux.getObj();
-            } catch (NullPointerException ex) {
-                break;
-            }
+            Mensaje.error(this,"El chat se encuentra vacio, no se puede ordenar");
         }
+        else
+        {
+            ar = new String[n];//DECLARA UN ARREGLO CON EL NUMERO DE DATOS QUE TIENE EL OBJETO
 
-        for (int i = 0; i < n - 1; i++) {
-            for (int j = 0; j < n - 1; j++) {
-                if (ar[j].compareTo(ar[j + 1]) > 0) {
-                    String tmp = ar[j + 1];
-                    ar[j + 1] = ar[j];
-                    ar[j] = tmp;
+            for (int i = 0; i < n; i++)//FOR QUE INSERTA EN EL ARREGLO LOS DATOS
+            {
+                try {
+                    Nodo aux = new Nodo(auxiliar.Elimina().getObj());
+                    p.Inserta(aux);
+                    ar[i] = (String) aux.getObj();
+                } catch (NullPointerException ex) {
+                    break;
                 }
             }
+
+            for (int i = 0; i < n - 1; i++) {
+                for (int j = 0; j < n - 1; j++) {
+                    if (ar[j].compareTo(ar[j + 1]) > 0) {
+                        String tmp = ar[j + 1];
+                        ar[j + 1] = ar[j];
+                        ar[j] = tmp;
+                    }
+                }
+            }
+
+            for (int i = 0; i < n; i++) {
+                System.out.println(ar[i]);
+                t += ar[i] + "\n";
+            }
+
+            jTConversacion.setText(t);
         }
 
-        for (int i = 0; i < n; i++) {
-            System.out.println(ar[i]);
-            t += ar[i] + "\n";
-        }
-
-        jTConversacion.setText(t);
+        
     }
 
     public void ordenap(PilaDinamica p) //METODO QUE ORDENA LOS DATOS DE UNA PILA
@@ -762,35 +820,43 @@ public class VtnW extends javax.swing.JFrame {
             }
         }
 
-        ar = new String[n];//DECLARA UN ARREGLO CON EL NUMERO DE DATOS QUE TIENE EL OBJETO
-
-        for (int i = 0; i < n; i++)//FOR QUE INSERTA EN EL ARREGLO LOS DATOS
+        if (auxiliar.getTope()==null) 
         {
-            try {
-                Nodo aux = new Nodo(auxiliar.Elimina().getObj());
-                p.Inserta(aux);
-                ar[i] = (String) aux.getObj();
-            } catch (NullPointerException ex) {
-                break;
-            }
+            Mensaje.error(this,"El chat se encuentra vacio, no se puede ordenar");
         }
+        else
+        {
+        
+            ar = new String[n];//DECLARA UN ARREGLO CON EL NUMERO DE DATOS QUE TIENE EL OBJETO
 
-        for (int i = 0; i < n - 1; i++) {
-            for (int j = 0; j < n - 1; j++) {
-                if (ar[j].compareTo(ar[j + 1]) > 0) {
-                    String tmp = ar[j + 1];
-                    ar[j + 1] = ar[j];
-                    ar[j] = tmp;
+            for (int i = 0; i < n; i++)//FOR QUE INSERTA EN EL ARREGLO LOS DATOS
+            {
+                try {
+                    Nodo aux = new Nodo(auxiliar.Elimina().getObj());
+                    p.Inserta(aux);
+                    ar[i] = (String) aux.getObj();
+                } catch (NullPointerException ex) {
+                    break;
                 }
             }
-        }
 
-        for (int i = 0; i < n; i++) {
-            System.out.println(ar[i]);
-            t += ar[i] + "\n";
-        }
+            for (int i = 0; i < n - 1; i++) {
+                for (int j = 0; j < n - 1; j++) {
+                    if (ar[j].compareTo(ar[j + 1]) > 0) {
+                        String tmp = ar[j + 1];
+                        ar[j + 1] = ar[j];
+                        ar[j] = tmp;
+                    }
+                }
+            }
 
-        jTConversacion.setText(t);
+            for (int i = 0; i < n; i++) {
+                System.out.println(ar[i]);
+                t += ar[i] + "\n";
+            }
+
+            jTConversacion.setText(t);
+        }
     }
 
     /**
