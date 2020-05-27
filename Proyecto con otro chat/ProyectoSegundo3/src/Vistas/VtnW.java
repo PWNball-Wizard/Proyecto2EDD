@@ -53,7 +53,7 @@ public class VtnW extends javax.swing.JFrame {
         jBEnviar2.setOpaque(false);
         jBEnviar2.setContentAreaFilled(false);
         jBEnviar2.setBorderPainted(false);
-        
+
         jBMostrarTexto.setOpaque(false);
         jBMostrarTexto.setContentAreaFilled(false);
         jBMostrarTexto.setBorderPainted(false);
@@ -69,36 +69,32 @@ public class VtnW extends javax.swing.JFrame {
         jBOrdenar2.setOpaque(false);
         jBOrdenar2.setContentAreaFilled(false);
         jBOrdenar2.setBorderPainted(false);
-        
+
         jBRegresar.setOpaque(false);
         jBRegresar.setContentAreaFilled(false);
         jBRegresar.setBorderPainted(false);
-        
+
         jBBuscarC.setOpaque(false);
         jBBuscarC.setContentAreaFilled(false);
         jBBuscarC.setBorderPainted(false);
 
     }
-    
-    
-    
-    
+
     public VtnW() {
         initComponents();
         this.setLocationRelativeTo(null);//CENTRA LA PANTALLA
-        
+
         jLChat.setForeground(Color.WHITE); //PONE EL COLOR DE LA ETIQUETA DE GRUPOS EN BLANCO
         jTConversacion.setBackground(Color.WHITE);//PONE BLANCO EL COLOR DEL PANEL
-        
+
         jLOriginal.setForeground(Color.WHITE);
         jLOrdenar.setForeground(Color.WHITE);
         jLBuscar.setForeground(Color.WHITE);
-        
-        
+
         transparenciaBotones();
-        
+
         jTConversacion.setLineWrap(true);
-        
+
     }
 
     /**
@@ -176,9 +172,17 @@ public class VtnW extends javax.swing.JFrame {
         });
         getContentPane().add(jTChat1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 140, 200, 50));
 
+        jTChat2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTChat2ActionPerformed(evt);
+            }
+        });
         jTChat2.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 jTChat2KeyPressed(evt);
+            }
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jTChat2KeyTyped(evt);
             }
         });
         getContentPane().add(jTChat2, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 140, 200, 50));
@@ -339,7 +343,7 @@ public class VtnW extends javax.swing.JFrame {
             raiz.setNum(raiz.getNum() + 1);
             CtrlInterfaz.limpia(jTChat2);
             raiz.setObj(c);
-            raiz.setPila1(p2);
+            raiz.setPila2(p2);
             muestra();
         }
     }//GEN-LAST:event_jBEnviar2ActionPerformed
@@ -369,7 +373,9 @@ public class VtnW extends javax.swing.JFrame {
     }//GEN-LAST:event_jBOrdenaCActionPerformed
 
     private void jTChat1KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTChat1KeyTyped
-
+        if (jTChat1.getText().length() == 11) {
+            evt.consume();
+        }
     }//GEN-LAST:event_jTChat1KeyTyped
 
     private void jBRegresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBRegresarActionPerformed
@@ -406,7 +412,6 @@ public class VtnW extends javax.swing.JFrame {
             c = (ColaDinamica) raiz.getObj();
             p1 = (PilaDinamica) raiz.getPila1();
             p2 = (PilaDinamica) raiz.getPila2();
-            
 
             lNombreUser.setText(s);
 //            texto();
@@ -416,11 +421,9 @@ public class VtnW extends javax.swing.JFrame {
 //        }
 
 //        ColaDinamica cdt = new ColaDinamica();
-        
 //        String si = "";
 //        String sd = "";
 //        Nodo aux = null;
-
 //        while (c.getFrente() != null) {
 //            aux = c.Elimina();
 //            if (aux.getTipo() == 1) {
@@ -443,14 +446,31 @@ public class VtnW extends javax.swing.JFrame {
 //            }
 //        }
 //        c = cdt;
-
         muestra();
 
     }//GEN-LAST:event_formWindowOpened
 
     private void jBBuscarCActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBBuscarCActionPerformed
-        // TODO add your handling code here:
+
+        buscaC(c);
+//        vtnBusca bus = new vtnBusca();
+//
+//        bus.cd = (ColaDinamica) raiz.getObj();
+//
+//        bus.setVisible(true);
+
+//    this.setVisible(false);
     }//GEN-LAST:event_jBBuscarCActionPerformed
+
+    private void jTChat2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTChat2ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTChat2ActionPerformed
+
+    private void jTChat2KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTChat2KeyTyped
+        if (jTChat2.getText().length() == 11) {
+            evt.consume();
+        }
+    }//GEN-LAST:event_jTChat2KeyTyped
 
 //    public void buscar(PilaDinamica p)
 //    {
@@ -494,6 +514,7 @@ public class VtnW extends javax.swing.JFrame {
     public void buscare(PilaDinamica p) {
         int n = 0;
         String arrr[];
+        String s = "";
         boolean bandera = false;
         int i;
 
@@ -543,10 +564,10 @@ public class VtnW extends javax.swing.JFrame {
 
                     //Mensaje.exito(this,"DATO ENCONTRADO: "+ si[i]);
                     bandera = true;
+                    s += arrr[i] + "\n";
                     //System.out.println("VALOR DE BANDERA DENTRO DEL FOR"+bandera);
                     //break;
                     //acum=acum+1;
-                    break;
                 }
             }
 
@@ -555,14 +576,43 @@ public class VtnW extends javax.swing.JFrame {
             if (bandera == false) {
                 Mensaje.error(this, "DATO NO ENCONTRADO");
             } else {
-
-                Mensaje.exito(this, "DATO ENCONTRADO: " + arrr[i]);
+//.compareToIgnoreCase(
+                Mensaje.exito(this, "DATO ENCONTRADO: ");
+                jTConversacion.setText(s);
             }
 
             buscar = "";
 
             //System.out.println("VALOR LIMPIO:"+buscar);
         }
+    }
+
+    public void buscaC(ColaDinamica cd) {
+
+        int bandera = 0;
+        ColaDinamica cdt = new ColaDinamica();
+        Nodo aux = null;
+        String sb = "";
+
+        String s = JOptionPane.showInputDialog(null, "Ingrese dato a buscar");
+
+        while (cd.getFrente() != null) {
+            aux = cd.Elimina();
+            if (aux.getObj().toString().toLowerCase().contains(s.toLowerCase())) {
+                sb += aux.getObj().toString() + "\n";
+                bandera = 1;
+            } else {
+                //
+                if (cd.getFrente() == null && bandera == 0) {
+                    Mensaje.error(this, "Dato no encontrado");
+                }
+            }
+            cdt.Inserta(aux);
+        }
+        c = cdt;
+        raiz.setObj(c);
+        jTConversacion.setText(sb);
+
     }
 
     public void muestra() //METODO QUE MUESTRA LOS DATOS DE LA PILA EN EL CHAT PRINCIPAL
@@ -593,7 +643,7 @@ public class VtnW extends javax.swing.JFrame {
         }
     }
 
-    public void ordenac(ColaDinamica c)//METODO QUE ORDENA LOS DATOS DE LA COLA
+    public void ordenac(ColaDinamica cd)//METODO QUE ORDENA LOS DATOS DE LA COLA
     {
         String m = "";//Mensaje
         String arr[];//Arreglo
@@ -642,7 +692,7 @@ public class VtnW extends javax.swing.JFrame {
 
         jTConversacion.setText(m);
     }
-    
+
     public void ordena(PilaDinamica p) //METODO QUE ORDENA LOS DATOS DE UNA PILA
     {
 

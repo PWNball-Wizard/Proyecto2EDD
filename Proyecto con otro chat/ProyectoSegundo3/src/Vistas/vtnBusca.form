@@ -50,7 +50,7 @@
           </AuxValues>
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-              <AbsoluteConstraints x="30" y="80" width="401" height="190"/>
+              <AbsoluteConstraints x="30" y="90" width="401" height="180"/>
             </Constraint>
           </Constraints>
 
@@ -100,7 +100,7 @@
         <Component class="javax.swing.JButton" name="btnBuscaChat">
           <Properties>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="3" name="/multimedia/aceptar-esquema-de-boton-circular.png"/>
+              <Image iconType="3" name="/imagenes/aceptar-esquema-de-boton-circular.png"/>
             </Property>
             <Property name="borderPainted" type="boolean" value="false"/>
             <Property name="contentAreaFilled" type="boolean" value="false"/>
@@ -111,7 +111,7 @@
           </Events>
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-              <AbsoluteConstraints x="207" y="53" width="-1" height="-1"/>
+              <AbsoluteConstraints x="320" y="50" width="90" height="40"/>
             </Constraint>
           </Constraints>
         </Component>

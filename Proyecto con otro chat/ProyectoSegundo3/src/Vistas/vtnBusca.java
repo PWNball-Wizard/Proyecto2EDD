@@ -17,6 +17,8 @@ import cjb.ci.Validaciones;
  */
 public class vtnBusca extends javax.swing.JFrame {
 
+    public ColaDinamica cd = new ColaDinamica();
+
     /**
      * Creates new form vtnBusca
      */
@@ -57,7 +59,7 @@ public class vtnBusca extends javax.swing.JFrame {
         taBusca.setRows(5);
         jScrollPane1.setViewportView(taBusca);
 
-        jpFondo2.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 80, 401, 190));
+        jpFondo2.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 90, 401, 180));
 
         jLabel1.setFont(new java.awt.Font("Microsoft JhengHei UI", 3, 12)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
@@ -80,7 +82,7 @@ public class vtnBusca extends javax.swing.JFrame {
         });
         jpFondo2.add(tfBusca, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 20, 183, -1));
 
-        btnBuscaChat.setIcon(new javax.swing.ImageIcon(getClass().getResource("/multimedia/aceptar-esquema-de-boton-circular.png"))); // NOI18N
+        btnBuscaChat.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/aceptar-esquema-de-boton-circular.png"))); // NOI18N
         btnBuscaChat.setBorderPainted(false);
         btnBuscaChat.setContentAreaFilled(false);
         btnBuscaChat.addActionListener(new java.awt.event.ActionListener() {
@@ -93,7 +95,7 @@ public class vtnBusca extends javax.swing.JFrame {
                 btnBuscaChatKeyPressed(evt);
             }
         });
-        jpFondo2.add(btnBuscaChat, new org.netbeans.lib.awtextra.AbsoluteConstraints(207, 53, -1, -1));
+        jpFondo2.add(btnBuscaChat, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 50, 90, 40));
 
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/fondoarribabusca.jpg"))); // NOI18N
         jpFondo2.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
@@ -117,28 +119,30 @@ public class vtnBusca extends javax.swing.JFrame {
     }//GEN-LAST:event_btnBuscaChatKeyPressed
 
     private void btnBuscaChatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscaChatActionPerformed
-//        // TODO add your handling code here:
-//        int bandera = 0;
-//        ColaDinamica cdt = new ColaDinamica();
-//        Nodo aux = null;
-//        String sb = "";
-//
-//        while (vtnChat.cd.getFrente()!= null) {
-//            aux = vtnChat.cd.Elimina();
-//            if (aux.getObj().toString().toLowerCase().contains(tfBusca.getText().toLowerCase())) {
-//                sb += aux.getObj().toString() + "\n";
-//                bandera = 1;
-//            } else 
-//            {
-//                //
-//                if (vtnChat.cd.getFrente()== null && bandera == 0) {
-//                    Mensaje.error(this, "Dato no encontrado");
-//                }
-//            }            
-//            cdt.Inserta(aux);
-//        }
-//        vtnChat.cd = cdt;
-//        taBusca.setText(sb);        
+        // TODO add your handling code here:
+
+        VtnW chat = new VtnW();
+
+        int bandera = 0;
+        ColaDinamica cdt = new ColaDinamica();
+        Nodo aux = null;
+        String sb = "";
+
+        while (cd.getFrente() != null) {
+            aux = cd.Elimina();
+            if (aux.getObj().toString().toLowerCase().contains(tfBusca.getText().toLowerCase())) {
+                sb += aux.getObj().toString() + "\n";
+                bandera = 1;
+            } else {
+                //
+                if (cd.getFrente() == null && bandera == 0) {
+                    Mensaje.error(this, "Dato no encontrado");
+                }
+            }
+            cdt.Inserta(aux);
+        }
+        cd = cdt;
+        taBusca.setText(sb);
     }//GEN-LAST:event_btnBuscaChatActionPerformed
 
     private void tfBuscaKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tfBuscaKeyTyped
