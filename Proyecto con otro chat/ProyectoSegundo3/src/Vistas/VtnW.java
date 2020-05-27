@@ -653,13 +653,6 @@ public class VtnW extends javax.swing.JFrame {
 
         ColaDinamica cmuestra = new ColaDinamica(); //DECLARA UNA COLA AUXILIAR LA CUAL CONTENDRA LOS DATOS A MOSTRAR EN EL CHAT
         
-        if (cmuestra.getAtras()==null) 
-        {
-            Mensaje.error(this,"No hay datos para mostrar");
-        }
-        else
-        {       
-
             for (int i = 0; i < raiz.getNum(); i++) //FOR QUE RECORRE TODOS LOS DATOS QUE TIENE LA COLA
             {
 
@@ -680,7 +673,7 @@ public class VtnW extends javax.swing.JFrame {
                 Nodo aux = new Nodo(cmuestra.Elimina().getObj());
                 c.Inserta(aux);
             }
-        }
+        
     }
 
     public void ordenac(ColaDinamica cd)//METODO QUE ORDENA LOS DATOS DE LA COLA
