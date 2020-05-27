@@ -429,7 +429,7 @@ public class VtnW extends javax.swing.JFrame {
         raiz = raiz.getAbj();
         raiz = Multilistas.busca(raiz, d2);
         System.out.println(raiz.getEtq());
-//        s = raiz.getEtq();
+        s = raiz.getEtq();
         raiz = raiz.getAbj();
         raiz = Multilistas.busca(raiz, d3);
         System.out.println(raiz.getEtq());
@@ -439,7 +439,7 @@ public class VtnW extends javax.swing.JFrame {
             p2 = (PilaDinamica) raiz.getPila2();
             
 
-//            TNombre.setText(s);
+            lNombreUser.setText(s);
 //            texto();
         } //else
 //        {
