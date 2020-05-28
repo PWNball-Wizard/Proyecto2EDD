@@ -6,7 +6,6 @@
 package Clases;
 
 import Vistas.VtnGrupo;
-import Vistas.vtnChat;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
@@ -23,7 +22,7 @@ public class Archivos {
 
     public static void guardar(Propiedades obj, JFrame jf) throws FileNotFoundException {
 
-        ////////////////////////////////////////////////
+        
         
         try {
             FileOutputStream fos = new FileOutputStream("datos.dat");
@@ -47,38 +46,16 @@ public class Archivos {
             
             Propiedades p = (Propiedades) arch.readObject();
             
-//            vtnChat.cd = p.c;
-            
             VtnGrupo.r = p.getR();
             
             TablasHash.arr = p.getArr();
           
-            
-//            Object[] aux = (Object[]) arch.readObject();
-//            //
-//            for (int i = 0; i < aux.length; i++) {
-//                if (aux[i] instanceof ColaDinamica) {
-//                    vtnChat.cd = (ColaDinamica) aux[i];
-//                } else {
-//
-//                    VtnGrupo.r = (Nodo) aux[i];
-//
-//                }
-//            }
-
-//            if (arch.readObject() instanceof ColaDinamica) {
-//                vtnChat.cd = (ColaDinamica)arch.readObject();
-//            }else{
-//                
-//                VtnGrupo.r = (Nodo) arch.readObject();
-//                
-//            }
             arch.close();
 
         } catch (FileNotFoundException ex) {
-//            Mensaje.error(jf, "No se encontró el archivo para carga");
+//        
         } catch (Exception er) {
-//            Mensaje.error(jf, "Error..." + er.toString());
+//         
         }
     }
 

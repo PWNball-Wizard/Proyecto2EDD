@@ -281,18 +281,15 @@ public class VtnContacto extends javax.swing.JFrame {
 
                 if (TablasHash.arr[pos] == null) {
 
-//            rb = null;
                     System.out.println(pos);
 
                     TablasHash.arr[pos] = ab.inserta(rb, nomNA);///falta que inserte el primer dato, no lo inserta porque se borra
 
-//            rb = TablasHash.arr[pos];
                     ab.inserta(TablasHash.arr[pos], nomNAS);
 
                     System.out.println("Muestra en el inserta" + TablasHash.arr[pos].getEtq());
                 } else {
 
-//                rb = TablasHash.arr[pos];
                     ab.inserta(TablasHash.arr[pos], nomNAS);
 
                     System.out.println(TablasHash.arr[pos].getEtq());
@@ -301,16 +298,15 @@ public class VtnContacto extends javax.swing.JFrame {
 
                     System.out.println("Muestra en el inserta" + TablasHash.arr[pos].getEtq());
 
-//                System.out.println("Muestra en la raiz en nodo arbol"+ rb.getEtq());
                 }
 
-//            abB.balancear(TablasHash.arr[pos]);/////////////////PRUEBA DE BALANCEO DE ARBOL
+//            
                 Propiedades p = new Propiedades(VtnGrupo.r, TablasHash.arr);
 
                 try {
                     Archivos.guardar(p, this);
                 } catch (FileNotFoundException ex) {
-                    Logger.getLogger(vtnChat.class.getName()).log(Level.SEVERE, null, ex);
+                    Logger.getLogger(VtnW.class.getName()).log(Level.SEVERE, null, ex);
                 }
 
                 r1 = Multilistas.busca(VtnGrupo.r, d); //buscar en donde vas a insertar
@@ -346,7 +342,7 @@ public class VtnContacto extends javax.swing.JFrame {
                         aux = aux.getSig();
                     }
                 }
-            }///////////////////////////////
+            }
 
             JPContactos.revalidate();
             JPContactos.repaint();
@@ -378,7 +374,7 @@ public class VtnContacto extends javax.swing.JFrame {
                 {
                     Mensaje.error(this, "El grupo al cual desea mover el contacto no se encontro");
                 } else {
-                    //////////////////////////////////////
+
                     if (gpo.length() == 0) {
                         Mensaje.error(this, "Los campos no deben estar vacios");
                     }
@@ -420,12 +416,11 @@ public class VtnContacto extends javax.swing.JFrame {
 
                                         aux.setPredecesores(etqsI);
 
-                                        //                    ab.balancear(TablasHash.arr[pos]);/////////////////PRUEBA DE BALANCEO DE ARBOL
                                         Propiedades p = new Propiedades(VtnGrupo.r, TablasHash.arr);
                                         try {
                                             Archivos.guardar(p, this);
                                         } catch (FileNotFoundException ex) {
-                                            Logger.getLogger(vtnChat.class.getName()).log(Level.SEVERE, null, ex);
+                                            System.out.println(" No se encontro el archivo ");
                                         }
 
                                     }
@@ -505,7 +500,6 @@ public class VtnContacto extends javax.swing.JFrame {
                     + "y conversaciones asociados a este grupo\n¿Continuar?") == 0) {
                 c = true;
             }
-////////////////////////////////////////////////////esta liminacion ya esta correcta
             if (c) {
                 VtnGrupo.r = Multilistas.elimina(VtnGrupo.r, 0, etqs);
 
@@ -523,7 +517,7 @@ public class VtnContacto extends javax.swing.JFrame {
                     try {
                         Archivos.guardar(p, this);
                     } catch (FileNotFoundException ex) {
-                        Logger.getLogger(vtnChat.class.getName()).log(Level.SEVERE, null, ex);
+                        System.out.println("No se encontro el archivo");
                     }
                 } else {
                     Mensaje.error(this, "No hay datos en esta posicion del arreglo");
@@ -532,7 +526,7 @@ public class VtnContacto extends javax.swing.JFrame {
 
             r1 = Multilistas.busca(VtnGrupo.r, d);
             r1 = r1.getAbj();
-//            JPContactos.removeAll();
+
             if (r1 != null) {
                 Nodo aux = r1;
                 while (aux != null) {
@@ -561,19 +555,7 @@ public class VtnContacto extends javax.swing.JFrame {
             } else {
                 JPContactos.removeAll();
             }
-
-            if (c) {
-                //JPContactos.revalidate();
-                //JPContactos.repaint();
-
-                // new VtnContacto().setVisible(false);
-                //new VtnContacto().setVisible(true);
-            }
-
         }
-
-        //JPContactos.revalidate();//AGREGADO PARA QUE LA PANTALLA SE REFRESQUE AL HACER UNA ELIMINACION
-        //JPContactos.repaint();
         JPContactos.updateUI();
 
         System.out.println(Multilistas.desp(VtnGrupo.r, 0));
@@ -582,7 +564,6 @@ public class VtnContacto extends javax.swing.JFrame {
     private void jBRegresarCActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBRegresarCActionPerformed
         new VtnGrupo().setVisible(true);
         dispose();
-        //this.setVisible(false);
     }//GEN-LAST:event_jBRegresarCActionPerformed
 
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
@@ -619,16 +600,9 @@ public class VtnContacto extends javax.swing.JFrame {
             }
         }
 
-//        ArbolBinario arbb = new ArbolBinario();
-//        
-//        NodoArbol aux = arbb.busca(TablasHash.arr[1], "Brayan");
-//        
-//        String [] guarda = aux.getPredecesores();
-//        
-//        System.out.println("Mostrando predesesores " + guarda[0] + "\n" +guarda[1]);
         JPContactos.revalidate();
         JPContactos.repaint();
-//        System.out.println(TablasHash.muestra());
+
     }//GEN-LAST:event_formWindowOpened
 
     private void jBBuscaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBBuscaActionPerformed
@@ -660,21 +634,19 @@ public class VtnContacto extends javax.swing.JFrame {
 
                     String grupo = pr[0];
                     String contacto = pr[1];
-///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
                     Nodo r2 = Multilistas.busca(VtnGrupo.r, grupo);
 
                     r2 = r2.getAbj();
                     r2 = Multilistas.busca(r2, contacto);
 
-//                    JPHistorial.removeAll();
-//                    r2 = r2.getAbj();
+
                     if (r2 != null) {
                         VtnHistorial h = new VtnHistorial();
                         h.d1 = grupo;
                         h.d2 = contacto;
                         h.setVisible(true);
                         dispose();
-//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
                     } else {
 

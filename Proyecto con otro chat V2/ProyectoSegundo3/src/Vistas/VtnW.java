@@ -38,14 +38,6 @@ public class VtnW extends javax.swing.JFrame {
     public String d3;
 
     public void transparenciaBotones() {
-        jBBuscar1.setOpaque(false);
-        jBBuscar1.setContentAreaFilled(false);
-        jBBuscar1.setBorderPainted(false);
-
-        jBBuscar2.setOpaque(false);
-        jBBuscar2.setContentAreaFilled(false);
-        jBBuscar2.setBorderPainted(false);
-
         jBEnviar1.setOpaque(false);
         jBEnviar1.setContentAreaFilled(false);
         jBEnviar1.setBorderPainted(false);
@@ -114,11 +106,7 @@ public class VtnW extends javax.swing.JFrame {
         jBEnviar2 = new javax.swing.JButton();
         jBOrdenar1 = new javax.swing.JButton();
         jBOrdenar2 = new javax.swing.JButton();
-        jBBuscar1 = new javax.swing.JButton();
-        jBBuscar2 = new javax.swing.JButton();
-        jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         jBMostrarTexto = new javax.swing.JButton();
         jLChat = new javax.swing.JLabel();
@@ -211,30 +199,8 @@ public class VtnW extends javax.swing.JFrame {
         });
         getContentPane().add(jBOrdenar2, new org.netbeans.lib.awtextra.AbsoluteConstraints(710, 200, 60, 50));
 
-        jBBuscar1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/buscarNuevo.png"))); // NOI18N
-        jBBuscar1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jBBuscar1ActionPerformed(evt);
-            }
-        });
-        getContentPane().add(jBBuscar1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 200, 57, -1));
-
-        jBBuscar2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/buscarNuevo.png"))); // NOI18N
-        jBBuscar2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jBBuscar2ActionPerformed(evt);
-            }
-        });
-        getContentPane().add(jBBuscar2, new org.netbeans.lib.awtextra.AbsoluteConstraints(780, 200, 57, 50));
-
-        jLabel1.setText("Buscar");
-        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(790, 250, -1, -1));
-
         jLabel2.setText("Ordenar");
         getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(720, 250, -1, -1));
-
-        jLabel3.setText("Buscar");
-        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(18, 246, 40, 30));
 
         jLabel4.setText("Ordenar");
         getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 240, 60, 40));
@@ -318,9 +284,7 @@ public class VtnW extends javax.swing.JFrame {
         //EN ESTA PARTE SE DEBE MANDAR EL TEXTO A LA PILA 1
         if (jTChat1.getText().length() == 0) {
             Mensaje.error(this, "Mensaje vacio"); //ENVIA UN MENSAJE DE ERROR EN CASO DE QUE NO HAYA ESCRITO NADA
-        } else 
-        
-        {
+        } else {
             Nodo n = new Nodo(1, jTChat1.getText());
 
             p1.Inserta(n);
@@ -350,10 +314,6 @@ public class VtnW extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_jBEnviar2ActionPerformed
 
-    private void jBBuscar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBBuscar1ActionPerformed
-        buscare(p1);
-    }//GEN-LAST:event_jBBuscar1ActionPerformed
-
     private void jBOrdenar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBOrdenar1ActionPerformed
         ordena(p1);
     }//GEN-LAST:event_jBOrdenar1ActionPerformed
@@ -361,10 +321,6 @@ public class VtnW extends javax.swing.JFrame {
     private void jBOrdenar2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBOrdenar2ActionPerformed
         ordenap(p2);
     }//GEN-LAST:event_jBOrdenar2ActionPerformed
-
-    private void jBBuscar2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBBuscar2ActionPerformed
-        buscare(p2);
-    }//GEN-LAST:event_jBBuscar2ActionPerformed
 
     private void jBMostrarTextoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBMostrarTextoActionPerformed
         muestra();
@@ -386,7 +342,7 @@ public class VtnW extends javax.swing.JFrame {
         try {
             Archivos.guardar(p, this);
         } catch (FileNotFoundException ex) {
-            Logger.getLogger(vtnChat.class.getName()).log(Level.SEVERE, null, ex);
+            System.out.println("No se encontro el archivo");
         }
         this.setVisible(false);
     }//GEN-LAST:event_jBRegresarActionPerformed
@@ -395,9 +351,9 @@ public class VtnW extends javax.swing.JFrame {
         try {
             Archivos.carga(this);
         } catch (IOException ex) {
-            Logger.getLogger(vtnChat.class.getName()).log(Level.SEVERE, null, ex);
+            System.out.println("No se encontro el archivo");
         } catch (ClassNotFoundException ex) {
-            Logger.getLogger(vtnChat.class.getName()).log(Level.SEVERE, null, ex);
+            System.out.println("No se encontro el archivo");
         }
 
         String s = "";
@@ -416,56 +372,17 @@ public class VtnW extends javax.swing.JFrame {
             p2 = (PilaDinamica) raiz.getPila2();
 
             lNombreUser.setText(s);
-//            texto();
-        } //else
-//        {
-//            cd = new ColaDinamica();
-//        }
-
-//        ColaDinamica cdt = new ColaDinamica();
-//        String si = "";
-//        String sd = "";
-//        Nodo aux = null;
-//        while (c.getFrente() != null) {
-//            aux = c.Elimina();
-//            if (aux.getTipo() == 1) {
-//
-//                p1.Inserta(aux);
-////                si += aux.getObj().toString() + "\n";
-////                sd += "\n";
-//                cdt.Inserta(aux);
-//                //CtrlInterfaz.habilita(false, btnBusca);
-////                btnBusca.setEnabled(rootPaneCheckingEnabled);
-////                btnOrdenar.setEnabled(rootPaneCheckingEnabled);
-//            } else {
-//                p2.Inserta(aux);
-////                sd += aux.getObj().toString() + "\n";
-////                si += "\n";
-//                cdt.Inserta(aux);
-//                //CtrlInterfaz.habilita(false, btnBusca);
-////                btnBusca.setEnabled(rootPaneCheckingEnabled);
-////                btnOrdenar.setEnabled(rootPaneCheckingEnabled);
-//            }
-//        }
-//        c = cdt;
+//            
+        }
         muestra();
-
     }//GEN-LAST:event_formWindowOpened
 
     private void jBBuscarCActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBBuscarCActionPerformed
-
         buscaC(c);
-//        vtnBusca bus = new vtnBusca();
-//
-//        bus.cd = (ColaDinamica) raiz.getObj();
-//
-//        bus.setVisible(true);
-
-//    this.setVisible(false);
     }//GEN-LAST:event_jBBuscarCActionPerformed
 
     private void jTChat2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTChat2ActionPerformed
-        // TODO add your handling code here:
+
     }//GEN-LAST:event_jTChat2ActionPerformed
 
     private void jTChat2KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTChat2KeyTyped
@@ -473,138 +390,6 @@ public class VtnW extends javax.swing.JFrame {
             evt.consume();
         }
     }//GEN-LAST:event_jTChat2KeyTyped
-
-//    public void buscar(PilaDinamica p)
-//    {
-//        
-//        Object busca=JOptionPane.showInputDialog(null, "Dato a buscar:");
-//        
-//        boolean bandera=false;
-//        Object encontrado=null;
-//        
-//        PilaDinamica auxiliar = new PilaDinamica();
-//
-//        for (int i = 0; i < raiz.getNum(); i++)
-//        {
-//            try
-//            {
-//                Nodo aux = new Nodo(p.Elimina().getObj());
-//                auxiliar.Inserta(aux);
-//            } catch (NullPointerException ex)
-//            {
-//                break;
-//            }
-//        }
-//
-//        while ( auxiliar.getTope()!=null) 
-//        {
-//            if (auxiliar.(busca)!=null) 
-//            {
-//                encontrado=auxiliar.getTope();
-//                //JOptionPane.showMessageDialog(null, "Dato encontrado: "+p.getTope().getObj());
-//                jTConversacion.setText("DATO ENCONTRADO: "+(String)auxiliar.getTope().getObj());
-//                auxiliar.setTope(null);
-//                bandera=true;
-//                //break;
-//            }
-//        }
-//        if (bandera==false) 
-//        {
-//            JOptionPane.showMessageDialog(null, "No se encontro ningun dato");
-//        }   
-//    }
-    public void buscare(PilaDinamica p) {
-        int n = 0;
-        String arrr[];
-        String s = "";
-        boolean bandera = false;
-        int i;
-
-        if (p == null) {
-            System.out.println("LA PILA ESTA VACIA");
-        } else {
-            PilaDinamica auxiliar = new PilaDinamica();
-
-            for (i = 0; i < raiz.getNum(); i++) {
-                try {
-                    Nodo aux = new Nodo(p.Elimina().getObj());
-                    auxiliar.Inserta(aux);
-                    n = n + 1;
-                } catch (NullPointerException ex) {
-                    break;
-                }
-            }
-
-            arrr = new String[n];
-
-            for (i = 0; i < n; i++) {
-                try {
-                    Nodo aux = new Nodo(auxiliar.Elimina().getObj());
-                    p.Inserta(aux);
-                    arrr[i] = (String) aux.getObj();
-                } catch (NullPointerException ex) {
-                    break;
-                }
-            }
-
-            /*int x=si.length;
-            System.out.println(x);
-         
-            /*for (i = 0; i < si.length; i++) 
-            {
-                System.out.println("DATO INGRESADO EN LA POSICION ["+ i +"]"+"=" + si[i]);
-            }*/
-            //System.out.println("NUMERO DE DATOS INGRESADOS: "+n);
-            String buscar = JOptionPane.showInputDialog(null, "Ingrese dato a buscar");
-
-            //System.out.println("CADENA A BUSCAR: "+buscar);
-            //int acum=0;
-            
-            if (buscar!=null) 
-            {
-                
-                if (buscar.length()==0) 
-                {
-                    Mensaje.error(this, "Campo vacio, debe introducir algun elemento a buscar");
-                }
-                else
-                {
-                    for (i = 0; i < arrr.length; i++) 
-                    {
-                        if (arrr[i].compareTo(buscar) == 0)//NO ENTRA EN El CICLO 
-                        {
-                            //jTConversacion.setText("DATO ENCONTRADo: "+ auxiliar.elimina().getObj());
-
-                            //Mensaje.exito(this,"DATO ENCONTRADO: "+ si[i]);
-                            bandera = true;
-                            s += arrr[i] + "\n";
-                            //System.out.println("VALOR DE BANDERA DENTRO DEL FOR"+bandera);
-                            //break;
-                            //acum=acum+1;
-                        }
-                    }
-
-                    //System.out.println("VALOR DE i:"+i);
-                    //System.out.println("VALOR DE BANDERA FUERA DEL FOR"+bandera);
-                    if (bandera == false) {
-                        Mensaje.error(this, "DATO NO ENCONTRADO");
-                    } else {
-                        //.compareToIgnoreCase(
-                        Mensaje.exito(this, "DATO ENCONTRADO: ");
-                        jTConversacion.setText(s);
-                    }
-
-                    buscar = "";
-                }
-            }/////////////////
-            else
-            {
-                System.out.println("");
-            }
-
-            //System.out.println("VALOR LIMPIO:"+buscar);
-        }
-    }
 
     public void buscaC(ColaDinamica cd) {
 
@@ -614,36 +399,29 @@ public class VtnW extends javax.swing.JFrame {
         String sb = "";
 
         String s = JOptionPane.showInputDialog(null, "Ingrese dato a buscar");
-        
-        if (s!=null) 
-        {
-            if (s.length()==0) 
-            {
+
+        if (s != null) {
+            if (s.length() == 0) {
                 Mensaje.error(this, "Campo vacio, debe introducir el elemento a buscar");
-            }
-            else
-            {
-                while (cd.getFrente() != null) 
-                {
-                aux = cd.Elimina();
-                if (aux.getObj().toString().toLowerCase().contains(s.toLowerCase())) {
-                    sb += aux.getObj().toString() + "\n";
-                    bandera = 1;
-                } else {
-                    //
-                    if (cd.getFrente() == null && bandera == 0) {
-                        Mensaje.error(this, "Dato no encontrado");
+            } else {
+                while (cd.getFrente() != null) {
+                    aux = cd.Elimina();
+                    if (aux.getObj().toString().toLowerCase().contains(s.toLowerCase())) {
+                        sb += aux.getObj().toString() + "\n";
+                        bandera = 1;
+                    } else {
+                        //
+                        if (cd.getFrente() == null && bandera == 0) {
+                            Mensaje.error(this, "Dato no encontrado");
+                        }
                     }
-                }
-                cdt.Inserta(aux);
+                    cdt.Inserta(aux);
                 }
                 c = cdt;
                 raiz.setObj(c);
                 jTConversacion.setText(sb);
             }
         }
-
-        
 
     }
 
@@ -652,28 +430,28 @@ public class VtnW extends javax.swing.JFrame {
         s = "";
 
         ColaDinamica cmuestra = new ColaDinamica(); //DECLARA UNA COLA AUXILIAR LA CUAL CONTENDRA LOS DATOS A MOSTRAR EN EL CHAT
-        
-            for (int i = 0; i < raiz.getNum(); i++) //FOR QUE RECORRE TODOS LOS DATOS QUE TIENE LA COLA
+
+        for (int i = 0; i < raiz.getNum(); i++) //FOR QUE RECORRE TODOS LOS DATOS QUE TIENE LA COLA
+        {
+
+            Nodo aux = new Nodo(c.Elimina().getObj());//CREA UN NODO PARA CADA OBJETO DE LA COLA
+
+            if (aux == null) //SI LA COLA ESTA VACIA DETIENE EL CICLO
             {
-
-                Nodo aux = new Nodo(c.Elimina().getObj());//CREA UN NODO PARA CADA OBJETO DE LA COLA
-
-                if (aux == null) //SI LA COLA ESTA VACIA DETIENE EL CICLO
-                {
-                    break;
-                }
-
-                cmuestra.Inserta(aux);//INSERTA CADA DATO EN UN NODO
-                s += " " + String.valueOf(aux.getObj()) + "\n"; //OBTIENE EL VALOR DE INTERNO DE CADA OBJETO DEL NODO
+                break;
             }
 
-            jTConversacion.setText(s);
+            cmuestra.Inserta(aux);//INSERTA CADA DATO EN UN NODO
+            s += " " + String.valueOf(aux.getObj()) + "\n"; //OBTIENE EL VALOR DE INTERNO DE CADA OBJETO DEL NODO
+        }
 
-            for (int i = 0; i < raiz.getNum(); i++) {
-                Nodo aux = new Nodo(cmuestra.Elimina().getObj());
-                c.Inserta(aux);
-            }
-        
+        jTConversacion.setText(s);
+
+        for (int i = 0; i < raiz.getNum(); i++) {
+            Nodo aux = new Nodo(cmuestra.Elimina().getObj());
+            c.Inserta(aux);
+        }
+
     }
 
     public void ordenac(ColaDinamica cd)//METODO QUE ORDENA LOS DATOS DE LA COLA
@@ -693,13 +471,10 @@ public class VtnW extends javax.swing.JFrame {
                 break;
             }
         }
-        
-        if (a.getAtras()==null) 
-        {
-            Mensaje.error(this,"No hay datos para ordenar");
-        }
-        else
-        {
+
+        if (a.getAtras() == null) {
+            Mensaje.error(this, "No hay datos para ordenar");
+        } else {
             arr = new String[n];//DECLARA UN ARREGLO CON EL NUMERO DE DATOS QUE TIENE EL OBJETO
 
             for (int i = 0; i < n; i++)//FOR QUE INSERTA EN EL ARREGLO LOS DATOS
@@ -732,7 +507,6 @@ public class VtnW extends javax.swing.JFrame {
             jTConversacion.setText(m);
         }
 
-        
     }
 
     public void ordena(PilaDinamica p) //METODO QUE ORDENA LOS DATOS DE UNA PILA
@@ -753,13 +527,10 @@ public class VtnW extends javax.swing.JFrame {
                 break;
             }
         }
-        
-        if (auxiliar.getTope()==null) 
-        {
-            Mensaje.error(this,"El chat se encuentra vacio, no se puede ordenar");
-        }
-        else
-        {
+
+        if (auxiliar.getTope() == null) {
+            Mensaje.error(this, "El chat se encuentra vacio, no se puede ordenar");
+        } else {
             ar = new String[n];//DECLARA UN ARREGLO CON EL NUMERO DE DATOS QUE TIENE EL OBJETO
 
             for (int i = 0; i < n; i++)//FOR QUE INSERTA EN EL ARREGLO LOS DATOS
@@ -791,7 +562,6 @@ public class VtnW extends javax.swing.JFrame {
             jTConversacion.setText(t);
         }
 
-        
     }
 
     public void ordenap(PilaDinamica p) //METODO QUE ORDENA LOS DATOS DE UNA PILA
@@ -813,13 +583,10 @@ public class VtnW extends javax.swing.JFrame {
             }
         }
 
-        if (auxiliar.getTope()==null) 
-        {
-            Mensaje.error(this,"El chat se encuentra vacio, no se puede ordenar");
-        }
-        else
-        {
-        
+        if (auxiliar.getTope() == null) {
+            Mensaje.error(this, "El chat se encuentra vacio, no se puede ordenar");
+        } else {
+
             ar = new String[n];//DECLARA UN ARREGLO CON EL NUMERO DE DATOS QUE TIENE EL OBJETO
 
             for (int i = 0; i < n; i++)//FOR QUE INSERTA EN EL ARREGLO LOS DATOS
@@ -895,8 +662,6 @@ public class VtnW extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jBBuscar1;
-    private javax.swing.JButton jBBuscar2;
     private javax.swing.JButton jBBuscarC;
     private javax.swing.JButton jBEnviar1;
     private javax.swing.JButton jBEnviar2;
@@ -909,9 +674,7 @@ public class VtnW extends javax.swing.JFrame {
     private javax.swing.JLabel jLChat;
     private javax.swing.JLabel jLOrdenar;
     private javax.swing.JLabel jLOriginal;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;

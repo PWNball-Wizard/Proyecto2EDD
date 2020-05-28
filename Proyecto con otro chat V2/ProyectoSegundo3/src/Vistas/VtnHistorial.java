@@ -277,8 +277,6 @@ public class VtnHistorial extends javax.swing.JFrame {
         } else {
             Mensaje.error(this, "No puede haber campos vacios");
         }
-
-        System.out.println(Multilistas.desp(VtnGrupo.r, 0));
     }//GEN-LAST:event_jBAgregarHActionPerformed
 
     private void jBRegresarHActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBRegresarHActionPerformed
@@ -321,10 +319,8 @@ public class VtnHistorial extends javax.swing.JFrame {
 
         } else if (s.length() != 0 && b2 != false) {
 
-            //AGREGAR AQUI METODO PARA VALIDAR LA FECHA
-//                if (b = true) {
             Nodo his = new Nodo(null, s);
-            System.out.println("Esto es lo que hay en la cadena de historial " + s);
+            
             String[] etqs = new String[3];
             etqs[0] = d1;
             etqs[1] = d2;
@@ -345,7 +341,7 @@ public class VtnHistorial extends javax.swing.JFrame {
                 try {
                     Archivos.guardar(p, this);
                 } catch (FileNotFoundException ex) {
-                    Logger.getLogger(VtnW.class.getName()).log(Level.SEVERE, null, ex);
+                    System.out.println("No se encontro el archivo");
                 }
             }
 
@@ -354,13 +350,11 @@ public class VtnHistorial extends javax.swing.JFrame {
             r2 = r2.getAbj();
             r2 = Multilistas.busca(r2, d2);
 
-//                    JPHistorial.removeAll();
             r2 = r2.getAbj();
             if (r2 != null) {
                 Nodo aux = r2;
                 while (aux != null) {
                     JButton boton = new JButton(aux.getEtq());
-                    System.out.println("El boton se llama " + boton.getText());
                     Component componentes[] = JPHistorial.getComponents();
 
                     for (int i = 0; i < componentes.length; i++) {
@@ -369,8 +363,6 @@ public class VtnHistorial extends javax.swing.JFrame {
                             JPHistorial.remove(i);
                         }
                     }
-
-//                            JPHistorial.add(boton);
                     boton.addActionListener(new ActionListener() {
                         @Override
                         public void actionPerformed(ActionEvent e) {
@@ -387,31 +379,11 @@ public class VtnHistorial extends javax.swing.JFrame {
             } else {
                 JPHistorial.removeAll();
             }
-
-            if (c) {
-                //JPHistorial.revalidate();
-                //JPHistorial.repaint();
-                //new VtnHistorial().setVisible(false);
-                //new VtnHistorial().setVisible(true);
-
-                /*VtnContacto x = new VtnContacto();
-                x.setVisible(false);
-                x.d = d1;
-                x.r1 = Multilistas.busca(VtnGrupo.r, d1);
-                x.setVisible(true);*/
-
-            }
-
-//                } else {
-//                    Mensaje.error(this, "Formato de fecha no valido");
-//                }
         } else {
             Mensaje.error(this, "No puede haber campos vacios");
         }
-
         JPHistorial.updateUI();
 
-        System.out.println(Multilistas.desp(VtnGrupo.r, 0));
     }//GEN-LAST:event_jBEliminarHActionPerformed
 
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened

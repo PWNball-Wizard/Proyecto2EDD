@@ -19,8 +19,7 @@ public class TablasHash implements Serializable{
     public static int posicion(NodoArbol b) {
 
         String posC = b.getEtq();
-        ////////////para ayudar a ir a la ventana con las conve en caso de que se encuentre puede usarse n.getPredecesores;
-        ///////////////////////////////////////////////////////////////////
+        
         int pos = 0;
 
         for (int i = 65; i < 91; i++) {

@@ -4,7 +4,6 @@ import java.io.Serializable;
 
 public class Nodo implements Serializable
 {
-    /////////////////////////////////////////////////////////////
 
     private Object obj;
     private Object pila1;

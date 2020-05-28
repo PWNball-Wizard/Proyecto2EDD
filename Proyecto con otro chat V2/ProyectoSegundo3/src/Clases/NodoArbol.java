@@ -19,7 +19,6 @@ public class NodoArbol implements Serializable
     private NodoArbol der = null;
     private String predecesores[] = new String[2];
     
-    ////////////////////////////////////////////////////
     
     public NodoArbol(String etq, Object obj)
     {

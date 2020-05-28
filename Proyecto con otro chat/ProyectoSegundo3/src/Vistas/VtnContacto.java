@@ -285,11 +285,10 @@ public class VtnContacto extends javax.swing.JFrame {
                     System.out.println(pos);
 
                     TablasHash.arr[pos] = ab.inserta(rb, nomNA);///falta que inserte el primer dato, no lo inserta porque se borra
-
 //            rb = TablasHash.arr[pos];
                     ab.inserta(TablasHash.arr[pos], nomNAS);
 
-                    System.out.println("Muestra en el inserta" + TablasHash.arr[pos].getEtq());
+//                System.out.println("Muestra en el inserta" + TablasHash.arr[pos].getEtq());
                 } else {
 
 //                rb = TablasHash.arr[pos];
@@ -304,7 +303,7 @@ public class VtnContacto extends javax.swing.JFrame {
 //                System.out.println("Muestra en la raiz en nodo arbol"+ rb.getEtq());
                 }
 
-//            abB.balancear(TablasHash.arr[pos]);/////////////////PRUEBA DE BALANCEO DE ARBOL
+                abB.balancear(TablasHash.arr[pos]);/////////////////PRUEBA DE BALANCEO DE ARBOL
                 Propiedades p = new Propiedades(VtnGrupo.r, TablasHash.arr);
 
                 try {
@@ -420,7 +419,8 @@ public class VtnContacto extends javax.swing.JFrame {
 
                                         aux.setPredecesores(etqsI);
 
-                                        //                    ab.balancear(TablasHash.arr[pos]);/////////////////PRUEBA DE BALANCEO DE ARBOL
+//                                        ab.balancear(TablasHash.arr[pos].getDer());/////////////////PRUEBA DE BALANCEO DE ARBOL
+                                        
                                         Propiedades p = new Propiedades(VtnGrupo.r, TablasHash.arr);
                                         try {
                                             Archivos.guardar(p, this);
@@ -517,7 +517,7 @@ public class VtnContacto extends javax.swing.JFrame {
 
                     ab.elimina(TablasHash.arr[pos], s, arrB);
 
-//                    ab.balancear(TablasHash.arr[pos]);/////////////////PRUEBA DE BALANCEO DE ARBOL
+//                    ab.balancear(TablasHash.arr[pos].getDer());/////////////////PRUEBA DE BALANCEO DE ARBOL
                     Propiedades p = new Propiedades(VtnGrupo.r, TablasHash.arr);
 
                     try {

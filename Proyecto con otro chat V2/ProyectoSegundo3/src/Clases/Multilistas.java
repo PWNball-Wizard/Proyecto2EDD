@@ -76,23 +76,6 @@ public class Multilistas implements Serializable
         }
         return r;
     }
-
-    /*public static Nodo busca(Nodo r, String etq)//METODO PARA BUSCAR DENTRO DEL ARBOL UN NODO
-    {
-        Nodo aux = null;
-        while (r != null)//Mientras no llegue al final
-        {
-            if (r.getEtq().equals(etq))//compara que sean las mismas
-            {
-                return r;
-            } else
-            {
-                r = r.getSig();//si no son iguales avanza una posicion
-            }
-        }
-        return aux;
-    }*/
-
     public static Nodo busca(Nodo r, String etq)
     {
         Nodo aux = null;

@@ -7,13 +7,11 @@ package Vistas;
 
 import Clases.ArbolBinario;
 import Clases.Archivos;
-import Clases.ColaDinamica;
 import Clases.Multilistas;
 import Clases.Nodo;
 import Clases.NodoArbol;
 import Clases.Propiedades;
 import Clases.TablasHash;
-import static Vistas.VtnContacto.validaC;
 import cjb.ci.Mensaje;
 import java.awt.Color;
 import java.awt.Component;
@@ -27,7 +25,6 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
-import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
 /**
@@ -269,7 +266,7 @@ public class VtnGrupo extends javax.swing.JFrame {
                 try {
                     Archivos.guardar(p, this);
                 } catch (FileNotFoundException ex) {
-                    Logger.getLogger(vtnChat.class.getName()).log(Level.SEVERE, null, ex);
+                    System.out.println("No se encontro el archivo");
                 }
 
                 if (r != null) {
@@ -306,8 +303,7 @@ public class VtnGrupo extends javax.swing.JFrame {
                     }
 
                 }
-
-            }////////////////////////////////////////
+            }
         }
 
         JPGrupos.revalidate();
@@ -348,8 +344,7 @@ public class VtnGrupo extends javax.swing.JFrame {
                         c = true;
                     }
 
-                    if (c) {//hacer una mezca de las dos, es decir buscar primero en la multilista, en el grupo que se quiere eliminar, y eliminar uno por uno
-                        //a los miembros de esa multilista.
+                    if (c) {
 
                         Nodo rb = Multilistas.busca(r, s);
 
@@ -366,11 +361,9 @@ public class VtnGrupo extends javax.swing.JFrame {
                                 abE.elimina(TablasHash.arr[pos], aux.getEtq(), arrB);
 
                                 aux = aux.getSig();
-                                //                        System.out.println("*******************************\n*************************" +aux.getEtq());
                             }
                         }
 
-                        //                int pos = s.toUpperCase().codePointAt(0) - 65;
                         r = Multilistas.elimina(r, 0, etqs);
 
                         Propiedades p = new Propiedades(r, TablasHash.arr);
@@ -378,11 +371,10 @@ public class VtnGrupo extends javax.swing.JFrame {
                         try {
                             Archivos.guardar(p, this);
                         } catch (FileNotFoundException ex) {
-                            Logger.getLogger(vtnChat.class.getName()).log(Level.SEVERE, null, ex);
+                            System.out.println("No se encontro el archivo");
                         }
                     }
 
-                    //
                     if (r != null) {
                         Nodo aux = r;
                         System.out.println("r no es nulo");
@@ -414,62 +406,24 @@ public class VtnGrupo extends javax.swing.JFrame {
                             aux = aux.getSig();
                         }
                     } else {
-
                         JPGrupos.removeAll();
-
                     }
-
-                    if (c) {
-                        //JPGrupos.revalidate();
-                        //JPGrupos.repaint();
-                        //new VtnGrupo().setVisible(false);
-                        //new VtnGrupo().setVisible(true);
-                    }
-                }/////////////////////////////////////
+                }
 
             }
 
-            //JPGrupos.revalidate();
-            //JPGrupos.repaint();
-            //JPGrupos.updateUI();
-            //this.setVisible(false);
-            //this.setVisible(true);
+           
             System.out.println(Multilistas.desp(r, 0));
 
         } else {
             Mensaje.error(this, "La lista se encuentra vacia, no puede eliminar elementos");
         }
-//        System.out.println("Actualmente tengo " + JPGrupos.getComponentCount() + "grupos");
-//        if (JPGrupos.getComponentCount() == 0) {
-//            JPGrupos.remove(0);
-//            JPGrupos.updateUI();
-//        }
-
         JPGrupos.updateUI();
 
-        //JPGrupos.removeAll();
-        //JPGrupos.revalidate();
-        //JPGrupos.repaint();
-        //new VtnGrupo().setVisible(false);
-        //dispose();
-        //this.setVisible(false);
-        //JPGrupos.revalidate();
-        //JPGrupos.repaint();
-        //this.setVisible(true);
-        //JFrame.
-        //JPGrupos.updateUI();
     }//GEN-LAST:event_jBEliminarGActionPerformed
 
     private void jBBuscaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBBuscaActionPerformed
 
-        //PROBAR CUANDO FUNCIONE LA PARTE DE ARBOLES BINARIOS
-        //nb=NOMBRE A BUSCAR
-        //VALIDAR CUANDO LA LISTA ESTA VACIA
-        /*if (r == null) 
-        {
-            JOptionPane.showMessageDialog(rootPane, "La agenda se encuentra vacia");
-
-        }*/
         if (r != null) {
             String nb = null;
 
@@ -512,7 +466,6 @@ public class VtnGrupo extends javax.swing.JFrame {
 
     private void jBCerrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBCerrarActionPerformed
 
-        //PONER AQUI EL CODIGO PARA GUARDAR ARCHIVOS
         System.exit(0);
     }//GEN-LAST:event_jBCerrarActionPerformed
 
@@ -526,11 +479,8 @@ public class VtnGrupo extends javax.swing.JFrame {
             Logger.getLogger(VtnGrupo.class.getName()).log(Level.SEVERE, null, ex);
         }
 
-//        System.out.println(ab.enOrden(rb));
+
         if (r == null) {
-            /*JPGrupos.removeAll();
-            JPGrupos.revalidate();
-            JPGrupos.repaint();*/
             Mensaje.error(this, "No hay datos en la lista");
         } else {
             Nodo aux = r;
@@ -572,8 +522,7 @@ public class VtnGrupo extends javax.swing.JFrame {
         JPGrupos.repaint();
 
         System.out.println(Multilistas.desp(r, 0));
-//        rb = TablasHash.arr[15];
-//        System.out.println(ab.enOrden(rb));
+
         System.out.println(TablasHash.muestra());
 
         ab.balancear(TablasHash.arr[0]);

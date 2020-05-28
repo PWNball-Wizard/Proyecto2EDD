@@ -10,27 +10,16 @@ public class Propiedades implements Serializable
     private Nodo r = null;
     private  NodoArbol[] arr = new NodoArbol[27];
     
-    //ACUMULADOR PARA CADA QUE ENTRA UN NUEVO MENSAJE
-    ///////////////////////////////////////////////////////
     
 
     public Propiedades()
     {
     }
-//                      ColaDinamica c, 
     public Propiedades(Nodo r, NodoArbol arr[])
     {
         this.r = r;
         this.arr = arr;
     }
-
-//    public ColaDinamica getC() {
-//        return c;
-//    }
-//
-//    public void setC(ColaDinamica c) {
-//        this.c = c;
-//    }
 
     /**
      * @return the r
