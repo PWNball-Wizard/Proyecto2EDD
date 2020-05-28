@@ -275,7 +275,9 @@ public class VtnHistorial extends javax.swing.JFrame {
                 Mensaje.error(this, "Formato de fecha no valido");
             }
         } else {
-            Mensaje.error(this, "No puede haber campos vacios");
+            if (s.length() == 0) {
+                Mensaje.error(this, "No puede haber campos vacios");
+            }
         }
     }//GEN-LAST:event_jBAgregarHActionPerformed
 
@@ -320,7 +322,7 @@ public class VtnHistorial extends javax.swing.JFrame {
         } else if (s.length() != 0 && b2 != false) {
 
             Nodo his = new Nodo(null, s);
-            
+
             String[] etqs = new String[3];
             etqs[0] = d1;
             etqs[1] = d2;
