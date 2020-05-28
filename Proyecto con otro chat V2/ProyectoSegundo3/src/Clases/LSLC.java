@@ -14,17 +14,6 @@ public class LSLC
 {
      private Nodo raiz = null; //raiz
 
-    //@Override
-    public boolean vacia()
-    {
-        return raiz == null;
-    }
-
-    //@Override
-    public boolean llena()
-    {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
 
     //@Override
     public void inserta(Object obj)
@@ -68,18 +57,6 @@ public class LSLC
         }
     }
     
-
-    //@Override
-    public Object inserta(Object obj, Object r)
-    {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    //@Override
-    public Object elimina()
-    {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
 
     //@Override
     public Object elimina(Object obj)
@@ -135,18 +112,7 @@ public class LSLC
         }
     }
 
-    //@Override
-    public Object elimina(Object obj, Object r)
-    {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    //@Override
-    public Object elimina(Object obj, Object r, Object b)
-    {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
+    
     /**
      * @return the raiz
      */
