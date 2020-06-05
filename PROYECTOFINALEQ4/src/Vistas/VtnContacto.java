@@ -11,10 +11,7 @@ import Clases.Multilistas;
 import Clases.Nodo;
 import Clases.NodoArbol;
 import Clases.Propiedades;
-import Clases.TablasHash;
-import static Vistas.VtnGrupo.ab;
 import static Vistas.VtnGrupo.r;
-import static Vistas.VtnGrupo.rb;
 import cjb.ci.Mensaje;
 import java.awt.Color;
 import java.awt.Component;
@@ -197,7 +194,7 @@ public class VtnContacto extends javax.swing.JFrame {
         getContentPane().add(jBMoverC, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 470, 55, -1));
 
         jLEliminarC.setText("Eliminar");
-        getContentPane().add(jLEliminarC, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 530, -1, -1));
+        getContentPane().add(jLEliminarC, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 530, -1, -1));
 
         jLMoverC.setText("Mover");
         getContentPane().add(jLMoverC, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 530, -1, -1));
@@ -232,75 +229,31 @@ public class VtnContacto extends javax.swing.JFrame {
 
     private void jBAgregarCActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBAgregarCActionPerformed
 
-        System.out.println(d);
-
-        ArbolBinario abB = new ArbolBinario();
-
         String s = "";
+
         s = JOptionPane.showInputDialog("Escriba el nombre del contacto que desea agregar");
 
         if (s == null) {
             //Evita el NPE al salir del showInputDialog o presionar cancelar
         } else if (valida(s) == false) {
-            System.out.println("error");
+            System.out.println("error");//cambiar por un mensaje de error
         } else {
             if (validaC(r1, s) == true) {
                 Mensaje.error(this, "El nombre que desea ingresar se encuentra repetido, por favor ingrese uno diferente");
             } else {
-                char ppC = s.charAt(0);///////////////////////////////////////////////////////////////////////////////////
-                String pps = Character.toString(ppC);///////////Para insertar en la tabla Hash y en los ab////////////////
 
                 Nodo con = new Nodo(null, s);
                 String[] etqs = new String[2];
                 etqs[0] = d;//toma el texto del boton que se eligio anteriorente
                 etqs[1] = s;
 
-                NodoArbol nomNA = new NodoArbol(pps, null, etqs);
                 NodoArbol nomNAS = new NodoArbol(s, null, etqs);
 
-                VtnGrupo.r = Multilistas.inserta(VtnGrupo.r, con, 0, etqs); //inserta
+                VtnGrupo.r = Multilistas.inserta(VtnGrupo.r, con, 0, etqs); //inserta Multilista
 
-                
-                VtnGrupo.arr.insertaTH(s, nomNAS);
-                
-//                if (VtnGrupo.arr.getArr()[pos] == null) {
-//
-//                    System.out.println(pos);
-//
-//                    
-//                    
-//                } else {
-//
-//                    
-//
-//                }
+                VtnGrupo.arr.insertaTH(s, nomNAS);//inserta arbol
 
-//            
                 Propiedades p = new Propiedades(VtnGrupo.r, VtnGrupo.arr);
-
-//                if (TablasHash.getArr()[pos] == null) {
-//
-//                    System.out.println(pos);
-//
-//                    TablasHash.getArr()[pos] = ab.inserta(rb, nomNA);///falta que inserte el primer dato, no lo inserta porque se borra
-//
-//                    ab.inserta(TablasHash.getArr()[pos], nomNAS);
-//
-//                    System.out.println("Muestra en el inserta" + TablasHash.getArr()[pos].getEtq());
-//                } else {
-//
-//                    ab.inserta(TablasHash.getArr()[pos], nomNAS);
-//
-//                    System.out.println(TablasHash.getArr()[pos].getEtq());
-//
-//                    System.out.println(ab.enOrden(rb));
-//
-//                    System.out.println("Muestra en el inserta" + TablasHash.getArr()[pos].getEtq());
-//
-//                }
-
-//            
-//                Propiedades p = new Propiedades(VtnGrupo.r, VtnGrupo.arr);
 
                 try {
                     Archivos.guardar(p, this);
@@ -342,10 +295,8 @@ public class VtnContacto extends javax.swing.JFrame {
                     }
                 }
             }
-
             JPContactos.revalidate();
             JPContactos.repaint();
-
         }
     }//GEN-LAST:event_jBAgregarCActionPerformed
 
@@ -368,7 +319,6 @@ public class VtnContacto extends javax.swing.JFrame {
             if (gpo != null) {
                 b2 = false;
                 //Evita el NPE al salir del showInputDialog o presionar cancelar
-
                 if (validaC(r, gpo) == false)//significa que no encontro nada 
                 {
                     Mensaje.error(this, "El grupo al cual desea mover el contacto no se encontro");
@@ -394,6 +344,7 @@ public class VtnContacto extends javax.swing.JFrame {
                                 String[] etqsI = new String[2];
                                 etqsI[0] = gpo;
                                 etqsI[1] = nom;
+
                                 VtnGrupo.r = Multilistas.mover(VtnGrupo.r, 0, etqsE, etqsI);
 
                                 int pos = nom.toUpperCase().codePointAt(0) - 65;
@@ -406,13 +357,6 @@ public class VtnContacto extends javax.swing.JFrame {
 
                                     if (aux != null) {
 
-                                        String[] muestra = new String[2];
-
-                                        muestra = aux.getPredecesores();
-
-                                        System.out.println("Predecesores"+muestra[0]);
-                                        System.out.println("Predecesores"+muestra[1]);
-
                                         aux.setPredecesores(etqsI);
 
                                         Propiedades p = new Propiedades(VtnGrupo.r, VtnGrupo.arr);
@@ -421,40 +365,21 @@ public class VtnContacto extends javax.swing.JFrame {
                                         } catch (FileNotFoundException ex) {
                                             System.out.println(" No se encontro el archivo ");
                                         }
-
                                     }
-
                                 }
                                 r1 = Multilistas.busca(VtnGrupo.r, d);
                                 r1 = r1.getAbj();
 
                                 if (r1 != null) {
-                                    Nodo aux = r1;
-                                    while (aux != null) {
-                                        JButton boton = new JButton(aux.getEtq());
-//                                        System.out.println("Etiqueta en aux " + aux.getEtq());
-                                        Component componentes[] = JPContactos.getComponents();
+                                    Component componentes[] = JPContactos.getComponents();
 
-//                                        System.out.println("Etiqueta en etqE pos Contactos " + etqsE[1]);
-
-                                        for (int i = 0; i < componentes.length; i++) {
-                                            System.out.println(((JButton) componentes[i]).getText());
-                                            if (etqsE[1].equals(((JButton) componentes[i]).getText().trim())) {
-                                                JPContactos.remove(i);
-                                            }
+                                    for (int i = 0; i < componentes.length; i++) {
+                                        System.out.println(((JButton) componentes[i]).getText());
+                                        if (etqsE[1].equals(((JButton) componentes[i]).getText().trim())) {
+                                            JPContactos.remove(i);
                                         }
-                                        boton.addActionListener(new ActionListener() {
-                                            @Override
-                                            public void actionPerformed(ActionEvent e) {
-                                                VtnHistorial h = new VtnHistorial();
-                                                h.d1 = d;
-                                                h.d2 = boton.getText();
-                                                h.setVisible(true);
-                                            }
-                                        }
-                                        );
-                                        aux = aux.getSig();
                                     }
+
                                 } else {
                                     JPContactos.removeAll();
                                 }
@@ -475,19 +400,12 @@ public class VtnContacto extends javax.swing.JFrame {
                             int pos = nom.toUpperCase().codePointAt(0) - 65;
 
                             if (VtnGrupo.arr.getArr()[pos] != null) {
-                                System.out.println("Si estoy entrando a esta condicion");
+
                                 ArbolBinario aba = new ArbolBinario();
 
                                 NodoArbol aux = aba.busca(VtnGrupo.arr.getArr()[pos].getR(), nom);
 
                                 if (aux != null) {
-                                    System.out.println("Estoy entrando en el cambio a predecesores");
-                                    String[] muestra = new String[2];
-
-                                    muestra = aux.getPredecesores();
-
-                                    System.out.println("Predecesores" +muestra[0]);
-                                    System.out.println("Predecesores"+muestra[1]);
 
                                     aux.setPredecesores(etqsI);
 
@@ -504,31 +422,13 @@ public class VtnContacto extends javax.swing.JFrame {
                             r1 = r1.getAbj();
 
                             if (r1 != null) {
-                                Nodo aux = r1;
-                                while (aux != null) {
-                                    JButton boton = new JButton(aux.getEtq());
-//                                    System.out.println("Etiqueta en aux " + aux.getEtq());
-                                    Component componentes[] = JPContactos.getComponents();
+                                Component componentes[] = JPContactos.getComponents();
 
-//                                    System.out.println("Etiqueta en etqE pos Contactos " + etqsE[1]);
-
-                                    for (int i = 0; i < componentes.length; i++) {
-                                        System.out.println(((JButton) componentes[i]).getText());
-                                        if (etqsE[1].equals(((JButton) componentes[i]).getText().trim())) {
-                                            JPContactos.remove(i);
-                                        }
+                                for (int i = 0; i < componentes.length; i++) {
+                                    System.out.println(((JButton) componentes[i]).getText());
+                                    if (etqsE[1].equals(((JButton) componentes[i]).getText().trim())) {
+                                        JPContactos.remove(i);
                                     }
-                                    boton.addActionListener(new ActionListener() {
-                                        @Override
-                                        public void actionPerformed(ActionEvent e) {
-                                            VtnHistorial h = new VtnHistorial();
-                                            h.d1 = d;
-                                            h.d2 = boton.getText();
-                                            h.setVisible(true);
-                                        }
-                                    }
-                                    );
-                                    aux = aux.getSig();
                                 }
                             } else {
                                 JPContactos.removeAll();
@@ -541,19 +441,14 @@ public class VtnContacto extends javax.swing.JFrame {
                 }
 
             }
-
-        }/////////FIN DEL VALIDA
-
+        }/////////FIN DE VALIDA
         JPContactos.revalidate();
         JPContactos.repaint();
-
         System.out.println(Multilistas.desp(VtnGrupo.r, 0));
-        ///////////////
     }//GEN-LAST:event_jBMoverCActionPerformed
 
     private void jBEliminarCActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBEliminarCActionPerformed
 
-        //JPContactos.removeAll();
         String s = "";
 
         s = JOptionPane.showInputDialog("Escriba el nombre del contacto que desea eliminar");
@@ -562,17 +457,15 @@ public class VtnContacto extends javax.swing.JFrame {
             //Evita el NPE al salir del showInputDialog o presionar cancelar
         } else if (valida(s) == false) {
             //Mensaje.error(this, "Debe rellenar el campo");
-            System.out.println("");
         } else {
-            Nodo con = new Nodo(null, s);
             String[] etqs = new String[2];
             etqs[0] = d;
             etqs[1] = s;
 
             boolean c = false;
 
-            if (cjb.ci.Mensaje.pregunta(this, "Eliminar grupo\nSe eliminaran los contactos "
-                    + "y conversaciones asociados a este grupo\n¿Continuar?") == 0) {
+            if (cjb.ci.Mensaje.pregunta(this, "Eliminar contacto\nSe eliminaran las conversaciones "
+                    + "asociadas a este contacto\n¿Desea continuar?") == 0) {
                 c = true;
             }
             if (c) {
@@ -583,7 +476,7 @@ public class VtnContacto extends javax.swing.JFrame {
                 if (VtnGrupo.arr.getArr()[pos] != null) {
 
                     VtnGrupo.arr.elimina(s);
-                    
+
                     Propiedades p = new Propiedades(VtnGrupo.r, VtnGrupo.arr);
 
                     try {
@@ -600,29 +493,13 @@ public class VtnContacto extends javax.swing.JFrame {
             r1 = r1.getAbj();
 
             if (r1 != null) {
-                Nodo aux = r1;
-                while (aux != null) {
-                    JButton boton = new JButton(aux.getEtq());
-                    System.out.println("Etiqueta en aux " + aux.getEtq());
-                    Component componentes[] = JPContactos.getComponents();
+                Component componentes[] = JPContactos.getComponents();
 
-                    for (int i = 0; i < componentes.length; i++) {
-                        System.out.println(((JButton) componentes[i]).getText());
-                        if (etqs[1].equals(((JButton) componentes[i]).getText().trim())) {
-                            JPContactos.remove(i);
-                        }
+                for (int i = 0; i < componentes.length; i++) {
+                    System.out.println(((JButton) componentes[i]).getText());
+                    if (etqs[1].equals(((JButton) componentes[i]).getText().trim())) {
+                        JPContactos.remove(i);
                     }
-                    boton.addActionListener(new ActionListener() {
-                        @Override
-                        public void actionPerformed(ActionEvent e) {
-                            VtnHistorial h = new VtnHistorial();
-                            h.d1 = d;
-                            h.d2 = boton.getText();
-                            h.setVisible(true);
-                        }
-                    }
-                    );
-                    aux = aux.getSig();
                 }
             } else {
                 JPContactos.removeAll();
@@ -641,7 +518,9 @@ public class VtnContacto extends javax.swing.JFrame {
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
         r1 = Multilistas.busca(VtnGrupo.r, d);
         r1 = r1.getAbj();
+        
         JPContactos.removeAll();
+        
         if (r1 != null) {
             Nodo aux = r1;
             while (aux != null) {

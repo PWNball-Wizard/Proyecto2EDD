@@ -6,15 +6,11 @@ import Clases.Multilistas;
 import Clases.Nodo;
 import Clases.PilaDinamica;
 import Clases.Propiedades;
-import Clases.TablasHash;
 import cjb.ci.CtrlInterfaz;
 import cjb.ci.Mensaje;
-import cjb.ci.Validaciones;
 import java.awt.Color;
 import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
 /**

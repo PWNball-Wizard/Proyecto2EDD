@@ -6,10 +6,7 @@ import java.io.Serializable;
 public class Propiedades implements Serializable
 {
 
-//    public ColaDinamica c = new ColaDinamica();
     private Nodo r = null;
-//    private  NodoArbol[] arr = new NodoArbol[27];
-    
     TablasHash arr = new TablasHash(26);
     
     public Propiedades()
@@ -48,13 +45,4 @@ public class Propiedades implements Serializable
     public void setArr(TablasHash arr) {
         this.arr = arr;
     }
-
-    /**
-     * @return the num
-     */
-    
-    /**
-     * @return the nar
-     */
-   
 }

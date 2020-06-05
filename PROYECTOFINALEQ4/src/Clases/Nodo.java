@@ -189,5 +189,4 @@ public class Nodo implements Serializable
     public void setPila2(Object pila2) {
         this.pila2 = pila2;
     }
-    
 }

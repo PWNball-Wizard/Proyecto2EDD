@@ -110,7 +110,4 @@ public class NodoArbol implements Serializable
     public void setPredecesores(String[] predecesores) {
         this.predecesores = predecesores;
     }
-    
-    
-    
 }

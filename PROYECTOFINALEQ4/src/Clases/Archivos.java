@@ -25,14 +25,14 @@ public class Archivos {
         try {
             FileOutputStream fos = new FileOutputStream("datos.dat");
             ObjectOutputStream arch = new ObjectOutputStream(fos);
-
+            
             arch.writeObject(obj);
-
             arch.close();
+            
         } catch (FileNotFoundException ex) {
-//            Mensaje.error(jf, "No se encontro el archivo");
+            System.out.println("Error " + ex.toString());
         } catch (Exception er) {
-//            Mensaje.error(jf, "Error..." + er.toString());
+            System.out.println("Error " + er.toString());
         }
     }
 
@@ -40,19 +40,16 @@ public class Archivos {
         try {
             FileInputStream fis = new FileInputStream("datos.dat");
             ObjectInputStream arch = new ObjectInputStream(fis);
-
+            
             Propiedades p = (Propiedades) arch.readObject();
-
             VtnGrupo.r = p.getR();
-
             VtnGrupo.arr = p.getArr();
-
             arch.close();
 
         } catch (FileNotFoundException ex) {
-//        
+            System.out.println("Error " + ex.toString());   
         } catch (Exception er) {
-//         
+         System.out.println("Error " + er.toString());
         }
     }
 

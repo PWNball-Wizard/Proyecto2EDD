@@ -12,23 +12,21 @@ import javax.swing.JOptionPane;
  *
  * @author zgame
  */
-public class TablasHash implements Serializable{
+public class TablasHash implements Serializable {
 
     private ArbolBinario arr[];
 
-    public TablasHash(int n)
-    {
+    public TablasHash(int n) {
         arr = new ArbolBinario[n];
-        for (int i = 0; i < n; i++)
-        {
+        for (int i = 0; i < n; i++) {
             arr[i] = new ArbolBinario();
         }
     }
-    
+
     public static int posicion(NodoArbol b) {
 
         String posC = b.getEtq();
-        
+
         int pos = 0;
 
         for (int i = 65; i < 91; i++) {
@@ -37,81 +35,38 @@ public class TablasHash implements Serializable{
                 pos = i - 65;
             }
         }
-        System.out.println("La posicion es "+ pos);
+        System.out.println("La posicion es " + pos);
         return pos;
     }
-    
-    public void insertaTH(String etq, NodoArbol nuevo)
-    {
-        
+
+    public void insertaTH(String etq, NodoArbol nuevo) {
+
         int pos = posicion(nuevo);
-        if (pos == -1)
-        {
+        if (pos == -1) {
             JOptionPane.showMessageDialog(null, "Nombre no aceptado");
-        } else
-        {
+        } else {
             arr[pos].setR(arr[pos].inserta(arr[pos].getR(), nuevo));
         }
     }
-    
-    public void elimina(String etq)
-    {
+
+    public void elimina(String etq) {
         NodoArbol nodE = new NodoArbol(etq, null);
-        
+
         int pos = posicion(nodE);
-        if (pos == -1)
-        {
+        if (pos == -1) {
             JOptionPane.showMessageDialog(null, "Nombre no aceptado");
-        } else
-        {
+        } else {
             NodoArbol[] arrE = new NodoArbol[2];
             arr[pos].elimina(arr[pos].getR(), etq, arrE);
             arr[pos].setR(arrE[1]);
         }
     }
-    
-    public NodoArbol buscarDT(String etq)
-    {
-        NodoArbol nodB = new NodoArbol(etq, null);
-        
-        int pos = posicion(nodB);
-        if (pos == -1)
-        {
-            return null;
-        } else
-        {
-            System.out.println(arr[pos]);
-            if (arr[pos] != null)
-            {
-                NodoArbol encontrado = arr[pos].busca(arr[pos].getR(), etq);
-                return encontrado;
-            } else
-            {
-                return null;
-            }
+
+    public void verarboles() {
+        for (int i = 0; i < arr.length; i++) {
+            System.out.println("Arbol [" + i + "] " + arr[i].preOrden(arr[i].getR()) + "\n");
         }
     }
-    
-    public void verarboles()
-    {
-        for (int i = 0; i < arr.length; i++)
-        {
-            System.out.println("Arbol ["+i+"] "+arr[i].preOrden(arr[i].getR())+"\n");
-        }
-    }
-    
-//    public static String muestra(){
-//    
-//        String s = "";
-//        
-//        for (int i = 0; i < 26; i++) {
-//            if (arr[i] != null) {
-//                s += arr[i].getEtq()+ "\n";
-//            }
-//        }
-//    
-//        return s;
-//    }
 
     /**
      * @return the arr
@@ -126,6 +81,4 @@ public class TablasHash implements Serializable{
     public void setArr(ArbolBinario[] arr) {
         this.arr = arr;
     }
-    
-    
 }

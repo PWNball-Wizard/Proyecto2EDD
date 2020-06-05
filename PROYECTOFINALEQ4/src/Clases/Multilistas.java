@@ -3,13 +3,11 @@ package Clases;
 import java.io.Serializable;
 import javax.swing.JOptionPane;
 
-
-public class Multilistas implements Serializable
-{
+public class Multilistas implements Serializable {
 
     private static Nodo mov = null;//guarda un dato eliminado para hacer el movimiento 
     //para eliminar una lista se necesita elimnar y crear otra lista
-//*****************************************************
+
     public static Nodo inserta(Nodo r, Nodo n, int nivel, String etqs[]) //nodo raiz,nodo a ingresar,nivel,etiqueta
     {
         if (nivel == etqs.length - 1)//VALIDA QUE ESTEMOS EN EL NIVEL CORRECTO
@@ -19,81 +17,64 @@ public class Multilistas implements Serializable
             ls.inserta(n);//inserta el dato en la lista
             r = ls.getR();//reconecta
             return r;
-        } else
-        {
+        } else {
             Nodo aux = busca(r, etqs[nivel]);//RECORRE EL ARBOL EN BUSCA DE LA ETIQUETA
-            
-            if (aux != null)
-            {
+
+            if (aux != null) {
                 aux.setAbj(inserta(aux.getAbj(), n, nivel + 1, etqs));//Si encuentra el dato lo inserta
-            } else
-            {
+            } else {
                 System.out.println("No se encontro " + etqs[nivel] + " En el nivel " + nivel);
             }
             return r;
         }
     }
-    
-    
 
-    public static Nodo elimina(Nodo r, int nivel, String etqs[])
-    {
-        if (nivel == etqs.length - 1)
-        {
+    public static Nodo elimina(Nodo r, int nivel, String etqs[]) {
+        if (nivel == etqs.length - 1) {
             LSL ls = new LSL();
             ls.setR(r);
             Nodo aux = ls.eliminar(etqs[nivel]);
             mov = aux;
-            if (aux == null)
-            {
+            if (aux == null) {
                 JOptionPane.showMessageDialog(null, "No se encontro el dato", "Mensaje de Error", JOptionPane.ERROR_MESSAGE);
-            } else
-            {
+            } else {
                 r = ls.getR();
                 System.out.println("La lista del nivel [" + nivel + "]= " + ls.can());
             }
             return r;
-        } else
-        {
+        } else {
             Nodo aux = busca(r, etqs[nivel]);
-            if (aux != null)
-            {
+            if (aux != null) {
                 aux.setAbj(elimina(aux.getAbj(), nivel + 1, etqs));//recursion
-            } else
-            {
+            } else {
                 System.out.println("No se encontro " + etqs[nivel] + " En el nivel " + nivel);
             }
             return r;
         }
     }
 
-    public static Nodo mover(Nodo r, int nivel, String etqsE[], String etqsI[])
-    {
+    public static Nodo mover(Nodo r, int nivel, String etqsE[], String etqsI[]) {
         r = elimina(r, nivel, etqsE);
-        if (mov != null)
-        {
+        if (mov != null) {
             r = inserta(r, mov, nivel, etqsI);
         }
         return r;
     }
-    public static Nodo busca(Nodo r, String etq)
-    {
+
+    public static Nodo busca(Nodo r, String etq) {
         Nodo aux = null;
-        while (r != null)
-        {
-            if (r.getEtq().equals(etq))
-            {
+        while (r != null) {
+            if (r.getEtq().equals(etq)) {
                 aux = r;
                 break;
-            } else
-            {
+            } else {
                 r = r.getSig();
             }
         }
-        System.out.println("EL DATO QUE ENCONTRE FUE:"+aux);
+        System.out.println("EL DATO QUE ENCONTRE FUE:" + aux);
         return aux;
     }
-    
+
     public static String desp(Nodo r, int nivel) {
 
         String s = "";
@@ -116,7 +97,5 @@ public class Multilistas implements Serializable
 
         }
         return s;
-
     }
-    
 }

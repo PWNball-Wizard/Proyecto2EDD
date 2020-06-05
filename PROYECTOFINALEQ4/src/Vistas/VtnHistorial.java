@@ -185,28 +185,19 @@ public class VtnHistorial extends javax.swing.JFrame {
         s = JOptionPane.showInputDialog("Escriba el dia a agregar");
 
         if (s == null) {
-
             b1 = false;
-
         } else if (s.length() != 0) {
-
             String partes[] = s.split("/");
-
             try {
-
                 LocalDate.of(Integer.parseInt(partes[2]), Integer.parseInt(partes[1]), Integer.parseInt(partes[0]));
-
             } catch (Exception e) {
                 Mensaje.error(this, "La fecha que ingresaste es incorrecta");
                 b2 = false;
             }
-
         }
 
-        //AGREGAR AQUI METODO PARA VALIDAR LA FECHA
         if (b1 == false || validaH(r2, s) == true) {
             if (b1 == false) {
-
             } else {
                 Mensaje.error(this, "La fecha que ingresaste esta duplicada, porfavor ingresa una diferente");
             }
@@ -230,19 +221,16 @@ public class VtnHistorial extends javax.swing.JFrame {
                 }
 
                 r2 = Multilistas.busca(VtnGrupo.r, d1);
-
                 r2 = r2.getAbj();
                 r2 = Multilistas.busca(r2, d2);
-
                 JPHistorial.removeAll();
-
                 r2 = r2.getAbj();
+
                 if (r2 != null) {
                     Nodo aux = r2;
                     while (aux != null) {
                         JButton boton = new JButton(aux.getEtq());
 
-                        //boton.setLocation(50, 10);
                         boton.setBackground(Color.WHITE);//PONE EL FONDO DEL BOTON EN BLANCO
                         boton.setForeground(Color.BLACK);//PONE LAS LETRAS COLOR NEGRO
                         boton.setFont(new Font("arial", 1, 14));//CAMBIA LA FUENTE Y EL TAMAÑO
@@ -267,10 +255,8 @@ public class VtnHistorial extends javax.swing.JFrame {
                         aux = aux.getSig();
                     }
                 }
-
                 JPHistorial.revalidate();
                 JPHistorial.repaint();
-
             } else {
                 Mensaje.error(this, "Formato de fecha no valido");
             }
@@ -283,10 +269,7 @@ public class VtnHistorial extends javax.swing.JFrame {
 
     private void jBRegresarHActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBRegresarHActionPerformed
         VtnContacto c = new VtnContacto();
-        Nodo regresa;
         c.d = d1;
-//        regresa = Multilistas.busca(VtnGrupo.r, d1);
-//        c.r1 = regresa.getAbj();
         c.setVisible(true);
         dispose();
     }//GEN-LAST:event_jBRegresarHActionPerformed
@@ -299,40 +282,30 @@ public class VtnHistorial extends javax.swing.JFrame {
         s = JOptionPane.showInputDialog("Escriba la fecha a eliminar");
 
         if (s == null) {
-
             b1 = false;
-
         } else if (s.length() != 0) {
-
             String partes[] = s.split("/");
-
             try {
-
                 LocalDate.of(Integer.parseInt(partes[2]), Integer.parseInt(partes[1]), Integer.parseInt(partes[0]));
-
             } catch (Exception e) {
                 Mensaje.error(this, "La fecha que ingresaste es incorrecta");
                 b2 = false;
             }
-
         }
 
-        //AGREGAR AQUI METODO PARA VALIDAR LA FECHA
         if (b1 == false) {
 
         } else if (s.length() != 0 && b2 != false) {
-
-            Nodo his = new Nodo(null, s);
 
             String[] etqs = new String[3];
             etqs[0] = d1;
             etqs[1] = d2;
             etqs[2] = s;
-//                    VtnGrupo.r = Multilistas.inserta(VtnGrupo.r, his, 0, etqs);
+
             boolean c = false;
 
-            if (cjb.ci.Mensaje.pregunta(this, "Eliminar grupo\nSe eliminaran los contactos "
-                    + "y conversaciones asociados a este grupo\n¿Continuar?") == 0) {
+            if (cjb.ci.Mensaje.pregunta(this, "Eliminar conversación\nSe eliminaran los datos "
+                    + "asociados a esta conversación\n¿Desea continuar?") == 0) {
                 c = true;
             }
 
@@ -349,35 +322,18 @@ public class VtnHistorial extends javax.swing.JFrame {
             }
 
             r2 = Multilistas.busca(VtnGrupo.r, d1);
-
             r2 = r2.getAbj();
             r2 = Multilistas.busca(r2, d2);
-
             r2 = r2.getAbj();
-            if (r2 != null) {
-                Nodo aux = r2;
-                while (aux != null) {
-                    JButton boton = new JButton(aux.getEtq());
-                    Component componentes[] = JPHistorial.getComponents();
 
-                    for (int i = 0; i < componentes.length; i++) {
-                        System.out.println(((JButton) componentes[i]).getText());
-                        if (etqs[2].equals(((JButton) componentes[i]).getText().trim())) {
-                            JPHistorial.remove(i);
-                        }
+            if (r2 != null) {
+                Component componentes[] = JPHistorial.getComponents();
+
+                for (int i = 0; i < componentes.length; i++) {
+                    System.out.println(((JButton) componentes[i]).getText());
+                    if (etqs[2].equals(((JButton) componentes[i]).getText().trim())) {
+                        JPHistorial.remove(i);
                     }
-                    boton.addActionListener(new ActionListener() {
-                        @Override
-                        public void actionPerformed(ActionEvent e) {
-                            VtnW nivel3 = new VtnW();
-                            nivel3.d1 = d1;
-                            nivel3.d2 = d2;
-                            nivel3.d3 = boton.getText();
-                            nivel3.setVisible(true);
-                        }
-                    }
-                    );
-                    aux = aux.getSig();
                 }
             } else {
                 JPHistorial.removeAll();
@@ -391,13 +347,11 @@ public class VtnHistorial extends javax.swing.JFrame {
 
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
         r2 = Multilistas.busca(VtnGrupo.r, d1);
-
         r2 = r2.getAbj();
         r2 = Multilistas.busca(r2, d2);
-
         JPHistorial.removeAll();
-
         r2 = r2.getAbj();
+        
         if (r2 != null) {
             Nodo aux = r2;
             while (aux != null) {
@@ -407,7 +361,6 @@ public class VtnHistorial extends javax.swing.JFrame {
                 boton.setForeground(Color.BLACK);//PONE LAS LETRAS COLOR NEGRO
                 boton.setFont(new Font("arial", 1, 14));//CAMBIA LA FUENTE Y EL TAMAÑO
 
-                //ESTABLECE UN TAMAÑO POR DEFECTO PARA LOS BOTONES
                 boton.setMinimumSize(new Dimension(JPHistorial.getWidth(), 50));
                 boton.setMaximumSize(new Dimension(JPHistorial.getWidth(), 50));
                 boton.setPreferredSize(new Dimension(JPHistorial.getWidth(), 50));
@@ -427,7 +380,6 @@ public class VtnHistorial extends javax.swing.JFrame {
                 aux = aux.getSig();
             }
         }
-
         JPHistorial.revalidate();
         JPHistorial.repaint();
     }//GEN-LAST:event_formWindowOpened

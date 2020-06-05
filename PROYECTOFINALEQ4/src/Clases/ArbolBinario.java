@@ -113,74 +113,6 @@ public class ArbolBinario implements Serializable {
 
     }
 
-    ////////////////////////////////////este metodo ya no se usa//////////////////
-    public void elimina2(NodoArbol r, String gpo, String etq, NodoArbol arr[]) {
-
-        String p[] = r.getPredecesores();
-
-        if (r == null) {
-            arr[0] = null;
-            arr[1] = r;
-        } else {
-            if (p[0].equals(gpo)) {//encontre el dato a eliminar
-
-                arr[0] = r;//porque no importa si tiene un hijo, o dos, o ninguno el dato a eliminar SIEMPRE es r
-
-                if (r.getDer() == null && r.getIzq() == null) {//Cuando no tiene hijos
-                    arr[0] = r;
-                    arr[1] = null; //para que se reconecte con un nulo
-                } else {
-                    //cuando tiene un hijo
-                    if (!(r.getDer() != null && r.getIzq() != null)) {//si los dos son nulos tiene dos hijos, y para que de un V
-                        //cuando uno de los dos de falso y el otro verdad entonces al evaluar en && e invertirse los signos 
-                        //significa que uno tiene un solo hijo
-                        //asi se evita que que entre cuando tiene 2 hijos
-                        if (r.getDer() != null) {//para ver de que lado esta el nodo hijo**para ver si esta ala derecha
-                            arr[1] = r.getDer();
-                        } else {
-                            arr[1] = r.getIzq();
-                        }
-
-                    } else {
-                        //tiene dos hijos
-                        //el sucesor enOrden es el que esta a la derecha mas a la izquierda
-                        if (r.getDer().getIzq() == null) {//si a la izquierda hay un nulo entonces toma el que esta a la derecha
-                            NodoArbol se = r.getDer();
-                            se.setIzq(r.getIzq());//conecta lo que tenia el Nodo eliminado a su izquierda, a el nodo sucesor en su izquierda
-                            r.setDer(null);
-                            r.setIzq(null);
-                            arr[1] = se;
-                        } else {
-                            NodoArbol aux = sucesorE(r.getDer());
-                            NodoArbol se = aux.getIzq();
-                            aux.setIzq(se.getDer());//aux en izquierda conecta con el derecho del sucesor en orden
-                            se.setDer(r.getDer());
-                            se.setIzq(r.getIzq());
-                            arr[1] = se;
-                        }
-                        r.setDer(null);
-                        r.setIzq(null);
-                    }
-                }
-            } else {
-                if (r.getEtq().compareTo(etq) > 0) {
-                    System.out.println("Etiquet en raiz " + r.getEtq() + "etiqueta original" + etq);
-                    elimina(r.getIzq(), etq, arr);
-                    r.setIzq(arr[1]);
-                } else {
-                    System.out.println("Etiquet en raiz " + r.getEtq() + "etiqueta original" + etq);
-                    elimina(r.getDer(), etq, arr);
-                    r.setDer(arr[1]);
-                }
-                arr[1] = r;
-
-            }
-        }
-
-    }
-//***********************************ELIMINARLO**************************/
-/////////////////////////////////////////////////////////////////////////////////
-
     public NodoArbol sucesorE(NodoArbol r) {//muestra el sucesor en orden
 
         if (r.getIzq().getIzq() != null) {
@@ -256,12 +188,6 @@ public class ArbolBinario implements Serializable {
         return r;
     }
 
-    /**
-     * Método que rota los nodos a la derecha para balancear los arboles
-     * @param r El nodo padre
-     * @param izq Tipo booleano que aclara si se hace una rotacion o no
-     * @return la raiz ya modificada con la rotación
-     */
     public NodoArbol rotar_d(NodoArbol r, boolean izq)
     {
         if (izq)
@@ -279,12 +205,6 @@ public class ArbolBinario implements Serializable {
         return r;
     }
 
-    /**
-     * Cambia de lugar dos nodos para el balance
-     * @param r El nodo padre con hijos
-     * @param izq El hijo izquierdo del padre
-     * @return 
-     */
     public NodoArbol rotar_s(NodoArbol r, boolean izq)
     {
         NodoArbol tmp;
@@ -304,12 +224,6 @@ public class ArbolBinario implements Serializable {
         return tmp;
     }
 
-    /**
-     * Método que calcula la altura del arbol o apartir de una rama dada 
-     * @param r El nodo padre
-     * @param a La altura del arbol
-     * @return 
-     */
     public int altura(NodoArbol r, int a)
     {
         if (r == null)
@@ -322,12 +236,6 @@ public class ArbolBinario implements Serializable {
 
     }
 
-    /**
-     * Método para ver quien es más grande
-     * @param a número
-     * @param b número
-     * @return quien es más grande
-     */
     public int max(int a, int b)
     {
         return a > b ? a : b;
@@ -365,39 +273,4 @@ public class ArbolBinario implements Serializable {
         }
         return aux;//regresa la raiz
     }
-
-    public NodoArbol busca2(NodoArbol r, String etq) //dos parametros: el arbol y la palabra a buscar
-    //regresa el nodo encontrado o en caso de no encontrarlo regresa null
-    {
-        NodoArbol aux = null;
-
-        if (r == null)//si el arbol esta vacio
-        {
-            System.out.println("El arbol se encuentra vacio");
-            return null;
-        } else {
-            if (r.getEtq().equals(etq))//compara y si lo encuentra en la raiz del arbol da true 
-            {
-
-                System.out.println("El elemento se encuentra en la raiz");
-                System.out.println("El dato encontrado en la raiz es: " + r.getEtq());
-                return r;
-            } else//el dato no se encuentra en la raiz del arbol
-            {
-                //COMIENZA LA RECURSIVIDAD
-                if (r.getEtq().compareTo(etq) > 0)//si el dato es mayor que la raiz 
-                //compareTo da valor mayor a 0 si la cadena 1 es mayor que la cadena 2
-                {
-                    aux = busca(r.getIzq(), etq);
-                } else//si el dato es menor que la raiz
-                {
-                    aux = busca(r.getDer(), etq);
-                }
-                System.out.println("el dato encontrado con recursion: " + aux.getEtq());
-                return aux;//regresa la raiz
-            }
-        }
-
-    }
-
 }

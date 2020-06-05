@@ -35,11 +35,6 @@ public class VtnGrupo extends javax.swing.JFrame {
 
     public static Nodo r = null;//RAIZ
 
-    public static NodoArbol rb = null;
-
-    public static ArbolBinario ab = new ArbolBinario();
-
-    /////////////////////////////////Prueba
     public static TablasHash arr;
 
     /**
@@ -244,8 +239,9 @@ public class VtnGrupo extends javax.swing.JFrame {
 
         s = JOptionPane.showInputDialog("Escriba el nombre de la categoria a añadir"); //ETIQUETA PARA LA CATEGORIA NUEVA
 
-        if (s == null) {
-            //Evita el NPE al salir del showInputDialog o presionar cancelar
+        if (s == null) //Evita el NPE al salir del showInputDialog o presionar cancelar
+        {
+            //No hace nada al cancelar, o presionar salir
         } else if (s.length() == 0) {
             Mensaje.error(this, "Campo vacio, debe escribir un nombre");
         } else {
@@ -255,9 +251,7 @@ public class VtnGrupo extends javax.swing.JFrame {
             } else {
                 Nodo nom = new Nodo(null, s);
 
-                String[] etqs = new String[1];
-                //arreglo de etiquetas
-                //esta en 1 lo cual significa que esta en el nivel 0
+                String[] etqs = new String[1];//arreglo de etiquetas,esta en 1 lo cual significa que esta en el nivel 0
 
                 etqs[0] = s;
 
@@ -307,33 +301,26 @@ public class VtnGrupo extends javax.swing.JFrame {
                 }
             }
         }
-
         JPGrupos.revalidate();
         JPGrupos.repaint();
-
-
     }//GEN-LAST:event_jBAgregarGActionPerformed
 
     private void jBEliminarGActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBEliminarGActionPerformed
-        //JPGrupos.removeAll();
         if (r != null) {
-            ArbolBinario abE = new ArbolBinario();
 
             String s = "";
 
             s = JOptionPane.showInputDialog("Escriba el nombre de la categoria a eliminar"); //ETIQUETA PARA LA CATEGORIA NUEVA
 
             if (s == null) {
-                //Evita el NPE al salir del showInputDialog o presionar cancelar
+                //No hace nada al cancelar o salir
             } else if (s.length() == 0) {
                 Mensaje.error(this, "Campo vacio, debe escribir un nombre");
             } else {
-
                 if (validaG(r, s) == false)//significa que no encontro nada 
                 {
                     Mensaje.error(this, "No se encontro el grupo que desea eliminar");
                 } else {
-                    Nodo nom = new Nodo(null, s);
 
                     String[] etqs = new String[1];//arreglo de etiquetas
 
@@ -342,22 +329,20 @@ public class VtnGrupo extends javax.swing.JFrame {
                     boolean c = false;
 
                     if (cjb.ci.Mensaje.pregunta(this, "Eliminar grupo\nSe eliminaran los contactos "
-                            + "y conversaciones asociados a este grupo\n¿Continuar?") == 0) {
+                            + "y conversaciones asociados a este grupo\n¿Desea continuar?") == 0) {
                         c = true;
                     }
 
                     if (c) {
-
                         Nodo rb = Multilistas.busca(r, s);
 
                         rb = rb.getAbj();
 
                         if (rb != null) {
-//                            System.out.println("/////////////////////////////\n/////////////////////////" + rb.getEtq());
+
                             Nodo aux = rb;
 
                             while (aux != null) {
-                                NodoArbol[] arrB = new NodoArbol[2];
 
                                 arr.elimina(aux.getEtq());
 
@@ -377,44 +362,19 @@ public class VtnGrupo extends javax.swing.JFrame {
                     }
 
                     if (r != null) {
-                        Nodo aux = r;
-                        System.out.println("r no es nulo");
-                        while (aux != null) {
-                            System.out.println("entrando al ciclo");
-                            JButton boton = new JButton(aux.getEtq());
+                        Component componentes[] = JPGrupos.getComponents();
 
-                            Component componentes[] = JPGrupos.getComponents();
-                            System.out.println("Tengo " + componentes.length + "componentes");
-
-                            for (int i = 0; i < componentes.length; i++) {
-                                System.out.println("El componente a eliminar es " + ((JButton) componentes[i]).getText());
-                                if (etqs[0].equals(((JButton) componentes[i]).getText().trim())) {
-                                    JPGrupos.remove(i);
-                                }
+                        for (int i = 0; i < componentes.length; i++) {
+                            if (etqs[0].equals(((JButton) componentes[i]).getText().trim())) {
+                                JPGrupos.remove(i);
                             }
-
-                            boton.addActionListener(new ActionListener()//pone una accion al boton
-                            {
-                                @Override
-                                public void actionPerformed(ActionEvent e)//accion del boton
-                                {
-                                    VtnContacto c = new VtnContacto();
-                                    c.d = boton.getText();
-                                    c.setVisible(false);
-
-                                }
-                            });
-                            aux = aux.getSig();
                         }
                     } else {
                         JPGrupos.removeAll();
                     }
                 }
-
             }
-
             System.out.println(Multilistas.desp(r, 0));
-
         } else {
             Mensaje.error(this, "La lista se encuentra vacia, no puede eliminar elementos");
         }
@@ -423,7 +383,6 @@ public class VtnGrupo extends javax.swing.JFrame {
     }//GEN-LAST:event_jBEliminarGActionPerformed
 
     private void jBBuscaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBBuscaActionPerformed
-
         String s = "";
         s = JOptionPane.showInputDialog("Escriba el nombre del contacto que deseas buscar"); //ETIQUETA PARA LA CATEGORIA NUEVA
 
@@ -460,18 +419,20 @@ public class VtnGrupo extends javax.swing.JFrame {
                         h.d2 = contacto;
                         h.setVisible(true);
                         dispose();
+
                     } else {
                         Mensaje.error(this, "No se encontro el dato");
                     }
+
                 } else {
                     Mensaje.error(this, "No se encontró " + s + " en tu lista de contactos");
                 }
             }
         }
+
     }//GEN-LAST:event_jBBuscaActionPerformed
 
     private void jBCerrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBCerrarActionPerformed
-
         System.exit(0);
     }//GEN-LAST:event_jBCerrarActionPerformed
 
@@ -487,7 +448,7 @@ public class VtnGrupo extends javax.swing.JFrame {
             Logger.getLogger(VtnGrupo.class.getName()).log(Level.SEVERE, null, ex);
         }
 
-        if (r == null) {
+        if (r == null) {//hacer esta validacion en las demas ventanas
             Mensaje.error(this, "No hay datos en la lista");
         } else {
             Nodo aux = r;
@@ -529,28 +490,7 @@ public class VtnGrupo extends javax.swing.JFrame {
         JPGrupos.repaint();
 
         System.out.println(Multilistas.desp(r, 0));
-
-//        System.out.println(TablasHash.muestra());
-//
-//        ab.balancear(TablasHash.getArr()[0]);
-//
-//        System.out.println(ab.enOrden(TablasHash.getArr()[3]));
-//        System.out.println(ab.preOrden(TablasHash.getArr()[3]));
-//        System.out.println(ab.enOrden(TablasHash.getArr()[1]));
-//        System.out.println(ab.preOrden(TablasHash.getArr()[1]));
-//        System.out.println(ab.enOrden(TablasHash.getArr()[9]));
-//
-//        if (TablasHash.getArr()[0] != null) {
-//
-//            int altura = ab.altura(TablasHash.getArr()[0], 0);
-//
-//            System.out.println("La altura de el arbol en la posicion " + 0 + " es " + altura);
-//
-//        }
-        //JPGrupos.removeAll();
         arr.verarboles();
-        JPGrupos.revalidate();
-        JPGrupos.repaint();
     }//GEN-LAST:event_formWindowOpened
 
     private void jBAsistenteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBAsistenteActionPerformed
