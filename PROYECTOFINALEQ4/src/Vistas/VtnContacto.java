@@ -58,10 +58,6 @@ public class VtnContacto extends javax.swing.JFrame {
         jBMoverC.setContentAreaFilled(false);
         jBMoverC.setBorderPainted(false);
 
-        jBBusca.setOpaque(false);
-        jBBusca.setContentAreaFilled(false);
-        jBBusca.setBorderPainted(false);
-
         jBAsistente.setOpaque(false);
         jBAsistente.setContentAreaFilled(false);
         jBAsistente.setBorderPainted(false);
@@ -149,8 +145,6 @@ public class VtnContacto extends javax.swing.JFrame {
         jLEliminarC = new javax.swing.JLabel();
         jLMoverC = new javax.swing.JLabel();
         jLAgregarC = new javax.swing.JLabel();
-        jLabel1 = new javax.swing.JLabel();
-        jBBusca = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         JPContactos = new javax.swing.JPanel();
         jBAsistente = new javax.swing.JButton();
@@ -184,7 +178,7 @@ public class VtnContacto extends javax.swing.JFrame {
                 jBEliminarCActionPerformed(evt);
             }
         });
-        getContentPane().add(jBEliminarC, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 470, 56, -1));
+        getContentPane().add(jBEliminarC, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 470, 56, -1));
 
         jBRegresarC.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/atrasNuevo.png"))); // NOI18N
         jBRegresarC.addActionListener(new java.awt.event.ActionListener() {
@@ -203,24 +197,13 @@ public class VtnContacto extends javax.swing.JFrame {
         getContentPane().add(jBMoverC, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 470, 55, -1));
 
         jLEliminarC.setText("Eliminar");
-        getContentPane().add(jLEliminarC, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 530, -1, -1));
+        getContentPane().add(jLEliminarC, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 530, -1, -1));
 
         jLMoverC.setText("Mover");
         getContentPane().add(jLMoverC, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 530, -1, -1));
 
         jLAgregarC.setText("Agregar");
         getContentPane().add(jLAgregarC, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 530, -1, -1));
-
-        jLabel1.setText("Busqueda");
-        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 520, 60, 30));
-
-        jBBusca.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/buscarNuevo.png"))); // NOI18N
-        jBBusca.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jBBuscaActionPerformed(evt);
-            }
-        });
-        getContentPane().add(jBBusca, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 470, 60, -1));
 
         jScrollPane1.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
 
@@ -694,65 +677,6 @@ public class VtnContacto extends javax.swing.JFrame {
 
     }//GEN-LAST:event_formWindowOpened
 
-    private void jBBuscaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBBuscaActionPerformed
-
-        String s = "";
-        s = JOptionPane.showInputDialog("Escriba el nombre del contacto que deseas buscar"); //ETIQUETA PARA LA CATEGORIA NUEVA
-
-        if (s == null) {
-            //Evita el NPE al salir del showInputDialog o presionar cancelar
-        } else if (valida(s) == false) {
-            //Mensaje.error(this, "Debe ecsribir un nombre");
-            System.out.println("error");
-        } else {
-
-            char ppC = s.charAt(0);///////////////////////////////////////////////////////////////////////////////////
-            String pps = Character.toString(ppC);///////////Para insertar en la tabla Hash y en los ab////////////////
-
-            int pos = s.toUpperCase().codePointAt(0) - 65;
-
-//            if (TablasHash.getArr()[pos] != null) {
-//
-//                ArbolBinario aba = new ArbolBinario();
-//
-//                NodoArbol aux = aba.busca(TablasHash.getArr()[pos], s);
-//
-//                if (aux != null) {
-//
-//                    String[] pr = aux.getPredecesores();
-//
-//                    String grupo = pr[0];
-//                    String contacto = pr[1];
-//
-//                    Nodo r2 = Multilistas.busca(VtnGrupo.r, grupo);
-//
-//                    r2 = r2.getAbj();
-//                    r2 = Multilistas.busca(r2, contacto);
-//
-//                    if (r2 != null) {
-//                        VtnHistorial h = new VtnHistorial();
-//                        h.d1 = grupo;
-//                        h.d2 = contacto;
-//                        h.setVisible(true);
-//                        dispose();
-//
-//                    } else {
-//
-//                        Mensaje.error(this, "No se encontro el dato");
-//
-//                    }
-//
-//                } else {
-//
-//                    Mensaje.error(this, "No hay nada en la posicion " + pos + " del arreglo");
-//
-//                }
-//
-//            }
-
-        }
-    }//GEN-LAST:event_jBBuscaActionPerformed
-
     private void jBAsistenteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBAsistenteActionPerformed
         JOptionPane.showMessageDialog(rootPane, "                                                     ¡Bienvenido a la ventana de contactos!\n"
                 + "En esta ventana observaras los contactos que esten almacenados dentro del grupo que hayas ingresado\n"
@@ -799,7 +723,6 @@ public class VtnContacto extends javax.swing.JFrame {
     private javax.swing.JPanel JPContactos;
     private javax.swing.JButton jBAgregarC;
     private javax.swing.JButton jBAsistente;
-    private javax.swing.JButton jBBusca;
     private javax.swing.JButton jBEliminarC;
     private javax.swing.JButton jBMoverC;
     private javax.swing.JButton jBRegresarC;
@@ -809,7 +732,6 @@ public class VtnContacto extends javax.swing.JFrame {
     private javax.swing.JLabel jLFondoC;
     private javax.swing.JLabel jLFondoC1;
     private javax.swing.JLabel jLMoverC;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
     // End of variables declaration//GEN-END:variables
 }

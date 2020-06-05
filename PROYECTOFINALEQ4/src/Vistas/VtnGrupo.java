@@ -38,9 +38,8 @@ public class VtnGrupo extends javax.swing.JFrame {
     public static NodoArbol rb = null;
 
     public static ArbolBinario ab = new ArbolBinario();
-    
+
     /////////////////////////////////Prueba
-    
     public static TablasHash arr;
 
     /**
@@ -414,7 +413,6 @@ public class VtnGrupo extends javax.swing.JFrame {
 
             }
 
-           
             System.out.println(Multilistas.desp(r, 0));
 
         } else {
@@ -426,40 +424,50 @@ public class VtnGrupo extends javax.swing.JFrame {
 
     private void jBBuscaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBBuscaActionPerformed
 
-            String nb = null;
+        String s = "";
+        s = JOptionPane.showInputDialog("Escriba el nombre del contacto que deseas buscar"); //ETIQUETA PARA LA CATEGORIA NUEVA
 
-            nb = JOptionPane.showInputDialog("Escriba el nombre del grupo que desea buscar");
+        if (s == null) {
+            //Evita el NPE al salir del showInputDialog o presionar cancelar
+        } else if (valida(s) == false) {
+            //Mensaje.error(this, "Debe ecsribir un nombre");
+            System.out.println("error");
+        } else {
 
-            if (nb == null) {
-                System.out.println("");
-            } else {
-                if (nb.length() != 0) {
-                    Nodo aux = null;
-                    while (r != null) {
-                        if (r.getEtq().equalsIgnoreCase(nb)) {
-                            aux = r;
-                            break;
-                        } else {
-                            r = r.getSig();
-                        }
-                    }
-                    if (aux != null) {
-                        JOptionPane.showMessageDialog(rootPane, "El grupo encontrado es:" + aux.getEtq());
+            int pos = s.toUpperCase().codePointAt(0) - 65;
 
-                        VtnContacto contacto = new VtnContacto();
-                        contacto.d = aux.getEtq();
-                        contacto.setVisible(true);
-                        //dispose();
+            if (arr.getArr()[pos] != null) {
 
+                ArbolBinario aBus = new ArbolBinario();
+
+                NodoArbol aux = aBus.busca(arr.getArr()[pos].getR(), s);
+
+                if (aux != null) {
+
+                    String[] pr = aux.getPredecesores();
+
+                    String grupo = pr[0];
+                    String contacto = pr[1];
+
+                    Nodo r2 = Multilistas.busca(r, grupo);
+
+                    r2 = r2.getAbj();
+                    r2 = Multilistas.busca(r2, contacto);
+
+                    if (r2 != null) {
+                        VtnHistorial h = new VtnHistorial();
+                        h.d1 = grupo;
+                        h.d2 = contacto;
+                        h.setVisible(true);
+                        dispose();
                     } else {
-                        Mensaje.error(this, "No se encontro el grupo");
+                        Mensaje.error(this, "No se encontro el dato");
                     }
                 } else {
-                    Mensaje.error(this, "Debe escribir un grupo a buscar");
+                    Mensaje.error(this, "No se encontró " + s + " en tu lista de contactos");
                 }
-
             }
-        
+        }
     }//GEN-LAST:event_jBBuscaActionPerformed
 
     private void jBCerrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBCerrarActionPerformed
@@ -470,7 +478,7 @@ public class VtnGrupo extends javax.swing.JFrame {
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
 
         arr = new TablasHash(26);
-        
+
         try {
             Archivos.carga(this);
         } catch (IOException ex) {
@@ -478,8 +486,6 @@ public class VtnGrupo extends javax.swing.JFrame {
         } catch (ClassNotFoundException ex) {
             Logger.getLogger(VtnGrupo.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
-        
 
         if (r == null) {
             Mensaje.error(this, "No hay datos en la lista");
@@ -541,7 +547,6 @@ public class VtnGrupo extends javax.swing.JFrame {
 //            System.out.println("La altura de el arbol en la posicion " + 0 + " es " + altura);
 //
 //        }
-
         //JPGrupos.removeAll();
         arr.verarboles();
         JPGrupos.revalidate();
