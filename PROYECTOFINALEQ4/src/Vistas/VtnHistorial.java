@@ -38,22 +38,12 @@ public class VtnHistorial extends javax.swing.JFrame {
     /**
      * Creates new form MnuHistorial
      */
-    public void transparenciaBotones() {
-        jBAgregarH.setOpaque(false);
+    public void transparenciaBotones() 
+    {
         jBAgregarH.setContentAreaFilled(false);
-        jBAgregarH.setBorderPainted(false);
-
-        jBEliminarH.setOpaque(false);
         jBEliminarH.setContentAreaFilled(false);
-        jBEliminarH.setBorderPainted(false);
-
-        jBRegresarH.setOpaque(false);
         jBRegresarH.setContentAreaFilled(false);
-        jBRegresarH.setBorderPainted(false);
-
-        jBAsistente.setOpaque(false);
         jBAsistente.setContentAreaFilled(false);
-        jBAsistente.setBorderPainted(false);
 
     }
 

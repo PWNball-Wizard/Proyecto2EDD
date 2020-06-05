@@ -11,6 +11,8 @@ import Clases.Multilistas;
 import Clases.Nodo;
 import Clases.NodoArbol;
 import Clases.Propiedades;
+import Clases.TablasHash;
+import static Vistas.VtnGrupo.arr;
 import static Vistas.VtnGrupo.r;
 import cjb.ci.Mensaje;
 import java.awt.Color;
@@ -38,26 +40,13 @@ public class VtnContacto extends javax.swing.JFrame {
     /**
      * Creates new form VtnContacto
      */
-    public void transparenciaBotones() {
-        jBRegresarC.setOpaque(false);
+    public void transparenciaBotones() 
+    {
         jBRegresarC.setContentAreaFilled(false);
-        jBRegresarC.setBorderPainted(false);
-
-        jBAgregarC.setOpaque(false);
         jBAgregarC.setContentAreaFilled(false);
-        jBAgregarC.setBorderPainted(false);
-
-        jBEliminarC.setOpaque(false);
         jBEliminarC.setContentAreaFilled(false);
-        jBEliminarC.setBorderPainted(false);
-
-        jBMoverC.setOpaque(false);
         jBMoverC.setContentAreaFilled(false);
-        jBMoverC.setBorderPainted(false);
-
-        jBAsistente.setOpaque(false);
         jBAsistente.setContentAreaFilled(false);
-        jBAsistente.setBorderPainted(false);
 
     }
 
@@ -86,7 +75,7 @@ public class VtnContacto extends javax.swing.JFrame {
             validatodo = false;
         } else {
             if (valida == false) {
-                Mensaje.error(this, "Error, caracter invalido detectado");
+                 Mensaje.error(this, "Error, caracter invalido detectado\n Los caracteres permitidos para este apartado son solo letras");
                 validatodo = false;
             } else {
                 validatodo = true;
@@ -111,6 +100,39 @@ public class VtnContacto extends javax.swing.JFrame {
         System.out.println("EL DATO QUE ENCONTRE FUE:" + aux);
         return aux;
     }
+    
+    public static boolean validaN(String etq)//valida que no haya un nombre igual en dos grupos distintos
+    {
+        boolean aux = false;
+        while (r != null) {
+            if (r.getEtq().equalsIgnoreCase(etq)) 
+            {
+                aux = true;
+                break;
+            } else 
+            {
+                r = r.getSig();
+            }
+        }
+        if (aux==false) 
+        {
+            r=r.getAbj();
+            while (r != null) 
+            {
+                if (r.getEtq().equalsIgnoreCase(etq)) 
+                {
+                    aux = true;
+                    break;
+                } else {
+                    r = r.getSig();
+                }
+            }  
+        }
+        
+        
+        return aux;
+    }
+    
 
     public VtnContacto() {
         initComponents();
@@ -240,60 +262,76 @@ public class VtnContacto extends javax.swing.JFrame {
         } else {
             if (validaC(r1, s) == true) {
                 Mensaje.error(this, "El nombre que desea ingresar se encuentra repetido, por favor ingrese uno diferente");
-            } else {
+            } else 
+            {
 
-                Nodo con = new Nodo(null, s);
-                String[] etqs = new String[2];
-                etqs[0] = d;//toma el texto del boton que se eligio anteriorente
-                etqs[1] = s;
-
-                NodoArbol nomNAS = new NodoArbol(s, null, etqs);
-
-                VtnGrupo.r = Multilistas.inserta(VtnGrupo.r, con, 0, etqs); //inserta Multilista
-
-                VtnGrupo.arr.insertaTH(s, nomNAS);//inserta arbol
-
-                Propiedades p = new Propiedades(VtnGrupo.r, VtnGrupo.arr);
-
-                try {
-                    Archivos.guardar(p, this);
-                } catch (FileNotFoundException ex) {
-                    Logger.getLogger(VtnW.class.getName()).log(Level.SEVERE, null, ex);
+                 if (s.length()>30) 
+                {
+                    Mensaje.error(this, "El nombre que intenta ingresar excede el numero de caracteres permitido(30)");
                 }
+                else
+                {
+                    VtnGrupo c = new VtnGrupo();
+                    if (c.validaN(s)==true) 
+                    {
+                        Mensaje.error(this,"El nombre que desea ingresar se encuentra ya en otro grupo");
+                    }
+                    else
+                    {
+                        Nodo con = new Nodo(null, s);
+                        String[] etqs = new String[2];
+                        etqs[0] = d;//toma el texto del boton que se eligio anteriorente
+                        etqs[1] = s;
 
-                r1 = Multilistas.busca(VtnGrupo.r, d); //buscar en donde vas a insertar
-                r1 = r1.getAbj();//si
-                JPContactos.removeAll();
+                        NodoArbol nomNAS = new NodoArbol(s, null, etqs);
 
-                if (r1 != null) {
-                    Nodo aux = r1;
-                    while (aux != null) {
-                        JButton boton = new JButton(aux.getEtq());
+                        VtnGrupo.r = Multilistas.inserta(VtnGrupo.r, con, 0, etqs); //inserta Multilista
 
-                        //boton.setLocation(50, 10);
-                        boton.setBackground(Color.WHITE);//PONE EL FONDO DEL BOTON EN BLANCO
-                        boton.setForeground(Color.BLACK);//PONE LAS LETRAS COLOR NEGRO
-                        boton.setFont(new Font("arial", 1, 14));//CAMBIA LA FUENTE Y EL TAMAÑO
+                        VtnGrupo.arr.insertaTH(s, nomNAS);//inserta arbol
 
-                        //ESTABLECE UN TAMAÑO POR DEFECTO PARA LOS BOTONES
-                        boton.setMinimumSize(new Dimension(JPContactos.getWidth(), 50));
-                        boton.setMaximumSize(new Dimension(JPContactos.getWidth(), 50));
-                        boton.setPreferredSize(new Dimension(JPContactos.getWidth(), 50));
+                        Propiedades p = new Propiedades(VtnGrupo.r, VtnGrupo.arr);
 
-                        JPContactos.add(boton);
-                        boton.addActionListener(new ActionListener() {
-                            @Override
-                            public void actionPerformed(ActionEvent e) {
-                                VtnHistorial h = new VtnHistorial();
-                                h.d1 = d;
-                                h.d2 = boton.getText();
-                                h.setVisible(true);
+                        try {
+                            Archivos.guardar(p, this);
+                        } catch (FileNotFoundException ex) {
+                            Logger.getLogger(VtnW.class.getName()).log(Level.SEVERE, null, ex);
+                        }
+
+                        r1 = Multilistas.busca(VtnGrupo.r, d); //buscar en donde vas a insertar
+                        r1 = r1.getAbj();//si
+                        JPContactos.removeAll();
+
+                        if (r1 != null) {
+                            Nodo aux = r1;
+                            while (aux != null) {
+                                JButton boton = new JButton(aux.getEtq());
+
+                                //boton.setLocation(50, 10);
+                                boton.setBackground(Color.WHITE);//PONE EL FONDO DEL BOTON EN BLANCO
+                                boton.setForeground(Color.BLACK);//PONE LAS LETRAS COLOR NEGRO
+                                boton.setFont(new Font("arial", 1, 14));//CAMBIA LA FUENTE Y EL TAMAÑO
+
+                                //ESTABLECE UN TAMAÑO POR DEFECTO PARA LOS BOTONES
+                                boton.setMinimumSize(new Dimension(JPContactos.getWidth(), 50));
+                                boton.setMaximumSize(new Dimension(JPContactos.getWidth(), 50));
+                                boton.setPreferredSize(new Dimension(JPContactos.getWidth(), 50));
+
+                                JPContactos.add(boton);
+                                boton.addActionListener(new ActionListener() {
+                                    @Override
+                                    public void actionPerformed(ActionEvent e) {
+                                        VtnHistorial h = new VtnHistorial();
+                                        h.d1 = d;
+                                        h.d2 = boton.getText();
+                                        h.setVisible(true);
+                                    }
+                                }
+                                );
+                                aux = aux.getSig();
                             }
                         }
-                        );
-                        aux = aux.getSig();
-                    }
-                }
+                    }//FIN DEL VALIDA QUE UN NOMBRE ESTE EN OTROS GRUPOS
+                }//FIN DEL ESLE DE VALIDA 30 CARACTERES
             }
             JPContactos.revalidate();
             JPContactos.repaint();

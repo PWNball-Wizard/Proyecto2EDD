@@ -33,38 +33,16 @@ public class VtnW extends javax.swing.JFrame {
     public String d2;
     public String d3;
 
-    public void transparenciaBotones() {
-        jBEnviar1.setOpaque(false);
+    public void transparenciaBotones() 
+    {
         jBEnviar1.setContentAreaFilled(false);
-        jBEnviar1.setBorderPainted(false);
-
-        jBEnviar2.setOpaque(false);
         jBEnviar2.setContentAreaFilled(false);
-        jBEnviar2.setBorderPainted(false);
-
-        jBMostrarTexto.setOpaque(false);
         jBMostrarTexto.setContentAreaFilled(false);
-        jBMostrarTexto.setBorderPainted(false);
-
-        jBOrdenaC.setOpaque(false);
         jBOrdenaC.setContentAreaFilled(false);
-        jBOrdenaC.setBorderPainted(false);
-
-        jBOrdenar1.setOpaque(false);
         jBOrdenar1.setContentAreaFilled(false);
-        jBOrdenar1.setBorderPainted(false);
-
-        jBOrdenar2.setOpaque(false);
         jBOrdenar2.setContentAreaFilled(false);
-        jBOrdenar2.setBorderPainted(false);
-
-        jBRegresar.setOpaque(false);
         jBRegresar.setContentAreaFilled(false);
-        jBRegresar.setBorderPainted(false);
-
-        jBBuscarC.setOpaque(false);
         jBBuscarC.setContentAreaFilled(false);
-        jBBuscarC.setBorderPainted(false);
 
     }
 

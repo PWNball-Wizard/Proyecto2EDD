@@ -252,7 +252,7 @@ public class ArbolBinario implements Serializable {
             System.out.println("El arbol se encuentra vacio");//FUNCIONA 
             return null;
         } else {
-            if (r.getEtq().equals(etq))//compara y si lo encuentra en la raiz del arbol da true 
+            if (r.getEtq().equalsIgnoreCase(etq))//compara y si lo encuentra en la raiz del arbol da true 
             {
                 aux = r;
 
@@ -260,7 +260,7 @@ public class ArbolBinario implements Serializable {
             } else//el dato no se encuentra en la raiz del arbol
             {
                 //COMIENZA LA RECURSIVIDAD
-                if (r.getEtq().compareTo(etq) > 0)//si el dato es mayor que la raiz 
+                if (r.getEtq().compareToIgnoreCase(etq) > 0)//si el dato es mayor que la raiz 
                 //compareTo da valor mayor a 0 si la cadena 1 es mayor que la cadena 2
                 {
                     aux = busca(r.getIzq(), etq);
