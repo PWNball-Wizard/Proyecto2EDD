@@ -506,7 +506,8 @@ public class VtnContacto extends javax.swing.JFrame {
                     + "asociadas a este contacto\n¿Desea continuar?") == 0) {
                 c = true;
             }
-            if (c) {
+            if (c==true) 
+            {
                 VtnGrupo.r = Multilistas.elimina(VtnGrupo.r, 0, etqs);
 
                 int pos = s.toUpperCase().codePointAt(0) - 65;
@@ -525,23 +526,27 @@ public class VtnContacto extends javax.swing.JFrame {
                 } else {
                     Mensaje.error(this, "No hay datos en esta posicion del arreglo");
                 }
-            }
+                
+                //movi esto dentro del if
+                r1 = Multilistas.busca(VtnGrupo.r, d);
+                r1 = r1.getAbj();
 
-            r1 = Multilistas.busca(VtnGrupo.r, d);
-            r1 = r1.getAbj();
+                if (r1 != null) {
+                    Component componentes[] = JPContactos.getComponents();
 
-            if (r1 != null) {
-                Component componentes[] = JPContactos.getComponents();
-
-                for (int i = 0; i < componentes.length; i++) {
-                    System.out.println(((JButton) componentes[i]).getText());
-                    if (etqs[1].trim().equalsIgnoreCase(((JButton) componentes[i]).getText().trim())) {
-                        JPContactos.remove(i);
+                    for (int i = 0; i < componentes.length; i++) {
+                        System.out.println(((JButton) componentes[i]).getText());
+                        if (etqs[1].trim().equalsIgnoreCase(((JButton) componentes[i]).getText().trim())) {
+                            JPContactos.remove(i);
+                        }
                     }
+                } else {
+                    JPContactos.removeAll();
                 }
-            } else {
-                JPContactos.removeAll();
+                ////////////////////////////
             }
+
+            
         }
         JPContactos.updateUI();
 

@@ -329,7 +329,8 @@ public class VtnGrupo extends javax.swing.JFrame {
                         c = true;
                     }
 
-                    if (c) {
+                    if (c==true) 
+                    {
                         Nodo rb = Multilistas.busca(r, s.trim());
 
                         rb = rb.getAbj();
@@ -355,9 +356,9 @@ public class VtnGrupo extends javax.swing.JFrame {
                         } catch (FileNotFoundException ex) {
                             System.out.println("No se encontro el archivo");
                         }
-                    }
-
-                    if (r != null) {
+                        
+                        //movi esto dentro de el if
+                        if (r != null) {
                         Component componentes[] = JPGrupos.getComponents();
 
                         for (int i = 0; i < componentes.length; i++) {
@@ -365,9 +366,13 @@ public class VtnGrupo extends javax.swing.JFrame {
                                 JPGrupos.remove(i);
                             }
                         }
-                    } else {
+                        } else {
                         JPGrupos.removeAll();
+                        }
+                        //////////////////
                     }
+
+                    
                 }
             }
             System.out.println(Multilistas.desp(r, 0));
