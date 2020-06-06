@@ -413,7 +413,7 @@ public class VtnContacto extends javax.swing.JFrame {
 
                                     for (int i = 0; i < componentes.length; i++) {
                                         System.out.println(((JButton) componentes[i]).getText());
-                                        if (etqsE[1].equals(((JButton) componentes[i]).getText().trim())) {
+                                        if (etqsE[1].trim().equalsIgnoreCase(((JButton) componentes[i]).getText().trim())) {
                                             JPContactos.remove(i);
                                         }
                                     }
@@ -464,7 +464,7 @@ public class VtnContacto extends javax.swing.JFrame {
 
                                 for (int i = 0; i < componentes.length; i++) {
                                     System.out.println(((JButton) componentes[i]).getText());
-                                    if (etqsE[1].equals(((JButton) componentes[i]).getText().trim())) {
+                                    if (etqsE[1].trim().equalsIgnoreCase(((JButton) componentes[i]).getText().trim())) {
                                         JPContactos.remove(i);
                                     }
                                 }
@@ -535,7 +535,7 @@ public class VtnContacto extends javax.swing.JFrame {
 
                 for (int i = 0; i < componentes.length; i++) {
                     System.out.println(((JButton) componentes[i]).getText());
-                    if (etqs[1].equalsIgnoreCase(((JButton) componentes[i]).getText().trim())) {
+                    if (etqs[1].trim().equalsIgnoreCase(((JButton) componentes[i]).getText().trim())) {
                         JPContactos.remove(i);
                     }
                 }
