@@ -90,7 +90,7 @@ public class VtnContacto extends javax.swing.JFrame {
     {
         boolean aux = false;
         while (r != null) {
-            if (r.getEtq().equals(etq)) {
+            if (r.getEtq().equalsIgnoreCase(etq.trim())) {
                 aux = true;
                 break;
             } else {
@@ -105,7 +105,7 @@ public class VtnContacto extends javax.swing.JFrame {
     {
         boolean aux = false;
         while (r != null) {
-            if (r.getEtq().equalsIgnoreCase(etq)) 
+            if (r.getEtq().equalsIgnoreCase(etq.trim())) 
             {
                 aux = true;
                 break;
@@ -119,7 +119,7 @@ public class VtnContacto extends javax.swing.JFrame {
             r=r.getAbj();
             while (r != null) 
             {
-                if (r.getEtq().equalsIgnoreCase(etq)) 
+                if (r.getEtq().equalsIgnoreCase(etq.trim())) 
                 {
                     aux = true;
                     break;
@@ -278,12 +278,12 @@ public class VtnContacto extends javax.swing.JFrame {
                     }
                     else
                     {
-                        Nodo con = new Nodo(null, s);
+                        Nodo con = new Nodo(null, s.trim());
                         String[] etqs = new String[2];
                         etqs[0] = d;//toma el texto del boton que se eligio anteriorente
                         etqs[1] = s;
 
-                        NodoArbol nomNAS = new NodoArbol(s, null, etqs);
+                        NodoArbol nomNAS = new NodoArbol(s.trim(), null, etqs);
 
                         VtnGrupo.r = Multilistas.inserta(VtnGrupo.r, con, 0, etqs); //inserta Multilista
 

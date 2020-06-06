@@ -64,7 +64,7 @@ public class Multilistas implements Serializable {
     public static Nodo busca(Nodo r, String etq) {
         Nodo aux = null;
         while (r != null) {
-            if (r.getEtq().equals(etq)) {
+            if (r.getEtq().equalsIgnoreCase(etq)) {
                 aux = r;
                 break;
             } else {

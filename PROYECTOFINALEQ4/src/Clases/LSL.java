@@ -90,9 +90,9 @@ public class LSL implements Serializable {
         } else {
             Nodo aux = null; //aux es el elemento a eliminar 
 
-            if (etq.compareTo(r.getEtq()) >= 0)//SE UTILIZA PARA OPTIMIZAR EL CODIGO
+            if (etq.trim().compareToIgnoreCase(r.getEtq()) >= 0)//SE UTILIZA PARA OPTIMIZAR EL CODIGO
             {
-                if (r.getEtq().equals(etq))//Si se encuentra en la primera posicion
+                if (r.getEtq().equalsIgnoreCase(etq.trim()))//Si se encuentra en la primera posicion
                 {
                     aux = r; //aux se coloca en el primer elemento
                     r = r.getSig();//r se mueve a la siguiente posicion
@@ -104,7 +104,7 @@ public class LSL implements Serializable {
                     boolean b = true;//rompe el ciclo una vez cumplida la condicion
                     while (aux2.getSig() != null && b)//cuando es diferente de null significa que no ha recorrido la lista
                     {
-                        if (aux2.getSig().getEtq().equals(etq))//compara el dato a eliminar con las otras etiquetas
+                        if (aux2.getSig().getEtq().equalsIgnoreCase(etq.trim()))//compara el dato a eliminar con las otras etiquetas
                         {
                             aux = aux2.getSig();//mueve a la siguiente posicion
                             aux2.setSig(aux.getSig());//desconecta el que se queda

@@ -93,7 +93,7 @@ public class VtnGrupo extends javax.swing.JFrame {
     {
         boolean aux = false;
         while (r != null) {
-            if (r.getEtq().equalsIgnoreCase(etq)) {
+            if (r.getEtq().equalsIgnoreCase(etq.trim())) {
                 aux = true;
                 break;
             } else {
@@ -224,7 +224,7 @@ public class VtnGrupo extends javax.swing.JFrame {
         String s = "";
 
         s = JOptionPane.showInputDialog("Escriba el nombre de la categoria a añadir"); //ETIQUETA PARA LA CATEGORIA NUEVA
-
+        System.out.println("El nombre es " + s);
         if (s == null) //Evita el NPE al salir del showInputDialog o presionar cancelar
         {
             //No hace nada al cancelar, o presionar salir
@@ -330,7 +330,7 @@ public class VtnGrupo extends javax.swing.JFrame {
                     }
 
                     if (c) {
-                        Nodo rb = Multilistas.busca(r, s);
+                        Nodo rb = Multilistas.busca(r, s.trim());
 
                         rb = rb.getAbj();
 
@@ -361,7 +361,7 @@ public class VtnGrupo extends javax.swing.JFrame {
                         Component componentes[] = JPGrupos.getComponents();
 
                         for (int i = 0; i < componentes.length; i++) {
-                            if (etqs[0].equals(((JButton) componentes[i]).getText().trim())) {
+                            if (etqs[0].equalsIgnoreCase(((JButton) componentes[i]).getText().trim())) {
                                 JPGrupos.remove(i);
                             }
                         }
@@ -382,8 +382,6 @@ public class VtnGrupo extends javax.swing.JFrame {
         String s = "";
         s = JOptionPane.showInputDialog("Escriba el nombre del contacto que deseas buscar"); //ETIQUETA PARA LA CATEGORIA NUEVA
 
-        
-        
         if (s == null) {
             //Evita el NPE al salir del showInputDialog o presionar cancelar
         } else if (valida(s) == false) {
