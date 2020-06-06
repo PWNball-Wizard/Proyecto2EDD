@@ -172,7 +172,7 @@ public class VtnHistorial extends javax.swing.JFrame {
         boolean b2 = true;//BANDERA PARA VERIFICAR SI ESTA BIEN ESCRITA LA FECHA
 
         String s = "";
-        s = JOptionPane.showInputDialog("Escriba el dia a agregar");
+        s = JOptionPane.showInputDialog("Escriba la nueva fecha a agregar\n"+"Recuerda que tiene que ser en el formato DD/MM/YYYY");
 
         if (s == null) {
             b1 = false;
@@ -285,50 +285,61 @@ public class VtnHistorial extends javax.swing.JFrame {
 
         if (b1 == false) {
 
-        } else if (s.length() != 0 && b2 != false) {
+        } else 
+            if (s.length() != 0) 
+        {
+            if (b2!=false)
+            {
+                String[] etqs = new String[3];
+                etqs[0] = d1;
+                etqs[1] = d2;
+                etqs[2] = s;
 
-            String[] etqs = new String[3];
-            etqs[0] = d1;
-            etqs[1] = d2;
-            etqs[2] = s;
+                boolean c = false;
 
-            boolean c = false;
-
-            if (cjb.ci.Mensaje.pregunta(this, "Eliminar conversación\nSe eliminaran los datos "
-                    + "asociados a esta conversación\n¿Desea continuar?") == 0) {
-                c = true;
-            }
-
-            if (c) {
-                VtnGrupo.r = Multilistas.elimina(VtnGrupo.r, 0, etqs);
-
-                Propiedades p = new Propiedades(VtnGrupo.r, VtnGrupo.arr);
-
-                try {
-                    Archivos.guardar(p, this);
-                } catch (FileNotFoundException ex) {
-                    System.out.println("No se encontro el archivo");
+                if (cjb.ci.Mensaje.pregunta(this, "Eliminar conversación\nSe eliminaran los datos "
+                        + "asociados a esta conversación\n¿Desea continuar?") == 0) {
+                    c = true;
                 }
-            }
 
-            r2 = Multilistas.busca(VtnGrupo.r, d1);
-            r2 = r2.getAbj();
-            r2 = Multilistas.busca(r2, d2);
-            r2 = r2.getAbj();
+                if (c) 
+                {
+                    VtnGrupo.r = Multilistas.elimina(VtnGrupo.r, 0, etqs);
 
-            if (r2 != null) {
-                Component componentes[] = JPHistorial.getComponents();
+                    Propiedades p = new Propiedades(VtnGrupo.r, VtnGrupo.arr);
 
-                for (int i = 0; i < componentes.length; i++) {
-                    System.out.println(((JButton) componentes[i]).getText());
-                    if (etqs[2].equals(((JButton) componentes[i]).getText().trim())) {
-                        JPHistorial.remove(i);
+                    try {
+                        Archivos.guardar(p, this);
+                    } catch (FileNotFoundException ex) {
+                        System.out.println("No se encontro el archivo");
                     }
+
+                    //movi esto dentro del if(c)
+                    r2 = Multilistas.busca(VtnGrupo.r, d1);
+                    r2 = r2.getAbj();
+                    r2 = Multilistas.busca(r2, d2);
+                    r2 = r2.getAbj();
+
+                    if (r2 != null) {
+                        Component componentes[] = JPHistorial.getComponents();
+
+                        for (int i = 0; i < componentes.length; i++) {
+                            System.out.println(((JButton) componentes[i]).getText());
+                            if (etqs[2].equals(((JButton) componentes[i]).getText().trim())) {
+                                JPHistorial.remove(i);
+                            }
+                        }
+                    } else {
+                        JPHistorial.removeAll();
+                    }
+                    //movi esto dentro del if()c
                 }
-            } else {
-                JPHistorial.removeAll();
             }
-        } else {
+            
+            
+            
+        }//fin del valida s 
+        else {
             Mensaje.error(this, "No puede haber campos vacios");
         }
         JPHistorial.updateUI();

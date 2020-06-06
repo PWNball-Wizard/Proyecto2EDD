@@ -322,14 +322,23 @@ public class VtnGrupo extends javax.swing.JFrame {
 
                     etqs[0] = s;
 
+                    //int decision=JOptionPane.showConfirmDialog(rootPane, "Eliminar grupo\nSe eliminaran los contactos y conversaciones asociados a este grupo\n","¿Desea continuar?",JOptionPane.YES_NO_OPTION,JOptionPane.QUESTION_MESSAGE);
+
+                    
                     boolean c = false;
 
                     if (cjb.ci.Mensaje.pregunta(this, "Eliminar grupo\nSe eliminaran los contactos "
-                            + "y conversaciones asociados a este grupo\n¿Desea continuar?") == 0) {
+                            + "y conversaciones asociados a este grupo\n¿Desea continuar?") == 0) 
+                    {
                         c = true;
                     }
-
-                    if (c) {
+                    
+                    
+                    
+                    if (c==true)//LE AGREGUE EL TRUE
+                    {
+                        //Mensaje.exito(this, "El valor de c es "+c);
+                        
                         Nodo rb = Multilistas.busca(r, s.trim());
 
                         rb = rb.getAbj();
@@ -355,9 +364,9 @@ public class VtnGrupo extends javax.swing.JFrame {
                         } catch (FileNotFoundException ex) {
                             System.out.println("No se encontro el archivo");
                         }
-                    }
-
-                    if (r != null) {
+                    
+                        //ESTABA AFUERA DEL ELSE, SI DA ERROR MOVERLA A LA PARTE DE ABAJO DONDE ESTAN LOS /////
+                        if (r != null) {
                         Component componentes[] = JPGrupos.getComponents();
 
                         for (int i = 0; i < componentes.length; i++) {
@@ -365,9 +374,14 @@ public class VtnGrupo extends javax.swing.JFrame {
                                 JPGrupos.remove(i);
                             }
                         }
-                    } else {
-                        JPGrupos.removeAll();
+                        } else 
+                        {
+                            JPGrupos.removeAll();
+                        }
+                        //FIN DE LO QUE HAY QUE PASAR
                     }
+                    //////////PONERLO AQUI SI NO FUNCIONA
+                    
                 }
             }
             System.out.println(Multilistas.desp(r, 0));

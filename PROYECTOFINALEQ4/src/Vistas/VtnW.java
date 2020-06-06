@@ -259,7 +259,10 @@ public class VtnW extends javax.swing.JFrame {
         if (jTChat1.getText().length() == 0) {
             Mensaje.error(this, "Mensaje vacio"); //ENVIA UN MENSAJE DE ERROR EN CASO DE QUE NO HAYA ESCRITO NADA
         } else {
-            Nodo n = new Nodo(1, jTChat1.getText());
+            
+            String m = jTChat1.getText().replaceAll("(.{15})","$1\n");//ESTO DA EL SALTO DE LINEA CADA 15 CARACTERES
+            
+            Nodo n = new Nodo(1, m);
 
             p1.Inserta(n);
             c.Inserta(n);
@@ -305,7 +308,7 @@ public class VtnW extends javax.swing.JFrame {
     }//GEN-LAST:event_jBOrdenaCActionPerformed
 
     private void jTChat1KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTChat1KeyTyped
-        if (jTChat1.getText().length() == 11) {
+        if (jTChat1.getText().length() == 50) {
             evt.consume();
         }
     }//GEN-LAST:event_jTChat1KeyTyped
