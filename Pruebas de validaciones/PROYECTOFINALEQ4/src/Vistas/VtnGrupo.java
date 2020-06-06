@@ -52,17 +52,20 @@ public class VtnGrupo extends javax.swing.JFrame {
 
     public boolean valida(String s) {
         boolean valida = false;
-        for (int i = 0; i < s.length(); i++) {
-            char caracter = s.toUpperCase().charAt(i);
+        for (int i = 0; i < s.length(); i++) 
+        {
+            char caracter = s.charAt(i);
             int valorASCII = (int) caracter;
-            if (valorASCII > 64 && valorASCII < 91) {
+            if (valorASCII > 64 && valorASCII < 91) 
+            {
                 valida = true;
                 //return false; //Se ha encontrado un caracter que no es letra 
             }
-            /*if (valorASCII > 97 && valorASCII < 123) {
+            if (valorASCII > 97 && valorASCII < 123) 
+            {
                 valida = true;
                 //return false; //Se ha encontrado un caracter que no es letra 
-            }*/
+            }
             /*if (valorASCII > 47 && valorASCII < 58) {
                 valida = true;
             }*/
@@ -244,7 +247,6 @@ public class VtnGrupo extends javax.swing.JFrame {
                 }
                 else
                 {
-
                     Nodo nom = new Nodo(null, s);
 
                     String[] etqs = new String[1];//arreglo de etiquetas,esta en 1 lo cual significa que esta en el nivel 0

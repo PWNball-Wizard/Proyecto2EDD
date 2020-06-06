@@ -50,41 +50,64 @@ public class VtnContacto extends javax.swing.JFrame {
 
     }
 
-    public boolean valida(String s) {
-        boolean valida = false;
-        for (int i = 0; i < s.length(); i++) {
-            char caracter = s.toUpperCase().charAt(i);
-            int valorASCII = (int) caracter;
-            if (valorASCII > 64 && valorASCII < 91) {
-                valida = true;
-                //return false; //Se ha encontrado un caracter que no es letra 
-            }
-            if (valorASCII > 97 && valorASCII < 123) {
-                valida = true;
-                //return false; //Se ha encontrado un caracter que no es letra 
-            }
-
+    public boolean valida(String s) 
+    {
+        boolean valida=false;
+        
+        if (s.length()==0) 
+        {
+            Mensaje.error(this,"El campo se ecnuentra vacio, debe ingresar un nombre primero");
+            valida=false;
         }
+        else
+        {
+            if (s.length()>30) 
+            {
+                Mensaje.error(this,"El nombre que desea ingresar excede el numero de caracteres permitidos(30)");
+                valida=false;
+            } 
+            else 
+            {
+                for (int i = 0; i < s.length(); i++) //analiza cada caracter de la cadena de manera individual
+                {
+                    char caracter = s.charAt(i);
+                    int valorASCII = (int) caracter;
 
-        System.out.println("VALOR DE VALIDA:" + valida);
-
-        boolean validatodo = false;
-
-        if (s.length() == 0) {
-            Mensaje.error(this, "Campo vacio, debe ingresar un nombre primero");
-            validatodo = false;
-        } else {
-            if (valida == false) {
-                 Mensaje.error(this, "Error, caracter invalido detectado\n Los caracteres permitidos para este apartado son solo letras");
-                validatodo = false;
-            } else {
-                validatodo = true;
-            }
-        }
-
-        System.out.println("VALIDA TODO;" + validatodo);
-        return validatodo;
+                    //condicion que solo acepta letras
+                    if (valorASCII > 64 && valorASCII < 91 || valorASCII > 96 && valorASCII < 123) 
+                    {
+                        valida = true; 
+                    }
+                    else
+                    {
+                        valida=false;
+                    }
+                    
+                }
+                
+                if (valida==true) 
+                {
+                    return valida=true;
+                }
+                else
+                {
+                    valida=false;
+                    Mensaje.error(this, "El nombre que desea ingresar contiene caracteres que no son admitidos\n"+
+                    "Recuerde que en esta seccion solo se permiten letras");       
+                }  
+                
+            }//fin del valida=30
+        }//fin del valida s=0
+        
+        
+        
+        
+        
+        System.out.println("//////////////EL VALOR DE VALIDA ES "+valida);
+        return valida;
     }
+    
+    
 
     public static boolean validaC(Nodo r, String etq)//valida que el nombre de un grupo no se repita 
     {
@@ -101,7 +124,8 @@ public class VtnContacto extends javax.swing.JFrame {
         return aux;
     }
     
-    public static boolean validaN(String etq)//valida que no haya un nombre igual en dos grupos distintos
+    //CREO QUE ESTE YA NO SE NECESITA
+    /*public static boolean validaN(String etq)//valida que no haya un nombre igual en dos grupos distintos
     {
         boolean aux = false;
         while (r != null) {
@@ -131,7 +155,7 @@ public class VtnContacto extends javax.swing.JFrame {
         
         
         return aux;
-    }
+    }*/
     
 
     public VtnContacto() {
@@ -251,25 +275,29 @@ public class VtnContacto extends javax.swing.JFrame {
 
     private void jBAgregarCActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBAgregarCActionPerformed
 
+        //CAMBIE EL ORDEN DE LOS IF EN ESTA PARTE
+        
         String s = "";
 
         s = JOptionPane.showInputDialog("Escriba el nombre del contacto que desea agregar");
 
-        if (s == null) {
+        if (s == null) 
+        {
             //Evita el NPE al salir del showInputDialog o presionar cancelar
-        } else if (valida(s) == false) {
-            System.out.println("error");//cambiar por un mensaje de error
-        } else {
-            if (validaC(r1, s) == true) {
-                Mensaje.error(this, "El nombre que desea ingresar se encuentra repetido, por favor ingrese uno diferente");
-            } else 
+        }
+        else
+        {
+            if (valida(s) == false) 
             {
-
-                 if (s.length()>30) 
+                System.out.println("error");//cambiar por un mensaje de error
+            } 
+            else
+            {
+                if (validaC(r1, s) == true) 
                 {
-                    Mensaje.error(this, "El nombre que intenta ingresar excede el numero de caracteres permitido(30)");
-                }
-                else
+                    Mensaje.error(this, "El nombre que desea ingresar se encuentra repetido, por favor ingrese uno diferente");
+                } 
+                else 
                 {
                     VtnGrupo c = new VtnGrupo();
                     if (c.validaN(s)==true) 
@@ -278,6 +306,7 @@ public class VtnContacto extends javax.swing.JFrame {
                     }
                     else
                     {
+                        //AQUI COMIENZA EL PROCESO DE ALTAS
                         Nodo con = new Nodo(null, s.trim());
                         String[] etqs = new String[2];
                         etqs[0] = d;//toma el texto del boton que se eligio anteriorente
@@ -330,12 +359,13 @@ public class VtnContacto extends javax.swing.JFrame {
                                 aux = aux.getSig();
                             }
                         }
-                    }//FIN DEL VALIDA QUE UN NOMBRE ESTE EN OTROS GRUPOS
-                }//FIN DEL ESLE DE VALIDA 30 CARACTERES
-            }
-            JPContactos.revalidate();
-            JPContactos.repaint();
-        }
+                        //AQUI TERMINA EL PROCESO DE ALTAS   
+                    }//fin del validaN  
+                }//fin del validaC
+            }//fin del valida(s)    
+        }//fin del valida de s =null
+        JPContactos.revalidate();
+        JPContactos.repaint();
     }//GEN-LAST:event_jBAgregarCActionPerformed
 
     private void jBMoverCActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBMoverCActionPerformed
