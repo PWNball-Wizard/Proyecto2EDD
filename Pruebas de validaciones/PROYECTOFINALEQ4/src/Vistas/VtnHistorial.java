@@ -172,7 +172,7 @@ public class VtnHistorial extends javax.swing.JFrame {
         boolean b2 = true;//BANDERA PARA VERIFICAR SI ESTA BIEN ESCRITA LA FECHA
 
         String s = "";
-        s = JOptionPane.showInputDialog("Escriba el dia a agregar");
+        s = JOptionPane.showInputDialog("Escriba la nueva fecha a agregar\n Recuerde que debe ser en el formato dd/mm/aaaa");
 
         if (s == null) {
             b1 = false;
@@ -189,7 +189,7 @@ public class VtnHistorial extends javax.swing.JFrame {
         if (b1 == false || validaH(r2, s) == true) {
             if (b1 == false) {
             } else {
-                Mensaje.error(this, "La fecha que ingresaste esta duplicada, porfavor ingresa una diferente");
+                Mensaje.error(this, "La fecha que ingresaste ya existe, porfavor ingresa una diferente");
             }
         } else if (s.length() != 0 && b2 != false) {
 
