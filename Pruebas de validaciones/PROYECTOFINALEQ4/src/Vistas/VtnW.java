@@ -260,10 +260,29 @@ public class VtnW extends javax.swing.JFrame {
             Mensaje.error(this, "Mensaje vacio"); //ENVIA UN MENSAJE DE ERROR EN CASO DE QUE NO HAYA ESCRITO NADA
         } else {
             
-            String m = jTChat1.getText().replaceAll("(.{15})","$1\n");//ESTO DA EL SALTO DE LINEA CADA 15 CARACTERES
+            //String z = jTChat1.getText().replaceAll("(.{15})","$1\n");//ESTO DA EL SALTO DE LINEA CADA 15 CARACTERES
+            
+            String z=jTChat1.getText();//z VA ALMACENA LO ESCRITO EN EL AREA DE TEXTO
             
             
-            Nodo n = new Nodo(1,m);
+            //SALTO DE LINEA CADA 15 CARACTERES
+            ///////////////////////////////////////
+            StringBuilder sb = new StringBuilder();
+            
+            for (int i = 0; i < z.length(); i++) 
+            {
+                   if (i > 0 && (i % 15 == 0)) {
+                       sb.append("\n");
+                   }
+
+                   sb.append(z.charAt(i));
+            }
+
+            z = sb.toString();//PASA A Z EL TEXTO
+            ///////////////////////////////////
+            
+            
+            Nodo n = new Nodo(1,z);//ESTA ES LA PARTE QUE CONTIENE EL NODO CON LA INFORMACION
 
             p1.Inserta(n);
             c.Inserta(n);
@@ -280,8 +299,46 @@ public class VtnW extends javax.swing.JFrame {
         //EN ESTA PARTE SE DEBE MANDAR EL TEXTO A LA PILA 2
         if (jTChat2.getText().length() == 0) {
             Mensaje.error(this, "Mensaje vacio");
-        } else {
-            Nodo n = new Nodo(2, "                               " + "                               " + jTChat2.getText());
+        } 
+        else 
+        {
+            //MEOTODO 2/////////////////////////////////
+            
+            //String z = jTChat2.getText().replaceAll("(.{15})","$1\n");//ESTO DA EL SALTO DE LINEA CADA 15 CARACTERES
+            
+            //MISMA FUNCION QUE EN LA PARTE DE ARRIBA
+            String t=jTChat2.getText();
+            
+            StringBuilder sb = new StringBuilder();
+            for (int i = 0; i < t.length(); i++) 
+            {
+                    if (i > 0 && (i % 13 == 0)) {
+                        sb.append("\n");
+                    }
+
+                    sb.append(t.charAt(i));
+            }
+            t = sb.toString();
+            //////////////////////////////////////////
+
+            System.out.println("LA CADENA SEPARADA ES");
+            System.out.println(t);
+
+
+            t="                                                         "+t;
+        
+            String z =t.replaceAll("\n","\n                                                         ");
+            //replaceAll(elemento a reemplazar, con que lo vas a reemplazar)
+            
+            
+            System.out.println("LA CADENA SEPARADA CON ESPACIOS ES");
+            System.out.println(z);
+            
+            Nodo n = new Nodo(2,z);
+            
+            
+            
+            //Nodo n = new Nodo(2, "                               " + "                               " + jTChat2.getText());
             p2.Inserta(n);
             c.Inserta(n);
             raiz.setNum(raiz.getNum() + 1);
@@ -364,9 +421,9 @@ public class VtnW extends javax.swing.JFrame {
     }//GEN-LAST:event_jTChat2ActionPerformed
 
     private void jTChat2KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTChat2KeyTyped
-        if (jTChat2.getText().length() == 11) {
+        /*if (jTChat2.getText().length() == 11) {
             evt.consume();
-        }
+        }*/
     }//GEN-LAST:event_jTChat2KeyTyped
 
     public void buscaC(ColaDinamica cd) {
@@ -460,7 +517,8 @@ public class VtnW extends javax.swing.JFrame {
                 try {
                     Nodo aux = new Nodo(a.Elimina().getObj());
                     c.Inserta(aux);
-                    arr[i] = (String) aux.getObj();
+                    arr[i] = (String)aux.getObj().toString().replaceAll("\\s{2,}", " ").trim();;//el trim es para que no tome en cuenta los espaciones del principio
+                    //arr[i] = (String) aux.getObj();
                 } catch (NullPointerException ex) {
                     break;
                 }
@@ -480,8 +538,9 @@ public class VtnW extends javax.swing.JFrame {
             for (int i = 0; i < n; i++) {
                 System.out.println(arr[i]);
                 m += arr[i] + "\n";
+                m+="-------------\n";
             }
-
+            
             jTConversacion.setText(m);
         }
 
