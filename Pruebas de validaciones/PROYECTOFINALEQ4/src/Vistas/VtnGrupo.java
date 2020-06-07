@@ -49,8 +49,51 @@ public class VtnGrupo extends javax.swing.JFrame {
         jBAsistente.setContentAreaFilled(false);
 
     }
+     
+     
+     public boolean valida(String s) {
+        boolean valida = false;
 
-    public boolean valida(String s) {
+        if (s.length() == 0) {
+            Mensaje.error(this, "El campo se ecnuentra vacio, debe ingresar un nombre primero");
+            valida = false;
+        } else {////////////////////////////////////////////////////////////prueba para evitar los mensajes de caracter no permitido en bus y elim
+            if (s.length() > 30) {
+                Mensaje.error(this, "El nombre que desea ingresar excede el numero de caracteres permitidos(30)");
+                valida = false;
+            } else 
+            {
+                for (int i = 0; i < s.length(); i++) //analiza cada caracter de la cadena de manera individual
+                {
+                    char caracter = s.charAt(i);
+                    int valorASCII = (int) caracter;
+
+                    //condicion que solo acepta letras
+                    if (valorASCII > 64 && valorASCII < 91 || valorASCII > 96 && valorASCII < 123) {
+                        valida = true;
+                    } else {
+                        valida = false;
+                    }
+                }
+                if (valida == true) 
+                {
+                    //s=s.trim();
+                    return valida = true;
+                } else {
+                    valida = false;
+                    Mensaje.error(this, "El nombre que ingresó contiene caracteres no permitidos\n"
+                            + "En esta sección sólo se permiten letras mayusculas/minusculas");
+                    Mensaje.error(this, "CUIDADO: El espacio al final de un nombre puede ser tomado como un caracter especial");
+                }
+            }//fin del valida=30
+        }//fin del valida s=0
+
+        System.out.println("//////////////EL VALOR DE VALIDA ES " + valida);
+        return valida;
+    }
+     
+
+   /*public boolean valida(String s) {
         boolean valida = false;
         for (int i = 0; i < s.length(); i++) 
         {
@@ -58,17 +101,12 @@ public class VtnGrupo extends javax.swing.JFrame {
             int valorASCII = (int) caracter;
             if (valorASCII > 64 && valorASCII < 91) 
             {
-                valida = true;
-                //return false; //Se ha encontrado un caracter que no es letra 
+                valida = true; 
             }
             if (valorASCII > 97 && valorASCII < 123) 
             {
-                valida = true;
-                //return false; //Se ha encontrado un caracter que no es letra 
+                valida = true; 
             }
-            /*if (valorASCII > 47 && valorASCII < 58) {
-                valida = true;
-            }*/
 
         }
 
@@ -90,7 +128,7 @@ public class VtnGrupo extends javax.swing.JFrame {
 
         System.out.println("VALIDA TODO;" + validatodo);
         return validatodo;
-    }
+    }*/
 
     public static boolean validaG(Nodo r, String etq)//valida que el nombre de un grupo no se repita 
     {
@@ -105,6 +143,24 @@ public class VtnGrupo extends javax.swing.JFrame {
         }
         return aux;
     }
+    
+    public boolean validaE(String s)//valida que no haya espacios al principio y al final de la palabra
+    {
+        boolean validaE=false;
+        
+        if (s.charAt(0)==32) 
+        {
+            Mensaje.error(this,"No se permite el espacio al principio de una palabra");
+            validaE=false;
+        }
+        else
+        {
+            validaE=true;
+        }
+        
+        return validaE;
+    }
+    
 
     public VtnGrupo() {
         initComponents();
@@ -388,16 +444,22 @@ public class VtnGrupo extends javax.swing.JFrame {
         String s = "";
         s = JOptionPane.showInputDialog("Escriba el nombre del contacto que deseas buscar"); //ETIQUETA PARA LA CATEGORIA NUEVA
 
-        if (s == null) {
-            //Evita el NPE al salir del showInputDialog o presionar cancelar
-        } else if (valida(s) == false) {
-            //Mensaje.error(this, "Debe ecsribir un nombre");
+        if (s == null) //Evita el NPE al salir del showInputDialog o presionar cancelar
+        {
+            
+        } else if (validaE(s) == false) {
             System.out.println("error");
         } else {
-
-            int pos = s.toUpperCase().codePointAt(0) - 65;
-
-            if (arr.getArr()[pos] != null) {
+            
+            if (valida(s)==false) 
+            {
+                System.out.println("");
+            }
+            else
+            {
+                int pos = s.toUpperCase().codePointAt(0) - 65;
+                
+                if (arr.getArr()[pos] != null) {
 
                 ArbolBinario aBus = new ArbolBinario();
 
@@ -430,7 +492,9 @@ public class VtnGrupo extends javax.swing.JFrame {
                     Mensaje.error(this, "No se encontró " + s + " en tu lista de contactos");
                 }
             }
-        }
+                
+            }//fin de validaE
+        }//fin de valida
 
     }//GEN-LAST:event_jBBuscaActionPerformed
 
