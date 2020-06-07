@@ -36,12 +36,12 @@ public class VtnContacto extends javax.swing.JFrame {
 
     public String d; // DATO A BUSCAR
     public Nodo r1; //RAIZ DE LA MULTILISTA
+    boolean validaBE = true;///////////////////cambios
 
     /**
      * Creates new form VtnContacto
      */
-    public void transparenciaBotones() 
-    {
+    public void transparenciaBotones() {
         jBRegresarC.setContentAreaFilled(false);
         jBAgregarC.setContentAreaFilled(false);
         jBEliminarC.setContentAreaFilled(false);
@@ -50,64 +50,62 @@ public class VtnContacto extends javax.swing.JFrame {
 
     }
 
-    public boolean valida(String s) 
-    {
-        boolean valida=false;
-        
-        if (s.length()==0) 
-        {
-            Mensaje.error(this,"El campo se ecnuentra vacio, debe ingresar un nombre primero");
-            valida=false;
-        }
-        else
-        {
-            if (s.length()>30) 
-            {
-                Mensaje.error(this,"El nombre que desea ingresar excede el numero de caracteres permitidos(30)");
-                valida=false;
-            } 
-            else 
-            {
+    public boolean valida(String s) {
+        boolean valida = false;
+
+        if (s.length() == 0) {
+            Mensaje.error(this, "El campo se ecnuentra vacio, debe ingresar un nombre primero");
+            valida = false;
+        } else {////////////////////////////////////////////////////////////prueba para evitar los mensajes de caracter no permitido en bus y elim
+            if (s.length() > 30) {
+                Mensaje.error(this, "El nombre que desea ingresar excede el numero de caracteres permitidos(30)");
+                valida = false;
+            } else {
                 for (int i = 0; i < s.length(); i++) //analiza cada caracter de la cadena de manera individual
                 {
                     char caracter = s.charAt(i);
                     int valorASCII = (int) caracter;
 
                     //condicion que solo acepta letras
-                    if (valorASCII > 64 && valorASCII < 91 || valorASCII > 96 && valorASCII < 123) 
-                    {
-                        valida = true; 
+                    if (valorASCII > 64 && valorASCII < 91 || valorASCII > 96 && valorASCII < 123) {
+                        valida = true;
+                    } else {
+                        valida = false;
                     }
-                    else
-                    {
-                        valida=false;
-                    }
-                    
                 }
-                
-                if (valida==true) 
-                {
-                    return valida=true;
+                if (valida == true) {
+                    return valida = true;
+                } else {
+                    valida = false;
+                    Mensaje.error(this, "El nombre que ingresó contiene caracteres no permitidos\n"
+                            + "En esta sección sólo se permiten letras mayusculas/minusculas");
+                    Mensaje.error(this, "CUIDADO: El espacio al final de un nombre puede ser tomado como un caracter especial");
                 }
-                else
-                {
-                    valida=false;
-                    Mensaje.error(this, "El nombre que desea ingresar contiene caracteres que no son admitidos\n"+
-                    "Recuerde que en esta seccion solo se permiten letras");       
-                }  
-                
             }//fin del valida=30
         }//fin del valida s=0
-        
-        
-        
-        
-        
-        System.out.println("//////////////EL VALOR DE VALIDA ES "+valida);
+
+        System.out.println("//////////////EL VALOR DE VALIDA ES " + valida);
         return valida;
     }
-    
-    
+
+    public boolean validaBE(String s) {
+        boolean valida = false;
+
+        if (s.length() == 0) {
+            Mensaje.error(this, "El campo se ecnuentra vacio, debe ingresar un nombre primero");
+            valida = false;
+        } else {////////////////////////////////////////////////////////////prueba para evitar los mensajes de caracter no permitido en bus y elim
+            if (s.length() > 30) {
+                Mensaje.error(this, "El nombre que desea ingresar excede el numero de caracteres permitidos(30)");
+                valida = false;
+            } else {
+                valida = true;
+            }//fin del valida=30
+        }//fin del valida s=0
+
+        System.out.println("//////////////EL VALOR DE VALIDA ES " + valida);
+        return valida;
+    }
 
     public static boolean validaC(Nodo r, String etq)//valida que el nombre de un grupo no se repita 
     {
@@ -123,7 +121,7 @@ public class VtnContacto extends javax.swing.JFrame {
         System.out.println("EL DATO QUE ENCONTRE FUE:" + aux);
         return aux;
     }
-    
+
     //CREO QUE ESTE YA NO SE NECESITA
     /*public static boolean validaN(String etq)//valida que no haya un nombre igual en dos grupos distintos
     {
@@ -156,8 +154,6 @@ public class VtnContacto extends javax.swing.JFrame {
         
         return aux;
     }*/
-    
-
     public VtnContacto() {
         initComponents();
         this.setLocationRelativeTo(null); //CENTRA LA PANTALLA
@@ -276,43 +272,33 @@ public class VtnContacto extends javax.swing.JFrame {
     private void jBAgregarCActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBAgregarCActionPerformed
 
         //CAMBIE EL ORDEN DE LOS IF EN ESTA PARTE
-        
         String s = "";
 
         s = JOptionPane.showInputDialog("Escriba el nombre del contacto que desea agregar");
 
-        if (s == null) 
-        {
+        if (s == null) {
             //Evita el NPE al salir del showInputDialog o presionar cancelar
-        }
-        else
-        {
-            if (valida(s) == false) 
-            {
+        } else {
+            if (valida(s) == false) {
                 System.out.println("error");//cambiar por un mensaje de error
-            } 
-            else
-            {
-                if (validaC(r1, s) == true) 
-                {
+            } else {
+                if (validaC(r1, s) == true) {
                     Mensaje.error(this, "El nombre que desea ingresar se encuentra repetido, por favor ingrese uno diferente");
-                } 
-                else 
-                {
+                } else {
                     VtnGrupo c = new VtnGrupo();
-                    if (c.validaN(s)==true) 
-                    {
-                        Mensaje.error(this,"El nombre que desea ingresar se encuentra ya en otro grupo");
-                    }
-                    else
-                    {
+                    if (c.validaN(s) == true) {
+                        Mensaje.error(this, "El nombre que desea ingresar se encuentra ya en otro grupo");
+                    } else {
                         //AQUI COMIENZA EL PROCESO DE ALTAS
-                        Nodo con = new Nodo(null, s.trim());
+
+                        String s2 = s.toUpperCase().charAt(0) + s.substring(1, s.length());
+
+                        Nodo con = new Nodo(null, s2.trim());
                         String[] etqs = new String[2];
                         etqs[0] = d;//toma el texto del boton que se eligio anteriorente
-                        etqs[1] = s;
+                        etqs[1] = s2;
 
-                        NodoArbol nomNAS = new NodoArbol(s.trim(), null, etqs);
+                        NodoArbol nomNAS = new NodoArbol(s2.trim(), null, etqs);
 
                         VtnGrupo.r = Multilistas.inserta(VtnGrupo.r, con, 0, etqs); //inserta Multilista
 
@@ -382,7 +368,7 @@ public class VtnContacto extends javax.swing.JFrame {
         if (nom == null) {
             b1 = false;
             //Evita el NPE al salir del showInputDialog o presionar cancelar
-        } else if (valida(nom) != false) {
+        } else if (validaBE(nom) != false) {///////////////////////////////////////prueba de valida
             gpo = JOptionPane.showInputDialog("Escriba el grupo al que desea mover este contacto");
             if (gpo != null) {
                 b2 = false;
@@ -409,9 +395,10 @@ public class VtnContacto extends javax.swing.JFrame {
                                 etqsE[0] = d;
                                 etqsE[1] = nom;
 
+                                String nom2 = nom.toUpperCase().charAt(0) + nom.substring(1, nom.length());
                                 String[] etqsI = new String[2];
                                 etqsI[0] = gpo;
-                                etqsI[1] = nom;
+                                etqsI[1] = nom2;
 
                                 VtnGrupo.r = Multilistas.mover(VtnGrupo.r, 0, etqsE, etqsI);
 
@@ -426,6 +413,10 @@ public class VtnContacto extends javax.swing.JFrame {
                                     if (aux != null) {
 
                                         aux.setPredecesores(etqsI);
+                                        String muestra[] = aux.getPredecesores();
+
+                                        System.out.println("Etqs modificada " + muestra[0]);
+                                        System.out.println("Etqs modificadas " + muestra[1]);
 
                                         Propiedades p = new Propiedades(VtnGrupo.r, VtnGrupo.arr);
                                         try {
@@ -460,9 +451,10 @@ public class VtnContacto extends javax.swing.JFrame {
                             etqsE[0] = d;
                             etqsE[1] = nom;
 
+                            String nom2 = nom.toUpperCase().charAt(0) + nom.substring(1, nom.length());
                             String[] etqsI = new String[2];
                             etqsI[0] = gpo;
-                            etqsI[1] = nom;
+                            etqsI[1] = nom2;
                             VtnGrupo.r = Multilistas.mover(VtnGrupo.r, 0, etqsE, etqsI);
 
                             int pos = nom.toUpperCase().codePointAt(0) - 65;
@@ -476,6 +468,11 @@ public class VtnContacto extends javax.swing.JFrame {
                                 if (aux != null) {
 
                                     aux.setPredecesores(etqsI);
+
+                                    String muestra[] = aux.getPredecesores();
+
+                                    System.out.println("Etqs modificada " + muestra[0]);
+                                    System.out.println("Etqs modificadas " + muestra[1]);
 
                                     Propiedades p = new Propiedades(VtnGrupo.r, VtnGrupo.arr);
                                     try {
@@ -523,7 +520,7 @@ public class VtnContacto extends javax.swing.JFrame {
 
         if (s == null) {
             //Evita el NPE al salir del showInputDialog o presionar cancelar
-        } else if (valida(s) == false) {
+        } else if (validaBE(s) == false) {
             //Mensaje.error(this, "Debe rellenar el campo");
         } else {
             String[] etqs = new String[2];
@@ -536,8 +533,8 @@ public class VtnContacto extends javax.swing.JFrame {
                     + "asociadas a este contacto\n¿Desea continuar?") == 0) {
                 c = true;
             }
-            if (c==true) 
-            {
+            if (c == true) {
+
                 VtnGrupo.r = Multilistas.elimina(VtnGrupo.r, 0, etqs);
 
                 int pos = s.toUpperCase().codePointAt(0) - 65;
@@ -556,7 +553,7 @@ public class VtnContacto extends javax.swing.JFrame {
                 } else {
                     Mensaje.error(this, "No hay datos en esta posicion del arreglo");
                 }
-                
+
                 //movi esto dentro del if
                 r1 = Multilistas.busca(VtnGrupo.r, d);
                 r1 = r1.getAbj();
@@ -576,7 +573,6 @@ public class VtnContacto extends javax.swing.JFrame {
                 ////////////////////////////
             }
 
-            
         }
         JPContactos.updateUI();
 
@@ -591,9 +587,9 @@ public class VtnContacto extends javax.swing.JFrame {
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
         r1 = Multilistas.busca(VtnGrupo.r, d);
         r1 = r1.getAbj();
-        
+
         JPContactos.removeAll();
-        
+
         if (r1 != null) {
             Nodo aux = r1;
             while (aux != null) {

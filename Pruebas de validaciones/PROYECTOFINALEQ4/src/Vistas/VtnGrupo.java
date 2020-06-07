@@ -247,7 +247,7 @@ public class VtnGrupo extends javax.swing.JFrame {
                 }
                 else
                 {
-                    Nodo nom = new Nodo(null, s);
+                    Nodo nom = new Nodo(null, s.trim());
 
                     String[] etqs = new String[1];//arreglo de etiquetas,esta en 1 lo cual significa que esta en el nivel 0
 
@@ -361,10 +361,11 @@ public class VtnGrupo extends javax.swing.JFrame {
                         
                         //movi esto dentro de el if
                         if (r != null) {
+                            System.out.println("Estoy entrando a esta parte del codigo");
                         Component componentes[] = JPGrupos.getComponents();
 
                         for (int i = 0; i < componentes.length; i++) {
-                            if (etqs[0].equalsIgnoreCase(((JButton) componentes[i]).getText().trim())) {
+                            if (etqs[0].trim().equalsIgnoreCase(((JButton) componentes[i]).getText().trim())) {
                                 JPGrupos.remove(i);
                             }
                         }
@@ -373,8 +374,6 @@ public class VtnGrupo extends javax.swing.JFrame {
                         }
                         //////////////////
                     }
-
-                    
                 }
             }
             System.out.println(Multilistas.desp(r, 0));
