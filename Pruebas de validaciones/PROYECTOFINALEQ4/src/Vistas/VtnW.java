@@ -517,7 +517,7 @@ public class VtnW extends javax.swing.JFrame {
                 try {
                     Nodo aux = new Nodo(a.Elimina().getObj());
                     c.Inserta(aux);
-                    arr[i] = (String)aux.getObj().toString().replaceAll("\\s{2,}", " ").trim();;//el trim es para que no tome en cuenta los espaciones del principio
+                    arr[i] = (String)aux.getObj().toString().replaceAll("\\s{2,}", " ").trim();//el trim es para que no tome en cuenta los espaciones del principio
                     //arr[i] = (String) aux.getObj();
                 } catch (NullPointerException ex) {
                     break;
