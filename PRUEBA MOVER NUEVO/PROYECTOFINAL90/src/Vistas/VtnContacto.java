@@ -60,22 +60,20 @@ public class VtnContacto extends javax.swing.JFrame {
             if (s.length() > 30) {
                 Mensaje.error(this, "El nombre que desea ingresar excede el numero de caracteres permitidos(30)");
                 valida = false;
-            } else 
-            {
+            } else {
                 for (int i = 0; i < s.length(); i++) //analiza cada caracter de la cadena de manera individual
                 {
                     char caracter = s.charAt(i);
                     int valorASCII = (int) caracter;
 
                     //condicion que solo acepta letras
-                    if (valorASCII > 64 && valorASCII < 91 || valorASCII > 96 && valorASCII < 123 || valorASCII==164 || valorASCII==165) {
+                    if (valorASCII > 64 && valorASCII < 91 || valorASCII > 96 && valorASCII < 123 || valorASCII == 164 || valorASCII == 165) {
                         valida = true;
                     } else {
                         valida = false;
                     }
                 }
-                if (valida == true) 
-                {
+                if (valida == true) {
                     //s=s.trim();
                     return valida = true;
                 } else {
@@ -127,42 +125,33 @@ public class VtnContacto extends javax.swing.JFrame {
 
     public boolean validaE(String s)//valida que no haya espacios al principio y al final de la palabra
     {
-        boolean validaE=false;
-        
-        char c=s.charAt(0);
-        String p1=Character.toString(c);
-        
-        if (Character.isLetter(c)==false) 
-        {
-            Mensaje.error(this,"Caracter invalido detectado\nSolo se permiten letras");
-            Mensaje.error(this,"Recuerde que no se permite el espacio al principio ni al final de una palabra");
-            validaE=false;
+        boolean validaE = false;
+
+        char c = s.charAt(0);
+        String p1 = Character.toString(c);
+
+        if (Character.isLetter(c) == false) {
+            Mensaje.error(this, "Caracter invalido detectado\nSolo se permiten letras");
+            Mensaje.error(this, "Recuerde que no se permite el espacio al principio ni al final de una palabra");
+            validaE = false;
+        } else {
+            validaE = true;
         }
-        else
-        {
-            validaE=true;
-        }
-        
+
         return validaE;
     }
-    
-    
+
     public VtnContacto() {
         initComponents();
         this.setLocationRelativeTo(null); //CENTRA LA PANTALLA
 
         jLContactos.setForeground(Color.WHITE); //PONE EL COLOR DE LA ETIQUETA EN BLANCO
         JPContactos.setBackground(Color.WHITE);//PONE BLANCO EL COLOR DEL PANEL
-        
-
 
         JPContactos.setLayout(new BoxLayout(JPContactos, BoxLayout.PAGE_AXIS));//CAMBIA EL ESTILO DE EL PANEL, PERMITE QUE LOS BOTONES NO OCUPEN TODA LA PANTALLA
 
         transparenciaBotones();
 
-        
-        
-        
     }
 
     /**
@@ -287,288 +276,95 @@ public class VtnContacto extends javax.swing.JFrame {
         String s = "";
 
         s = JOptionPane.showInputDialog("Escriba el nombre del contacto que desea agregar");
-        
-            if (s == null) 
-            {
+
+        if (s == null) {
             //Evita el NPE al salir del showInputDialog o presionar cancelar
+        } else {
+            if (valida(s) == false) {
+                System.out.println("error");//cambiar por un mensaje de error
             } else {
-                if (valida(s) == false) {
-                    System.out.println("error");//cambiar por un mensaje de error
+                if (validaC(r1, s) == true) {
+                    Mensaje.error(this, "El nombre que desea ingresar se encuentra repetido, por favor ingrese uno diferente");
                 } else {
-                    if (validaC(r1, s) == true) {
-                        Mensaje.error(this, "El nombre que desea ingresar se encuentra repetido, por favor ingrese uno diferente");
+                    if (validaE(s) == false) {
+                        System.out.println("");
                     } else {
-                        if (validaE(s)==false) {
-                            System.out.println("");
-                        }else{
-                            VtnGrupo c = new VtnGrupo();
-                            if (c.validaN(s) == true) {
-                                Mensaje.error(this, "El nombre que desea ingresar se encuentra ya en otro grupo");
-                            } else {
-                                //AQUI COMIENZA EL PROCESO DE ALTAS
+                        VtnGrupo c = new VtnGrupo();
+                        if (c.validaN(s) == true) {
+                            Mensaje.error(this, "El nombre que desea ingresar se encuentra ya en otro grupo");
+                        } else {
+                            //AQUI COMIENZA EL PROCESO DE ALTAS
 
-                                //s=s.trim();
+                            //s=s.trim();
+                            String s2 = s.toUpperCase().charAt(0) + s.substring(1, s.length());
 
-                                String s2 = s.toUpperCase().charAt(0) + s.substring(1, s.length());
+                            Nodo con = new Nodo(null, s2.trim());
+                            String[] etqs = new String[2];
+                            etqs[0] = d;//toma el texto del boton que se eligio anteriorente
+                            etqs[1] = s2;
 
-                                Nodo con = new Nodo(null, s2.trim());
-                                String[] etqs = new String[2];
-                                etqs[0] = d;//toma el texto del boton que se eligio anteriorente
-                                etqs[1] = s2;
+                            NodoArbol nomNAS = new NodoArbol(s2.trim(), null, etqs);
 
-                                NodoArbol nomNAS = new NodoArbol(s2.trim(), null, etqs);
+                            VtnGrupo.r = Multilistas.inserta(VtnGrupo.r, con, 0, etqs); //inserta Multilista
 
-                                VtnGrupo.r = Multilistas.inserta(VtnGrupo.r, con, 0, etqs); //inserta Multilista
+                            VtnGrupo.arr.insertaTH(s, nomNAS);//inserta arbol
 
-                                VtnGrupo.arr.insertaTH(s, nomNAS);//inserta arbol
+                            Propiedades p = new Propiedades(VtnGrupo.r, VtnGrupo.arr);
 
-                                Propiedades p = new Propiedades(VtnGrupo.r, VtnGrupo.arr);
+                            try {
+                                Archivos.guardar(p, this);
+                            } catch (FileNotFoundException ex) {
+                                Logger.getLogger(VtnW.class.getName()).log(Level.SEVERE, null, ex);
+                            }
 
-                                try {
-                                    Archivos.guardar(p, this);
-                                } catch (FileNotFoundException ex) {
-                                    Logger.getLogger(VtnW.class.getName()).log(Level.SEVERE, null, ex);
-                                }
+                            r1 = Multilistas.busca(VtnGrupo.r, d); //buscar en donde vas a insertar
+                            r1 = r1.getAbj();//si
+                            JPContactos.removeAll();
 
-                                r1 = Multilistas.busca(VtnGrupo.r, d); //buscar en donde vas a insertar
-                                r1 = r1.getAbj();//si
-                                JPContactos.removeAll();
+                            if (r1 != null) {
+                                Nodo aux = r1;
+                                while (aux != null) {
+                                    JButton boton = new JButton(aux.getEtq());
 
-                                if (r1 != null) {
-                                    Nodo aux = r1;
-                                    while (aux != null) {
-                                        JButton boton = new JButton(aux.getEtq());
+                                    //boton.setLocation(50, 10);
+                                    boton.setBackground(Color.WHITE);//PONE EL FONDO DEL BOTON EN BLANCO
+                                    boton.setForeground(Color.BLACK);//PONE LAS LETRAS COLOR NEGRO
+                                    boton.setFont(new Font("arial", 1, 14));//CAMBIA LA FUENTE Y EL TAMAÑO
 
-                                        //boton.setLocation(50, 10);
-                                        boton.setBackground(Color.WHITE);//PONE EL FONDO DEL BOTON EN BLANCO
-                                        boton.setForeground(Color.BLACK);//PONE LAS LETRAS COLOR NEGRO
-                                        boton.setFont(new Font("arial", 1, 14));//CAMBIA LA FUENTE Y EL TAMAÑO
+                                    //ESTABLECE UN TAMAÑO POR DEFECTO PARA LOS BOTONES
+                                    boton.setMinimumSize(new Dimension(JPContactos.getWidth(), 50));
+                                    boton.setMaximumSize(new Dimension(JPContactos.getWidth(), 50));
+                                    boton.setPreferredSize(new Dimension(JPContactos.getWidth(), 50));
 
-                                        //ESTABLECE UN TAMAÑO POR DEFECTO PARA LOS BOTONES
-                                        boton.setMinimumSize(new Dimension(JPContactos.getWidth(), 50));
-                                        boton.setMaximumSize(new Dimension(JPContactos.getWidth(), 50));
-                                        boton.setPreferredSize(new Dimension(JPContactos.getWidth(), 50));
-
-                                        JPContactos.add(boton);
-                                        boton.addActionListener(new ActionListener() {
-                                            @Override
-                                            public void actionPerformed(ActionEvent e) {
-                                                VtnHistorial h = new VtnHistorial();
-                                                h.d1 = d;
-                                                h.d2 = boton.getText();
-                                                h.setVisible(true);
-                                            }
+                                    JPContactos.add(boton);
+                                    boton.addActionListener(new ActionListener() {
+                                        @Override
+                                        public void actionPerformed(ActionEvent e) {
+                                            VtnHistorial h = new VtnHistorial();
+                                            h.d1 = d;
+                                            h.d2 = boton.getText();
+                                            h.setVisible(true);
                                         }
-                                        );
-                                        aux = aux.getSig();
                                     }
+                                    );
+                                    aux = aux.getSig();
                                 }
-                                //AQUI TERMINA EL PROCESO DE ALTAS   
-                            }//fin del validaN 
-                        }  
-                        }//fin del validaC
-                }//fin del valida(s)    
-            }//fin del valida de s =null
-        
-        
+                            }
+                            //AQUI TERMINA EL PROCESO DE ALTAS   
+                        }//fin del validaN 
+                    }
+                }//fin del validaC
+            }//fin del valida(s)    
+        }//fin del valida de s =null
+
         JPContactos.revalidate();
         JPContactos.repaint();
     }//GEN-LAST:event_jBAgregarCActionPerformed
 
     private void jBMoverCActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBMoverCActionPerformed
-
-        Nodo rm;
-        String nom = ""; //nom=NOMBRE A BUSCAR
-        String gpo = "";
-
-        boolean b1 = true;
-        boolean b2 = true;
-
-        nom = JOptionPane.showInputDialog("Escriba el contacto que desea mover");
-        
-        /*VtnMoverContacto vmc = new VtnMoverContacto();
-        vmc.setVisible(true);
-                    
-        String nom = vmc.no;*/
-        
-        
-        
-
-        if (nom == null) 
-        {
-            b1 = false;
-            //Evita el NPE al salir del showInputDialog o presionar cancelar
-        } else 
-            if (validaBE(nom) != false) ///////////////////////////////////////prueba de valida
-            {
-                if (validaE(nom)==false) 
-                {
-                    System.out.println("");
-                }
-                else
-                {
-                    /*VtnMoverGrupo vmg = new VtnMoverGrupo();
-                    vmg.setVisible(true);
-                    
-                    String gpo = vmg.gp;
-                    System.out.println("GP"+vmg.gp);
-                    System.out.println("GPO"+gpo);*/
-                    
-                    
-                    gpo = JOptionPane.showInputDialog("Escriba el grupo al que desea mover este contacto");
-                if (gpo != null) //Evita el NPE al salir del showInputDialog o presionar cancelar
-                {
-                b2 = false;
-                    if (validaE(gpo)==false)//valida que no haya espacios al principio
-                    {
-                        System.out.println("");
-                    }
-                    else
-                    {
-                        
-                        if (validaC(r, gpo) == false)//significa que no encontro nada 
-                        {
-                            Mensaje.error(this, "El grupo al cual desea mover el contacto no se encontro");
-                        } 
-                        else 
-                        {
-
-                            if (gpo.length() == 0) {
-                                Mensaje.error(this, "Los campos no deben estar vacios");
-                            }
-                            if (b1 == false && b2 == false) {
-
-                            } else if (nom.length() != 0 && gpo.length() != 0) {
-                                rm = Multilistas.busca(VtnGrupo.r, gpo);
-                                rm = rm.getAbj();
-
-                                if (rm != null) {
-                                    if (validaC(rm, nom) == true) {
-                                        Mensaje.error(this, "El nombre que intentas ingresar esta repetido en grupo " + gpo);
-                                    } else {
-                                        String[] etqsE = new String[2];
-                                        etqsE[0] = d;
-                                        etqsE[1] = nom;
-
-                                        String nom2 = nom.toUpperCase().charAt(0) + nom.substring(1, nom.length());
-                                        String[] etqsI = new String[2];
-                                        etqsI[0] = gpo;
-                                        etqsI[1] = nom2;
-
-                                        VtnGrupo.r = Multilistas.mover(VtnGrupo.r, 0, etqsE, etqsI);
-
-                                        int pos = nom.toUpperCase().codePointAt(0) - 65;
-
-                                        if (VtnGrupo.arr.getArr()[pos] != null) {
-
-                                            ArbolBinario aba = new ArbolBinario();
-
-                                            NodoArbol aux = aba.busca(VtnGrupo.arr.getArr()[pos].getR(), nom);
-
-                                            if (aux != null) {
-
-                                                aux.setPredecesores(etqsI);
-                                                String muestra[] = aux.getPredecesores();
-
-                                                System.out.println("Etqs modificada " + muestra[0]);
-                                                System.out.println("Etqs modificadas " + muestra[1]);
-
-                                                Propiedades p = new Propiedades(VtnGrupo.r, VtnGrupo.arr);
-                                                try {
-                                                    Archivos.guardar(p, this);
-                                                } catch (FileNotFoundException ex) {
-                                                    System.out.println(" No se encontro el archivo ");
-                                                }
-                                            }
-                                        }
-                                        r1 = Multilistas.busca(VtnGrupo.r, d);
-                                        r1 = r1.getAbj();
-
-                                        if (r1 != null) {
-                                            Component componentes[] = JPContactos.getComponents();
-
-                                            for (int i = 0; i < componentes.length; i++) {
-                                                System.out.println(((JButton) componentes[i]).getText());
-                                                if (etqsE[1].trim().equalsIgnoreCase(((JButton) componentes[i]).getText().trim())) {
-                                                    JPContactos.remove(i);
-                                                }
-                                            }
-
-                                        } else {
-                                            JPContactos.removeAll();
-                                        }
-
-                                        JPContactos.revalidate();//NO MOVER DE AQUI
-                                        JPContactos.repaint();
-                                    }
-                                } else {
-                                    String[] etqsE = new String[2];
-                                    etqsE[0] = d;
-                                    etqsE[1] = nom;
-
-                                    String nom2 = nom.toUpperCase().charAt(0) + nom.substring(1, nom.length());
-                                    String[] etqsI = new String[2];
-                                    etqsI[0] = gpo;
-                                    etqsI[1] = nom2;
-                                    VtnGrupo.r = Multilistas.mover(VtnGrupo.r, 0, etqsE, etqsI);
-
-                                    int pos = nom.toUpperCase().codePointAt(0) - 65;
-
-                                    if (VtnGrupo.arr.getArr()[pos] != null) {
-
-                                        ArbolBinario aba = new ArbolBinario();
-
-                                        NodoArbol aux = aba.busca(VtnGrupo.arr.getArr()[pos].getR(), nom);
-
-                                        if (aux != null) {
-
-                                            aux.setPredecesores(etqsI);
-
-                                            String muestra[] = aux.getPredecesores();
-
-                                            System.out.println("Etqs modificada " + muestra[0]);
-                                            System.out.println("Etqs modificadas " + muestra[1]);
-
-                                            Propiedades p = new Propiedades(VtnGrupo.r, VtnGrupo.arr);
-                                            try {
-                                                Archivos.guardar(p, this);
-                                            } catch (FileNotFoundException ex) {
-                                                System.out.println(" No se encontro el archivo ");
-                                            }
-                                        }
-        //
-                                    }
-                                    r1 = Multilistas.busca(VtnGrupo.r, d);
-                                    r1 = r1.getAbj();
-
-                                    if (r1 != null) {
-                                        Component componentes[] = JPContactos.getComponents();
-
-                                        for (int i = 0; i < componentes.length; i++) {
-                                            System.out.println(((JButton) componentes[i]).getText());
-                                            if (etqsE[1].trim().equalsIgnoreCase(((JButton) componentes[i]).getText().trim())) {
-                                                JPContactos.remove(i);
-                                            }
-                                        }
-                                    } else {
-                                        JPContactos.removeAll();
-                                    }
-
-                                    JPContactos.revalidate();//NO MOVER DE AQUI
-                                    JPContactos.repaint();
-                                }
-                            }
-                        }
-                        
-                        
-                    }//fin del validaE de grupo
-            }//fin del gpo!=null
-        }/////////FIN DE VALIDA
-    }//fin del validaE
-            
-        JPContactos.revalidate();
-        JPContactos.repaint();
-        System.out.println(Multilistas.desp(VtnGrupo.r, 0));
+//poner la ventana visible
+        new VtnMover().setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_jBMoverCActionPerformed
 
     private void jBEliminarCActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBEliminarCActionPerformed
@@ -646,11 +442,10 @@ public class VtnContacto extends javax.swing.JFrame {
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
         r1 = Multilistas.busca(VtnGrupo.r, d);
         r1 = r1.getAbj();
-        
+
         jLabel1.setForeground(Color.WHITE);
-        jLabel1.setText("Grupo "+d);
-        
-        
+        jLabel1.setText("Grupo " + d);
+
         JPContactos.removeAll();
 
         if (r1 != null) {
@@ -696,9 +491,7 @@ public class VtnContacto extends javax.swing.JFrame {
     }//GEN-LAST:event_jBAsistenteActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        // TODO add your handling code here:
-        VtnMover mv  = new VtnMover();
-        mv.setVisible(true);
+
     }//GEN-LAST:event_jButton3ActionPerformed
 
     /**
