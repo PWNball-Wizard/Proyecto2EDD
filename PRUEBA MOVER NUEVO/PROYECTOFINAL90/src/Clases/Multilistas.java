@@ -18,8 +18,10 @@ public class Multilistas implements Serializable {
             r = ls.getR();//reconecta
             return r;
         } else {
-            Nodo aux = busca(r, etqs[nivel]);//RECORRE EL ARBOL EN BUSCA DE LA ETIQUETA
-
+            //Nodo aux = busca(r, etqs[nivel]);//RECORRE EL ARBOL EN BUSCA DE LA ETIQUETA
+            Nodo aux = busca(r, etqs[nivel]);
+            System.out.println(aux);
+            
             if (aux != null) {
                 aux.setAbj(inserta(aux.getAbj(), n, nivel + 1, etqs));//Si encuentra el dato lo inserta
                 aux.getAbj().setArb(aux);
@@ -62,7 +64,8 @@ public class Multilistas implements Serializable {
         return r;
     }
 
-    public static Nodo busca(Nodo r, String etq) {
+    /*public static Nodo busca(Nodo r, String etq) {
+        System.out.println("ENTRANDO AL METODO BUSCA...");
         Nodo aux2 = r;
         boolean encontrado = false;
         Nodo aux = null;
@@ -70,13 +73,49 @@ public class Multilistas implements Serializable {
             if (aux2.getEtq().equalsIgnoreCase(etq.trim())) {
                 aux = aux2;
                 encontrado = true;
-            } else {
+            } 
+            else 
+            {
                 aux2 = aux2.getSig();
             }
-        } while (aux2 != r && encontrado != true);
+        } while (aux2 != r.getSig() && encontrado != true);
         System.out.println("EL DATO QUE ENCONTRE FUE:" + aux);
         return aux;
+    }*/
+    
+    public static Nodo busca(Nodo r,String pbuscar)//FUNCIONA 
+    {
+        Nodo raux=r.getSig();
+        Nodo aux=null;
+        boolean encontrado=false;
+        
+        if(r == null)
+        {
+            System.out.println("NO HAY DATOS");
+        }else
+        {
+            r=r.getSig();
+            do
+            {
+                if (r.getEtq().equals(pbuscar)) 
+                {
+                    encontrado= true;
+                    aux=r;
+                    break;
+                }
+                //else
+                //{
+                    
+                //}
+                //s+=raux.getEtq();
+                r=r.getSig();
+            }while (r!=raux);
+        }
+        System.out.println("EL VALOR DE ENCONTRADO ES:"+encontrado);
+        System.out.println("EL VALOR DE AUX es"+aux.getEtq());
+        return aux;
     }
+    
 
     public static String desp(Nodo r, int nivel) {
 

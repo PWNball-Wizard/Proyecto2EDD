@@ -132,10 +132,10 @@ public class LSL implements Serializable {
 
     public int can() {
         int cont = 0;
-        while (r != null) {
+        do{
             cont++;
             r = r.getSig();
-        }
+        }while (r != null);
         return cont;
     }
 }

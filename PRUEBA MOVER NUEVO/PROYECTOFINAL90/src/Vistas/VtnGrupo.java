@@ -283,17 +283,22 @@ public class VtnGrupo extends javax.swing.JFrame {
         if (s == null) //Evita el NPE al salir del showInputDialog o presionar cancelar
         {
             //No hace nada al cancelar, o presionar salir
-        } else if (s.length() == 0) {
+            
+        } else
+            System.out.println("pase de valida s = null");
+            if (s.length() == 0) 
+            {
             Mensaje.error(this, "Campo vacio, debe escribir un nombre");
         } else {
-
-            if (validaG(r, s) == true) {
-                Mensaje.error(this, "El grupo que desea ingresar se encuentra repetido, por favor ingrese uno diferente");
-            } else {
+                System.out.println("pase de valida ==0");
+            //if (validaG(r, s) == true) {
+            //   Mensaje.error(this, "El grupo que desea ingresar se encuentra repetido, por favor ingrese uno diferente");
+            //} else {
 
                 if (s.length() > 30) {
                     Mensaje.error(this, "El nombre que intenta ingresar excede el numero de caracteres permitido(30)");
                 } else {
+                    System.out.println("pase de valida =30");
                     Nodo nom = new Nodo(null, s.trim());
 
                     String[] etqs = new String[1];//arreglo de etiquetas,esta en 1 lo cual significa que esta en el nivel 0
@@ -301,6 +306,7 @@ public class VtnGrupo extends javax.swing.JFrame {
                     etqs[0] = s;
 
                     r = Multilistas.inserta(r, nom, 0, etqs);
+                    System.out.println("PASE DEL multilistas.inserta");
 
                     Propiedades p = new Propiedades(r, arr);
 
@@ -309,25 +315,37 @@ public class VtnGrupo extends javax.swing.JFrame {
                     } catch (FileNotFoundException ex) {
                         System.out.println("No se encontro el archivo");
                     }
-
+                    System.out.println("pase de la parte de guardar archivos");
+                    
+                    
+                    
                     if (r != null) {
                         Nodo aux = r;
 
                         JPGrupos.removeAll();
 
-                        while (aux != null) {
+                        //PARTE DE EL BUSCA
+                        Nodo raux=r.getSig();
+                        aux=aux.getSig();
+                        do
+                        {
+                            //PARTE DE INSERTAR EL BOTON
                             JButton boton = new JButton(aux.getEtq());
+                            System.out.println("tome el valor de la etiqueta");
 
                             boton.setBackground(Color.WHITE);//PONE EL FONDO DEL BOTON EN BLANCO
                             boton.setForeground(Color.BLACK);//PONE LAS LETRAS COLOR NEGRO
                             boton.setFont(new Font("arial", 1, 14));//CAMBIA LA FUENTE Y EL TAMAÑO
-
+                            System.out.println("pase de cambiar propiedades a los botones");
+                            
+                            
                             //ESTABLECE UN TAMAÑO POR DEFECTO PARA LOS BOTONES
                             boton.setMinimumSize(new Dimension(JPGrupos.getWidth(), 50));
                             boton.setMaximumSize(new Dimension(JPGrupos.getWidth(), 50));
                             boton.setPreferredSize(new Dimension(JPGrupos.getWidth(), 50));
 
                             JPGrupos.add(boton);
+                            System.out.println("añadi el boton");
 
                             boton.addActionListener(new ActionListener()//pone una accion al boton
                             {
@@ -340,12 +358,32 @@ public class VtnGrupo extends javax.swing.JFrame {
 
                                 }
                             });
-                            aux = aux.getSig();
-                        }
+                            System.out.println("le añadi accion al boton");
+                            
+                            
+                            /////////////////
+                            
+                            aux=aux.getSig();
+                        }while (aux!=raux);
+                        //TERMINA PARTE DEL BUSCA/////////////////
+                        
+                        
+                        
+                        
+                        
+                        
+                        //while (aux != raux) 
+                        //{
+                            
+                            
+                            //aux = aux.getSig();
+                        //}
                     }
                 }
-            }
+            //}
         }
+        
+        System.out.println("ESTOY INSERTANDO EL DATO");
         JPGrupos.revalidate();
         JPGrupos.repaint();
     }//GEN-LAST:event_jBAgregarGActionPerformed
@@ -497,41 +535,111 @@ public class VtnGrupo extends javax.swing.JFrame {
         } catch (ClassNotFoundException ex) {
             Logger.getLogger(VtnGrupo.class.getName()).log(Level.SEVERE, null, ex);
         }
-
+        System.out.println("pase la parte de cargar los datos");
+        
         if (r == null) {//hacer esta validacion en las demas ventanas
             Mensaje.error(this, "No hay datos en la lista");
         } else {
+            System.out.println("pase la parte de r == null");
             Nodo aux = r;
 
             JPGrupos.removeAll();
+            
+            //PARTE DE EL BUSCA
+                        Nodo raux=r.getSig();
+                        aux=aux.getSig();
+                        do
+                        {
+                            //PARTE DE INSERTAR EL BOTON
+                            JButton boton = new JButton(aux.getEtq());
+                            System.out.println("tome el valor de la etiqueta");
 
-            while (aux != null) {
-                JButton boton = new JButton(aux.getEtq());
+                            boton.setBackground(Color.WHITE);//PONE EL FONDO DEL BOTON EN BLANCO
+                            boton.setForeground(Color.BLACK);//PONE LAS LETRAS COLOR NEGRO
+                            boton.setFont(new Font("arial", 1, 14));//CAMBIA LA FUENTE Y EL TAMAÑO
+                            System.out.println("pase de cambiar propiedades a los botones");
+                            
+                            
+                            //ESTABLECE UN TAMAÑO POR DEFECTO PARA LOS BOTONES
+                            boton.setMinimumSize(new Dimension(JPGrupos.getWidth(), 50));
+                            boton.setMaximumSize(new Dimension(JPGrupos.getWidth(), 50));
+                            boton.setPreferredSize(new Dimension(JPGrupos.getWidth(), 50));
 
-                boton.setBackground(Color.WHITE);//PONE EL FONDO DEL BOTON EN BLANCO
-                boton.setForeground(Color.BLACK);//PONE LAS LETRAS COLOR NEGRO
-                boton.setFont(new Font("arial", 1, 14));//CAMBIA LA FUENTE Y EL TAMAÑO
+                            JPGrupos.add(boton);
+                            System.out.println("añadi el boton");
 
-                //ESTABLECE UN TAMAÑO POR DEFECTO PARA LOS BOTONES
-                boton.setMinimumSize(new Dimension(JPGrupos.getWidth(), 50));
-                boton.setMaximumSize(new Dimension(JPGrupos.getWidth(), 50));
-                boton.setPreferredSize(new Dimension(JPGrupos.getWidth(), 50));
+                            boton.addActionListener(new ActionListener()//pone una accion al boton
+                            {
+                                @Override
+                                public void actionPerformed(ActionEvent e)//accion del boton
+                                {
+                                    VtnContacto c = new VtnContacto();
+                                    c.d = boton.getText();
+                                    c.setVisible(true);
 
-                JPGrupos.add(boton);
+                                }
+                            });
+                            System.out.println("le añadi accion al boton");
+                            
+                            
+                            /////////////////
+                            
+                            aux=aux.getSig();
+                        }while (aux!=raux);
+                        //TERMINA PARTE DEL BUSCA/////////////////
+            
+            
+            
+//            //PARTE DE EL BUSCA
+//            Nodo raux=r.getSig();
+//            aux=aux.getSig();
+//            do
+//            {
+//                //parte que añade los bootnes 
+//                
+//                JButton boton = new JButton(aux.getEtq());
+//
+//                boton.setBackground(Color.WHITE);//PONE EL FONDO DEL BOTON EN BLANCO
+//                boton.setForeground(Color.BLACK);//PONE LAS LETRAS COLOR NEGRO
+//                boton.setFont(new Font("arial", 1, 14));//CAMBIA LA FUENTE Y EL TAMAÑO
+//                System.out.println("pase la parte de tomar el texto del boton");
+//
+//                //ESTABLECE UN TAMAÑO POR DEFECTO PARA LOS BOTONES
+//                boton.setMinimumSize(new Dimension(JPGrupos.getWidth(), 50));
+//                boton.setMaximumSize(new Dimension(JPGrupos.getWidth(), 50));
+//                boton.setPreferredSize(new Dimension(JPGrupos.getWidth(), 50));
+//
+//                JPGrupos.add(boton);
+//                System.out.println("pase la parte de agregar el boton");
+//                
+//                System.out.println(boton.getText());
+//
+//                boton.addActionListener(new ActionListener()//pone una accion al boton
+//                {
+//                    @Override
+//                    public void actionPerformed(ActionEvent e)//accion del boton
+//                    {
+//                        VtnContacto c = new VtnContacto();
+//                        c.d = boton.getText();
+//                        c.setVisible(true);
+//
+//                    }
+//                });
+//                System.out.println("le añadi la opcion al boton");
+//                
+//                aux = aux.getSig();
+//                JPGrupos.revalidate();
+//                JPGrupos.repaint();
+//                
+//                ///termina parte que añade los botones
+//            }while (aux!=raux);
+//            ///////////////////
+            
+            
 
-                boton.addActionListener(new ActionListener()//pone una accion al boton
-                {
-                    @Override
-                    public void actionPerformed(ActionEvent e)//accion del boton
-                    {
-                        VtnContacto c = new VtnContacto();
-                        c.d = boton.getText();
-                        c.setVisible(true);
-
-                    }
-                });
-                aux = aux.getSig();
-            }
+            //while (aux != null) {
+                
+            //}
             JPGrupos.revalidate();
             JPGrupos.repaint();
         }
@@ -539,6 +647,8 @@ public class VtnGrupo extends javax.swing.JFrame {
         JPGrupos.revalidate();
         JPGrupos.repaint();
 
+        
+        System.out.println("LO QUE CONTIENE DEL DESP en WINDOW OPENED");
         System.out.println(Multilistas.desp(r, 0));
         arr.verarboles();
     }//GEN-LAST:event_formWindowOpened
