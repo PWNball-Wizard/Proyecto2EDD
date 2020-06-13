@@ -49,14 +49,16 @@ public class VtnHistorial extends javax.swing.JFrame {
     public static boolean validaH(Nodo r, String etq)//valida que el nombre de un grupo no se repita 
     {
         boolean aux = false;
-        while (r != null) {
-            if (r.getEtq().equals(etq)) {
+        Nodo aux2 = r;
+        aux2 = aux2.getSig();
+       do {
+            if (aux2.getEtq().equals(etq)) {
                 aux = true;
                 break;
             } else {
-                r = r.getSig();
+                aux2 = aux2.getSig();
             }
-        }
+        }while(aux2 != r.getSig());
         System.out.println("EL DATO QUE ENCONTRE FUE:" + aux);
         return aux;
     }
@@ -193,12 +195,12 @@ public class VtnHistorial extends javax.swing.JFrame {
           String s = df.format(jBFecha.getDate());
         
         
-//        if (validaH(r2, s)==true) 
-//        {
-//            Mensaje.error(c,"La fecha que desea ingresar ya existe");
-//        }
-//        else
-//        {
+        if (validaH(r2, s)==true) 
+        {
+            Mensaje.error(c,"La fecha que desea ingresar ya existe");
+        }
+        else
+        {
                 Nodo his = new Nodo(c.c, s, 0, c.p1, c.p2);
                 String[] etqs = new String[3];
                 etqs[0] = d1;
@@ -254,7 +256,7 @@ public class VtnHistorial extends javax.swing.JFrame {
                 
                 
                 
-//        }//fin del validaH
+        }//fin del validaH
         
         }    
         
