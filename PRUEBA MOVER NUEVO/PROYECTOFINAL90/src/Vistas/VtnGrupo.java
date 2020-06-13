@@ -400,10 +400,10 @@ public class VtnGrupo extends javax.swing.JFrame {
             } else if (s.length() == 0) {
                 Mensaje.error(this, "Campo vacio, debe escribir un nombre");
             } else {
-                if (validaG(r, s) == false)//significa que no encontro nada 
-                {
-                    Mensaje.error(this, "No se encontro el grupo que desea eliminar");
-                } else {
+//                if (validaG(r, s) == false)//significa que no encontro nada 
+//                {
+//                    Mensaje.error(this, "No se encontro el grupo que desea eliminar");
+//                } else {
 
                     String[] etqs = new String[1];//arreglo de etiquetas
 
@@ -420,19 +420,21 @@ public class VtnGrupo extends javax.swing.JFrame {
                         Nodo rb = Multilistas.busca(r, s.trim());
 
                         rb = rb.getAbj();
-
+///////////////////////////////////////////////////VERIFICAR SI FUNCIONA
                         if (rb != null) {
 
                             Nodo aux = rb;
 
-                            while (aux != null) {
+                            aux = aux.getSig();
+                            
+                            do {
 
                                 arr.elimina(aux.getEtq());
 
                                 aux = aux.getSig();
-                            }
+                            }while (aux != rb.getSig());
                         }
-
+//////////////////////////////////////////////////VERIFICAR SI FUNCIONA
                         r = Multilistas.elimina(r, 0, etqs);
 
                         Propiedades p = new Propiedades(r, arr);
@@ -458,9 +460,9 @@ public class VtnGrupo extends javax.swing.JFrame {
                         }
                         //////////////////
                     }
-                }
+//                }
             }
-            System.out.println(Multilistas.desp(r, 0));
+//            System.out.println(Multilistas.desp(r, 0));
         } else {
             Mensaje.error(this, "La lista se encuentra vacia, no puede eliminar elementos");
         }
@@ -576,14 +578,10 @@ public class VtnGrupo extends javax.swing.JFrame {
                                     VtnContacto c = new VtnContacto();
                                     c.d = boton.getText();
                                     c.setVisible(true);
-
                                 }
                             });
                             System.out.println("le añadi accion al boton");
-                            
-                            
                             /////////////////
-                            
                             aux=aux.getSig();
                         }while (aux!=raux);
                         //TERMINA PARTE DEL BUSCA/////////////////
@@ -649,8 +647,8 @@ public class VtnGrupo extends javax.swing.JFrame {
 
         
         System.out.println("LO QUE CONTIENE DEL DESP en WINDOW OPENED");
-        System.out.println(Multilistas.desp(r, 0));
-        arr.verarboles();
+//        System.out.println(Multilistas.desp(r, 0));
+//        arr.verarboles();
     }//GEN-LAST:event_formWindowOpened
 
     private void jBAsistenteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBAsistenteActionPerformed

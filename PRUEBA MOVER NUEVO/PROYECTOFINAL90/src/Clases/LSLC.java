@@ -240,10 +240,12 @@ public class LSLC {
 
     public int can() {
         int cont = 0;
-        while (r != null) {
+        Nodo aux = r;
+        aux = aux.getSig();
+        do{
             cont++;
-            r = r.getSig();
-        }
+            aux = aux.getSig();
+        }while(aux != r.getSig());
         return cont;
     }
 }

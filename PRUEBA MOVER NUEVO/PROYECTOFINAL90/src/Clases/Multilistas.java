@@ -120,8 +120,9 @@ public class Multilistas implements Serializable {
     public static String desp(Nodo r, int nivel) {
 
         String s = "";
+        Nodo aux = r.getSig();
 
-        while (r != null) {
+       do{
 
             String ss = "";
 
@@ -137,7 +138,7 @@ public class Multilistas implements Serializable {
 
             r = r.getSig();
 
-        }
+        }while(r != aux);
         return s;
     }
 }

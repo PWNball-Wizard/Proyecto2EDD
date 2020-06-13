@@ -7,7 +7,7 @@ public class Propiedades implements Serializable
 {
 
     private Nodo r = null;
-    TablasHash arr = new TablasHash(26);
+    TablasHash arr = new TablasHash(27);
     
     public Propiedades()
     {

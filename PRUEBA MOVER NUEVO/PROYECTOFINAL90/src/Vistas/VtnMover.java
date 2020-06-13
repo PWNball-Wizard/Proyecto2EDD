@@ -426,7 +426,8 @@ public class VtnMover extends javax.swing.JFrame {
 
         if (VtnContacto.r1 != null) {
             Nodo aux = VtnContacto.r1;
-            while (aux != null) {
+            aux = aux.getSig();
+            do{
                 JButton boton = new JButton(aux.getEtq());
 
                 boton.setBackground(Color.WHITE);//PONE EL FONDO DEL BOTON EN BLANCO
@@ -454,7 +455,7 @@ public class VtnMover extends javax.swing.JFrame {
                 aux = aux.getSig();
                 jPContactos1.revalidate();
                 jPContactos1.repaint();
-            }
+            }while(aux != VtnContacto.r1.getSig());
         }
     }//GEN-LAST:event_formWindowOpened
 
@@ -467,7 +468,8 @@ public class VtnMover extends javax.swing.JFrame {
                 Mensaje.error(this, "No hay datos en la lista");
             } else {
                 Nodo aux = r;
-                while (aux != null) {
+                aux = aux.getSig();
+                do{
                     JButton boton = new JButton(aux.getEtq());
 
                     boton.setBackground(Color.WHITE);//PONE EL FONDO DEL BOTON EN BLANCO
@@ -494,7 +496,7 @@ public class VtnMover extends javax.swing.JFrame {
                     aux = aux.getSig();
                     jPContactos1.revalidate();
                     jPContactos1.repaint();
-                }
+                }while(aux != r.getSig());
             }
 
             jPContactos1.revalidate();
@@ -537,10 +539,10 @@ public class VtnMover extends javax.swing.JFrame {
                         System.out.println("");
                     } else {
 
-                        if (validaC(r, gpo) == false)//significa que no encontro nada 
-                        {
-                            Mensaje.error(this, "El grupo al cual desea mover el contacto no se encontro");
-                        } else {
+//                        if (validaC(r, gpo) == false)//significa que no encontro nada 
+//                        {
+//                            Mensaje.error(this, "El grupo al cual desea mover el contacto no se encontro");
+//                        } else {
 
                             if (gpo.length() == 0) {
                                 Mensaje.error(this, "Los campos no deben estar vacios");
@@ -667,7 +669,7 @@ public class VtnMover extends javax.swing.JFrame {
                                     JPContactos.repaint();
                                 }
                             }
-                        }
+//                        }
 
                     }//fin del validaE de grupo
                 }//fin del gpo!=null
@@ -676,7 +678,7 @@ public class VtnMover extends javax.swing.JFrame {
 
         JPContactos.revalidate();
         JPContactos.repaint();
-        System.out.println(Multilistas.desp(VtnGrupo.r, 0));
+//        System.out.println(Multilistas.desp(VtnGrupo.r, 0));
     }
 
     public void cerrar() {

@@ -283,9 +283,9 @@ public class VtnContacto extends javax.swing.JFrame {
             if (valida(s) == false) {
                 System.out.println("error");//cambiar por un mensaje de error
             } else {
-                if (validaC(r1, s) == true) {
-                    Mensaje.error(this, "El nombre que desea ingresar se encuentra repetido, por favor ingrese uno diferente");
-                } else {
+//                if (validaC(r1, s) == true) {
+//                    Mensaje.error(this, "El nombre que desea ingresar se encuentra repetido, por favor ingrese uno diferente");
+//                } else {
                     if (validaE(s) == false) {
                         System.out.println("");
                     } else {
@@ -323,7 +323,9 @@ public class VtnContacto extends javax.swing.JFrame {
 
                             if (r1 != null) {
                                 Nodo aux = r1;
-                                while (aux != null) {
+                                aux = aux.getSig();
+                                
+                                do {
                                     JButton boton = new JButton(aux.getEtq());
 
                                     //boton.setLocation(50, 10);
@@ -348,12 +350,12 @@ public class VtnContacto extends javax.swing.JFrame {
                                     }
                                     );
                                     aux = aux.getSig();
-                                }
+                                }while(aux != r1.getSig());
                             }
                             //AQUI TERMINA EL PROCESO DE ALTAS   
                         }//fin del validaN 
                     }
-                }//fin del validaC
+//                }//fin del validaC
             }//fin del valida(s)    
         }//fin del valida de s =null
 
@@ -431,7 +433,7 @@ public class VtnContacto extends javax.swing.JFrame {
         }
         JPContactos.updateUI();
 
-        System.out.println(Multilistas.desp(VtnGrupo.r, 0));
+////        System.out.println(Multilistas.desp(VtnGrupo.r, 0));
     }//GEN-LAST:event_jBEliminarCActionPerformed
 
     private void jBRegresarCActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBRegresarCActionPerformed
@@ -450,7 +452,8 @@ public class VtnContacto extends javax.swing.JFrame {
 
         if (r1 != null) {
             Nodo aux = r1;
-            while (aux != null) {
+            aux = aux.getSig();
+            do {
                 JButton boton = new JButton(aux.getEtq());
 
                 boton.setBackground(Color.WHITE);//PONE EL FONDO DEL BOTON EN BLANCO
@@ -475,7 +478,7 @@ public class VtnContacto extends javax.swing.JFrame {
                 }
                 );
                 aux = aux.getSig();
-            }
+            }while(aux != r1.getSig());
         }
 
         JPContactos.revalidate();
