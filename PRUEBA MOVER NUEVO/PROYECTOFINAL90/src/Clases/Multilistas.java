@@ -13,9 +13,9 @@ public class Multilistas implements Serializable {
         if (nivel == etqs.length - 1)//VALIDA QUE ESTEMOS EN EL NIVEL CORRECTO
         {
             LSLC ls = new LSLC();//crea una nueva lista
-            ls.setRaiz(r);//define la raiz en base a la que recibira como parametro
+            ls.setR(r);//define la raiz en base a la que recibira como parametro
             ls.inserta(n);//inserta el dato en la lista
-            r = ls.getRaiz();//reconecta
+            r = ls.getR();//reconecta
             return r;
         } else {
             Nodo aux = busca(r, etqs[nivel]);//RECORRE EL ARBOL EN BUSCA DE LA ETIQUETA
@@ -33,13 +33,13 @@ public class Multilistas implements Serializable {
     public static Nodo elimina(Nodo r, int nivel, String etqs[]) {
         if (nivel == etqs.length - 1) {
             LSLC ls = new LSLC();
-            ls.setRaiz(r);
-            Nodo aux = ls.elimina(etqs[nivel]);
+            ls.setR(r);
+            Nodo aux = ls.eliminar(etqs[nivel]);
             mov = aux;
             if (aux == null) {
                 JOptionPane.showMessageDialog(null, "No se encontro el dato", "Mensaje de Error", JOptionPane.ERROR_MESSAGE);
             } else {
-                r = ls.getRaiz();
+                r = ls.getR();
                 System.out.println("La lista del nivel [" + nivel + "]= " + ls.can());
             }
             return r;
