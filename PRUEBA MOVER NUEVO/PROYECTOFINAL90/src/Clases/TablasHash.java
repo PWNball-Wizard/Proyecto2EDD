@@ -16,37 +16,28 @@ public class TablasHash implements Serializable {
 
     private ArbolBinario arr[];
 
-    public TablasHash(int n) 
-    {
+    public TablasHash(int n) {
         arr = new ArbolBinario[n];
         for (int i = 0; i < n; i++) {
             arr[i] = new ArbolBinario();
         }
     }
 
-    public static int posicion(NodoArbol b) 
-    {
+    public static int posicion(NodoArbol b) {
 
         String posC = b.getEtq(); //nombre que se acaba de ingresar
 
         int pos = 0;
+        String prueba = "Ñ";
 
-        for (int i = 65; i < 91; i++) 
-        {
-            if (i == posC.toUpperCase().codePointAt(0)) 
-            {
-                if (i==164) 
-                {
-                    pos=14;
-                }
-                else
-                {
-                    pos = i - 65;
-                }
+        for (int i = 65; i < 91; i++) {
+            if (i == posC.toUpperCase().codePointAt(0)) {
+                pos = i - 65;
+            } else if (posC.toUpperCase().codePointAt(0) == prueba.codePointAt(0)) {
+                pos = 14;
             }
-            
         }
-        
+
         System.out.println("La posicion es " + pos);
         return pos;
     }

@@ -12,16 +12,17 @@ public class Multilistas implements Serializable {
     {
         if (nivel == etqs.length - 1)//VALIDA QUE ESTEMOS EN EL NIVEL CORRECTO
         {
-            LSL ls = new LSL();//crea una nueva lista
-            ls.setR(r);//define la raiz en base a la que recibira como parametro
+            LSLC ls = new LSLC();//crea una nueva lista
+            ls.setRaiz(r);//define la raiz en base a la que recibira como parametro
             ls.inserta(n);//inserta el dato en la lista
-            r = ls.getR();//reconecta
+            r = ls.getRaiz();//reconecta
             return r;
         } else {
             Nodo aux = busca(r, etqs[nivel]);//RECORRE EL ARBOL EN BUSCA DE LA ETIQUETA
-
+            
             if (aux != null) {
                 aux.setAbj(inserta(aux.getAbj(), n, nivel + 1, etqs));//Si encuentra el dato lo inserta
+                aux.getAbj().setArb(aux);
             } else {
                 System.out.println("No se encontro " + etqs[nivel] + " En el nivel " + nivel);
             }
@@ -31,14 +32,14 @@ public class Multilistas implements Serializable {
 
     public static Nodo elimina(Nodo r, int nivel, String etqs[]) {
         if (nivel == etqs.length - 1) {
-            LSL ls = new LSL();
-            ls.setR(r);
-            Nodo aux = ls.eliminar(etqs[nivel]);
+            LSLC ls = new LSLC();
+            ls.setRaiz(r);
+            Nodo aux = ls.elimina(etqs[nivel]);
             mov = aux;
             if (aux == null) {
                 JOptionPane.showMessageDialog(null, "No se encontro el dato", "Mensaje de Error", JOptionPane.ERROR_MESSAGE);
             } else {
-                r = ls.getR();
+                r = ls.getRaiz();
                 System.out.println("La lista del nivel [" + nivel + "]= " + ls.can());
             }
             return r;

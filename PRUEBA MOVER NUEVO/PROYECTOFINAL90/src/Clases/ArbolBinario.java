@@ -1,3 +1,4 @@
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -37,6 +38,7 @@ public class ArbolBinario implements Serializable {
         } else {
             if (r.getEtq().compareTo(n.getEtq()) > 0) {
                 r.setIzq(inserta(r.getIzq(), n));
+                
             } else {
                 r.setDer(inserta(r.getDer(), n));
             }

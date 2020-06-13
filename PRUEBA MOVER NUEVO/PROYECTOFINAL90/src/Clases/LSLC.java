@@ -59,7 +59,7 @@ public class LSLC
     
 
     //@Override
-    public Object elimina(Object obj)
+    public Nodo elimina(String etq)
     {
         if (raiz == null)
         {
@@ -68,11 +68,11 @@ public class LSLC
         } else
         {
             Nodo aux = null;
-            String s = (String) obj;
-            if (s.compareTo(raiz.getSig().getEtq()) >=0
-                    && s.compareTo(raiz.getEtq()) <=0)
+            
+            if (etq.compareTo(raiz.getSig().getEtq()) >=0
+                    && etq.compareTo(raiz.getEtq()) <=0)
             {
-                if (raiz.getSig().getEtq().equals(s))
+                if (raiz.getSig().getEtq().equals(etq))
                 {
                     aux = raiz.getSig();
                     if (raiz == aux)
@@ -88,7 +88,7 @@ public class LSLC
                     boolean b = true;
                     while (aux2 != raiz && b)
                     {
-                        if (s.compareTo(aux2.getSig().getEtq()) == 0)
+                        if (etq.compareTo(aux2.getSig().getEtq()) == 0)
                         {
                             aux = aux2.getSig();
                             aux2.setSig(aux.getSig());
@@ -145,5 +145,14 @@ public class LSLC
             s = "No hay datos";
         }
         return s;
+    }
+    
+    public int can() {
+        int cont = 0;
+        while (raiz != null) {
+            cont++;
+            raiz = raiz.getSig();
+        }
+        return cont;
     }
 }

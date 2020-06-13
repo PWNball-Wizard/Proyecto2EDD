@@ -40,7 +40,7 @@ public class VtnGrupo extends javax.swing.JFrame {
     /**
      * Creates new form VtnGrupos
      *///***************************
-     public void transparenciaBotones() //PONER EN VtnGrupo
+    public void transparenciaBotones() //PONER EN VtnGrupo
     {
         jBEliminarG.setContentAreaFilled(false);
         jBBusca.setContentAreaFilled(false);
@@ -49,9 +49,8 @@ public class VtnGrupo extends javax.swing.JFrame {
         jBAsistente.setContentAreaFilled(false);
 
     }
-     
-     
-     public boolean valida(String s) {
+
+    public boolean valida(String s) {
         boolean valida = false;
 
         if (s.length() == 0) {
@@ -61,8 +60,7 @@ public class VtnGrupo extends javax.swing.JFrame {
             if (s.length() > 30) {
                 Mensaje.error(this, "El nombre que desea ingresar excede el numero de caracteres permitidos(30)");
                 valida = false;
-            } else 
-            {
+            } else {
                 for (int i = 0; i < s.length(); i++) //analiza cada caracter de la cadena de manera individual
                 {
                     char caracter = s.charAt(i);
@@ -75,8 +73,7 @@ public class VtnGrupo extends javax.swing.JFrame {
                         valida = false;
                     }
                 }
-                if (valida == true) 
-                {
+                if (valida == true) {
                     //s=s.trim();
                     return valida = true;
                 } else {
@@ -91,9 +88,9 @@ public class VtnGrupo extends javax.swing.JFrame {
         System.out.println("//////////////EL VALOR DE VALIDA ES " + valida);
         return valida;
     }
-     
 
-   /*public boolean valida(String s) {
+
+    /*public boolean valida(String s) {
         boolean valida = false;
         for (int i = 0; i < s.length(); i++) 
         {
@@ -129,7 +126,6 @@ public class VtnGrupo extends javax.swing.JFrame {
         System.out.println("VALIDA TODO;" + validatodo);
         return validatodo;
     }*/
-
     public static boolean validaG(Nodo r, String etq)//valida que el nombre de un grupo no se repita 
     {
         boolean aux = false;
@@ -143,30 +139,24 @@ public class VtnGrupo extends javax.swing.JFrame {
         }
         return aux;
     }
-    
+
     public boolean validaE(String s)//valida que no haya espacios al principio y al final de la palabra
     {
-        boolean validaE=false;
-        
-        char c=s.charAt(0);
-        String p1=Character.toString(c);
-        
-        if (Character.isLetter(c)==false) 
-        {
-            Mensaje.error(this,"Caracter invalido detectado\nSolo se permiten letras");
-            Mensaje.error(this,"Recuerde que no se permite el espacio al principio ni al final de una palabra");
-            validaE=false;
+        boolean validaE = false;
+
+        char c = s.charAt(0);
+        String p1 = Character.toString(c);
+
+        if (Character.isLetter(c) == false) {
+            Mensaje.error(this, "Caracter invalido detectado\nSolo se permiten letras");
+            Mensaje.error(this, "Recuerde que no se permite el espacio al principio ni al final de una palabra");
+            validaE = false;
+        } else {
+            validaE = true;
         }
-        else
-        {
-            validaE=true;
-        }
-        
+
         return validaE;
     }
-    
-    
-    
 
     public VtnGrupo() {
         initComponents();
@@ -299,16 +289,11 @@ public class VtnGrupo extends javax.swing.JFrame {
 
             if (validaG(r, s) == true) {
                 Mensaje.error(this, "El grupo que desea ingresar se encuentra repetido, por favor ingrese uno diferente");
-            } 
-            else 
-            {
-             
-                if (s.length()>30) 
-                {
+            } else {
+
+                if (s.length() > 30) {
                     Mensaje.error(this, "El nombre que intenta ingresar excede el numero de caracteres permitido(30)");
-                }
-                else
-                {
+                } else {
                     Nodo nom = new Nodo(null, s.trim());
 
                     String[] etqs = new String[1];//arreglo de etiquetas,esta en 1 lo cual significa que esta en el nivel 0
@@ -393,8 +378,7 @@ public class VtnGrupo extends javax.swing.JFrame {
                         c = true;
                     }
 
-                    if (c==true) 
-                    {
+                    if (c == true) {
                         Nodo rb = Multilistas.busca(r, s.trim());
 
                         rb = rb.getAbj();
@@ -420,19 +404,19 @@ public class VtnGrupo extends javax.swing.JFrame {
                         } catch (FileNotFoundException ex) {
                             System.out.println("No se encontro el archivo");
                         }
-                        
+
                         //movi esto dentro de el if
                         if (r != null) {
                             System.out.println("Estoy entrando a esta parte del codigo");
-                        Component componentes[] = JPGrupos.getComponents();
+                            Component componentes[] = JPGrupos.getComponents();
 
-                        for (int i = 0; i < componentes.length; i++) {
-                            if (etqs[0].trim().equalsIgnoreCase(((JButton) componentes[i]).getText().trim())) {
-                                JPGrupos.remove(i);
+                            for (int i = 0; i < componentes.length; i++) {
+                                if (etqs[0].trim().equalsIgnoreCase(((JButton) componentes[i]).getText().trim())) {
+                                    JPGrupos.remove(i);
+                                }
                             }
-                        }
                         } else {
-                        JPGrupos.removeAll();
+                            JPGrupos.removeAll();
                         }
                         //////////////////
                     }
@@ -450,55 +434,48 @@ public class VtnGrupo extends javax.swing.JFrame {
         String s = "";
         s = JOptionPane.showInputDialog("Escriba el nombre del contacto que deseas buscar"); //ETIQUETA PARA LA CATEGORIA NUEVA
 
-        if (s!=null)
-        {
-            if (valida(s) == false) 
-            {
+        if (s != null) {
+            if (valida(s) == false) {
                 System.out.println("error");
-            } else 
-            {
+            } else {
 
-                if (validaE(s)==false) 
-                {
+                if (validaE(s) == false) {
                     System.out.println("");
-                }
-                else
-                {
+                } else {
                     int pos = s.toUpperCase().codePointAt(0) - 65;
 
                     if (arr.getArr()[pos] != null) {
 
-                    ArbolBinario aBus = new ArbolBinario();
+                        ArbolBinario aBus = new ArbolBinario();
 
-                    NodoArbol aux = aBus.busca(arr.getArr()[pos].getR(), s);
+                        NodoArbol aux = aBus.busca(arr.getArr()[pos].getR(), s);
+                        if (aux != null) {
 
-                    if (aux != null) {
+                            String[] pr = aux.getPredecesores();
 
-                        String[] pr = aux.getPredecesores();
+                            String grupo = pr[0];
+                            String contacto = pr[1];
 
-                        String grupo = pr[0];
-                        String contacto = pr[1];
+                            Nodo r2 = Multilistas.busca(r, grupo);
 
-                        Nodo r2 = Multilistas.busca(r, grupo);
+                            r2 = r2.getAbj();
+                            r2 = Multilistas.busca(r2, contacto);
 
-                        r2 = r2.getAbj();
-                        r2 = Multilistas.busca(r2, contacto);
+                            if (r2 != null) {
+                                VtnHistorial h = new VtnHistorial();
+                                h.d1 = grupo;
+                                h.d2 = contacto;
+                                h.setVisible(true);
+                                dispose();
 
-                        if (r2 != null) {
-                            VtnHistorial h = new VtnHistorial();
-                            h.d1 = grupo;
-                            h.d2 = contacto;
-                            h.setVisible(true);
-                            dispose();
+                            } else {
+                                Mensaje.error(this, "No se encontro el dato");
+                            }
 
                         } else {
-                            Mensaje.error(this, "No se encontro el dato");
+                            Mensaje.error(this, "No se encontró " + s + " en tu lista de contactos");
                         }
-
-                    } else {
-                        Mensaje.error(this, "No se encontró " + s + " en tu lista de contactos");
                     }
-                }
 
                 }//fin de valida
             }//fin de validaE
@@ -573,35 +550,34 @@ public class VtnGrupo extends javax.swing.JFrame {
                 + "Asi como buscar entre los distintos grupos que tengas y observar los contactos que contiene");
     }//GEN-LAST:event_jBAsistenteActionPerformed
 
-            
-    
-        public boolean validaN(String s)
-        {
-            boolean validaN=false;
-            
-                int pos = s.toUpperCase().codePointAt(0) - 65;
-
-                if (arr.getArr()[pos] != null) {
-
-                    ArbolBinario aBus = new ArbolBinario();
-
-                    NodoArbol aux = aBus.busca(arr.getArr()[pos].getR(), s);
-
-                    if (aux != null) {
-
-                        return validaN=true;
-
-                    } else 
-                    {
-                        return validaN=false;
-                    }
-                }
-            return validaN=true;
+    public boolean validaN(String s) {
+        boolean validaN = false;
+        int pos;
+        String prueba = "Ñ";
+        if (s.toUpperCase().codePointAt(0) == prueba.codePointAt(0)) {
+            pos = 14;
+        } else {
+            pos = s.toUpperCase().codePointAt(0) - 65;
         }
-    
-    
-    
-    
+        System.out.println(pos);
+
+        if (arr.getArr()[pos] != null) {
+
+            ArbolBinario aBus = new ArbolBinario();
+
+            NodoArbol aux = aBus.busca(arr.getArr()[pos].getR(), s);
+
+            if (aux != null) {
+
+                return validaN = true;
+
+            } else {
+                return validaN = false;
+            }
+        }
+        return validaN = true;
+    }
+
     /**
      * @param args the command line arguments
      */
