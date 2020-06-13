@@ -42,7 +42,7 @@ public class Multilistas implements Serializable {
                 JOptionPane.showMessageDialog(null, "No se encontro el dato", "Mensaje de Error", JOptionPane.ERROR_MESSAGE);
             } else {
                 r = ls.getR();
-                System.out.println("La lista del nivel [" + nivel + "]= " + ls.can());
+//                System.out.println("La lista del nivel [" + nivel + "]= " + ls.can());
             }
             return r;
         } else {
@@ -85,7 +85,7 @@ public class Multilistas implements Serializable {
     
     public static Nodo busca(Nodo r,String pbuscar)//FUNCIONA 
     {
-        Nodo raux=r.getSig();
+        Nodo raux=r;
         Nodo aux=null;
         boolean encontrado=false;
         
@@ -94,7 +94,7 @@ public class Multilistas implements Serializable {
             System.out.println("NO HAY DATOS");
         }else
         {
-            r=r.getSig();
+//            r=r.getSig();
             do
             {
                 if (r.getEtq().equals(pbuscar)) 
@@ -109,7 +109,7 @@ public class Multilistas implements Serializable {
                 //}
                 //s+=raux.getEtq();
                 r=r.getSig();
-            }while (r!=raux);
+            }while (r!=raux.getSig());
         }
         System.out.println("EL VALOR DE ENCONTRADO ES:"+encontrado);
         System.out.println("EL VALOR DE AUX es"+aux.getEtq());

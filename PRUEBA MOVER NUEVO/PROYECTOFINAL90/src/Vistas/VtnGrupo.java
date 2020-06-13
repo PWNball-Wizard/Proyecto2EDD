@@ -425,7 +425,7 @@ public class VtnGrupo extends javax.swing.JFrame {
 
                             Nodo aux = rb;
 
-                            aux = aux.getSig();
+//                            aux = aux.getSig();
                             
                             do {
 
