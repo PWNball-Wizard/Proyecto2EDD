@@ -85,7 +85,7 @@ public class Multilistas implements Serializable {
     
     public static Nodo busca(Nodo r,String pbuscar)//FUNCIONA 
     {
-        Nodo raux=r;
+        Nodo raux=r.getSig();
         Nodo aux=null;
         boolean encontrado=false;
         
@@ -94,7 +94,7 @@ public class Multilistas implements Serializable {
             System.out.println("NO HAY DATOS");
         }else
         {
-//            r=r.getSig();
+            r=r.getSig();
             do
             {
                 if (r.getEtq().equals(pbuscar)) 
@@ -109,10 +109,10 @@ public class Multilistas implements Serializable {
                 //}
                 //s+=raux.getEtq();
                 r=r.getSig();
-            }while (r!=raux.getSig());
+            }while (r!=raux);
         }
-        System.out.println("EL VALOR DE ENCONTRADO ES:"+encontrado);
-        System.out.println("EL VALOR DE AUX es"+aux.getEtq());
+//        System.out.println("EL VALOR DE ENCONTRADO ES:"+encontrado);
+//        System.out.println("EL VALOR DE AUX es"+aux.getEtq());
         return aux;
     }
     
