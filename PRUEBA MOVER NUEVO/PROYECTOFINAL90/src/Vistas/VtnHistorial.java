@@ -189,12 +189,12 @@ public class VtnHistorial extends javax.swing.JFrame {
         else
         {
         
-        if (validaH(r2, s)==true) 
-        {
-            Mensaje.error(c,"La fecha que desea ingresar ya existe");
-        }
-        else
-        {
+//        if (validaH(r2, s)==true) 
+//        {
+//            Mensaje.error(c,"La fecha que desea ingresar ya existe");
+//        }
+//        else
+//        {
                 Nodo his = new Nodo(c.c, s, 0, c.p1, c.p2);
                 String[] etqs = new String[3];
                 etqs[0] = d1;
@@ -219,7 +219,8 @@ public class VtnHistorial extends javax.swing.JFrame {
 
                 if (r2 != null) {
                     Nodo aux = r2;
-                    while (aux != null) {
+                    aux = aux.getSig();
+                    do {
                         JButton boton = new JButton(aux.getEtq());
 
                         boton.setBackground(Color.WHITE);//PONE EL FONDO DEL BOTON EN BLANCO
@@ -244,12 +245,12 @@ public class VtnHistorial extends javax.swing.JFrame {
                         }
                         );
                         aux = aux.getSig();
-                    }
+                    }while(aux != r2.getSig());
                 }
                 
                 
                 
-        }//fin del validaH
+//        }//fin del validaH
     }//fin del valida s=0
         
         jBFecha.setDate(null);
@@ -276,12 +277,12 @@ public class VtnHistorial extends javax.swing.JFrame {
         }
         else
         {
-            if (validaH(r2, s)==false) 
-            {
-                Mensaje.error(this,"No se encontro la fecha que desea eliminar");
-            }
-            else
-            {
+//            if (validaH(r2, s)==false) 
+//            {
+//                Mensaje.error(this,"No se encontro la fecha que desea eliminar");
+//            }
+//            else
+//            {
                 String[] etqs = new String[3];
                 etqs[0] = d1;
                 etqs[1] = d2;
@@ -325,7 +326,7 @@ public class VtnHistorial extends javax.swing.JFrame {
                         JPHistorial.removeAll();
                     }   
                 } 
-            }
+//            }
             
         }
                            
@@ -343,7 +344,8 @@ public class VtnHistorial extends javax.swing.JFrame {
         
         if (r2 != null) {
             Nodo aux = r2;
-            while (aux != null) {
+            aux = aux.getSig();
+            do {
                 JButton boton = new JButton(aux.getEtq());
 
                 boton.setBackground(Color.WHITE);//PONE EL FONDO DEL BOTON EN BLANCO
@@ -367,7 +369,7 @@ public class VtnHistorial extends javax.swing.JFrame {
                 }
                 );
                 aux = aux.getSig();
-            }
+            }while(aux != r2.getSig());
         }
         
         JPHistorial.revalidate();
