@@ -14,6 +14,7 @@ import Clases.Propiedades;
 import Clases.TablasHash;
 import static Vistas.VtnGrupo.arr;
 import static Vistas.VtnGrupo.r;
+import static Vistas.VtnHistorial.validaH;
 import cjb.ci.Mensaje;
 import java.awt.Color;
 import java.awt.Component;
@@ -108,7 +109,7 @@ public class VtnContacto extends javax.swing.JFrame {
         return validabe;
     }
 
-    public static boolean validaC(Nodo r, String etq)//valida que el nombre de un grupo no se repita 
+    /*public static boolean validaC(Nodo r, String etq)//valida que el nombre de un grupo no se repita 
     {
         boolean aux = false;
         while (r != null) {
@@ -121,7 +122,7 @@ public class VtnContacto extends javax.swing.JFrame {
         }
         System.out.println("EL DATO QUE ENCONTRE FUE:" + aux);
         return aux;
-    }
+    }*/
 
     public boolean validaE(String s)//valida que no haya espacios al principio y al final de la palabra
     {
@@ -274,9 +275,9 @@ public class VtnContacto extends javax.swing.JFrame {
             if (valida(s) == false) {
                 System.out.println("error");//cambiar por un mensaje de error
             } else {
-//                if (validaC(r1, s) == true) {
-//                    Mensaje.error(this, "El nombre que desea ingresar se encuentra repetido, por favor ingrese uno diferente");
-//                } else {
+                if (validaH(r1, s) == true) {
+                    Mensaje.error(this, "El nombre que desea ingresar se encuentra repetido, por favor ingrese uno diferente");
+                } else {
                     if (validaE(s) == false) {
                         System.out.println("");
                     } else {
@@ -346,7 +347,7 @@ public class VtnContacto extends javax.swing.JFrame {
                             //AQUI TERMINA EL PROCESO DE ALTAS   
                         }//fin del validaN 
                     }
-//                }//fin del validaC
+                }//fin del validaC
             }//fin del valida(s)    
         }//fin del valida de s =null
 

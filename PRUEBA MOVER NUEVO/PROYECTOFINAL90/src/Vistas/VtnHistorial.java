@@ -52,7 +52,7 @@ public class VtnHistorial extends javax.swing.JFrame {
         Nodo aux2 = r;
         aux2 = aux2.getSig();
        do {
-            if (aux2.getEtq().equals(etq)) {
+            if (aux2.getEtq().equalsIgnoreCase(etq)) {
                 aux = true;
                 break;
             } else {

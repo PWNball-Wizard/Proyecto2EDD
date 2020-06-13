@@ -14,7 +14,6 @@ import Clases.Propiedades;
 import static Vistas.VtnContacto.JPContactos;
 import static Vistas.VtnContacto.d;
 import static Vistas.VtnContacto.r1;
-import static Vistas.VtnContacto.validaC;
 import static Vistas.VtnGrupo.r;
 import cjb.ci.Mensaje;
 import java.awt.Color;

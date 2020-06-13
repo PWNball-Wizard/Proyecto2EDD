@@ -12,6 +12,7 @@ import Clases.Nodo;
 import Clases.NodoArbol;
 import Clases.Propiedades;
 import Clases.TablasHash;
+import static Vistas.VtnHistorial.validaH;
 import cjb.ci.Mensaje;
 import java.awt.Color;
 import java.awt.Component;
@@ -73,10 +74,12 @@ public class VtnGrupo extends javax.swing.JFrame {
                         valida = false;
                     }
                 }
-                if (valida == true) {
+                if (valida == true) 
+                {
                     //s=s.trim();
                     return valida = true;
-                } else {
+                } else 
+                {
                     valida = false;
                     Mensaje.error(this, "El nombre que ingresó contiene caracteres no permitidos\n"
                             + "En esta sección sólo se permiten letras mayusculas/minusculas");
@@ -126,19 +129,23 @@ public class VtnGrupo extends javax.swing.JFrame {
         System.out.println("VALIDA TODO;" + validatodo);
         return validatodo;
     }*/
-    public static boolean validaG(Nodo r, String etq)//valida que el nombre de un grupo no se repita 
+    
+    /*public static boolean validaG(Nodo r, String etq)//valida que el nombre de un grupo no se repita 
     {
         boolean aux = false;
-        while (r != null) {
-            if (r.getEtq().equalsIgnoreCase(etq.trim())) {
+        Nodo aux2 = r;
+        aux2 = aux2.getSig();
+       do {
+            if (aux2.getEtq().equals(etq)) {
                 aux = true;
                 break;
             } else {
-                r = r.getSig();
+                aux2 = aux2.getSig();
             }
-        }
+        }while(aux2 != r.getSig());
+        System.out.println("EL DATO QUE ENCONTRE FUE:" + aux);
         return aux;
-    }
+    }*/
 
     public boolean validaE(String s)//valida que no haya espacios al principio y al final de la palabra
     {
@@ -280,162 +287,40 @@ public class VtnGrupo extends javax.swing.JFrame {
 
         s = JOptionPane.showInputDialog("Escriba el nombre de la categoria a añadir"); //ETIQUETA PARA LA CATEGORIA NUEVA
         System.out.println("El nombre es " + s);
+        
         if (s == null) //Evita el NPE al salir del showInputDialog o presionar cancelar
         {
-            //No hace nada al cancelar, o presionar salir
-            
-        } else
-            System.out.println("pase de valida s = null");
-            if (s.length() == 0) 
+            System.out.println("boton cancelar");   
+        } 
+        else
+        {
+            if (s.length()==0)
             {
-            Mensaje.error(this, "Campo vacio, debe escribir un nombre");
-        } else {
-                System.out.println("pase de valida ==0");
-            //if (validaG(r, s) == true) {
-            //   Mensaje.error(this, "El grupo que desea ingresar se encuentra repetido, por favor ingrese uno diferente");
-            //} else {
-
-                if (s.length() > 30) {
-                    Mensaje.error(this, "El nombre que intenta ingresar excede el numero de caracteres permitido(30)");
-                } else {
-                    System.out.println("pase de valida =30");
-                    Nodo nom = new Nodo(null, s.trim());
-
-                    String[] etqs = new String[1];//arreglo de etiquetas,esta en 1 lo cual significa que esta en el nivel 0
-
-                    etqs[0] = s;
-
-                    r = Multilistas.inserta(r, nom, 0, etqs);
-                    System.out.println("PASE DEL multilistas.inserta");
-
-                    Propiedades p = new Propiedades(r, arr);
-
-                    try {
-                        Archivos.guardar(p, this);
-                    } catch (FileNotFoundException ex) {
-                        System.out.println("No se encontro el archivo");
+                Mensaje.error(this,"El campo se encuentra vacio, por favor ingrese un nombre primero");
+            }
+            else
+            {
+                if (s.length()>30) 
+                {
+                    Mensaje.error(this,"El nombre que desea ingresar excede el limite de caracteres(30)");
+                } 
+                else 
+                {
+                    if (validaH(r, s)==true) 
+                    {
+                        Mensaje.error(this,"El nombre que desea ingresar ya se encuentra dentro de este grupo\nPor favor ingrese uno diferente");
                     }
-                    System.out.println("pase de la parte de guardar archivos");
-                    
-                    
-                    
-                    if (r != null) {
-                        Nodo aux = r;
+                    else
+                    {
+                        //AQUI COMIENZA EL PROCESO DE AGREGAR
+                        Nodo nom = new Nodo(null, s.trim());
 
-                        JPGrupos.removeAll();
+                        String[] etqs = new String[1];//arreglo de etiquetas,esta en 1 lo cual significa que esta en el nivel 0
 
-                        //PARTE DE EL BUSCA
-                        Nodo raux=r.getSig();
-                        aux=aux.getSig();
-                        do
-                        {
-                            //PARTE DE INSERTAR EL BOTON
-                            JButton boton = new JButton(aux.getEtq());
-                            System.out.println("tome el valor de la etiqueta");
+                        etqs[0] = s;
 
-                            boton.setBackground(Color.WHITE);//PONE EL FONDO DEL BOTON EN BLANCO
-                            boton.setForeground(Color.BLACK);//PONE LAS LETRAS COLOR NEGRO
-                            boton.setFont(new Font("arial", 1, 14));//CAMBIA LA FUENTE Y EL TAMAÑO
-                            System.out.println("pase de cambiar propiedades a los botones");
-                            
-                            
-                            //ESTABLECE UN TAMAÑO POR DEFECTO PARA LOS BOTONES
-                            boton.setMinimumSize(new Dimension(JPGrupos.getWidth(), 50));
-                            boton.setMaximumSize(new Dimension(JPGrupos.getWidth(), 50));
-                            boton.setPreferredSize(new Dimension(JPGrupos.getWidth(), 50));
-
-                            JPGrupos.add(boton);
-                            System.out.println("añadi el boton");
-
-                            boton.addActionListener(new ActionListener()//pone una accion al boton
-                            {
-                                @Override
-                                public void actionPerformed(ActionEvent e)//accion del boton
-                                {
-                                    VtnContacto c = new VtnContacto();
-                                    c.d = boton.getText();
-                                    c.setVisible(true);
-
-                                }
-                            });
-                            System.out.println("le añadi accion al boton");
-                            
-                            
-                            /////////////////
-                            
-                            aux=aux.getSig();
-                        }while (aux!=raux);
-                        //TERMINA PARTE DEL BUSCA/////////////////
-                        
-                        
-                        
-                        
-                        
-                        
-                        //while (aux != raux) 
-                        //{
-                            
-                            
-                            //aux = aux.getSig();
-                        //}
-                    }
-                }
-            //}
-        }
-        
-        System.out.println("ESTOY INSERTANDO EL DATO");
-        JPGrupos.revalidate();
-        JPGrupos.repaint();
-    }//GEN-LAST:event_jBAgregarGActionPerformed
-
-    private void jBEliminarGActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBEliminarGActionPerformed
-        if (r != null) {
-
-            String s = "";
-
-            s = JOptionPane.showInputDialog("Escriba el nombre de la categoria a eliminar"); //ETIQUETA PARA LA CATEGORIA NUEVA
-
-            if (s == null) {
-                //No hace nada al cancelar o salir
-            } else if (s.length() == 0) {
-                Mensaje.error(this, "Campo vacio, debe escribir un nombre");
-            } else {
-//                if (validaG(r, s) == false)//significa que no encontro nada 
-//                {
-//                    Mensaje.error(this, "No se encontro el grupo que desea eliminar");
-//                } else {
-
-                    String[] etqs = new String[1];//arreglo de etiquetas
-
-                    etqs[0] = s;
-
-                    boolean c = false;
-
-                    if (cjb.ci.Mensaje.pregunta(this, "Eliminar grupo\nSe eliminaran los contactos "
-                            + "y conversaciones asociados a este grupo\n¿Desea continuar?") == 0) {
-                        c = true;
-                    }
-
-                    if (c == true) {
-                        Nodo rb = Multilistas.busca(r, s.trim());
-
-                        rb = rb.getAbj();
-///////////////////////////////////////////////////VERIFICAR SI FUNCIONA
-                        if (rb != null) {
-
-                            Nodo aux = rb;
-
-//                            aux = aux.getSig();
-                            
-                            do {
-
-                                arr.elimina(aux.getEtq());
-
-                                aux = aux.getSig();
-                            }while (aux != rb.getSig());
-                        }
-//////////////////////////////////////////////////VERIFICAR SI FUNCIONA
-                        r = Multilistas.elimina(r, 0, etqs);
+                        r = Multilistas.inserta(r, nom, 0, etqs);
+                        System.out.println("PASE DEL multilistas.inserta");
 
                         Propiedades p = new Propiedades(r, arr);
 
@@ -444,28 +329,161 @@ public class VtnGrupo extends javax.swing.JFrame {
                         } catch (FileNotFoundException ex) {
                             System.out.println("No se encontro el archivo");
                         }
+                        System.out.println("pase de la parte de guardar archivos");
 
-                        //movi esto dentro de el if
+
+
                         if (r != null) {
-                            System.out.println("Estoy entrando a esta parte del codigo");
-                            Component componentes[] = JPGrupos.getComponents();
+                            Nodo aux = r;
 
-                            for (int i = 0; i < componentes.length; i++) {
-                                if (etqs[0].trim().equalsIgnoreCase(((JButton) componentes[i]).getText().trim())) {
-                                    JPGrupos.remove(i);
-                                }
-                            }
-                        } else {
                             JPGrupos.removeAll();
-                        }
-                        //////////////////
-                    }
-//                }
-            }
-//            System.out.println(Multilistas.desp(r, 0));
-        } else {
-            Mensaje.error(this, "La lista se encuentra vacia, no puede eliminar elementos");
+
+                            //PARTE DE EL BUSCA
+                            Nodo raux=r.getSig();
+                            aux=aux.getSig();
+                                do
+                                {
+                                    //PARTE DE INSERTAR EL BOTON
+                                    JButton boton = new JButton(aux.getEtq());
+                                    System.out.println("tome el valor de la etiqueta");
+
+                                    boton.setBackground(Color.WHITE);//PONE EL FONDO DEL BOTON EN BLANCO
+                                    boton.setForeground(Color.BLACK);//PONE LAS LETRAS COLOR NEGRO
+                                    boton.setFont(new Font("arial", 1, 14));//CAMBIA LA FUENTE Y EL TAMAÑO
+                                    System.out.println("pase de cambiar propiedades a los botones");
+
+
+                                    //ESTABLECE UN TAMAÑO POR DEFECTO PARA LOS BOTONES
+                                    boton.setMinimumSize(new Dimension(JPGrupos.getWidth(), 50));
+                                    boton.setMaximumSize(new Dimension(JPGrupos.getWidth(), 50));
+                                    boton.setPreferredSize(new Dimension(JPGrupos.getWidth(), 50));
+
+                                    JPGrupos.add(boton);
+                                    System.out.println("añadi el boton");
+
+                                    boton.addActionListener(new ActionListener()//pone una accion al boton
+                                    {
+                                        @Override
+                                        public void actionPerformed(ActionEvent e)//accion del boton
+                                        {
+                                            VtnContacto c = new VtnContacto();
+                                            c.d = boton.getText();
+                                            c.setVisible(true);
+
+                                        }
+                                    });
+                                    System.out.println("le añadi accion al boton");
+
+
+                                    /////////////////
+
+                                    aux=aux.getSig();
+                                }while (aux!=raux);
+                            }//AQUI TERMINA EL PROCESO DE AGREGAR
+                    }//fin de validaH
+                }//fin de valida30   
+            }//fin de valida 0
+        }//fin de valida null
+            
+        
+        System.out.println("ESTOY INSERTANDO EL DATO");
+        JPGrupos.revalidate();
+        JPGrupos.repaint();
+    }//GEN-LAST:event_jBAgregarGActionPerformed
+
+    private void jBEliminarGActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBEliminarGActionPerformed
+        if (r==null) 
+        {
+            Mensaje.error(this,"La lista se encuentra vacia, no puede realizar esta accion");
         }
+        else
+        {
+            String s = "";
+
+            s = JOptionPane.showInputDialog("Escriba el nombre de la categoria a eliminar"); //ETIQUETA PARA LA CATEGORIA NUEVA
+
+            if (s == null) 
+            {
+                System.out.println("boton cancelar");
+            } 
+            else
+            {
+                if (s.length() == 0) 
+                {
+                    Mensaje.error(this, "Campo vacio, debe escribir un nombre");
+                } 
+                else 
+                {
+                    if (validaH(r, s) == false)//significa que no encontro nada 
+                    {
+                        Mensaje.error(this, "No se encontro el grupo que desea eliminar");
+                    } 
+                    else 
+                    {
+
+                        String[] etqs = new String[1];//arreglo de etiquetas
+
+                        etqs[0] = s;
+
+                        boolean c = false;
+
+                        if (cjb.ci.Mensaje.pregunta(this, "Eliminar grupo\nSe eliminaran los contactos "
+                                + "y conversaciones asociados a este grupo\n¿Desea continuar?") == 0) {
+                            c = true;
+                        }
+
+                        if (c == true)//significa que si quiere eliminar el dato 
+                        {
+                            Nodo rb = Multilistas.busca(r, s.trim());
+
+                            rb = rb.getAbj();
+    ///////////////////////////////////////////////////VERIFICAR SI FUNCIONA
+                            if (rb != null) {
+
+                                Nodo aux = rb;
+
+    //                            aux = aux.getSig();
+
+                                do {
+
+                                    arr.elimina(aux.getEtq());
+
+                                    aux = aux.getSig();
+                                }while (aux != rb.getSig());
+                            }
+    //////////////////////////////////////////////////VERIFICAR SI FUNCIONA
+                            r = Multilistas.elimina(r, 0, etqs);
+
+                            Propiedades p = new Propiedades(r, arr);
+
+                            try {
+                                Archivos.guardar(p, this);
+                            } catch (FileNotFoundException ex) {
+                                System.out.println("No se encontro el archivo");
+                            }
+
+                            //movi esto dentro de el if
+                            if (r != null) {
+                                System.out.println("Estoy entrando a esta parte del codigo");
+                                Component componentes[] = JPGrupos.getComponents();
+
+                                for (int i = 0; i < componentes.length; i++) {
+                                    if (etqs[0].trim().equalsIgnoreCase(((JButton) componentes[i]).getText().trim())) {
+                                        JPGrupos.remove(i);
+                                    }
+                                }
+                            } else {
+                                JPGrupos.removeAll();
+                            }
+                            //////////////////
+                        }
+                    }//fin del validaH
+                }//fin del valida s==0   
+            }//fin del valida s = null
+        }//fin del valida r==null
+
+            
+//            System.out.println(Multilistas.desp(r, 0));
         JPGrupos.updateUI();
 
     }//GEN-LAST:event_jBEliminarGActionPerformed
