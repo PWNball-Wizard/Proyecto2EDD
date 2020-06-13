@@ -19,7 +19,7 @@ public class Multilistas implements Serializable {
             return r;
         } else {
             Nodo aux = busca(r, etqs[nivel]);//RECORRE EL ARBOL EN BUSCA DE LA ETIQUETA
-            
+
             if (aux != null) {
                 aux.setAbj(inserta(aux.getAbj(), n, nivel + 1, etqs));//Si encuentra el dato lo inserta
                 aux.getAbj().setArb(aux);
@@ -63,15 +63,17 @@ public class Multilistas implements Serializable {
     }
 
     public static Nodo busca(Nodo r, String etq) {
+        Nodo aux2 = r;
+        boolean encontrado = false;
         Nodo aux = null;
-        while (r != null) {
-            if (r.getEtq().equalsIgnoreCase(etq.trim())) {
-                aux = r;
-                break;
+        do {
+            if (aux2.getEtq().equalsIgnoreCase(etq.trim())) {
+                aux = aux2;
+                encontrado = true;
             } else {
-                r = r.getSig();
+                aux2 = aux2.getSig();
             }
-        }
+        } while (aux2 != r && encontrado != true);
         System.out.println("EL DATO QUE ENCONTRE FUE:" + aux);
         return aux;
     }
