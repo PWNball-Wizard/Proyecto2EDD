@@ -165,9 +165,8 @@ public class VtnHistorial extends javax.swing.JFrame {
         jLabel3.setText("Agregar");
         getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 510, -1, -1));
 
-        jLabel4.setText("Ingrese una fecha");
-        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 490, -1, -1));
-
+        jLabel4.setText("Seleccione una fecha");
+        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 480, -1, -1));
         getContentPane().add(jBFecha, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 460, 140, -1));
 
         jLFondoH.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/fondowhats.png"))); // NOI18N
@@ -180,14 +179,19 @@ public class VtnHistorial extends javax.swing.JFrame {
 ///////////////////////////////////////////////////////////////
         VtnW c = new VtnW();
         
-        String s = df.format(jBFecha.getDate());
+        //boolean fechavacia=false;
         
-        if (s==null) 
+        if (jBFecha.getDate()==null) 
         {
-            Mensaje.error(c,"Debe ingresar una fecha primero");
+            //fechavacia = true;
+            Mensaje.error(this,"Debe seleccionar una fecha primero");
         }
         else
         {
+           
+            
+          String s = df.format(jBFecha.getDate());
+        
         
 //        if (validaH(r2, s)==true) 
 //        {
@@ -251,7 +255,8 @@ public class VtnHistorial extends javax.swing.JFrame {
                 
                 
 //        }//fin del validaH
-    }//fin del valida s=0
+        
+        }    
         
         jBFecha.setDate(null);
         
@@ -268,15 +273,15 @@ public class VtnHistorial extends javax.swing.JFrame {
 
     private void jBEliminarHActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBEliminarHActionPerformed
        
-
-        String s = df.format(jBFecha.getDate());
-                
-        if (s==null) 
+        if (jBFecha.getDate()==null) 
         {
-            Mensaje.error(this,"Ingrese una fecha primero");
+            //fechavacia = true;
+            Mensaje.error(this,"Debe seleccionar una fecha primero");
         }
         else
         {
+
+        String s = df.format(jBFecha.getDate());
 //            if (validaH(r2, s)==false) 
 //            {
 //                Mensaje.error(this,"No se encontro la fecha que desea eliminar");
@@ -327,10 +332,9 @@ public class VtnHistorial extends javax.swing.JFrame {
                     }   
                 } 
 //            }
-            
-        }
-                           
-                
+        }//fin del valida vacio      
+        
+        jBFecha.setDate(null);        
         JPHistorial.updateUI();
 
     }//GEN-LAST:event_jBEliminarHActionPerformed

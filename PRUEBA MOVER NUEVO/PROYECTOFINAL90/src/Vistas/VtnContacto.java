@@ -174,9 +174,8 @@ public class VtnContacto extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         JPContactos = new javax.swing.JPanel();
         jBAsistente = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
-        jLFondoC = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
+        jLFondoC = new javax.swing.JLabel();
         jLFondoC1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -249,20 +248,12 @@ public class VtnContacto extends javax.swing.JFrame {
         });
         getContentPane().add(jBAsistente, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 530, 30, -1));
 
-        jButton3.setText("Mover");
-        jButton3.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton3ActionPerformed(evt);
-            }
-        });
-        getContentPane().add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 490, -1, -1));
+        jLabel1.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+        jLabel1.setText("jLabel1");
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 450, -1, 20));
 
         jLFondoC.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/fondowhats.png"))); // NOI18N
         getContentPane().add(jLFondoC, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 70, -1, -1));
-
-        jLabel1.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
-        jLabel1.setText("jLabel1");
-        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 40, -1, 20));
 
         jLFondoC1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/fondowa2.jpg"))); // NOI18N
         getContentPane().add(jLFondoC1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, 70));
@@ -493,10 +484,6 @@ public class VtnContacto extends javax.swing.JFrame {
                 + "Asi como buscar entre los distintos contactos que tengas y observar tu historial de chats");
     }//GEN-LAST:event_jBAsistenteActionPerformed
 
-    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-
-    }//GEN-LAST:event_jButton3ActionPerformed
-
     /**
      * @param args the command line arguments
      */
@@ -539,7 +526,6 @@ public class VtnContacto extends javax.swing.JFrame {
     private javax.swing.JButton jBEliminarC;
     private javax.swing.JButton jBMoverC;
     private javax.swing.JButton jBRegresarC;
-    private javax.swing.JButton jButton3;
     private javax.swing.JLabel jLAgregarC;
     private javax.swing.JLabel jLContactos;
     private javax.swing.JLabel jLEliminarC;
