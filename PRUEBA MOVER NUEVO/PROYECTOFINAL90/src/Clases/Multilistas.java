@@ -97,7 +97,7 @@ public class Multilistas implements Serializable {
             r=r.getSig();
             do
             {
-                if (r.getEtq().equals(pbuscar)) 
+                if (r.getEtq().equalsIgnoreCase(pbuscar.trim())) 
                 {
                     encontrado= true;
                     aux=r;

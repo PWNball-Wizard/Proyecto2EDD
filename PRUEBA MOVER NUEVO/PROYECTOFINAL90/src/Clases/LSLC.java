@@ -75,9 +75,9 @@ public class LSLC {
             return null;
         } else {
             Nodo aux = null;
-            if (etq.compareTo(r.getSig().getEtq()) >= 0
-                    && etq.compareTo(r.getEtq()) <= 0) {
-                if (r.getSig().getEtq().equals(etq)) {
+            if (etq.trim().compareToIgnoreCase(r.getSig().getEtq()) >= 0
+                    && etq.trim().compareToIgnoreCase(r.getEtq()) <= 0) {
+                if (r.getSig().getEtq().equalsIgnoreCase(etq.trim())) {
                     aux = r.getSig();
                     r.setSig(aux.getSig());
                     aux.setSig(null);
@@ -88,8 +88,8 @@ public class LSLC {
                     Nodo aux2 = r.getSig();
                     boolean b = true;
                     while (b) {
-                        if (etq.compareTo(aux2.getSig().getEtq()) <= 0) {
-                            if (aux2.getSig().getEtq().equals(etq)) {
+                        if (etq.trim().compareToIgnoreCase(aux2.getSig().getEtq()) <= 0) {
+                            if (aux2.getSig().getEtq().equalsIgnoreCase(etq.trim())) {
                                 aux = aux2.getSig();
                                 aux2.setSig(aux.getSig());
                                 aux.setSig(null);
