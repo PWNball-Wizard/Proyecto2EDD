@@ -36,23 +36,34 @@ public class Multilistas implements Serializable {
     }
 
     public static Nodo elimina(Nodo r, int nivel, String etqs[]) {
-        if (nivel == etqs.length - 1) {
+        if (nivel == etqs.length - 1) 
+        {
             LSLC ls = new LSLC();
             ls.setR(r);
             Nodo aux = ls.eliminar(etqs[nivel]);
+            System.out.println("AUX EN EL ELIMINA DE MULTILISTAS:"+aux);
+            
             mov = aux;
-            if (aux == null) {
+            
+            if (aux == null) 
+            {
                 JOptionPane.showMessageDialog(null, "No se encontro el dato", "Mensaje de Error", JOptionPane.ERROR_MESSAGE);
-            } else {
+            } else 
+            {
                 r = ls.getR();
 //                System.out.println("La lista del nivel [" + nivel + "]= " + ls.can());
             }
             return r;
-        } else {
+        } else 
+        {
             Nodo aux = busca(r, etqs[nivel]);
-            if (aux != null) {
+            
+            if (aux != null) 
+            {
                 aux.setAbj(elimina(aux.getAbj(), nivel + 1, etqs));//recursion
-            } else {
+            } 
+            else 
+            {
                 System.out.println("No se encontro " + etqs[nivel] + " En el nivel " + nivel);
             }
             return r;

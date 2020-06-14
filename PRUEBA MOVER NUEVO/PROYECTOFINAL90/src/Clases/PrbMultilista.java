@@ -40,7 +40,7 @@
 //        String []etqs = new String[1];//ARREGLO DE ETIQUETAS
 //        
 //        etqs[0]="Francia";
-//        r=Multilistas.inserta(r,p1,0,etqs);
+//        r=Multilistas.inserta(r,p1,0,etqs,);
 //        etqs[0]="Afganistan";
 //        r=Multilistas.inserta(r,p2,0,etqs);
 //        etqs[0]="Mexico";

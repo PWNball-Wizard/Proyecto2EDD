@@ -126,6 +126,21 @@ public class VtnGrupo extends javax.swing.JFrame {
         return aux;
     }
      
+    public static boolean validaEsp(String s)
+    {
+        boolean validaEsp=false;
+        
+        for (int i = 0; i < s.length(); i++) //analiza cada caracter de la cadena de manera individual
+        {
+            if  (s.charAt(i) > 64 && s.charAt(i) < 91 || s.charAt(i) > 96 && s.charAt(i)< 123 || s.charAt(i) == 209 || s.charAt(i) == 241 && s.charAt(i+1)==32 && s.charAt(i-1)!=32 )
+            {
+                validaEsp = true;
+            }
+        }
+        
+        return validaEsp;
+    }
+     
      
 //     public boolean validaEspacios(String s)
 //     {
@@ -496,24 +511,30 @@ public class VtnGrupo extends javax.swing.JFrame {
                         if (c == true)//significa que si quiere eliminar el dato 
                         {
                             Nodo rb = Multilistas.busca(r, s.trim());
-
+                            System.out.println("RB DEL BUSCA DE LA MULTILISTA: "+rb.getEtq());
+                            
                             rb = rb.getAbj();
+                            //System.out.println("RB ABAJO DE BUSCA DE LA MULTILISTA"+rb.getEtq());
     ///////////////////////////////////////////////////VERIFICAR SI FUNCIONA
-                            if (rb != null) {
+                            if (rb != null) 
+                            {
 
                                 Nodo aux = rb;
 
     //                            aux = aux.getSig();
 
-                                do {
+                                do 
+                                {
 
                                     arr.elimina(aux.getEtq());
+                                    System.out.println("elimina del arbol binario");
 
                                     aux = aux.getSig();
                                 }while (aux != rb.getSig());
                             }
     //////////////////////////////////////////////////VERIFICAR SI FUNCIONA
                             r = Multilistas.elimina(r, 0, etqs);
+                            System.out.println("elimina la multilista");
 
                             Propiedades p = new Propiedades(r, arr);
 
@@ -525,7 +546,7 @@ public class VtnGrupo extends javax.swing.JFrame {
 
                             //movi esto dentro de el if
                             if (r != null) {
-                                System.out.println("Estoy entrando a esta parte del codigo");
+                                System.out.println("Estoy entrando a r!=null");
                                 Component componentes[] = JPGrupos.getComponents();
 
                                 for (int i = 0; i < componentes.length; i++) {

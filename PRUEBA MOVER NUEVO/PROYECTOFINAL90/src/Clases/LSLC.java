@@ -70,7 +70,7 @@ public class LSLC {
         }
     }
 
-    public Nodo eliminar(String etq) {
+    /*public Nodo eliminar(String etq) {
         if (r == null) {
             return null;
         } else {
@@ -108,7 +108,7 @@ public class LSLC {
             }
             return aux;
         }
-    }
+    }*/
 
     /*private Nodo raiz = null; //raiz
 
@@ -153,46 +153,45 @@ public class LSLC {
                 }
             }
         }
-    }
+    }*/
     
 
-    //@Override
-    public Nodo elimina(String etq)
+    public Nodo eliminar(String etq)
     {
-        if (raiz == null)
+        if (r == null)
         {
-            System.out.println("Lista vacia !!!No hay datos!!!");
+            System.out.println("La lista se encuentra vacia");
             return null;
         } else
         {
             Nodo aux = null;
             
-            if (etq.compareTo(raiz.getSig().getEtq()) >=0
-                    && etq.compareTo(raiz.getEtq()) <=0)
+            if (etq.compareTo(r.getSig().getEtq()) >=0
+                    && etq.compareTo(r.getEtq()) <=0)
             {
-                if (raiz.getSig().getEtq().equals(etq))
+                if (r.getSig().getEtq().equals(etq))
                 {
-                    aux = raiz.getSig();
-                    if (raiz == aux)
+                    aux = r.getSig();
+                    if (r == aux)
                     {
-                        raiz = null;
+                        r = null;
                     } else
                     {
-                        raiz.setSig(aux.getSig());
+                        r.setSig(aux.getSig());
                     }
                 } else
                 {
-                    Nodo aux2 = raiz.getSig();
+                    Nodo aux2 = r.getSig();
                     boolean b = true;
-                    while (aux2 != raiz && b)
+                    while (aux2 != r && b)
                     {
                         if (etq.compareTo(aux2.getSig().getEtq()) == 0)
                         {
                             aux = aux2.getSig();
                             aux2.setSig(aux.getSig());
-                            if (aux == raiz)
+                            if (aux == r)
                             {
-                                raiz = aux2;
+                                r = aux2;
                             }
                             b = false;
                         } else
@@ -208,7 +207,7 @@ public class LSLC {
             }
             return aux;
         }
-    }*/
+    }
     /**
      * @return the raiz
      */
