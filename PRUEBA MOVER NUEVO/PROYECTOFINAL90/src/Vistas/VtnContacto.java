@@ -109,20 +109,27 @@ public class VtnContacto extends javax.swing.JFrame {
         return validabe;
     }
 
-    /*public static boolean validaC(Nodo r, String etq)//valida que el nombre de un grupo no se repita 
+    public static boolean validaC(Nodo r, String etq)//valida que el nombre de un grupo no se repita 
     {
         boolean aux = false;
-        while (r != null) {
-            if (r.getEtq().equalsIgnoreCase(etq.trim())) {
+        if (r1 == null) {
+            aux = false;
+        }else{
+        Nodo aux2 = r1;
+        aux2 = aux2.getSig();
+        
+        do{
+            if (aux2.getEtq().equalsIgnoreCase(etq.trim())) {
                 aux = true;
                 break;
             } else {
-                r = r.getSig();
+                aux2 = aux2.getSig();
             }
-        }
+        }while(aux2 != r.getSig());
         System.out.println("EL DATO QUE ENCONTRE FUE:" + aux);
+        }
         return aux;
-    }*/
+    }
 
     public boolean validaE(String s)//valida que no haya espacios al principio y al final de la palabra
     {
@@ -275,7 +282,7 @@ public class VtnContacto extends javax.swing.JFrame {
             if (valida(s) == false) {
                 System.out.println("error");//cambiar por un mensaje de error
             } else {
-                if (validaH(r1, s) == true) {
+                if (validaC(r1, s) == true) {
                     Mensaje.error(this, "El nombre que desea ingresar se encuentra repetido, por favor ingrese uno diferente");
                 } else {
                     if (validaE(s) == false) {
