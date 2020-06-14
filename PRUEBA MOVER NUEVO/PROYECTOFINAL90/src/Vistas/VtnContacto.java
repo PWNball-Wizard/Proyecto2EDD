@@ -389,16 +389,18 @@ public class VtnContacto extends javax.swing.JFrame {
     private void jBEliminarCActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBEliminarCActionPerformed
 
         String s = "";
+        String pal="";
 
-        s = JOptionPane.showInputDialog("Escriba el nombre del contacto que desea eliminar");
+        pal = JOptionPane.showInputDialog("Escriba el nombre del contacto que desea eliminar");
 
-        if (s == null) 
+        if (pal == null) 
         {
             System.out.println("error boton cancelar");
         } 
         else
         {
-            if (valida(s) == false) 
+            s = pal.replaceAll("\\s{2,}", " ").trim();
+            if (valida(s) == false)
             {
                //Mensaje.error(this, "Debe rellenar el campo");
            } 

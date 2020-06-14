@@ -475,15 +475,17 @@ public class VtnGrupo extends javax.swing.JFrame {
         else
         {
             String s = "";
+            String pal="";
 
-            s = JOptionPane.showInputDialog("Escriba el nombre de la categoria a eliminar"); //ETIQUETA PARA LA CATEGORIA NUEVA
+            pal = JOptionPane.showInputDialog("Escriba el nombre de la categoria a eliminar"); //ETIQUETA PARA LA CATEGORIA NUEVA
 
-            if (s == null) 
+            if (pal == null) 
             {
                 System.out.println("boton cancelar");
             } 
             else
             {
+                s = pal.replaceAll("\\s{2,}", " ").trim();
                 if (s.length() == 0) 
                 {
                     Mensaje.error(this, "Campo vacio, debe escribir un nombre");
