@@ -46,7 +46,7 @@ public class PrbMultilista {
         etqs[0]="Mexico";
         r=Multilistas.inserta(r,p3,0,etqs);
         
-        System.out.println(Multilistas.desp(r, 0));
+        //System.out.println(Multilistas.desp(r, 0));
         
         
         //INSERTA LOS DATOS DE LOS ESTADOS
@@ -61,7 +61,8 @@ public class PrbMultilista {
         r=Multilistas.inserta(r,e2,0,etqs);
         etqs[1]="Guerrero";
         r=Multilistas.inserta(r,e3,0,etqs);
-        System.out.println(Multilistas.desp(r,0));
+        
+        //System.out.println(Multilistas.desp(r,0));
         
         
         System.out.println("---INSERTA LAS MUNICIPIOS---");
@@ -76,7 +77,11 @@ public class PrbMultilista {
         etqs[2]="Valle de Bravo";
         r=Multilistas.inserta(r,m3,0,etqs);
         
-        System.out.println(Multilistas.desp(r,0));
+        //System.out.println(Multilistas.desp(r,0));
+        
+        
+        String prueba = "abcñ";
+        System.out.println(prueba.toUpperCase().codePointAt(0));
         
         
         //System.out.println("---BUSCA UN ELEMENTO DENTRO DE LA MULTILISTA---");

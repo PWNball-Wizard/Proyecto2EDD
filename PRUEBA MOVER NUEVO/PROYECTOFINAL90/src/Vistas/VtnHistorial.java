@@ -9,6 +9,7 @@ import Clases.Archivos;
 import Clases.Multilistas;
 import Clases.Nodo;
 import Clases.Propiedades;
+import static Vistas.VtnGrupo.validaR;
 import cjb.ci.Mensaje;
 import java.awt.Color;
 import java.awt.Component;
@@ -168,7 +169,7 @@ public class VtnHistorial extends javax.swing.JFrame {
         getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 510, -1, -1));
 
         jLabel4.setText("Seleccione una fecha");
-        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 480, -1, -1));
+        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 490, -1, -1));
         getContentPane().add(jBFecha, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 460, 140, -1));
 
         jLFondoH.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/fondowhats.png"))); // NOI18N
@@ -189,76 +190,70 @@ public class VtnHistorial extends javax.swing.JFrame {
             Mensaje.error(this,"Debe seleccionar una fecha primero");
         }
         else
-        {
-           
+        {  
+            String s = df.format(jBFecha.getDate());
             
-          String s = df.format(jBFecha.getDate());
-        
-        
-        if (validaH(r2, s)==true) 
-        {
-            Mensaje.error(c,"La fecha que desea ingresar ya existe");
-        }
-        else
-        {
-                Nodo his = new Nodo(c.c, s, 0, c.p1, c.p2);
-                String[] etqs = new String[3];
-                etqs[0] = d1;
-                etqs[1] = d2;
-                etqs[2] = s;
+            if (validaR(r2, s)==true) 
+            {
+                Mensaje.error(c,"La fecha que desea ingresar ya existe");
+            }
+            else
+            {
+                    Nodo his = new Nodo(c.c, s, 0, c.p1, c.p2);
+                    String[] etqs = new String[3];
+                    etqs[0] = d1;
+                    etqs[1] = d2;
+                    etqs[2] = s;
 
-                VtnGrupo.r = Multilistas.inserta(VtnGrupo.r, his, 0, etqs);
+                    VtnGrupo.r = Multilistas.inserta(VtnGrupo.r, his, 0, etqs);
 
-                Propiedades p = new Propiedades(VtnGrupo.r, VtnGrupo.arr);
+                    Propiedades p = new Propiedades(VtnGrupo.r, VtnGrupo.arr);
 
-                try {
-                    Archivos.guardar(p, this);
-                } catch (FileNotFoundException ex) {
-                    Logger.getLogger(VtnW.class.getName()).log(Level.SEVERE, null, ex);
-                }
+                    try {
+                        Archivos.guardar(p, this);
+                    } catch (FileNotFoundException ex) {
+                        Logger.getLogger(VtnW.class.getName()).log(Level.SEVERE, null, ex);
+                    }
 
-                r2 = Multilistas.busca(VtnGrupo.r, d1);
-                r2 = r2.getAbj();
-                r2 = Multilistas.busca(r2, d2);
-                JPHistorial.removeAll();
-                r2 = r2.getAbj();
+                    r2 = Multilistas.busca(VtnGrupo.r, d1);
+                    r2 = r2.getAbj();
+                    r2 = Multilistas.busca(r2, d2);
+                    JPHistorial.removeAll();
+                    r2 = r2.getAbj();
 
-                if (r2 != null) {
-                    Nodo aux = r2;
-                    aux = aux.getSig();
-                    do {
-                        JButton boton = new JButton(aux.getEtq());
-
-                        boton.setBackground(Color.WHITE);//PONE EL FONDO DEL BOTON EN BLANCO
-                        boton.setForeground(Color.BLACK);//PONE LAS LETRAS COLOR NEGRO
-                        boton.setFont(new Font("arial", 1, 14));//CAMBIA LA FUENTE Y EL TAMAÑO
-
-                        //ESTABLECE UN TAMAÑO POR DEFECTO PARA LOS BOTONES
-                        boton.setMinimumSize(new Dimension(JPHistorial.getWidth(), 100));
-                        boton.setMaximumSize(new Dimension(JPHistorial.getWidth(), 50));
-                        boton.setPreferredSize(new Dimension(JPHistorial.getWidth(), 100));
-
-                        JPHistorial.add(boton);
-                        boton.addActionListener(new ActionListener() {
-                            @Override
-                            public void actionPerformed(ActionEvent e) {
-                                VtnW nivel3 = new VtnW();
-                                nivel3.d1 = d1;
-                                nivel3.d2 = d2;
-                                nivel3.d3 = boton.getText();
-                                nivel3.setVisible(true);
-                            }
-                        }
-                        );
+                    if (r2 != null) 
+                    {
+                        Nodo aux = r2;
                         aux = aux.getSig();
-                    }while(aux != r2.getSig());
-                }
-                
-                
-                
-        }//fin del validaH
-        
-        }    
+                        do {
+                            JButton boton = new JButton(aux.getEtq());
+
+                            boton.setBackground(Color.WHITE);//PONE EL FONDO DEL BOTON EN BLANCO
+                            boton.setForeground(Color.BLACK);//PONE LAS LETRAS COLOR NEGRO
+                            boton.setFont(new Font("arial", 1, 14));//CAMBIA LA FUENTE Y EL TAMAÑO
+
+                            //ESTABLECE UN TAMAÑO POR DEFECTO PARA LOS BOTONES
+                            boton.setMinimumSize(new Dimension(JPHistorial.getWidth(), 100));
+                            boton.setMaximumSize(new Dimension(JPHistorial.getWidth(), 50));
+                            boton.setPreferredSize(new Dimension(JPHistorial.getWidth(), 100));
+
+                            JPHistorial.add(boton);
+                            boton.addActionListener(new ActionListener() {
+                                @Override
+                                public void actionPerformed(ActionEvent e) {
+                                    VtnW nivel3 = new VtnW();
+                                    nivel3.d1 = d1;
+                                    nivel3.d2 = d2;
+                                    nivel3.d3 = boton.getText();
+                                    nivel3.setVisible(true);
+                                }
+                            }
+                            );
+                            aux = aux.getSig();
+                        }while(aux != r2.getSig());
+                    }    
+                }//fin del validaH      
+        }//fin del valida=null    
         
         jBFecha.setDate(null);
         
@@ -283,13 +278,13 @@ public class VtnHistorial extends javax.swing.JFrame {
         else
         {
 
-        String s = df.format(jBFecha.getDate());
-//            if (validaH(r2, s)==false) 
-//            {
-//                Mensaje.error(this,"No se encontro la fecha que desea eliminar");
-//            }
-//            else
-//            {
+            String s = df.format(jBFecha.getDate());
+            if (validaR(r2, s)==false) 
+            {
+                Mensaje.error(this,"No se encontro la fecha que desea eliminar");
+            }
+            else
+            {
                 String[] etqs = new String[3];
                 etqs[0] = d1;
                 etqs[1] = d2;
@@ -329,11 +324,12 @@ public class VtnHistorial extends javax.swing.JFrame {
                                 JPHistorial.remove(i);
                             }
                         }
-                    } else {
+                    } else 
+                    {
                         JPHistorial.removeAll();
                     }   
                 } 
-//            }
+            }//fin del validaR
         }//fin del valida vacio      
         
         jBFecha.setDate(null);        

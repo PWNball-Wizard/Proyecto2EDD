@@ -54,42 +54,84 @@ public class VtnGrupo extends javax.swing.JFrame {
     public boolean valida(String s) {
         boolean valida = false;
 
-        if (s.length() == 0) {
+        if (s.length() == 0) 
+        {
             Mensaje.error(this, "El campo se encuentra vacio, debe ingresar un nombre primero");
             valida = false;
-        } else {////////////////////////////////////////////////////////////prueba para evitar los mensajes de caracter no permitido en bus y elim
-            if (s.length() > 30) {
+        } else 
+        {////////////////////////////////////////////////////////////prueba para evitar los mensajes de caracter no permitido en bus y elim
+            if (s.length() > 30) 
+            {
                 Mensaje.error(this, "El nombre que desea ingresar excede el numero de caracteres permitidos(30)");
                 valida = false;
-            } else {
+            } 
+            else 
+            {
+                //FUNCION QUE VALIDA QUE SOLO SEAN LETRAS
                 for (int i = 0; i < s.length(); i++) //analiza cada caracter de la cadena de manera individual
                 {
                     char caracter = s.charAt(i);
                     int valorASCII = (int) caracter;
-
+                    //String ñ = "ñ";
                     //condicion que solo acepta letras
-                    if (valorASCII > 64 && valorASCII < 91 || valorASCII > 96 && valorASCII < 123) {
+                    
+                    
+                    
+                    
+                    if (valorASCII > 64 && valorASCII < 91 || valorASCII > 96 && valorASCII < 123) 
+                    {
                         valida = true;
-                    } else {
+                    } 
+                    else 
+                    {
                         valida = false;
                     }
                 }
+                //TERMINA FUNCION QUE VALIDA QUE SOLO SEAN LETRAS
+                
                 if (valida == true) 
                 {
-                    //s=s.trim();
                     return valida = true;
-                } else 
+                } 
+                else 
                 {
                     valida = false;
                     Mensaje.error(this, "El nombre que ingresó contiene caracteres no permitidos\n"
                             + "En esta sección sólo se permiten letras mayusculas/minusculas");
-                    Mensaje.error(this, "CUIDADO: El espacio al final de un nombre puede ser tomado como un caracter especial");
+                    Mensaje.error(this, "CUIDADO: El espacio al inicio o final de un nombre puede ser tomado como un caracter especial");
                 }
             }//fin del valida=30
         }//fin del valida s=0
 
         System.out.println("//////////////EL VALOR DE VALIDA ES " + valida);
         return valida;
+    }
+    
+    //valida que no se repita un nombre dentro de una categoria
+     public static boolean validaR(Nodo r, String etq) 
+    {
+        boolean aux = false;
+        if (r==null) 
+        {
+            System.out.println("no puedo buscar ningun dato");
+        }
+        else
+        {
+            
+            Nodo aux2 = r;
+            aux2 = aux2.getSig();
+           do {
+                if (aux2.getEtq().equalsIgnoreCase(etq)) {
+                    aux = true;
+                    break;
+                } else {
+                    aux2 = aux2.getSig();
+                }
+            }while(aux2 != r.getSig());
+            System.out.println("EL DATO QUE ENCONTRE FUE:" + aux);
+            return aux;
+        }
+        return aux;
     }
 
 
@@ -306,7 +348,7 @@ public class VtnGrupo extends javax.swing.JFrame {
                 } 
                 else 
                 {
-                    if (validaH(r, s)==true) 
+                    if (validaR(r, s)==true) 
                     {
                         Mensaje.error(this,"El nombre que desea ingresar ya se encuentra dentro de este grupo\nPor favor ingrese uno diferente");
                     }
@@ -414,7 +456,7 @@ public class VtnGrupo extends javax.swing.JFrame {
                 } 
                 else 
                 {
-                    if (validaH(r, s) == false)//significa que no encontro nada 
+                    if (validaR(r, s) == false)//significa que no encontro nada 
                     {
                         Mensaje.error(this, "No se encontro el grupo que desea eliminar");
                     } 
@@ -680,14 +722,19 @@ public class VtnGrupo extends javax.swing.JFrame {
         boolean validaN = false;
         int pos;
         String prueba = "Ñ";
-        if (s.toUpperCase().codePointAt(0) == prueba.codePointAt(0)) {
+        
+        if (s.toUpperCase().codePointAt(0) == prueba.codePointAt(0)) 
+        {
             pos = 14;
-        } else {
+        } 
+        else 
+        {
             pos = s.toUpperCase().codePointAt(0) - 65;
         }
         System.out.println(pos);
 
-        if (arr.getArr()[pos] != null) {
+        if (arr.getArr()[pos] != null) 
+        {
 
             ArbolBinario aBus = new ArbolBinario();
 

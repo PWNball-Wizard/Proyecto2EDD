@@ -14,6 +14,7 @@ import Clases.Propiedades;
 import Clases.TablasHash;
 import static Vistas.VtnGrupo.arr;
 import static Vistas.VtnGrupo.r;
+import static Vistas.VtnGrupo.validaR;
 import static Vistas.VtnHistorial.validaH;
 import cjb.ci.Mensaje;
 import java.awt.Color;
@@ -197,7 +198,7 @@ public class VtnContacto extends javax.swing.JFrame {
 
         jLContactos.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         jLContactos.setText("Contactos");
-        getContentPane().add(jLContactos, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 10, -1, -1));
+        getContentPane().add(jLContactos, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 20, -1, -1));
 
         jBAgregarC.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/agregarCNuevo.png"))); // NOI18N
         jBAgregarC.addActionListener(new java.awt.event.ActionListener() {
@@ -276,22 +277,33 @@ public class VtnContacto extends javax.swing.JFrame {
 
         s = JOptionPane.showInputDialog("Escriba el nombre del contacto que desea agregar");
 
-        if (s == null) {
-            //Evita el NPE al salir del showInputDialog o presionar cancelar
-        } else {
-            if (valida(s) == false) {
+        if (s == null) 
+        {
+            System.out.println("error boton cancelar");
+        } else 
+        {
+            if (valida(s) == false) 
+            {
                 System.out.println("error");//cambiar por un mensaje de error
-            } else {
-                if (validaC(r1, s) == true) {
+            } else 
+            {
+                if (validaR(r1, s) == true) 
+                {
                     Mensaje.error(this, "El nombre que desea ingresar se encuentra repetido, por favor ingrese uno diferente");
-                } else {
-                    if (validaE(s) == false) {
+                } else 
+                {
+                    if (validaE(s) == false) 
+                    {
                         System.out.println("");
-                    } else {
+                    } else 
+                    {
                         VtnGrupo c = new VtnGrupo();
-                        if (c.validaN(s) == true) {
+                        if (c.validaN(s) == true) 
+                        {
                             Mensaje.error(this, "El nombre que desea ingresar se encuentra ya en otro grupo");
-                        } else {
+                        } 
+                        else 
+                        {
                             //AQUI COMIENZA EL PROCESO DE ALTAS
 
                             //s=s.trim();
@@ -353,10 +365,10 @@ public class VtnContacto extends javax.swing.JFrame {
                             }
                             //AQUI TERMINA EL PROCESO DE ALTAS   
                         }//fin del validaN 
-                    }
+                    }//fin del validaE
                 }//fin del validaC
             }//fin del valida(s)    
-        }//fin del valida de s =null
+        }//fin del valida ull
 
         JPContactos.revalidate();
         JPContactos.repaint();
@@ -374,62 +386,75 @@ public class VtnContacto extends javax.swing.JFrame {
 
         s = JOptionPane.showInputDialog("Escriba el nombre del contacto que desea eliminar");
 
-        if (s == null) {
-            //Evita el NPE al salir del showInputDialog o presionar cancelar
-        } else if (valida(s) == false) {
-            //Mensaje.error(this, "Debe rellenar el campo");
-        } else {
-            String[] etqs = new String[2];
-            etqs[0] = d;
-            etqs[1] = s;
+        if (s == null) 
+        {
+            System.out.println("error boton cancelar");
+        } 
+        else
+        {
+            if (valida(s) == false) 
+            {
+               //Mensaje.error(this, "Debe rellenar el campo");
+           } 
+           else 
+           {
+               String[] etqs = new String[2];
+               etqs[0] = d;
+               etqs[1] = s;
 
-            boolean c = false;
+               boolean c = false;
 
-            if (cjb.ci.Mensaje.pregunta(this, "Eliminar contacto\nSe eliminaran las conversaciones "
-                    + "asociadas a este contacto\n¿Desea continuar?") == 0) {
-                c = true;
-            }
-            if (c == true) {
+               if (cjb.ci.Mensaje.pregunta(this, "Eliminar contacto\nSe eliminaran las conversaciones "
+                       + "asociadas a este contacto\n¿Desea continuar?") == 0) {
+                   c = true;
+               }
+               if (c == true) 
+               {
 
-                VtnGrupo.r = Multilistas.elimina(VtnGrupo.r, 0, etqs);
+                   VtnGrupo.r = Multilistas.elimina(VtnGrupo.r, 0, etqs);
 
-                int pos = s.toUpperCase().codePointAt(0) - 65;
+                   int pos = s.toUpperCase().codePointAt(0) - 65;
 
-                if (VtnGrupo.arr.getArr()[pos] != null) {
+                   if (VtnGrupo.arr.getArr()[pos] != null) {
 
-                    VtnGrupo.arr.elimina(s);
+                       VtnGrupo.arr.elimina(s);
 
-                    Propiedades p = new Propiedades(VtnGrupo.r, VtnGrupo.arr);
+                       Propiedades p = new Propiedades(VtnGrupo.r, VtnGrupo.arr);
 
-                    try {
-                        Archivos.guardar(p, this);
-                    } catch (FileNotFoundException ex) {
-                        System.out.println("No se encontro el archivo");
-                    }
-                } else {
-                    Mensaje.error(this, "No hay datos en esta posicion del arreglo");
-                }
+                       try {
+                           Archivos.guardar(p, this);
+                       } catch (FileNotFoundException ex) {
+                           System.out.println("No se encontro el archivo");
+                       }
+                   } else {
+                       Mensaje.error(this, "No hay datos en esta posicion del arreglo");
+                   }
 
-                //movi esto dentro del if
-                r1 = Multilistas.busca(VtnGrupo.r, d);
-                r1 = r1.getAbj();
+                   //movi esto dentro del if
+                   r1 = Multilistas.busca(VtnGrupo.r, d);
+                   r1 = r1.getAbj();
 
-                if (r1 != null) {
-                    Component componentes[] = JPContactos.getComponents();
+                   if (r1 != null) {
+                       Component componentes[] = JPContactos.getComponents();
 
-                    for (int i = 0; i < componentes.length; i++) {
-                        System.out.println(((JButton) componentes[i]).getText());
-                        if (etqs[1].trim().equalsIgnoreCase(((JButton) componentes[i]).getText().trim())) {
-                            JPContactos.remove(i);
-                        }
-                    }
-                } else {
-                    JPContactos.removeAll();
-                }
-                ////////////////////////////
-            }
+                       for (int i = 0; i < componentes.length; i++) {
+                           System.out.println(((JButton) componentes[i]).getText());
+                           if (etqs[1].trim().equalsIgnoreCase(((JButton) componentes[i]).getText().trim())) {
+                               JPContactos.remove(i);
+                           }
+                       }
+                   } else {
+                       JPContactos.removeAll();
+                   }
+                   ////////////////////////////
+               }
 
-        }
+           }//fin del valida
+        }//fin del s=null   
+            
+            
+
+            
         JPContactos.updateUI();
 
 ////        System.out.println(Multilistas.desp(VtnGrupo.r, 0));
