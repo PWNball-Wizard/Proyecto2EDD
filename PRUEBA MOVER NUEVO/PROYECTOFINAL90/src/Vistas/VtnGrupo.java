@@ -514,14 +514,14 @@ public class VtnGrupo extends javax.swing.JFrame {
                             System.out.println("RB DEL BUSCA DE LA MULTILISTA: "+rb.getEtq());
                             
                             rb = rb.getAbj();
-                            //System.out.println("RB ABAJO DE BUSCA DE LA MULTILISTA"+rb.getEtq());
-    ///////////////////////////////////////////////////VERIFICAR SI FUNCIONA
+                            System.out.println("RB DEL BUSCA DE LA MULTILISTA NIV 2: "+rb.getEtq());
+ 
                             if (rb != null) 
                             {
 
                                 Nodo aux = rb;
 
-    //                            aux = aux.getSig();
+                                aux = aux.getSig();
 
                                 do 
                                 {
@@ -532,7 +532,7 @@ public class VtnGrupo extends javax.swing.JFrame {
                                     aux = aux.getSig();
                                 }while (aux != rb.getSig());
                             }
-    //////////////////////////////////////////////////VERIFICAR SI FUNCIONA
+
                             r = Multilistas.elimina(r, 0, etqs);
                             System.out.println("elimina la multilista");
 
@@ -773,7 +773,7 @@ public class VtnGrupo extends javax.swing.JFrame {
         
         System.out.println("LO QUE CONTIENE DEL DESP en WINDOW OPENED");
 //        System.out.println(Multilistas.desp(r, 0));
-//        arr.verarboles();
+        arr.verarboles();
     }//GEN-LAST:event_formWindowOpened
 
     private void jBAsistenteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBAsistenteActionPerformed
