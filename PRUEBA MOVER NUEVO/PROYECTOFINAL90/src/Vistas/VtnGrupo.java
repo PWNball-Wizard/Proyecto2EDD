@@ -554,10 +554,15 @@ public class VtnGrupo extends javax.swing.JFrame {
         String s="";
         
         pal = JOptionPane.showInputDialog("Escriba el nombre del contacto que deseas buscar"); //ETIQUETA PARA LA CATEGORIA NUEVA
-        s = pal.replaceAll("\\s{2,}", " ").trim();
+        
 
-        if (pal != null) 
+        if (pal == null) 
         {
+            System.out.println("boton cancelar");
+        }
+         else
+        {
+            s = pal.replaceAll("\\s{2,}", " ").trim();
             if (valida(s) == false) {
                 System.out.println("error");
             } else {

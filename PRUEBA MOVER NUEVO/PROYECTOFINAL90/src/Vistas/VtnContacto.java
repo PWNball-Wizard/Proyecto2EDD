@@ -277,13 +277,15 @@ public class VtnContacto extends javax.swing.JFrame {
         String s = "";
 
         pal = JOptionPane.showInputDialog("Escriba el nombre del contacto que desea agregar");
-        s = pal.replaceAll("\\s{2,}", " ").trim();
+        
 
-        if (s == null) 
+        if (pal == null) 
         {
             System.out.println("error boton cancelar");
-        } else 
+        } 
+        else 
         {
+            s = pal.replaceAll("\\s{2,}", " ").trim();
             if (valida(s) == false) 
             {
                 System.out.println("error");//cambiar por un mensaje de error

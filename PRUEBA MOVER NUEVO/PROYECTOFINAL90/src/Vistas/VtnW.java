@@ -43,7 +43,8 @@ public class VtnW extends javax.swing.JFrame {
         jBOrdenar2.setContentAreaFilled(false);
         jBRegresar.setContentAreaFilled(false);
         jBBuscarC.setContentAreaFilled(false);
-
+        jBBuscar.setContentAreaFilled(false);
+        jBBuscar2.setContentAreaFilled(false);
     }
 
     public VtnW() {
