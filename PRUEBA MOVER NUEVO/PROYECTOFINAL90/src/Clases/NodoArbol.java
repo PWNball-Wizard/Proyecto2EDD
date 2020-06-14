@@ -18,6 +18,7 @@ public class NodoArbol implements Serializable
     private NodoArbol izq = null;
     private NodoArbol der = null;
     private String predecesores[] = new String[2];
+    private Nodo hilo;
     
     
     public NodoArbol(String etq, Object obj)
@@ -110,4 +111,20 @@ public class NodoArbol implements Serializable
     public void setPredecesores(String[] predecesores) {
         this.predecesores = predecesores;
     }
+
+    /**
+     * @return the hilo
+     */
+    public Nodo getHilo() {
+        return hilo;
+    }
+
+    /**
+     * @param hilo the hilo to set
+     */
+    public void setHilo(Nodo hilo) {
+        this.hilo = hilo;
+    }
+    
+    
 }

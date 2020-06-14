@@ -45,13 +45,13 @@ public class TablasHash implements Serializable {
         return pos;
     }
 
-    public void insertaTH(String etq, NodoArbol nuevo) {
+    public void insertaTH(String etq, NodoArbol nuevo, Nodo hilo) {
 
         int pos = posicion(nuevo);
         if (pos == -1) {
             JOptionPane.showMessageDialog(null, "Nombre no aceptado");
         } else {
-            arr[pos].setR(arr[pos].inserta(arr[pos].getR(), nuevo));
+            arr[pos].setR(arr[pos].inserta(arr[pos].getR(), nuevo, hilo));
         }
     }
 

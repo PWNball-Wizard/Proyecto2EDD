@@ -32,15 +32,16 @@ public class ArbolBinario implements Serializable {
     }
 
     /*>>>>>>>>>>>>>>>>INSERTA Y ELIMINA<<<<<<<<<<<<<<<<<*///****************************
-    public NodoArbol inserta(NodoArbol r, NodoArbol n) {
+    public NodoArbol inserta(NodoArbol r, NodoArbol n, Nodo hilo) {
         if (r == null) {
+           n.setHilo(hilo);
             return n;
         } else {
             if (r.getEtq().compareTo(n.getEtq()) > 0) {
-                r.setIzq(inserta(r.getIzq(), n));
+                r.setIzq(inserta(r.getIzq(), n, hilo));
                 
             } else {
-                r.setDer(inserta(r.getDer(), n));
+                r.setDer(inserta(r.getDer(), n, hilo));
             }
             r = balancear(r);//BALANCEA EL ARBOL DESPUES DE INSERTAR////////////////////
             return r;

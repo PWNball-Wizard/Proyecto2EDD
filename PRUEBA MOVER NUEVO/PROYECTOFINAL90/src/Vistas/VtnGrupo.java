@@ -380,7 +380,7 @@ public class VtnGrupo extends javax.swing.JFrame {
 
                         etqs[0] = s;
 
-                        r = Multilistas.inserta(r, nom, 0, etqs);
+                        r = Multilistas.inserta(r, nom, 0, etqs,nom);
                         System.out.println("PASE DEL multilistas.inserta");
 
                         Propiedades p = new Propiedades(r, arr);
@@ -587,13 +587,12 @@ public class VtnGrupo extends javax.swing.JFrame {
                         if (aux != null) 
                         {
 
-                            String[] pr = aux.getPredecesores();
-
-                            String grupo = pr[0];
-                            String contacto = pr[1];
+                            String grupo = aux.getHilo().getArb().getEtq();
+                            System.out.println(grupo);
+                            String contacto = aux.getHilo().getEtq();
+                            System.out.println(contacto);
 
                             Nodo r2 = Multilistas.busca(r, grupo);
-
                             r2 = r2.getAbj();
                             r2 = Multilistas.busca(r2, contacto);
                             

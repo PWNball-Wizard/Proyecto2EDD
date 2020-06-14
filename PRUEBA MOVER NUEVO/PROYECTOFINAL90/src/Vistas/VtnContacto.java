@@ -318,9 +318,11 @@ public class VtnContacto extends javax.swing.JFrame {
 
                             NodoArbol nomNAS = new NodoArbol(s2.trim(), null, etqs);
 
-                            VtnGrupo.r = Multilistas.inserta(VtnGrupo.r, con, 0, etqs); //inserta Multilista
+                            Nodo arriba = Multilistas.busca(VtnGrupo.r, d);///busca el nodo grupo en la multilista
+                            
+                            VtnGrupo.r = Multilistas.inserta(VtnGrupo.r, con, 0, etqs, arriba); //inserta Multilista
 
-                            VtnGrupo.arr.insertaTH(s, nomNAS);//inserta arbol
+                            VtnGrupo.arr.insertaTH(s, nomNAS, con);//inserta arbol
 
                             Propiedades p = new Propiedades(VtnGrupo.r, VtnGrupo.arr);
 

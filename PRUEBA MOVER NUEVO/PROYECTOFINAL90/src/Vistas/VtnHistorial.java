@@ -204,8 +204,10 @@ public class VtnHistorial extends javax.swing.JFrame {
                     etqs[0] = d1;
                     etqs[1] = d2;
                     etqs[2] = s;
+                    
+                    Nodo arriba = Multilistas.busca(VtnContacto.r1, d2);
 
-                    VtnGrupo.r = Multilistas.inserta(VtnGrupo.r, his, 0, etqs);
+                    VtnGrupo.r = Multilistas.inserta(VtnGrupo.r, his, 0, etqs, arriba); //ela rriba es el nivel anterior
 
                     Propiedades p = new Propiedades(VtnGrupo.r, VtnGrupo.arr);
 
