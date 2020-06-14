@@ -31,12 +31,15 @@ public class TablasHash implements Serializable {
         String prueba = "Ñ";
 
         for (int i = 65; i < 91; i++) {
-            if (i == posC.toUpperCase().codePointAt(0)) {
+            if (i == posC.toUpperCase().codePointAt(0)) 
+            {
                 pos = i - 65;
-            } else if (posC.toUpperCase().codePointAt(0) == prueba.codePointAt(0)) {
+            } else 
+                if (posC.toUpperCase().codePointAt(0) == prueba.codePointAt(0)) 
+                {
                 pos = 14;
+                }
             }
-        }
 
         System.out.println("La posicion es " + pos);
         return pos;

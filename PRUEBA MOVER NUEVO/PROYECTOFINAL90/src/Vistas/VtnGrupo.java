@@ -70,15 +70,7 @@ public class VtnGrupo extends javax.swing.JFrame {
                 //FUNCION QUE VALIDA QUE SOLO SEAN LETRAS
                 for (int i = 0; i < s.length(); i++) //analiza cada caracter de la cadena de manera individual
                 {
-                    char caracter = s.charAt(i);
-                    int valorASCII = (int) caracter;
-                    //String ñ = "ñ";
-                    //condicion que solo acepta letras
-                    
-                    
-                    
-                    
-                    if (valorASCII > 64 && valorASCII < 91 || valorASCII > 96 && valorASCII < 123) 
+                    if (s.charAt(i) > 64 && s.charAt(i) < 91 || s.charAt(i) > 96 && s.charAt(i)< 123 || s.charAt(i) == 209 || s.charAt(i) == 241) 
                     {
                         valida = true;
                     } 
@@ -98,7 +90,7 @@ public class VtnGrupo extends javax.swing.JFrame {
                     valida = false;
                     Mensaje.error(this, "El nombre que ingresó contiene caracteres no permitidos\n"
                             + "En esta sección sólo se permiten letras mayusculas/minusculas");
-                    Mensaje.error(this, "CUIDADO: El espacio al inicio o final de un nombre puede ser tomado como un caracter especial");
+                    //Mensaje.error(this, "CUIDADO: El espacio al inicio o final de un nombre puede ser tomado como un caracter especial");
                 }
             }//fin del valida=30
         }//fin del valida s=0
@@ -133,6 +125,28 @@ public class VtnGrupo extends javax.swing.JFrame {
         }
         return aux;
     }
+     
+     
+//     public boolean validaEspacios(String s)
+//     {
+//        boolean vE=false;
+//        int largo=s.length();
+//        
+//        if (s.charAt(0)==32) 
+//        {
+//            vE=false;
+//        }
+//        
+//        
+//        /*for (int i = 0; i < s.length(); i++) //analiza cada caracter de la cadena de manera individual
+//        {
+//            if (s.charAt(i)==32) 
+//            {
+//                
+//            }
+//        }*/
+//        return vE;
+//     }
 
 
     /*public boolean valida(String s) {
@@ -325,17 +339,22 @@ public class VtnGrupo extends javax.swing.JFrame {
     private void jBAgregarGActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBAgregarGActionPerformed
 
         //PRUEBA DE COMMIT
-        String s = "";
-
-        s = JOptionPane.showInputDialog("Escriba el nombre de la categoria a añadir"); //ETIQUETA PARA LA CATEGORIA NUEVA
+        String pal = "";
+        String s="";
+        
+        pal = JOptionPane.showInputDialog("Escriba el nombre de la categoria a añadir"); //ETIQUETA PARA LA CATEGORIA NUEVA
+        
+        
         System.out.println("El nombre es " + s);
         
-        if (s == null) //Evita el NPE al salir del showInputDialog o presionar cancelar
+        if (pal == null) //Evita el NPE al salir del showInputDialog o presionar cancelar
         {
             System.out.println("boton cancelar");   
         } 
         else
         {
+            s = pal.replaceAll("\\s{2,}", " ").trim();
+            
             if (s.length()==0)
             {
                 Mensaje.error(this,"El campo se encuentra vacio, por favor ingrese un nombre primero");
@@ -428,7 +447,7 @@ public class VtnGrupo extends javax.swing.JFrame {
         }//fin de valida null
             
         
-        System.out.println("ESTOY INSERTANDO EL DATO");
+        //System.out.println("ESTOY INSERTANDO EL DATO");
         JPGrupos.revalidate();
         JPGrupos.repaint();
     }//GEN-LAST:event_jBAgregarGActionPerformed
@@ -531,25 +550,42 @@ public class VtnGrupo extends javax.swing.JFrame {
     }//GEN-LAST:event_jBEliminarGActionPerformed
 
     private void jBBuscaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBBuscaActionPerformed
-        String s = "";
-        s = JOptionPane.showInputDialog("Escriba el nombre del contacto que deseas buscar"); //ETIQUETA PARA LA CATEGORIA NUEVA
+        String pal = "";
+        String s="";
+        
+        pal = JOptionPane.showInputDialog("Escriba el nombre del contacto que deseas buscar"); //ETIQUETA PARA LA CATEGORIA NUEVA
+        s = pal.replaceAll("\\s{2,}", " ").trim();
 
-        if (s != null) {
+        if (pal != null) 
+        {
             if (valida(s) == false) {
                 System.out.println("error");
             } else {
 
-                if (validaE(s) == false) {
+                if (validaE(s) == false) 
+                {
                     System.out.println("");
-                } else {
-                    int pos = s.toUpperCase().codePointAt(0) - 65;
-
-                    if (arr.getArr()[pos] != null) {
+                } else 
+                {
+                    int pos;
+                    String prueba = "Ñ";
+ 
+                    if (prueba.toUpperCase().codePointAt(0) == prueba.codePointAt(0)) 
+                    {
+                        pos = 14;
+                    }
+                    
+                    pos = s.toUpperCase().codePointAt(0) - 65;
+                    
+                    if (arr.getArr()[pos] != null) 
+                    {
 
                         ArbolBinario aBus = new ArbolBinario();
 
                         NodoArbol aux = aBus.busca(arr.getArr()[pos].getR(), s);
-                        if (aux != null) {
+                        
+                        if (aux != null) 
+                        {
 
                             String[] pr = aux.getPredecesores();
 
@@ -560,6 +596,8 @@ public class VtnGrupo extends javax.swing.JFrame {
 
                             r2 = r2.getAbj();
                             r2 = Multilistas.busca(r2, contacto);
+                            
+                            Mensaje.exito(this,"Se encontro a "+s+" en el grupo "+grupo);
 
                             if (r2 != null) {
                                 VtnHistorial h = new VtnHistorial();
@@ -572,7 +610,9 @@ public class VtnGrupo extends javax.swing.JFrame {
                                 Mensaje.error(this, "No se encontro el dato");
                             }
 
-                        } else {
+                        } 
+                        else 
+                        {
                             Mensaje.error(this, "No se encontró " + s + " en tu lista de contactos");
                         }
                     }
@@ -722,6 +762,9 @@ public class VtnGrupo extends javax.swing.JFrame {
         boolean validaN = false;
         int pos;
         String prueba = "Ñ";
+        System.out.println("el valor de ñ es...");
+        System.out.println(prueba.codePointAt(0));
+        
         
         if (s.toUpperCase().codePointAt(0) == prueba.codePointAt(0)) 
         {

@@ -69,7 +69,7 @@ public class VtnContacto extends javax.swing.JFrame {
                     int valorASCII = (int) caracter;
 
                     //condicion que solo acepta letras
-                    if (valorASCII > 64 && valorASCII < 91 || valorASCII > 96 && valorASCII < 123 || valorASCII == 164 || valorASCII == 165) {
+                    if (valorASCII > 64 && valorASCII < 91 || valorASCII > 96 && valorASCII < 123 || valorASCII == 209 || valorASCII == 241) {
                         valida = true;
                     } else {
                         valida = false;
@@ -273,9 +273,11 @@ public class VtnContacto extends javax.swing.JFrame {
     private void jBAgregarCActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBAgregarCActionPerformed
 
         //CAMBIE EL ORDEN DE LOS IF EN ESTA PARTE
+        String pal="";
         String s = "";
 
-        s = JOptionPane.showInputDialog("Escriba el nombre del contacto que desea agregar");
+        pal = JOptionPane.showInputDialog("Escriba el nombre del contacto que desea agregar");
+        s = pal.replaceAll("\\s{2,}", " ").trim();
 
         if (s == null) 
         {
@@ -462,15 +464,15 @@ public class VtnContacto extends javax.swing.JFrame {
 
     private void jBRegresarCActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBRegresarCActionPerformed
         new VtnGrupo().setVisible(true);
-        dispose();
+        dispose(); 
     }//GEN-LAST:event_jBRegresarCActionPerformed
 
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
         r1 = Multilistas.busca(VtnGrupo.r, d);
         r1 = r1.getAbj();
 
-        jLabel1.setForeground(Color.WHITE);
-        jLabel1.setText("Grupo " + d);
+        //jLabel1.setForeground(Color.WHITE);
+        jLabel1.setText("Grupo: " + d);
 
         JPContactos.removeAll();
 

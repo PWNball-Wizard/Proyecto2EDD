@@ -80,10 +80,17 @@ public class PrbMultilista {
         //System.out.println(Multilistas.desp(r,0));
         
         
-        String prueba = "abcñ";
-        System.out.println(prueba.toUpperCase().codePointAt(0));
+        String prueba = "ñ";
+        System.out.println(prueba.codePointAt(0));
+        
+        String prueba2="Ñ";
+        System.out.println(prueba2.codePointAt(0));
         
         
+        String prueba3=" IVAN             LOPEZ              CARRANZA ";
+        String replaceAll = prueba3.replaceAll("\\s{2,}", " ").trim();
+        
+        System.out.println(replaceAll);
         //System.out.println("---BUSCA UN ELEMENTO DENTRO DE LA MULTILISTA---");
         
        //Multilistas.busca(r,"Jalisco");
