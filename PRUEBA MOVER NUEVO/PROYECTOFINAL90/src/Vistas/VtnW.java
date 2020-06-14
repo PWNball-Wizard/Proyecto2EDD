@@ -240,9 +240,19 @@ public class VtnW extends javax.swing.JFrame {
         getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
 
         jBBuscar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/buscarNuevo.png"))); // NOI18N
+        jBBuscar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBBuscarActionPerformed(evt);
+            }
+        });
         getContentPane().add(jBBuscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 200, 50, -1));
 
         jBBuscar2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/buscarNuevo.png"))); // NOI18N
+        jBBuscar2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBBuscar2ActionPerformed(evt);
+            }
+        });
         getContentPane().add(jBBuscar2, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 200, 50, -1));
 
         jLabel1.setText("Buscar");
@@ -448,6 +458,14 @@ public class VtnW extends javax.swing.JFrame {
         }*/
     }//GEN-LAST:event_jTChat2KeyTyped
 
+    private void jBBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBBuscarActionPerformed
+        buscaP(p1, 1);
+    }//GEN-LAST:event_jBBuscarActionPerformed
+
+    private void jBBuscar2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBBuscar2ActionPerformed
+        buscaP(p2, 2);
+    }//GEN-LAST:event_jBBuscar2ActionPerformed
+
     public void buscaC(ColaDinamica cd) {
 
         int bandera = 0;
@@ -476,6 +494,50 @@ public class VtnW extends javax.swing.JFrame {
                 }
                 c = cdt;
                 raiz.setObj(c);
+                jTConversacion.setText(sb);
+            }
+        }
+
+    }
+    
+    public void buscaP(PilaDinamica p, int numPila) {
+
+        String s = JOptionPane.showInputDialog(null, "ingresa el dato que quieres buscar");
+        String sb = "";
+        PilaDinamica pdt = new PilaDinamica();
+        Nodo aux = null;
+        Nodo aux2 = null;
+        int encontrado = 0;
+
+        if (s != null) {
+            if (s.length() == 0) {
+                Mensaje.error(this, "Campo vacio, debe introducir el elemento a buscar");
+            } else {
+                while (p.getTope() != null) {
+                    aux = p.Elimina();
+                    if (aux.getObj().toString().toLowerCase().contains(s.toLowerCase())) {
+                        sb += aux.getObj().toString() + "\n";
+                        encontrado = 1;
+                    }else{
+                        if (p.getTope() == null && encontrado == 0) {
+                           Mensaje.error(this, "Dato no encontrado");
+                        }
+                    }
+                    pdt.Inserta(aux);
+                }
+                
+                while (pdt.getTope() != null) {
+                    aux2 = pdt.Elimina();
+                    p.Inserta(aux2);
+                }
+                
+                if (numPila == 1) {
+                    p1 = p;
+                    raiz.setPila1(p1);
+                }else{
+                p2 = p;
+                raiz.setPila2(p2);
+                }
                 jTConversacion.setText(sb);
             }
         }
