@@ -419,9 +419,24 @@ public class VtnContacto extends javax.swing.JFrame {
 
                    VtnGrupo.r = Multilistas.elimina(VtnGrupo.r, 0, etqs);
 
-                   int pos = s.toUpperCase().codePointAt(0) - 65;
+                   int pos;
+                    String prueba = "Ñ";
+ 
+                    if (prueba.toUpperCase().codePointAt(0) == prueba.codePointAt(0)) 
+                    {
+                        pos = 26;
+                    }
+                    else
+                    {
+                        pos = s.toUpperCase().codePointAt(0) - 65;
+                    }
+                    
+                    
+                    
+                    System.out.println("LA POSICION DONDE VOY A ELIMINAR ES "+pos);
 
-                   if (VtnGrupo.arr.getArr()[pos] != null) {
+                   if (VtnGrupo.arr.getArr()[pos] != null) 
+                   {
 
                        VtnGrupo.arr.elimina(s);
 

@@ -37,7 +37,7 @@ public class TablasHash implements Serializable {
             } else 
                 if (posC.toUpperCase().codePointAt(0) == prueba.codePointAt(0)) 
                 {
-                pos = 14;
+                pos = 26;
                 }
             }
 

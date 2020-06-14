@@ -166,10 +166,10 @@ public class LSLC {
         {
             Nodo aux = null;
             
-            if (etq.compareTo(r.getSig().getEtq()) >=0
-                    && etq.compareTo(r.getEtq()) <=0)
+            if (etq.compareToIgnoreCase(r.getSig().getEtq()) >=0
+                    && etq.compareToIgnoreCase(r.getEtq()) <=0)
             {
-                if (r.getSig().getEtq().equals(etq))
+                if (r.getSig().getEtq().equalsIgnoreCase(etq))
                 {
                     aux = r.getSig();
                     if (r == aux)
@@ -185,7 +185,7 @@ public class LSLC {
                     boolean b = true;
                     while (aux2 != r && b)
                     {
-                        if (etq.compareTo(aux2.getSig().getEtq()) == 0)
+                        if (etq.compareToIgnoreCase(aux2.getSig().getEtq()) == 0)
                         {
                             aux = aux2.getSig();
                             aux2.setSig(aux.getSig());

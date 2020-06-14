@@ -514,7 +514,7 @@ public class VtnGrupo extends javax.swing.JFrame {
                             System.out.println("RB DEL BUSCA DE LA MULTILISTA: "+rb.getEtq());
                             
                             rb = rb.getAbj();
-                            System.out.println("RB DEL BUSCA DE LA MULTILISTA NIV 2: "+rb.getEtq());
+                            //System.out.println("RB DEL BUSCA DE LA MULTILISTA NIV 2: "+rb.getEtq());
  
                             if (rb != null) 
                             {
@@ -598,10 +598,12 @@ public class VtnGrupo extends javax.swing.JFrame {
  
                     if (prueba.toUpperCase().codePointAt(0) == prueba.codePointAt(0)) 
                     {
-                        pos = 14;
+                        pos = 26;
                     }
-                    
-                    pos = s.toUpperCase().codePointAt(0) - 65;
+                    else
+                    {
+                        pos = s.toUpperCase().codePointAt(0) - 65;
+                    }
                     
                     if (arr.getArr()[pos] != null) 
                     {
@@ -793,7 +795,7 @@ public class VtnGrupo extends javax.swing.JFrame {
         
         if (s.toUpperCase().codePointAt(0) == prueba.codePointAt(0)) 
         {
-            pos = 14;
+            pos = 26;
         } 
         else 
         {
