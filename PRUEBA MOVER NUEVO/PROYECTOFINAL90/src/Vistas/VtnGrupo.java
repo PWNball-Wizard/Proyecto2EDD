@@ -598,7 +598,7 @@ public class VtnGrupo extends javax.swing.JFrame {
                     int pos;
                     String prueba = "Ñ";
  
-                    if (prueba.toUpperCase().codePointAt(0) == prueba.codePointAt(0)) 
+                    if (prueba.toUpperCase().codePointAt(0) ==s.toUpperCase().codePointAt(0) )
                     {
                         pos = 26;
                     }
@@ -606,6 +606,10 @@ public class VtnGrupo extends javax.swing.JFrame {
                     {
                         pos = s.toUpperCase().codePointAt(0) - 65;
                     }
+                    
+                    
+                    
+                    System.out.println("LA POSICION EN LA QUE ESTOY BUSCANDO ES"+pos);
                     
                     if (arr.getArr()[pos] != null) 
                     {
