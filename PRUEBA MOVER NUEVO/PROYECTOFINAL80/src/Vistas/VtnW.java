@@ -49,10 +49,10 @@ public class VtnW extends javax.swing.JFrame {
 
     public VtnW() {
         initComponents();
-        this.setLocationRelativeTo(null);//CENTRA LA PANTALLA
+        this.setLocationRelativeTo(null);
 
-        jLChat.setForeground(Color.WHITE); //PONE EL COLOR DE LA ETIQUETA DE GRUPOS EN BLANCO
-        jTConversacion.setBackground(Color.WHITE);//PONE BLANCO EL COLOR DEL PANEL
+        jLChat.setForeground(Color.WHITE);
+        jTConversacion.setBackground(Color.WHITE);
 
         jLOriginal.setForeground(Color.WHITE);
         jLOrdenar.setForeground(Color.WHITE);
@@ -311,11 +311,11 @@ public class VtnW extends javax.swing.JFrame {
                    sb.append(z.charAt(i));
             }
 
-            z = sb.toString();//PASA A Z EL TEXTO
+            z = sb.toString();
             ///////////////////////////////////
             
             
-            Nodo n = new Nodo(1,z);//ESTA ES LA PARTE QUE CONTIENE EL NODO CON LA INFORMACION
+            Nodo n = new Nodo(1,z);
 
             p1.Inserta(n);
             c.Inserta(n);
@@ -335,9 +335,6 @@ public class VtnW extends javax.swing.JFrame {
         } 
         else 
         {
-            //MEOTODO 2/////////////////////////////////
-            
-            //String z = jTChat2.getText().replaceAll("(.{15})","$1\n");//ESTO DA EL SALTO DE LINEA CADA 15 CARACTERES
             
             //MISMA FUNCION QUE EN LA PARTE DE ARRIBA
             String t=jTChat2.getText();
@@ -370,8 +367,6 @@ public class VtnW extends javax.swing.JFrame {
             Nodo n = new Nodo(2,z);
             
             
-            
-            //Nodo n = new Nodo(2, "                               " + "                               " + jTChat2.getText());
             p2.Inserta(n);
             c.Inserta(n);
             raiz.setNum(raiz.getNum() + 1);
@@ -399,9 +394,7 @@ public class VtnW extends javax.swing.JFrame {
     }//GEN-LAST:event_jBOrdenaCActionPerformed
 
     private void jTChat1KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTChat1KeyTyped
-        /*if (jTChat1.getText().length() == 11) {
-            evt.consume();
-        }*/
+
     }//GEN-LAST:event_jTChat1KeyTyped
 
     private void jBRegresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBRegresarActionPerformed
@@ -454,9 +447,7 @@ public class VtnW extends javax.swing.JFrame {
     }//GEN-LAST:event_jTChat2ActionPerformed
 
     private void jTChat2KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTChat2KeyTyped
-        /*if (jTChat2.getText().length() == 11) {
-            evt.consume();
-        }*/
+
     }//GEN-LAST:event_jTChat2KeyTyped
 
     private void jBBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBBuscarActionPerformed
@@ -545,24 +536,24 @@ public class VtnW extends javax.swing.JFrame {
 
     }
 
-    public void muestra() //METODO QUE MUESTRA LOS DATOS DE LA PILA EN EL CHAT PRINCIPAL
+    public void muestra()
     {
         s = "";
 
-        ColaDinamica cmuestra = new ColaDinamica(); //DECLARA UNA COLA AUXILIAR LA CUAL CONTENDRA LOS DATOS A MOSTRAR EN EL CHAT
+        ColaDinamica cmuestra = new ColaDinamica();
 
-        for (int i = 0; i < raiz.getNum(); i++) //FOR QUE RECORRE TODOS LOS DATOS QUE TIENE LA COLA
+        for (int i = 0; i < raiz.getNum(); i++)
         {
 
-            Nodo aux = new Nodo(c.Elimina().getObj());//CREA UN NODO PARA CADA OBJETO DE LA COLA
+            Nodo aux = new Nodo(c.Elimina().getObj());
 
-            if (aux == null) //SI LA COLA ESTA VACIA DETIENE EL CICLO
+            if (aux == null)
             {
                 break;
             }
 
-            cmuestra.Inserta(aux);//INSERTA CADA DATO EN UN NODO
-            s += " " + String.valueOf(aux.getObj()) + "\n"; //OBTIENE EL VALOR DE INTERNO DE CADA OBJETO DEL NODO
+            cmuestra.Inserta(aux);
+            s += " " + String.valueOf(aux.getObj()) + "\n";
         }
 
         jTConversacion.setText(s);
@@ -581,7 +572,7 @@ public class VtnW extends javax.swing.JFrame {
         int n = 0;//Numeroo datos
         ColaDinamica a = new ColaDinamica();
 
-        for (int i = 0; i < raiz.getNum(); i++) //OBTIENE EL NUMERO DE DATOS DE LA COLA
+        for (int i = 0; i < raiz.getNum(); i++)
         {
             try {
                 Nodo aux = new Nodo(c.Elimina().getObj());
@@ -595,14 +586,14 @@ public class VtnW extends javax.swing.JFrame {
         if (a.getAtras() == null) {
             Mensaje.error(this, "No hay datos para ordenar");
         } else {
-            arr = new String[n];//DECLARA UN ARREGLO CON EL NUMERO DE DATOS QUE TIENE EL OBJETO
-
-            for (int i = 0; i < n; i++)//FOR QUE INSERTA EN EL ARREGLO LOS DATOS
+            arr = new String[n];
+            
+            for (int i = 0; i < n; i++)
             {
                 try {
                     Nodo aux = new Nodo(a.Elimina().getObj());
                     c.Inserta(aux);
-                    arr[i] = (String)aux.getObj().toString().replaceAll("\\s{2,}", " ").trim();//el trim es para que no tome en cuenta los espaciones del principio
+                    arr[i] = (String)aux.getObj().toString().replaceAll("\\s{2,}", " ").trim();
                     //arr[i] = (String) aux.getObj();
                 } catch (NullPointerException ex) {
                     break;
@@ -611,7 +602,7 @@ public class VtnW extends javax.swing.JFrame {
 
             for (int i = 0; i < n - 1; i++) {
                 for (int j = 0; j < n - 1; j++) {
-                    if (arr[j].compareTo(arr[j + 1]) > 0) //compareTo METODO QUE COMPARA DOS CADENAS
+                    if (arr[j].compareTo(arr[j + 1]) > 0)
                     {
                         String tmp = arr[j + 1];
                         arr[j + 1] = arr[j];
@@ -639,7 +630,7 @@ public class VtnW extends javax.swing.JFrame {
         int n = 0;
         PilaDinamica auxiliar = new PilaDinamica();
 
-        for (int i = 0; i < raiz.getNum(); i++) //OBTIENE EL NUMERO DE DATOS DE LA COLA
+        for (int i = 0; i < raiz.getNum(); i++)
         {
             try {
                 Nodo aux = new Nodo(p.Elimina().getObj());
@@ -653,9 +644,9 @@ public class VtnW extends javax.swing.JFrame {
         if (auxiliar.getTope() == null) {
             Mensaje.error(this, "El chat se encuentra vacio, no se puede ordenar");
         } else {
-            ar = new String[n];//DECLARA UN ARREGLO CON EL NUMERO DE DATOS QUE TIENE EL OBJETO
+            ar = new String[n];
 
-            for (int i = 0; i < n; i++)//FOR QUE INSERTA EN EL ARREGLO LOS DATOS
+            for (int i = 0; i < n; i++)
             {
                 try {
                     Nodo aux = new Nodo(auxiliar.Elimina().getObj());
@@ -686,7 +677,7 @@ public class VtnW extends javax.swing.JFrame {
 
     }
 
-    public void ordenap(PilaDinamica p) //METODO QUE ORDENA LOS DATOS DE UNA PILA
+    public void ordenap(PilaDinamica p)
     {
 
         String t = "";//texto
@@ -694,7 +685,7 @@ public class VtnW extends javax.swing.JFrame {
         int n = 0;
         PilaDinamica auxiliar = new PilaDinamica();
 
-        for (int i = 0; i < raiz.getNum(); i++) //OBTIENE EL NUMERO DE DATOS DE LA COLA
+        for (int i = 0; i < raiz.getNum(); i++)
         {
             try {
                 Nodo aux = new Nodo(p.Elimina().getObj());
@@ -709,9 +700,9 @@ public class VtnW extends javax.swing.JFrame {
             Mensaje.error(this, "El chat se encuentra vacio, no se puede ordenar");
         } else {
 
-            ar = new String[n];//DECLARA UN ARREGLO CON EL NUMERO DE DATOS QUE TIENE EL OBJETO
+            ar = new String[n];
 
-            for (int i = 0; i < n; i++)//FOR QUE INSERTA EN EL ARREGLO LOS DATOS
+            for (int i = 0; i < n; i++)
             {
                 try {
                     Nodo aux = new Nodo(auxiliar.Elimina().getObj());

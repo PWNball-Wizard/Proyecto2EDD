@@ -598,7 +598,7 @@ public class VtnGrupo extends javax.swing.JFrame {
                     int pos;
                     String prueba = "Ñ";
  
-                    if (prueba.toUpperCase().codePointAt(0) ==s.toUpperCase().codePointAt(0) )
+                    if (s.toUpperCase().codePointAt(0) == prueba.toUpperCase().codePointAt(0) )
                     {
                         pos = 26;
                     }

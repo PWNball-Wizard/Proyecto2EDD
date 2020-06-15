@@ -70,92 +70,6 @@ public class LSLC {
         }
     }
 
-    /*public Nodo eliminar(String etq) {
-        if (r == null) {
-            return null;
-        } else {
-            Nodo aux = null;
-            if (etq.trim().compareToIgnoreCase(r.getSig().getEtq()) >= 0
-                    && etq.trim().compareToIgnoreCase(r.getEtq()) <= 0) {
-                if (r.getSig().getEtq().equalsIgnoreCase(etq.trim())) {
-                    aux = r.getSig();
-                    r.setSig(aux.getSig());
-                    aux.setSig(null);
-                    if (r == aux) {
-                        r = null;
-                    }
-                } else {
-                    Nodo aux2 = r.getSig();
-                    boolean b = true;
-                    while (b) {
-                        if (etq.trim().compareToIgnoreCase(aux2.getSig().getEtq()) <= 0) {
-                            if (aux2.getSig().getEtq().equalsIgnoreCase(etq.trim())) {
-                                aux = aux2.getSig();
-                                aux2.setSig(aux.getSig());
-                                aux.setSig(null);
-                                b = false;
-                                if (r == aux) {
-                                    r = aux2;
-                                }
-                            } else {
-                                aux2 = aux2.getSig();
-                            }
-                        } else {
-                            break;
-                        }
-                    }
-                }
-            }
-            return aux;
-        }
-    }*/
-
-    /*private Nodo raiz = null; //raiz
-
-
-    //@Override
-    public void inserta(Object obj)
-    {
-        if (obj != null)
-        {
-            if (raiz == null)
-            {
-                raiz = (Nodo) obj;
-                raiz.setSig(raiz);
-            } else
-            {
-                Nodo n = (Nodo) obj;
-                if (n.getEtq().compareTo(raiz.getSig().getEtq()) < 0
-                        || n.getEtq().compareTo(raiz.getEtq()) >= 0)
-                {
-                    n.setSig(raiz.getSig());
-                    raiz.setSig(n);
-                    if (n.getEtq().compareTo(raiz.getEtq()) >= 0)
-                    {
-                        raiz = n;
-                    }
-                } else
-                {
-                    boolean b = true;
-                    Nodo aux = raiz.getSig();
-                    while (b)
-                    {
-                        if (n.getEtq().compareTo(aux.getSig().getEtq()) <= 0)
-                        {
-                            n.setSig(aux.getSig());
-                            aux.setSig(n);
-                            b = false;
-                        } else
-                        {
-                            aux = aux.getSig();
-                        }
-                    }
-                }
-            }
-        }
-    }*/
-    
-
     public Nodo eliminar(String etq)
     {
         if (r == null)
@@ -208,22 +122,9 @@ public class LSLC {
             return aux;
         }
     }
-    /**
-     * @return the raiz
-     */
-    /*public Nodo getRaiz()
+    
+    public String desp() 
     {
-        return raiz;
-    }
-
-    /**
-     * @param raiz the raiz to set
-     */
- /*public void setRaiz(Nodo raiz)
-    {
-        this.raiz = raiz;
-    }*/
-    public String desp() {
         String s = "";
         if (r != null) {
             Nodo aux = r.getSig();
@@ -237,14 +138,5 @@ public class LSLC {
         return s;
     }
 
-    public int can() {
-        int cont = 0;
-        Nodo aux = r;
-        aux = aux.getSig();
-        do{
-            cont++;
-            aux = aux.getSig();
-        }while(aux != r.getSig());
-        return cont;
-    }
+    
 }

@@ -12,7 +12,6 @@ import Clases.Nodo;
 import Clases.NodoArbol;
 import Clases.Propiedades;
 import Clases.TablasHash;
-import static Vistas.VtnHistorial.validaH;
 import cjb.ci.Mensaje;
 import java.awt.Color;
 import java.awt.Component;
@@ -126,7 +125,7 @@ public class VtnGrupo extends javax.swing.JFrame {
         return aux;
     }
      
-    public static boolean validaEsp(String s)
+    /*public static boolean validaEsp(String s)
     {
         boolean validaEsp=false;
         
@@ -139,85 +138,8 @@ public class VtnGrupo extends javax.swing.JFrame {
         }
         
         return validaEsp;
-    }
-     
-     
-//     public boolean validaEspacios(String s)
-//     {
-//        boolean vE=false;
-//        int largo=s.length();
-//        
-//        if (s.charAt(0)==32) 
-//        {
-//            vE=false;
-//        }
-//        
-//        
-//        /*for (int i = 0; i < s.length(); i++) //analiza cada caracter de la cadena de manera individual
-//        {
-//            if (s.charAt(i)==32) 
-//            {
-//                
-//            }
-//        }*/
-//        return vE;
-//     }
-
-
-    /*public boolean valida(String s) {
-        boolean valida = false;
-        for (int i = 0; i < s.length(); i++) 
-        {
-            char caracter = s.charAt(i);
-            int valorASCII = (int) caracter;
-            if (valorASCII > 64 && valorASCII < 91) 
-            {
-                valida = true; 
-            }
-            if (valorASCII > 97 && valorASCII < 123) 
-            {
-                valida = true; 
-            }
-
-        }
-
-        System.out.println("VALOR DE VALIDA:" + valida);
-
-        boolean validatodo = false;
-
-        if (s.length() == 0) {
-            Mensaje.error(this, "Campo vacio, debe ingresar un nombre primero");
-            validatodo = false;
-        } else {
-            if (valida == false) {
-                Mensaje.error(this, "Error, caracter invalido detectado\n Los caracteres permitidos para este apartado son solo letras");
-                validatodo = false;
-            } else {
-                validatodo = true;
-            }
-        }
-
-        System.out.println("VALIDA TODO;" + validatodo);
-        return validatodo;
     }*/
     
-    /*public static boolean validaG(Nodo r, String etq)//valida que el nombre de un grupo no se repita 
-    {
-        boolean aux = false;
-        Nodo aux2 = r;
-        aux2 = aux2.getSig();
-       do {
-            if (aux2.getEtq().equals(etq)) {
-                aux = true;
-                break;
-            } else {
-                aux2 = aux2.getSig();
-            }
-        }while(aux2 != r.getSig());
-        System.out.println("EL DATO QUE ENCONTRE FUE:" + aux);
-        return aux;
-    }*/
-
     public boolean validaE(String s)//valida que no haya espacios al principio y al final de la palabra
     {
         boolean validaE = false;
@@ -718,59 +640,6 @@ public class VtnGrupo extends javax.swing.JFrame {
                             aux=aux.getSig();
                         }while (aux!=raux);
                         //TERMINA PARTE DEL BUSCA/////////////////
-            
-            
-            
-//            //PARTE DE EL BUSCA
-//            Nodo raux=r.getSig();
-//            aux=aux.getSig();
-//            do
-//            {
-//                //parte que añade los bootnes 
-//                
-//                JButton boton = new JButton(aux.getEtq());
-//
-//                boton.setBackground(Color.WHITE);//PONE EL FONDO DEL BOTON EN BLANCO
-//                boton.setForeground(Color.BLACK);//PONE LAS LETRAS COLOR NEGRO
-//                boton.setFont(new Font("arial", 1, 14));//CAMBIA LA FUENTE Y EL TAMAÑO
-//                System.out.println("pase la parte de tomar el texto del boton");
-//
-//                //ESTABLECE UN TAMAÑO POR DEFECTO PARA LOS BOTONES
-//                boton.setMinimumSize(new Dimension(JPGrupos.getWidth(), 50));
-//                boton.setMaximumSize(new Dimension(JPGrupos.getWidth(), 50));
-//                boton.setPreferredSize(new Dimension(JPGrupos.getWidth(), 50));
-//
-//                JPGrupos.add(boton);
-//                System.out.println("pase la parte de agregar el boton");
-//                
-//                System.out.println(boton.getText());
-//
-//                boton.addActionListener(new ActionListener()//pone una accion al boton
-//                {
-//                    @Override
-//                    public void actionPerformed(ActionEvent e)//accion del boton
-//                    {
-//                        VtnContacto c = new VtnContacto();
-//                        c.d = boton.getText();
-//                        c.setVisible(true);
-//
-//                    }
-//                });
-//                System.out.println("le añadi la opcion al boton");
-//                
-//                aux = aux.getSig();
-//                JPGrupos.revalidate();
-//                JPGrupos.repaint();
-//                
-//                ///termina parte que añade los botones
-//            }while (aux!=raux);
-//            ///////////////////
-            
-            
-
-            //while (aux != null) {
-                
-            //}
             JPGrupos.revalidate();
             JPGrupos.repaint();
         }

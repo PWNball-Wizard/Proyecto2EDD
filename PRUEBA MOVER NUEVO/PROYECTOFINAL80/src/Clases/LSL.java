@@ -121,21 +121,13 @@ public class LSL implements Serializable {
         }
     }
 
-    public String desp(Nodo r) {
+    public String desp(Nodo r) 
+    {
         String s = "";
         while (r != null) {
             s += r.getEtq();
             r = r.getSig();
         }
         return s;
-    }
-
-    public int can() {
-        int cont = 0;
-        do{
-            cont++;
-            r = r.getSig();
-        }while (r != null);
-        return cont;
     }
 }

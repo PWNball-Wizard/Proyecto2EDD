@@ -5,17 +5,12 @@
  */
 package Vistas;
 
-import Clases.ArbolBinario;
 import Clases.Archivos;
 import Clases.Multilistas;
 import Clases.Nodo;
 import Clases.NodoArbol;
 import Clases.Propiedades;
-import Clases.TablasHash;
-import static Vistas.VtnGrupo.arr;
-import static Vistas.VtnGrupo.r;
 import static Vistas.VtnGrupo.validaR;
-import static Vistas.VtnHistorial.validaH;
 import cjb.ci.Mensaje;
 import java.awt.Color;
 import java.awt.Component;
@@ -110,7 +105,7 @@ public class VtnContacto extends javax.swing.JFrame {
         return validabe;
     }
 
-    public static boolean validaC(Nodo r, String etq)//valida que el nombre de un grupo no se repita 
+    /*public static boolean validaC(Nodo r, String etq)//valida que el nombre de un grupo no se repita 
     {
         boolean aux = false;
         if (r1 == null) {
@@ -130,7 +125,7 @@ public class VtnContacto extends javax.swing.JFrame {
         System.out.println("EL DATO QUE ENCONTRE FUE:" + aux);
         }
         return aux;
-    }
+    }*/
 
     public boolean validaE(String s)//valida que no haya espacios al principio y al final de la palabra
     {
@@ -402,7 +397,7 @@ public class VtnContacto extends javax.swing.JFrame {
             s = pal.replaceAll("\\s{2,}", " ").trim();
             if (valida(s) == false)
             {
-               //Mensaje.error(this, "Debe rellenar el campo");
+                System.out.println("error");
            } 
            else 
            {

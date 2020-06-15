@@ -12,8 +12,6 @@ import java.io.Serializable;
  * @author josea
  */
 public class ColaDinamica implements Serializable{
-    //frente y atras
-    //////////////////////////////////////////////
 
     public static final long serialVersionUID = 1L;
     

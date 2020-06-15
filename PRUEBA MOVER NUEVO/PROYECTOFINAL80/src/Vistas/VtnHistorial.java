@@ -47,7 +47,7 @@ public class VtnHistorial extends javax.swing.JFrame {
 
     }
 
-    public static boolean validaH(Nodo r, String etq)//valida que el nombre de un grupo no se repita 
+    /*public static boolean validaH(Nodo r, String etq)//valida que el nombre de un grupo no se repita 
     {
         boolean aux = false;
         Nodo aux2 = r;
@@ -62,7 +62,7 @@ public class VtnHistorial extends javax.swing.JFrame {
         }while(aux2 != r.getSig());
         System.out.println("EL DATO QUE ENCONTRE FUE:" + aux);
         return aux;
-    }
+    }*/
 
     DateFormat df = DateFormat.getDateInstance();
     
@@ -384,8 +384,6 @@ public class VtnHistorial extends javax.swing.JFrame {
         JOptionPane.showMessageDialog(rootPane, "                                                                       ¡Bienvenido a la ventana de historial!\n"
                 + "En esta ventana podras realizar distintas acciones como agregar o eliminar las fechas en las que hayas tenido conversaciones\n"
                 + "Asi como buscar y acceder entre las distintas fechas que tengas y observar su contenido");
-
-        JOptionPane.showMessageDialog(rootPane, "¡Recuerda que al ingresar una fecha debe ser bajo el formato dd/mm/aaaa!");
     }//GEN-LAST:event_jBAsistenteActionPerformed
 
     /**

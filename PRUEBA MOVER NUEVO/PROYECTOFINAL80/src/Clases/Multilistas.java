@@ -77,25 +77,6 @@ public class Multilistas implements Serializable {
         }
         return r;
     }
-
-    /*public static Nodo busca(Nodo r, String etq) {
-        System.out.println("ENTRANDO AL METODO BUSCA...");
-        Nodo aux2 = r;
-        boolean encontrado = false;
-        Nodo aux = null;
-        do {
-            if (aux2.getEtq().equalsIgnoreCase(etq.trim())) {
-                aux = aux2;
-                encontrado = true;
-            } 
-            else 
-            {
-                aux2 = aux2.getSig();
-            }
-        } while (aux2 != r.getSig() && encontrado != true);
-        System.out.println("EL DATO QUE ENCONTRE FUE:" + aux);
-        return aux;
-    }*/
     
     public static Nodo busca(Nodo r,String pbuscar)//FUNCIONA 
     {
@@ -128,31 +109,5 @@ public class Multilistas implements Serializable {
 //        System.out.println("EL VALOR DE ENCONTRADO ES:"+encontrado);
 //        System.out.println("EL VALOR DE AUX es"+aux.getEtq());
         return aux;
-    }
-    
-
-    public static String desp(Nodo r, int nivel) {
-
-        String s = "";
-        Nodo aux = r.getSig();
-
-       do{
-
-            String ss = "";
-
-            for (int i = 0; i < nivel; i++) {
-                ss = "\t";
-            }
-
-            s += ss + " nivel " + String.valueOf(nivel) + "\n";
-
-            s += ss + r.getEtq() + "\n";
-
-            s += desp(r.getAbj(), nivel + 1);
-
-            r = r.getSig();
-
-        }while(r != aux);
-        return s;
     }
 }
