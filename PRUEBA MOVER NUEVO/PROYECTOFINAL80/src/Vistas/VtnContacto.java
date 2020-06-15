@@ -313,7 +313,7 @@ public class VtnContacto extends javax.swing.JFrame {
                             etqs[0] = d;//toma el texto del boton que se eligio anteriorente
                             etqs[1] = s2;
 
-                            NodoArbol nomNAS = new NodoArbol(s2.trim(), null, etqs);
+                            NodoArbol nomNAS = new NodoArbol(s2.trim(), null);
 
                             Nodo arriba = Multilistas.busca(VtnGrupo.r, d);///busca el nodo grupo en la multilista
                             

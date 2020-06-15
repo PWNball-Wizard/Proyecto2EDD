@@ -97,8 +97,7 @@ public class VtnMover extends javax.swing.JFrame {
 
         return validaE;
     }
-    
-    
+
     public VtnMover() {
         initComponents();
         this.setLocationRelativeTo(null);
@@ -284,7 +283,7 @@ public class VtnMover extends javax.swing.JFrame {
 
         boolean b1 = true;
         boolean b2 = true;
-        
+
         if (nom == null) {
             b1 = false;
             //Evita el NPE al salir del showInputDialog o presionar cancelar
@@ -292,8 +291,7 @@ public class VtnMover extends javax.swing.JFrame {
         {
             if (validaE(nom) == false) {
                 System.out.println("");
-            } else 
-            {
+            } else {
 
                 if (gpo != null) //Evita el NPE al salir del showInputDialog o presionar cancelar
                 {
@@ -302,11 +300,6 @@ public class VtnMover extends javax.swing.JFrame {
                     {
                         System.out.println("");
                     } else {
-
-//                        if (validaC(r, gpo) == false)//significa que no encontro nada 
-//                        {
-//                            Mensaje.error(this, "El grupo al cual desea mover el contacto no se encontro");
-//                        } else {
                         if (gpo.length() == 0) {
                             Mensaje.error(this, "Los campos no deben estar vacios");
                         }
@@ -332,30 +325,14 @@ public class VtnMover extends javax.swing.JFrame {
                                     Nodo arriba = Multilistas.busca(VtnGrupo.r, gpo);
                                     VtnGrupo.r = Multilistas.mover(VtnGrupo.r, 0, etqsE, etqsI, arriba);
 
-                                    int pos = nom.toUpperCase().codePointAt(0) - 65;
-
-                                    if (VtnGrupo.arr.getArr()[pos] != null) {
-
-                                        ArbolBinario aba = new ArbolBinario();
-
-                                        NodoArbol aux = aba.busca(VtnGrupo.arr.getArr()[pos].getR(), nom);
-
-                                        if (aux != null) {
-
-                                            aux.setPredecesores(etqsI);
-                                            String muestra[] = aux.getPredecesores();
-
-                                            System.out.println("Etqs modificada " + muestra[0]);
-                                            System.out.println("Etqs modificadas " + muestra[1]);
-
-                                            Propiedades p = new Propiedades(VtnGrupo.r, VtnGrupo.arr);
-                                            try {
-                                                Archivos.guardar(p, this);
-                                            } catch (FileNotFoundException ex) {
-                                                System.out.println(" No se encontro el archivo ");
-                                            }
-                                        }
+                                    Propiedades p = new Propiedades(VtnGrupo.r, VtnGrupo.arr);
+                                    try {
+                                        Archivos.guardar(p, this);
+                                    } catch (FileNotFoundException ex) {
+                                        System.out.println(" No se encontro el archivo ");
                                     }
+//                                        }
+//                                    }
                                     r1 = Multilistas.busca(VtnGrupo.r, d);
                                     r1 = r1.getAbj();
 
@@ -389,32 +366,13 @@ public class VtnMover extends javax.swing.JFrame {
                                 Nodo arriba = Multilistas.busca(VtnGrupo.r, gpo);
                                 VtnGrupo.r = Multilistas.mover(VtnGrupo.r, 0, etqsE, etqsI, arriba);
 
-                                int pos = nom.toUpperCase().codePointAt(0) - 65;
-
-                                if (VtnGrupo.arr.getArr()[pos] != null) {
-
-                                    ArbolBinario aba = new ArbolBinario();
-
-                                    NodoArbol aux = aba.busca(VtnGrupo.arr.getArr()[pos].getR(), nom);
-
-                                    if (aux != null) {
-
-                                       aux.setPredecesores(etqsI);
-
-                                        String muestra[] = aux.getPredecesores();
-
-                                        System.out.println("Etqs modificada " + muestra[0]);
-                                        System.out.println("Etqs modificadas " + muestra[1]);
-
-                                        Propiedades p = new Propiedades(VtnGrupo.r, VtnGrupo.arr);
-                                        try {
-                                            Archivos.guardar(p, this);
-                                        } catch (FileNotFoundException ex) {
-                                            System.out.println(" No se encontro el archivo ");
-                                        }
-                                    }
-                                    //
+                                Propiedades p = new Propiedades(VtnGrupo.r, VtnGrupo.arr);
+                                try {
+                                    Archivos.guardar(p, this);
+                                } catch (FileNotFoundException ex) {
+                                    System.out.println(" No se encontro el archivo ");
                                 }
+
                                 r1 = Multilistas.busca(VtnGrupo.r, d);
                                 r1 = r1.getAbj();
 
@@ -435,8 +393,6 @@ public class VtnMover extends javax.swing.JFrame {
                                 JPContactos.repaint();
                             }
                         }
-//                        }
-
                     }//fin del validaE de grupo
                 }//fin del gpo!=null
             }/////////FIN DE VALIDA
