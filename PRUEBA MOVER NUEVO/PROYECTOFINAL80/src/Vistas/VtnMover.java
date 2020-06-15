@@ -101,6 +101,7 @@ public class VtnMover extends javax.swing.JFrame {
     public VtnMover() {
         initComponents();
         this.setLocationRelativeTo(null);
+        jBAtras.setContentAreaFilled(false);
 
 //        jPContactos1.setLayout(new BoxLayout(jPContactos1, BoxLayout.PAGE_AXIS));
         jPContactos1.setLayout(new BoxLayout(jPContactos1, BoxLayout.PAGE_AXIS));
@@ -116,8 +117,7 @@ public class VtnMover extends javax.swing.JFrame {
     private void initComponents() {
 
         jLabel1 = new javax.swing.JLabel();
-        jBMover = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        jBAtras = new javax.swing.JButton();
         jPContactos1 = new javax.swing.JPanel();
         jLabel5 = new javax.swing.JLabel();
         jPGrupo = new javax.swing.JPanel();
@@ -131,24 +131,17 @@ public class VtnMover extends javax.swing.JFrame {
         });
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        jLabel1.setFont(new java.awt.Font("Tahoma", 1, 13)); // NOI18N
         jLabel1.setText("Elige el contacto a mover");
-        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 30, -1, -1));
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 30, -1, -1));
 
-        jBMover.setText("Mover");
-        jBMover.addActionListener(new java.awt.event.ActionListener() {
+        jBAtras.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/atrasMover.png"))); // NOI18N
+        jBAtras.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jBMoverActionPerformed(evt);
+                jBAtrasActionPerformed(evt);
             }
         });
-        getContentPane().add(jBMover, new org.netbeans.lib.awtextra.AbsoluteConstraints(186, 522, -1, -1));
-
-        jButton2.setText("Cancelar");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
-            }
-        });
-        getContentPane().add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(96, 522, -1, -1));
+        getContentPane().add(jBAtras, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 510, 50, 40));
 
         jPContactos1.setBackground(new java.awt.Color(255, 255, 255));
         jPContactos1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
@@ -161,10 +154,10 @@ public class VtnMover extends javax.swing.JFrame {
         );
         jPContactos1Layout.setVerticalGroup(
             jPContactos1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 448, Short.MAX_VALUE)
+            .addGap(0, 428, Short.MAX_VALUE)
         );
 
-        getContentPane().add(jPContactos1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 60, 300, 450));
+        getContentPane().add(jPContactos1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 60, 300, 430));
 
         jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/fondomover12.jpg"))); // NOI18N
         getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
@@ -187,10 +180,6 @@ public class VtnMover extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void jBMoverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBMoverActionPerformed
-
-    }//GEN-LAST:event_jBMoverActionPerformed
 
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
 
@@ -235,7 +224,7 @@ public class VtnMover extends javax.swing.JFrame {
     public void muestraGrupos() {
         jPContactos1.removeAll();
         jPContactos1.updateUI();
-        jLabel1.setText("Elige el grupo al que deseas mover el contacto");
+        jLabel1.setText("Elige el grupo al que deseas mover");
         if (muestraG != false) {
             if (r == null) {//hacer esta validacion en las demas ventanas
                 Mensaje.error(this, "No hay datos en la lista");
@@ -407,12 +396,12 @@ public class VtnMover extends javax.swing.JFrame {
         this.dispose();
     }
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+    private void jBAtrasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBAtrasActionPerformed
         //LE CAMBIE ESTO
         this.setVisible(false);
         new VtnContacto().setVisible(true);
         dispose();
-    }//GEN-LAST:event_jButton2ActionPerformed
+    }//GEN-LAST:event_jBAtrasActionPerformed
 
     /**
      * @param args the command line arguments
@@ -450,8 +439,7 @@ public class VtnMover extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jBMover;
-    private javax.swing.JButton jButton2;
+    private javax.swing.JButton jBAtras;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JPanel jPContactos1;
